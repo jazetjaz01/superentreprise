@@ -6,7 +6,7 @@ import { NavigationSheet } from "@/components/navigation-sheet";
 
 const Navbar = () => {
   return (
-    <nav className="h-16 border-b bg-background">
+    <nav className="h-16  bg-background">
       <div className="mx-auto flex h-full w-full items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-8">
           <Logo />
