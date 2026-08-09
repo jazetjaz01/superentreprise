@@ -1,4 +1,5 @@
 import { Audiowide } from "next/font/google";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 const audiowide = Audiowide({
@@ -7,7 +8,10 @@ const audiowide = Audiowide({
 });
 
 export const Logo = () => (
-  <span className={cn(audiowide.className, "text-xl text-foreground lowercase")}>
+  <Link
+    href="/"
+    className={cn(audiowide.className, "text-xl text-foreground lowercase")}
+  >
     superentreprise
-  </span>
+  </Link>
 );
