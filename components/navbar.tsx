@@ -15,9 +15,13 @@ const Navbar = async () => {
 
   return (
     <nav className="bg-background">
-      <div className="mx-auto flex h-16 w-full items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-20 w-full items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-8">
           <Logo />
+
+          <div className="hidden lg:block">
+            <SearchBar />
+          </div>
 
           {/* Desktop Menu */}
           <NavMenu className="hidden md:block" />
@@ -46,10 +50,6 @@ const Navbar = async () => {
             <NavigationSheet />
           </div>
         </div>
-      </div>
-
-      <div className="hidden justify-center pb-4 lg:flex">
-        <SearchBar />
       </div>
     </nav>
   );
