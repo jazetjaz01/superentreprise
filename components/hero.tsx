@@ -24,7 +24,7 @@ const content: Record<
   vendeur: {
     title: (
       <>
-        Vous souhaitez vendre <br /> votre entreprise ?
+        Vous souhaitez vendre <br /> une entreprise ?
       </>
     ),
     description:
@@ -62,7 +62,7 @@ export default function Hero() {
               type="button"
               onClick={() => setAudience("acheteur")}
               className={cn(
-                "relative z-10 rounded-full px-4 py-1.5 transition-colors duration-300",
+                "relative z-10 rounded-full px-4 py-1.5 uppercase transition-colors duration-300",
                 audience === "acheteur"
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground",
@@ -75,7 +75,7 @@ export default function Hero() {
               type="button"
               onClick={() => setAudience("vendeur")}
               className={cn(
-                "relative z-10 rounded-full px-4 py-1.5 transition-colors duration-300",
+                "relative z-10 rounded-full px-4 py-1.5 uppercase transition-colors duration-300",
                 audience === "vendeur"
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground",
