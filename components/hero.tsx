@@ -14,7 +14,7 @@ const content: Record<
   acheteur: {
     title: (
       <>
-        Vous souhaitez acheter <br /> une  entreprise ?
+        Vous voulez acheter <br /> une  entreprise ?
       </>
     ),
     description:
@@ -52,9 +52,9 @@ export default function Hero() {
     <div className="flex items-center justify-center px-6 pt-12 pb-20 ">
       <div className="mx-auto grid w-full max-w-(--breakpoint-2xl) gap-16 lg:grid-cols-2">
         <div>
-          <div className="relative inline-flex items-center gap-1 rounded-full bg-muted p-1 text-sm font-semibold">
+          <div className="relative inline-flex items-center gap-1 rounded-full bg-purple-100/50 p-1 text-xs">
             <div
-              className="absolute top-1 bottom-1 rounded-full border border-border bg-background shadow-sm transition-[left,width] duration-300 ease-out"
+              className="absolute top-1 bottom-1 rounded-full border-2  bg-background  transition-[left,width] duration-300 ease-out"
               style={{ left: indicator.left, width: indicator.width }}
             />
             <button
@@ -62,10 +62,10 @@ export default function Hero() {
               type="button"
               onClick={() => setAudience("acheteur")}
               className={cn(
-                "relative z-10 rounded-full px-4 py-1.5 uppercase transition-colors duration-300",
+                "relative z-10 rounded-full px-4 py-2 uppercase transition-colors duration-300",
                 audience === "acheteur"
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground",
+                  ? "font-semibold text-foreground"
+                  : "font-semibold  hover:text-foreground text-purple-900",
               )}
             >
               Acheteurs
@@ -75,10 +75,10 @@ export default function Hero() {
               type="button"
               onClick={() => setAudience("vendeur")}
               className={cn(
-                "relative z-10 rounded-full px-4 py-1.5 uppercase transition-colors duration-300",
+                "relative z-10 rounded-full px-4 py-2 uppercase transition-colors duration-300",
                 audience === "vendeur"
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground",
+                  ? "font-semibold text-foreground"
+                  : "font-semibold  hover:text-foreground text-purple-900",
               )}
             >
               Vendeurs
