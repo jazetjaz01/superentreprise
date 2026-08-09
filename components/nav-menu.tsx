@@ -22,10 +22,10 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => (
   <NavigationMenu {...props}>
     <NavigationMenuList className="gap-1 space-x-0 text-sm">
       <NavigationMenuItem>
-        <Button variant="ghost" render={<Link href="#" />} nativeButton={false}>Home</Button>
+        <Button variant="ghost" render={<Link href="#" />} nativeButton={false}>Accueil</Button>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <NavigationMenuTrigger>Food</NavigationMenuTrigger>
+        <NavigationMenuTrigger>Actualité</NavigationMenuTrigger>
         <NavigationMenuContent>
           <ul className="grid w-[400px] gap-3 p-1 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
             {foods.map((food) => (
@@ -42,7 +42,7 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => (
         </NavigationMenuContent>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <NavigationMenuTrigger>Travel</NavigationMenuTrigger>
+        <NavigationMenuTrigger>Contact</NavigationMenuTrigger>
         <NavigationMenuContent>
           <ul className="grid w-[400px] gap-3 p-1 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
             {travelMenuItems.map((menuItem) => (
