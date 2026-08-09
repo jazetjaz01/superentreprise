@@ -38,7 +38,7 @@ export function SearchBar() {
   };
 
   return (
-    <div className="flex w-full max-w-lg items-center gap-1 rounded-full bg-muted py-1.5 pr-1.5 pl-4">
+    <div className="flex w-full max-w-lg items-center gap-1 rounded-full border-2 border-transparent bg-muted py-1.5 pr-1.5 pl-4 transition-colors focus-within:border-rose-200 focus-within:bg-white">
       <input
         type="text"
         value={type}
@@ -47,7 +47,7 @@ export function SearchBar() {
           if (e.key === "Enter") handleSearch();
         }}
         placeholder="Type de commerce"
-        className="h-10 min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
+        className="h-10 min-w-0 flex-1 rounded-full bg-transparent px-3 text-sm outline-none placeholder:text-muted-foreground"
       />
 
       <div className="h-6 w-px shrink-0 bg-border" />
@@ -60,7 +60,7 @@ export function SearchBar() {
           if (e.key === "Enter") handleSearch();
         }}
         placeholder="Localisation"
-        className="h-10 min-w-0 flex-1 bg-transparent px-3 text-sm outline-none placeholder:text-muted-foreground"
+        className="h-10 min-w-0 flex-1 rounded-full bg-transparent px-3 text-sm outline-none placeholder:text-muted-foreground"
       />
 
       <Popover open={budgetOpen} onOpenChange={setBudgetOpen}>
