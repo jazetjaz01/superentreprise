@@ -1,10 +1,17 @@
-import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/logo";
 import { NavMenu } from "@/components/nav-menu";
 import { NavigationSheet } from "@/components/navigation-sheet";
+import { signOut } from "@/lib/supabase/actions";
+import { createClient } from "@/lib/supabase/server";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <nav className="h-16  bg-background">
       <div className="mx-auto flex h-full w-full items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -16,9 +23,22 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button>
-            Get Started <ArrowUpRight />
-          </Button>
+          {user ? (
+            <form action={signOut}>
+              <Button variant="ghost" type="submit">
+                Se déconnecter
+              </Button>
+            </form>
+          ) : (
+            <>
+              <Button variant="ghost" render={<Link href="/login" />} nativeButton={false}>
+                Se connecter
+              </Button>
+              <Button render={<Link href="/signin" />} nativeButton={false}>
+                S&apos;enregistrer
+              </Button>
+            </>
+          )}
 
           {/* Mobile Menu */}
           <div className="md:hidden">
