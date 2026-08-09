@@ -9,14 +9,12 @@ export default function Hero() {
       <div className="mx-auto grid w-full max-w-(--breakpoint-2xl) gap-16 lg:grid-cols-2">
         <div>
           <Badge className="rounded-full border-border py-1" variant="secondary" render={<Link href="#" />}>Just released v1.0.0 <ArrowUpRight className="ml-1 size-4" /></Badge>
-          <h1 className="mt-6 max-w-[17ch] font-medium text-4xl leading-[1.2]! tracking-[-0.04em] md:text-5xl lg:text-[2.75rem] xl:text-[3.25rem]">
-            Your complete
-            <br /> UI building toolkit
+          <h1 className="mt-6 max-w-[17ch] font-semibold text-4xl leading-[1.2]! tracking-[-0.04em] md:text-5xl lg:text-[2.75rem] xl:text-[3.25rem]">
+            Vous cherchez à <br />acheter 
+            une super <br /> entreprise ?
           </h1>
-          <p className="mt-4 max-w-[60ch] text-foreground/60 text-lg sm:mt-6 sm:text-xl/normal">
-            Explore a collection of Shadcn UI blocks and components, ready to
-            preview and copy. Streamline your development workflow with
-            easy-to-implement examples.
+          <p className="mt-4 max-w-[60ch]  text-lg sm:mt-6 sm:text-xl/normal">
+            Superentreprise est le spécialiste  français d'annonces de vente et achat d'entreprises, TPE, PME, commerces, fonds de commerce, immobilier entreprise et franchises.
           </p>
           <div className="mt-8 flex items-center gap-4 sm:mt-12">
             <Button className="rounded-full" size="lg">
@@ -31,7 +29,14 @@ export default function Hero() {
             </Button>
           </div>
         </div>
-        <div className="mt-auto aspect-video w-full rounded-xl bg-accent" />
+        <video
+          className="mt-auto aspect-video w-full rounded-xl bg-accent object-cover"
+          src="/video/video.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
       </div>
     </div>
   );
