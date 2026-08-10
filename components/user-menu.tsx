@@ -6,7 +6,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -29,12 +28,15 @@ export function UserMenu({
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuLabel className="truncate">{label}</DropdownMenuLabel>
+      <DropdownMenuContent align="end" className="w-48">
+        <div className="truncate px-1.5 py-1 text-muted-foreground text-xs">
+          {label}
+        </div>
         <DropdownMenuSeparator />
         <form action={signOut}>
           <DropdownMenuItem
             variant="destructive"
+            nativeButton
             render={<button type="submit" className="w-full" />}
           >
             <LogOut /> Se déconnecter
