@@ -58,6 +58,9 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => (
           </ul>
         </NavigationMenuContent>
       </NavigationMenuItem>
+      <NavigationMenuItem>
+        <Button variant="ghost" render={<Link href="#" />} nativeButton={false}>Déposer une annonce</Button>
+      </NavigationMenuItem>
     </NavigationMenuList>
   </NavigationMenu>
 );

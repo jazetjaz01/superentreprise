@@ -4,14 +4,7 @@ import Link from "next/link";
 import { useActionState } from "react";
 import { signup } from "./actions";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { GoogleAuthButton } from "@/components/google-auth-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -19,56 +12,75 @@ export default function SignInPage() {
   const [state, formAction, pending] = useActionState(signup, null);
 
   return (
-    <div className="flex flex-1 items-center justify-center px-4 py-16">
-      <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle>Créer un compte</CardTitle>
-          <CardDescription>
-            Inscris-toi avec ton email pour commencer.
-          </CardDescription>
-        </CardHeader>
-        <form action={formAction}>
-          <CardContent className="flex flex-col gap-4">
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="password">Mot de passe</Label>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="new-password"
-                minLength={6}
-                required
-              />
-            </div>
-            {state?.error && (
-              <p className="text-sm text-destructive" aria-live="polite">
-                {state.error}
-              </p>
-            )}
-          </CardContent>
-          <CardFooter className="flex flex-col items-stretch gap-3 border-t-0 bg-transparent px-(--card-spacing) pt-2">
-            <Button type="submit" disabled={pending} className="w-full">
-              {pending ? "Création..." : "Créer mon compte"}
-            </Button>
-            <p className="text-center text-sm text-muted-foreground">
-              Déjà un compte ?{" "}
-              <Link href="/login" className="text-foreground underline">
-                Se connecter
-              </Link>
+    <div className="mx-auto flex w-full max-w-sm flex-col items-center text-center">
+      <h1 className="font-semibold text-2xl">Créez votre compte</h1>
+      <p className="mt-2 text-muted-foreground text-sm">
+        Inscrivez-vous pour découvrir les meilleures annonces de cession
+        d&apos;entreprises.
+      </p>
+
+      <div className="mt-8 w-full">
+        <GoogleAuthButton />
+      </div>
+
+      <div className="my-6 flex w-full items-center gap-3 text-muted-foreground text-xs">
+        <div className="h-px flex-1 bg-border" />
+        ou
+        <div className="h-px flex-1 bg-border" />
+      </div>
+
+      <form action={formAction} className="w-full">
+        <div className="flex flex-col gap-3">
+          <div className="text-left">
+            <Label htmlFor="email" className="sr-only">
+              Email
+            </Label>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              placeholder="Adresse email"
+              className="h-11 rounded-full px-4"
+              required
+            />
+          </div>
+          <div className="text-left">
+            <Label htmlFor="password" className="sr-only">
+              Mot de passe
+            </Label>
+            <Input
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="new-password"
+              placeholder="Mot de passe"
+              className="h-11 rounded-full px-4"
+              minLength={6}
+              required
+            />
+          </div>
+          {state?.error && (
+            <p className="text-destructive text-sm" aria-live="polite">
+              {state.error}
             </p>
-          </CardFooter>
-        </form>
-      </Card>
+          )}
+          <Button
+            type="submit"
+            disabled={pending}
+            className="mt-2 h-11 w-full rounded-full"
+          >
+            {pending ? "Création..." : "Créer mon compte"}
+          </Button>
+        </div>
+      </form>
+
+      <p className="mt-6 text-muted-foreground text-sm">
+        Déjà un compte ?{" "}
+        <Link href="/login" className="text-foreground underline">
+          Se connecter
+        </Link>
+      </p>
     </div>
   );
 }

@@ -28,8 +28,8 @@ const content: Record<
       </>
     ),
     description:
-      "Publiez votre annonce et trouvez le bon repreneur pour votre entreprise, commerce, fonds de commerce ou franchise.",
-    cta: "Déposer une annonce",
+      "Superentreprise est le spécialiste français d'annonces de vente et achat d'entreprises, TPE, PME, commerces, fonds de commerce, immobilier entreprise et franchises.",
+    cta: "Créer une annonce",
   },
 };
 
@@ -52,7 +52,7 @@ export default function Hero() {
     <div className="flex items-center justify-center px-6 pt-12 pb-20 ">
       <div className="mx-auto grid w-full max-w-(--breakpoint-2xl) gap-16 lg:grid-cols-2">
         <div>
-          <div className="relative inline-flex items-center gap-1 rounded-full bg-purple-100/50 p-1 text-xs">
+          <div className="relative inline-flex items-center gap-1 rounded-full bg-rose-100/30 p-1 text-xs">
             <div
               className="absolute top-1 bottom-1 rounded-full border-2  bg-background  transition-[left,width] duration-300 ease-out"
               style={{ left: indicator.left, width: indicator.width }}
@@ -62,10 +62,10 @@ export default function Hero() {
               type="button"
               onClick={() => setAudience("acheteur")}
               className={cn(
-                "relative z-10 rounded-full px-4 py-2 uppercase transition-colors duration-300",
+                "relative z-10 rounded-full px-4 py-2 uppercase transition-colors duration-300 ",
                 audience === "acheteur"
                   ? "font-semibold text-foreground"
-                  : "font-semibold  hover:text-foreground text-purple-900",
+                  : "font-semibold  hover:text-foreground text-pink-900/50",
               )}
             >
               Acheteurs
@@ -75,10 +75,10 @@ export default function Hero() {
               type="button"
               onClick={() => setAudience("vendeur")}
               className={cn(
-                "relative z-10 rounded-full px-4 py-2 uppercase transition-colors duration-300",
+                "relative z-10 rounded-full px-4 py-2 uppercase transition-colors duration-300 ",
                 audience === "vendeur"
                   ? "font-semibold text-foreground"
-                  : "font-semibold  hover:text-foreground text-purple-900",
+                  : "font-semibold  hover:text-foreground text-pink-900/50",
               )}
             >
               Vendeurs

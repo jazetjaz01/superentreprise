@@ -5,10 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 import { login } from "./actions";
 import { Button } from "@/components/ui/button";
-import {
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
+import { GoogleAuthButton } from "@/components/google-auth-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -18,51 +15,79 @@ export function LoginForm() {
   const justSignedUp = searchParams.get("confirm") === "1";
 
   return (
-    <form action={formAction}>
-      <CardContent className="flex flex-col gap-4">
-        {justSignedUp && (
-          <p className="text-sm text-muted-foreground" aria-live="polite">
-            Compte créé, vérifie tes emails pour confirmer ton adresse avant
-            de te connecter.
-          </p>
-        )}
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-          />
+    <div className="mx-auto flex w-full max-w-sm flex-col items-center text-center">
+      <h1 className="font-semibold text-2xl">Content de vous revoir</h1>
+      <p className="mt-2 text-muted-foreground text-sm">
+        Connectez-vous pour accéder à votre espace Superentreprise.
+      </p>
+
+      <div className="mt-8 w-full">
+        <GoogleAuthButton />
+      </div>
+
+      <div className="my-6 flex w-full items-center gap-3 text-muted-foreground text-xs">
+        <div className="h-px flex-1 bg-border" />
+        ou
+        <div className="h-px flex-1 bg-border" />
+      </div>
+
+      <form action={formAction} className="w-full">
+        <div className="flex flex-col gap-3">
+          {justSignedUp && (
+            <p className="text-muted-foreground text-sm" aria-live="polite">
+              Compte créé, vérifie tes emails pour confirmer ton adresse avant
+              de te connecter.
+            </p>
+          )}
+          <div className="text-left">
+            <Label htmlFor="email" className="sr-only">
+              Email
+            </Label>
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              placeholder="Adresse email"
+              className="h-11 rounded-full px-4"
+              required
+            />
+          </div>
+          <div className="text-left">
+            <Label htmlFor="password" className="sr-only">
+              Mot de passe
+            </Label>
+            <Input
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="current-password"
+              placeholder="Mot de passe"
+              className="h-11 rounded-full px-4"
+              required
+            />
+          </div>
+          {state?.error && (
+            <p className="text-destructive text-sm" aria-live="polite">
+              {state.error}
+            </p>
+          )}
+          <Button
+            type="submit"
+            disabled={pending}
+            className="mt-2 h-11 w-full rounded-full"
+          >
+            {pending ? "Connexion..." : "Se connecter"}
+          </Button>
         </div>
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="password">Mot de passe</Label>
-          <Input
-            id="password"
-            name="password"
-            type="password"
-            autoComplete="current-password"
-            required
-          />
-        </div>
-        {state?.error && (
-          <p className="text-sm text-destructive" aria-live="polite">
-            {state.error}
-          </p>
-        )}
-      </CardContent>
-      <CardFooter className="flex flex-col items-stretch gap-3 border-t-0 bg-transparent px-(--card-spacing) pt-2">
-        <Button type="submit" disabled={pending} className="w-full">
-          {pending ? "Connexion..." : "Se connecter"}
-        </Button>
-        <p className="text-center text-sm text-muted-foreground">
-          Pas encore de compte ?{" "}
-          <Link href="/signin" className="text-foreground underline">
-            Créer un compte
-          </Link>
-        </p>
-      </CardFooter>
-    </form>
+      </form>
+
+      <p className="mt-6 text-muted-foreground text-sm">
+        Pas encore de compte ?{" "}
+        <Link href="/signin" className="text-foreground underline">
+          Créer un compte
+        </Link>
+      </p>
+    </div>
   );
 }
