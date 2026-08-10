@@ -21,5 +21,6 @@ export async function login(_prevState: { error: string } | null, formData: Form
     return { error: error.message };
   }
 
-  redirect("/");
+  const next = String(formData.get("next") ?? "/");
+  redirect(next.startsWith("/") && !next.startsWith("//") ? next : "/");
 }

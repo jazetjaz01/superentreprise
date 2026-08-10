@@ -13,6 +13,7 @@ export function LoginForm() {
   const [state, formAction, pending] = useActionState(login, null);
   const searchParams = useSearchParams();
   const justSignedUp = searchParams.get("confirm") === "1";
+  const next = searchParams.get("next") ?? "/";
 
   return (
     <div className="mx-auto flex w-full max-w-sm flex-col items-center text-center">
@@ -22,7 +23,7 @@ export function LoginForm() {
       </p>
 
       <div className="mt-8 w-full">
-        <GoogleAuthButton />
+        <GoogleAuthButton next={next} />
       </div>
 
       <div className="my-6 flex w-full items-center gap-3 text-muted-foreground text-xs">
@@ -32,6 +33,7 @@ export function LoginForm() {
       </div>
 
       <form action={formAction} className="w-full">
+        <input type="hidden" name="next" value={next} />
         <div className="flex flex-col gap-3">
           {justSignedUp && (
             <p className="text-muted-foreground text-sm" aria-live="polite">
