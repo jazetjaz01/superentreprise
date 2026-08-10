@@ -1,6 +1,6 @@
 import { ImageOff } from "lucide-react";
-import { sectors } from "@/lib/annonces/options";
 import { getDepartment } from "@/lib/annonces/departments";
+import { getActivityLabel, getUniverseLabel } from "@/lib/annonces/sectors";
 import type { Tables } from "@/lib/supabase/database.types";
 
 const priceFormatter = new Intl.NumberFormat("fr-FR", {
@@ -16,8 +16,9 @@ export function AnnonceCard({
   annonce: Tables<"annonces">;
   imageUrl: string | null;
 }) {
-  const sectorLabel = sectors.find((item) => item.value === annonce.sector)
-    ?.label;
+  const sectorLabel =
+    getActivityLabel(annonce.sector, annonce.activity) ??
+    getUniverseLabel(annonce.sector);
   const department = getDepartment(annonce.postal_code);
 
   return (

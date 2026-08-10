@@ -51,6 +51,7 @@ export type Database = {
       }
       annonces: {
         Row: {
+          activity: string | null
           author_id: string
           city: string | null
           created_at: string
@@ -72,6 +73,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          activity?: string | null
           author_id: string
           city?: string | null
           created_at?: string
@@ -93,6 +95,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          activity?: string | null
           author_id?: string
           city?: string | null
           created_at?: string

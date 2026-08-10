@@ -17,7 +17,7 @@ export function getMissingFields(
   if (!annonce.transaction_type) {
     missing.push({ label: "Type de transaction", step: "informations" });
   }
-  if (!annonce.sector) {
+  if (!annonce.sector || !annonce.activity) {
     missing.push({ label: "Secteur d'activité", step: "informations" });
   }
   if (annonce.price == null) {

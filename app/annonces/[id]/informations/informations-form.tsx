@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { useActionState } from "react";
 import { updateInformations } from "./actions";
+import { SectorSelect } from "@/components/sector-select";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { sectors, transactionTypes } from "@/lib/annonces/options";
+import { transactionTypes } from "@/lib/annonces/options";
 import type { Tables } from "@/lib/supabase/database.types";
 
 const selectClassName =
@@ -66,23 +67,11 @@ export function InformationsForm({
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="sector">Secteur d&apos;activité</Label>
-        <select
-          id="sector"
-          name="sector"
-          defaultValue={annonce.sector ?? ""}
-          className={selectClassName}
-          required
-        >
-          <option value="" disabled>
-            Sélectionner...
-          </option>
-          {sectors.map((item) => (
-            <option key={item.value} value={item.value}>
-              {item.label}
-            </option>
-          ))}
-        </select>
+        <span className="font-medium text-sm">Secteur d&apos;activité</span>
+        <SectorSelect
+          defaultUniverse={annonce.sector}
+          defaultActivity={annonce.activity}
+        />
       </div>
 
       <div className="flex flex-col gap-1.5">

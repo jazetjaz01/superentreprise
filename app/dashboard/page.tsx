@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { sectors, statusLabels } from "@/lib/annonces/options";
+import { statusLabels } from "@/lib/annonces/options";
+import { getActivityLabel, getUniverseLabel } from "@/lib/annonces/sectors";
 import { createClient } from "@/lib/supabase/server";
 
 const priceFormatter = new Intl.NumberFormat("fr-FR", {
@@ -43,9 +44,9 @@ export default async function DashboardAnnoncesPage() {
         <ul className="flex flex-col gap-3">
           {annonces.map((annonce) => {
             const status = statusLabels[annonce.status ?? "brouillon"];
-            const sectorLabel = sectors.find(
-              (item) => item.value === annonce.sector,
-            )?.label;
+            const sectorLabel =
+              getActivityLabel(annonce.sector, annonce.activity) ??
+              getUniverseLabel(annonce.sector);
 
             return (
               <li

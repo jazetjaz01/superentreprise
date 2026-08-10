@@ -2,7 +2,8 @@ import Link from "next/link";
 import { PublishButton } from "./publish-button";
 import { getMissingFields } from "@/lib/annonces/get-missing-fields";
 import { getOwnedAnnonce } from "@/lib/annonces/get-owned-annonce";
-import { sectors, transactionTypes } from "@/lib/annonces/options";
+import { transactionTypes } from "@/lib/annonces/options";
+import { getSectorBreadcrumb } from "@/lib/annonces/sectors";
 import { createClient } from "@/lib/supabase/server";
 
 const priceFormatter = new Intl.NumberFormat("fr-FR", {
@@ -30,9 +31,7 @@ export default async function PublicationPage({
   const transactionTypeLabel = transactionTypes.find(
     (item) => item.value === annonce.transaction_type,
   )?.label;
-  const sectorLabel = sectors.find(
-    (item) => item.value === annonce.sector,
-  )?.label;
+  const sectorLabel = getSectorBreadcrumb(annonce.sector, annonce.activity);
 
   return (
     <div className="flex max-w-lg flex-col gap-5">
@@ -56,7 +55,7 @@ export default async function PublicationPage({
         </div>
         <div className="flex justify-between gap-4">
           <span className="text-muted-foreground">Secteur</span>
-          <span className="text-right font-medium">{sectorLabel ?? "—"}</span>
+          <span className="text-right font-medium">{sectorLabel || "—"}</span>
         </div>
         <div className="flex justify-between gap-4">
           <span className="text-muted-foreground">Prix</span>

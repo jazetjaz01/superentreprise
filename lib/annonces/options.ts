@@ -16,15 +16,3 @@ export const statusLabels: Record<
   vendue: { label: "Vendue", variant: "outline" },
   archivee: { label: "Archivée", variant: "secondary" },
 };
-
-export const sectors = [
-  { value: "restaurant", label: "Restaurant" },
-  { value: "bar_cafe", label: "Bar / Café" },
-  { value: "commerce_detail", label: "Commerce de détail" },
-  { value: "hotellerie", label: "Hôtellerie" },
-  { value: "coiffure_beaute", label: "Salon de coiffure / beauté" },
-  { value: "boulangerie_patisserie", label: "Boulangerie / Pâtisserie" },
-  { value: "industrie", label: "Industrie" },
-  { value: "services_entreprises", label: "Services aux entreprises" },
-  { value: "autre", label: "Autre" },
-] as const;
