@@ -1,6 +1,7 @@
 "use client";
 
-import { LogOut, UserRound } from "lucide-react";
+import { LayoutDashboard, LogOut, UserRound } from "lucide-react";
+import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -32,6 +33,10 @@ export function UserMenu({
         <div className="truncate px-1.5 py-1 text-muted-foreground text-xs">
           {label}
         </div>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem render={<Link href="/dashboard" />}>
+          <LayoutDashboard /> Tableau de bord
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <form action={signOut}>
           <DropdownMenuItem

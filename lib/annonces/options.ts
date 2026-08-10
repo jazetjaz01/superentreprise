@@ -6,6 +6,17 @@ export const transactionTypes = [
   { value: "murs_commerciaux", label: "Murs commerciaux" },
 ] as const;
 
+export const statusLabels: Record<
+  string,
+  { label: string; variant: "secondary" | "default" | "outline" }
+> = {
+  brouillon: { label: "Brouillon", variant: "secondary" },
+  publiee: { label: "Publiée", variant: "default" },
+  sous_compromis: { label: "Sous compromis", variant: "outline" },
+  vendue: { label: "Vendue", variant: "outline" },
+  archivee: { label: "Archivée", variant: "secondary" },
+};
+
 export const sectors = [
   { value: "restaurant", label: "Restaurant" },
   { value: "bar_cafe", label: "Bar / Café" },
