@@ -4,7 +4,7 @@ import { Logo } from "@/components/logo";
 import { NavMenu } from "@/components/nav-menu";
 import { NavigationSheet } from "@/components/navigation-sheet";
 import { SearchBar } from "@/components/searchbar";
-import { signOut } from "@/lib/supabase/actions";
+import { UserMenu } from "@/components/user-menu";
 import { createClient } from "@/lib/supabase/server";
 
 const Navbar = async () => {
@@ -12,6 +12,20 @@ const Navbar = async () => {
   const {
     data: { user },
   } = await supabase.auth.getUser();
+
+  let avatarUrl: string | null = null;
+  let label = "";
+
+  if (user) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("avatar_url, first_name, email")
+      .eq("id", user.id)
+      .single();
+
+    avatarUrl = profile?.avatar_url ?? null;
+    label = profile?.first_name || profile?.email || user.email || "Utilisateur";
+  }
 
   return (
     <nav className="bg-background">
@@ -29,11 +43,7 @@ const Navbar = async () => {
 
         <div className="flex items-center gap-3">
           {user ? (
-            <form action={signOut}>
-              <Button variant="ghost" type="submit">
-                Se déconnecter
-              </Button>
-            </form>
+            <UserMenu avatarUrl={avatarUrl} label={label} />
           ) : (
             <>
               <Button variant="ghost" render={<Link href="/login" />} nativeButton={false}>
