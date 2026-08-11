@@ -38,7 +38,7 @@ export function SearchBar() {
   };
 
   return (
-    <div className="flex w-full max-w-lg items-center gap-1 rounded-full border-2 border-transparent bg-muted py-1.5 pr-1.5 pl-4 transition-colors focus-within:border-rose-200 focus-within:bg-white">
+    <div className="flex w-full max-w-2xl items-center gap-1 rounded-full border-2 border-transparent bg-muted py-1.5 pr-1.5 pl-4 transition-colors focus-within:border-rose-200 focus-within:bg-white">
       <input
         type="text"
         value={type}
