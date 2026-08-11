@@ -21,7 +21,7 @@ const footerSections = [
       { title: "Notre mission", href: "#" },
       { title: "Presse", href: "#" },
       { title: "Actualités", href: "#" },
-      { title: "Nous contacter", href: "/contact" },
+      { title: "Nous contacter", href: "contact" },
     ],
   },
   {
@@ -41,7 +41,7 @@ const footerSections = [
       { title: "Politique de confidentialité", href: "#" },
       { title: "Gestion des cookies", href: "#" },
       { title: "Mentions légales", href: "#" },
-      { title: "Contact", href: "#" },
+      { title: "Contact", href: "/contact" },
     ],
   },
 ];
