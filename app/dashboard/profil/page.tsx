@@ -14,7 +14,7 @@ export default async function DashboardProfilePage() {
     .single();
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 border-8">
       <h1 className="font-semibold text-xl">Mon profil</h1>
       {profile && <ProfileForm profile={profile} />}
     </div>

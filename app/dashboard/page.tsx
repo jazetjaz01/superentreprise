@@ -24,7 +24,7 @@ export default async function DashboardAnnoncesPage() {
     .order("updated_at", { ascending: false });
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 ">
       <div className="flex items-center justify-between">
         <h1 className="font-semibold text-xl">Mes annonces</h1>
         <Button

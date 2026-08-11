@@ -17,7 +17,7 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="mx-auto grid w-full max-w-(--breakpoint-lg) gap-8 px-6 py-12 lg:grid-cols-[220px_1fr]">
+    <div className="mx-auto grid w-full max-w-(--breakpoint-2xl) gap-8 px-6 py-12 lg:grid-cols-[220px_1fr]">
       <aside className="lg:sticky lg:top-24 lg:self-start">
         <DashboardNav />
       </aside>
