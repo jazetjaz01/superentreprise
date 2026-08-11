@@ -14,9 +14,19 @@ export function PublishButton({ annonceId }: { annonceId: string }) {
       <div className="flex flex-col items-center gap-3 rounded-lg border border-border bg-muted/50 p-6 text-center">
         <CheckCircle2 className="size-8 text-foreground" />
         <p className="font-medium">Votre annonce est publiée !</p>
-        <Button render={<Link href="/" />} nativeButton={false} className="rounded-full">
-          Retour à l&apos;accueil
-        </Button>
+        <div className="flex gap-2">
+          <Button
+            render={<Link href={`/annonce/${annonceId}`} />}
+            nativeButton={false}
+            variant="outline"
+            className="rounded-full"
+          >
+            Voir l&apos;annonce
+          </Button>
+          <Button render={<Link href="/" />} nativeButton={false} className="rounded-full">
+            Retour à l&apos;accueil
+          </Button>
+        </div>
       </div>
     );
   }

@@ -73,6 +73,15 @@ export default async function DashboardAnnoncesPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Button
+                    render={<Link href={`/annonce/${annonce.id}`} />}
+                    nativeButton={false}
+                    variant="ghost"
+                    size="sm"
+                    className="rounded-full"
+                  >
+                    Voir
+                  </Button>
+                  <Button
                     render={<Link href={`/annonces/${annonce.id}/activite`} />}
                     nativeButton={false}
                     variant="outline"

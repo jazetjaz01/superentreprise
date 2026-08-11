@@ -1,4 +1,5 @@
 import { ImageOff } from "lucide-react";
+import Link from "next/link";
 import { getActivityDisplayLabel } from "@/lib/annonces/activities";
 import { getDepartment } from "@/lib/annonces/departments";
 import type { Tables } from "@/lib/supabase/database.types";
@@ -20,7 +21,10 @@ export function AnnonceCard({
   const department = getDepartment(annonce.postal_code);
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-xl ring-1 ring-foreground/10">
+    <Link
+      href={`/annonce/${annonce.id}`}
+      className="flex flex-col overflow-hidden rounded-xl ring-1 ring-foreground/10 transition-shadow hover:ring-foreground/20 hover:shadow-sm"
+    >
       <div className="aspect-square w-full bg-muted">
         {imageUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -44,6 +48,6 @@ export function AnnonceCard({
           </span>
         )}
       </div>
-    </div>
+    </Link>
   );
 }
