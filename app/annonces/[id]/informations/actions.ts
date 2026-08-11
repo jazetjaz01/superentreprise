@@ -10,11 +10,9 @@ export async function updateInformations(
   const id = String(formData.get("annonceId") ?? "");
   const title = String(formData.get("title") ?? "").trim();
   const transactionType = String(formData.get("transaction_type") ?? "");
-  const sector = String(formData.get("sector") ?? "");
-  const activity = String(formData.get("activity") ?? "");
   const descriptionShort = String(formData.get("description_short") ?? "");
 
-  if (!title || !transactionType || !sector || !activity) {
+  if (!title || !transactionType) {
     return { error: "Merci de remplir tous les champs obligatoires." };
   }
 
@@ -24,8 +22,6 @@ export async function updateInformations(
     .update({
       title,
       transaction_type: transactionType,
-      sector,
-      activity,
       description_short: descriptionShort || null,
     })
     .eq("id", id);

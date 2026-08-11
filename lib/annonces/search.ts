@@ -1,4 +1,5 @@
-import { sectorUniverses, type SectorItem } from "@/lib/annonces/sectors";
+import { activities as presetActivities } from "@/lib/annonces/activities";
+import { sectorUniverses } from "@/lib/annonces/sectors";
 
 /**
  * PostgREST's `or=(...)` filter syntax uses `,`, `(`, `)` and `%` as
@@ -10,9 +11,10 @@ export function sanitizeForFilter(value: string) {
 }
 
 /**
- * Finds every universe/activity whose label contains the given free-text
- * query, so a search for "restaurant" also matches annonces tagged with
- * the "restaurant_italien" activity, etc.
+ * Finds every preset activity/universe whose label contains the given
+ * free-text query, so a search for "boulangerie" also matches annonces
+ * tagged with the "boulangerie" activity even if the title doesn't
+ * literally contain that word.
  */
 export function resolveSectorMatches(query: string) {
   const q = query.trim().toLowerCase();
@@ -21,21 +23,17 @@ export function resolveSectorMatches(query: string) {
 
   if (!q) return { sectors: [] as string[], activities: [] as string[] };
 
-  function walk(universeValue: string, nodes: SectorItem[]) {
-    for (const node of nodes) {
-      if (node.label.toLowerCase().includes(q)) {
-        sectors.add(universeValue);
-        activities.add(node.value);
-      }
-      if (node.children) walk(universeValue, node.children);
-    }
-  }
-
   for (const universe of sectorUniverses) {
     if (universe.label.toLowerCase().includes(q)) {
       sectors.add(universe.value);
     }
-    walk(universe.value, universe.categories);
+  }
+
+  for (const activity of presetActivities) {
+    if (activity.label.toLowerCase().includes(q)) {
+      activities.add(activity.value);
+      sectors.add(activity.sector);
+    }
   }
 
   return { sectors: [...sectors], activities: [...activities] };

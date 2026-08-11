@@ -6,8 +6,9 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const steps = [
+  { slug: "activite", label: "Activité" },
   { slug: "informations", label: "Informations" },
-  { slug: "finances", label: "Activité & finances" },
+  { slug: "finances", label: "Finances" },
   { slug: "localisation", label: "Localisation" },
   { slug: "photos", label: "Photos" },
   { slug: "publication", label: "Publication" },

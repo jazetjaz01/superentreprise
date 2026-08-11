@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { getActivityDisplayLabel } from "@/lib/annonces/activities";
 import { statusLabels } from "@/lib/annonces/options";
-import { getActivityLabel, getUniverseLabel } from "@/lib/annonces/sectors";
 import { createClient } from "@/lib/supabase/server";
 
 const priceFormatter = new Intl.NumberFormat("fr-FR", {
@@ -44,9 +44,7 @@ export default async function DashboardAnnoncesPage() {
         <ul className="flex flex-col gap-3">
           {annonces.map((annonce) => {
             const status = statusLabels[annonce.status ?? "brouillon"];
-            const sectorLabel =
-              getActivityLabel(annonce.sector, annonce.activity) ??
-              getUniverseLabel(annonce.sector);
+            const activityLabel = getActivityDisplayLabel(annonce.activity);
 
             return (
               <li
@@ -62,7 +60,7 @@ export default async function DashboardAnnoncesPage() {
                   </div>
                   <span className="text-muted-foreground text-sm">
                     {[
-                      sectorLabel,
+                      activityLabel,
                       annonce.price != null
                         ? priceFormatter.format(annonce.price)
                         : null,
@@ -73,7 +71,7 @@ export default async function DashboardAnnoncesPage() {
                   </span>
                 </div>
                 <Button
-                  render={<Link href={`/annonces/${annonce.id}/informations`} />}
+                  render={<Link href={`/annonces/${annonce.id}/activite`} />}
                   nativeButton={false}
                   variant="outline"
                   size="sm"

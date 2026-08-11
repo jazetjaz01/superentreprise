@@ -1,6 +1,6 @@
 import { ImageOff } from "lucide-react";
+import { getActivityDisplayLabel } from "@/lib/annonces/activities";
 import { getDepartment } from "@/lib/annonces/departments";
-import { getActivityLabel, getUniverseLabel } from "@/lib/annonces/sectors";
 import type { Tables } from "@/lib/supabase/database.types";
 
 const priceFormatter = new Intl.NumberFormat("fr-FR", {
@@ -16,9 +16,7 @@ export function AnnonceCard({
   annonce: Tables<"annonces">;
   imageUrl: string | null;
 }) {
-  const sectorLabel =
-    getActivityLabel(annonce.sector, annonce.activity) ??
-    getUniverseLabel(annonce.sector);
+  const activityLabel = getActivityDisplayLabel(annonce.activity);
   const department = getDepartment(annonce.postal_code);
 
   return (
@@ -35,7 +33,7 @@ export function AnnonceCard({
       </div>
       <div className="flex flex-col gap-1 p-3">
         <span className="text-muted-foreground text-xs">
-          {sectorLabel ?? "Autre"}
+          {activityLabel ?? "Autre"}
         </span>
         <span className="font-semibold text-sm">
           {annonce.price != null ? priceFormatter.format(annonce.price) : "Prix non communiqué"}

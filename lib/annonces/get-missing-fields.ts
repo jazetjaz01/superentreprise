@@ -2,7 +2,7 @@ import type { Tables } from "@/lib/supabase/database.types";
 
 export type MissingField = {
   label: string;
-  step: "informations" | "finances" | "localisation" | "photos";
+  step: "activite" | "informations" | "finances" | "localisation" | "photos";
 };
 
 export function getMissingFields(
@@ -11,14 +11,14 @@ export function getMissingFields(
 ): MissingField[] {
   const missing: MissingField[] = [];
 
+  if (!annonce.activity) {
+    missing.push({ label: "Activité", step: "activite" });
+  }
   if (!annonce.title || annonce.title === "Nouvelle annonce") {
     missing.push({ label: "Titre de l'annonce", step: "informations" });
   }
   if (!annonce.transaction_type) {
     missing.push({ label: "Type de transaction", step: "informations" });
-  }
-  if (!annonce.sector || !annonce.activity) {
-    missing.push({ label: "Secteur d'activité", step: "informations" });
   }
   if (annonce.price == null) {
     missing.push({ label: "Prix de vente", step: "finances" });

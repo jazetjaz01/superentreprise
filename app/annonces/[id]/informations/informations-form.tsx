@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useActionState } from "react";
 import { updateInformations } from "./actions";
-import { SectorSelect } from "@/components/sector-select";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -67,14 +66,6 @@ export function InformationsForm({
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <span className="font-medium text-sm">Secteur d&apos;activité</span>
-        <SectorSelect
-          defaultUniverse={annonce.sector}
-          defaultActivity={annonce.activity}
-        />
-      </div>
-
-      <div className="flex flex-col gap-1.5">
         <Label htmlFor="description_short">Résumé court</Label>
         <textarea
           id="description_short"
@@ -94,10 +85,10 @@ export function InformationsForm({
 
       <div className="flex items-center justify-between pt-2">
         <Link
-          href="/deposer-une-annonce"
+          href={`/annonces/${annonce.id}/activite`}
           className="text-muted-foreground text-sm hover:text-foreground"
         >
-          Annuler
+          Précédent
         </Link>
         <Button type="submit" disabled={pending} className="rounded-full">
           {pending ? "Enregistrement..." : "Suivant"}

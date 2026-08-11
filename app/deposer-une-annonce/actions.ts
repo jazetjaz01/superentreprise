@@ -27,5 +27,5 @@ export async function createDraftAnnonce() {
     throw new Error("Impossible de créer l'annonce.");
   }
 
-  redirect(`/annonces/${annonce.id}/informations`);
+  redirect(`/annonces/${annonce.id}/activite`);
 }
