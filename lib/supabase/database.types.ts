@@ -126,7 +126,7 @@ export type Database = {
           },
         ]
       }
-      blog_articles: {
+      actualite_articles: {
         Row: {
           author_id: string
           category_id: string | null
@@ -181,12 +181,12 @@ export type Database = {
             foreignKeyName: "blog_articles_category_id_fkey"
             columns: ["category_id"]
             isOneToOne: false
-            referencedRelation: "blog_categories"
+            referencedRelation: "actualite_categories"
             referencedColumns: ["id"]
           },
         ]
       }
-      blog_categories: {
+      actualite_categories: {
         Row: {
           created_at: string
           id: string

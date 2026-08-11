@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export type BlogPost = {
+export type ActualitePost = {
   id: string;
   title: string;
   category: string | null;
@@ -26,11 +26,11 @@ const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
   year: "numeric",
 });
 
-export function formatBlogDate(value: string) {
+export function formatActualiteDate(value: string) {
   return dateFormatter.format(new Date(value));
 }
 
-const Blog = ({ posts }: { posts: BlogPost[] }) => {
+const Actualite = ({ posts }: { posts: ActualitePost[] }) => {
   return (
     <div className="mx-auto max-w-(--breakpoint-xl) px-6 py-16 xl:px-0">
       <div className="flex items-end justify-between">
@@ -115,4 +115,4 @@ const Blog = ({ posts }: { posts: BlogPost[] }) => {
   );
 };
 
-export default Blog;
+export default Actualite;

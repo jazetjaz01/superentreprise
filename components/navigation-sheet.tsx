@@ -12,7 +12,7 @@ import { Logo } from "@/components/logo";
 
 const links = [
   { title: "Accueil", href: "/" },
-  { title: "Actualité", href: "/blog" },
+  { title: "Actualité", href: "/actualite" },
   { title: "Contact", href: "/contact" },
   { title: "Déposer une annonce", href: "/deposer-une-annonce" },
 ];

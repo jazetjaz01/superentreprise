@@ -5,9 +5,9 @@ import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 
-const BUCKET = "blog-images";
+const BUCKET = "actualite-images";
 
-export function BlogCoverUploader() {
+export function ActualiteCoverUploader() {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(null);

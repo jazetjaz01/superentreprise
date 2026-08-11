@@ -1,8 +1,8 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { getCurrentUserAdminStatus } from "@/lib/blog/is-admin";
-import { slugify } from "@/lib/blog/slugify";
+import { getCurrentUserAdminStatus } from "@/lib/actualite/is-admin";
+import { slugify } from "@/lib/actualite/slugify";
 import { createClient } from "@/lib/supabase/server";
 
 export async function createArticle(
@@ -29,7 +29,7 @@ export async function createArticle(
   const slug = `${slugify(title)}-${Date.now().toString(36)}`;
 
   const supabase = await createClient();
-  const { error } = await supabase.from("blog_articles").insert({
+  const { error } = await supabase.from("actualite_articles").insert({
     author_id: user.id,
     category_id: categoryId || null,
     title,
@@ -45,5 +45,5 @@ export async function createArticle(
     return { error: error.message };
   }
 
-  redirect("/blog");
+  redirect("/actualite");
 }

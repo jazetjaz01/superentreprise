@@ -40,7 +40,7 @@ export function UserMenu({
           <LayoutDashboard /> Tableau de bord
         </DropdownMenuItem>
         {isAdmin && (
-          <DropdownMenuItem render={<Link href="/blog/nouveau" />}>
+          <DropdownMenuItem render={<Link href="/actualite/nouveau" />}>
             <PenLine /> Nouvel article
           </DropdownMenuItem>
         )}

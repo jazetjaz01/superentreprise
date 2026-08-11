@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { createArticle } from "./actions";
-import { BlogCoverUploader } from "@/components/blog-cover-uploader";
+import { ActualiteCoverUploader } from "@/components/actualite-cover-uploader";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -18,7 +18,7 @@ const selectClassName =
 export function ArticleForm({
   categories,
 }: {
-  categories: Tables<"blog_categories">[];
+  categories: Tables<"actualite_categories">[];
 }) {
   const [state, formAction, pending] = useActionState(createArticle, null);
 
@@ -71,7 +71,7 @@ export function ArticleForm({
 
       <div className="flex flex-col gap-1.5">
         <Label>Image de couverture</Label>
-        <BlogCoverUploader />
+        <ActualiteCoverUploader />
       </div>
 
       <Label className="flex items-center gap-2 font-normal">

@@ -1,21 +1,21 @@
 import { redirect } from "next/navigation";
 import { ArticleForm } from "./article-form";
-import { getCurrentUserAdminStatus } from "@/lib/blog/is-admin";
+import { getCurrentUserAdminStatus } from "@/lib/actualite/is-admin";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function NouvelArticlePage() {
   const { user, isAdmin } = await getCurrentUserAdminStatus();
 
   if (!user) {
-    redirect("/login?next=/blog/nouveau");
+    redirect("/login?next=/actualite/nouveau");
   }
   if (!isAdmin) {
-    redirect("/blog");
+    redirect("/actualite");
   }
 
   const supabase = await createClient();
   const { data: categories } = await supabase
-    .from("blog_categories")
+    .from("actualite_categories")
     .select("*")
     .order("name");
 

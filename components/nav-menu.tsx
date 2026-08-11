@@ -16,7 +16,7 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => (
         <Button variant="ghost" render={<Link href="/" />} nativeButton={false}>Accueil</Button>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <Button variant="ghost" render={<Link href="/blog" />} nativeButton={false}>Actualité</Button>
+        <Button variant="ghost" render={<Link href="/actualite" />} nativeButton={false}>Actualité</Button>
       </NavigationMenuItem>
       <NavigationMenuItem>
         <Button variant="ghost" render={<Link href="/contact" />} nativeButton={false}>Contact</Button>
