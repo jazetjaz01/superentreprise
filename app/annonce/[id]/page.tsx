@@ -58,7 +58,7 @@ export default async function AnnonceDetailPage({
   ].filter((stat) => stat.value != null);
 
   return (
-    <div className="mx-auto w-full max-w-(--breakpoint-lg) px-6 py-12">
+    <div className="mx-auto w-full max-w-(--breakpoint-2xl) px-6 py-12">
       {isOwner && (
         <div className="mb-6 flex items-center justify-between rounded-lg border border-border bg-muted/50 px-4 py-3 text-sm">
           <span className="text-muted-foreground">
@@ -78,7 +78,7 @@ export default async function AnnonceDetailPage({
 
       {imageUrls.length > 0 ? (
         <div className="flex flex-col gap-2">
-          <div className="aspect-video w-full overflow-hidden rounded-xl bg-muted">
+          <div className="h-80 w-full overflow-hidden rounded-xl bg-muted">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imageUrls[0]}
@@ -101,7 +101,7 @@ export default async function AnnonceDetailPage({
           )}
         </div>
       ) : (
-        <div className="flex aspect-video w-full items-center justify-center rounded-xl bg-muted text-muted-foreground">
+        <div className="flex h-80 w-full items-center justify-center rounded-xl bg-muted text-muted-foreground">
           <ImageOff className="size-8" />
         </div>
       )}
