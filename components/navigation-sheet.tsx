@@ -9,10 +9,13 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Logo } from "@/components/logo";
-import {
-  foods,
-  travelMenuItems,
-} from "@/config/navbar";
+
+const links = [
+  { title: "Accueil", href: "/" },
+  { title: "Actualité", href: "/blog" },
+  { title: "Contact", href: "/contact" },
+  { title: "Déposer une annonce", href: "/deposer-une-annonce" },
+];
 
 export const NavigationSheet = () => {
   return (
@@ -25,38 +28,12 @@ export const NavigationSheet = () => {
       <SheetContent className="px-6 py-3">
         <Logo />
 
-        <div className="mt-12 space-y-4 text-base">
-          <Link className="inline-block" href="#">
-            Home
-          </Link>
-
-          <div>
-            <div className="font-bold">Food</div>
-            <ul className="mt-2 ml-1 space-y-3 border-l pl-4">
-              {foods.map((foodItem) => (
-                <li key={foodItem.title}>
-                  <Link className="flex items-center gap-2" href="#">
-                    <foodItem.icon className="mr-2 h-5 w-5 text-muted-foreground" />
-                    {foodItem.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <div className="font-bold">Travel</div>
-            <ul className="mt-2 ml-1 space-y-3 border-l pl-4">
-              {travelMenuItems.map((item) => (
-                <li key={item.title}>
-                  <Link className="flex items-center gap-2" href="#">
-                    <item.icon className="mr-2 h-5 w-5 text-muted-foreground" />
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="mt-12 flex flex-col gap-4 text-base">
+          {links.map((link) => (
+            <Link key={link.href} className="inline-block" href={link.href}>
+              {link.title}
+            </Link>
+          ))}
         </div>
       </SheetContent>
     </Sheet>

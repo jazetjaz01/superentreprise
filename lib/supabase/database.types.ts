@@ -126,6 +126,87 @@ export type Database = {
           },
         ]
       }
+      blog_articles: {
+        Row: {
+          author_id: string
+          category_id: string | null
+          content: string | null
+          cover_image_path: string | null
+          created_at: string
+          excerpt: string | null
+          id: string
+          published_at: string | null
+          slug: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author_id: string
+          category_id?: string | null
+          content?: string | null
+          cover_image_path?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          published_at?: string | null
+          slug: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string
+          category_id?: string | null
+          content?: string | null
+          cover_image_path?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          published_at?: string | null
+          slug?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_articles_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "blog_articles_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "blog_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      blog_categories: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          slug: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          slug: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          slug?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -134,6 +215,7 @@ export type Database = {
           first_name: string | null
           id: string
           identity_verified: boolean | null
+          is_admin: boolean
           last_name: string | null
           phone: string | null
           role: string | null
@@ -146,6 +228,7 @@ export type Database = {
           first_name?: string | null
           id: string
           identity_verified?: boolean | null
+          is_admin?: boolean
           last_name?: string | null
           phone?: string | null
           role?: string | null
@@ -158,6 +241,7 @@ export type Database = {
           first_name?: string | null
           id?: string
           identity_verified?: boolean | null
+          is_admin?: boolean
           last_name?: string | null
           phone?: string | null
           role?: string | null

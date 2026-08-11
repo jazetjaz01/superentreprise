@@ -15,16 +15,18 @@ const Navbar = async () => {
 
   let avatarUrl: string | null = null;
   let label = "";
+  let isAdmin = false;
 
   if (user) {
     const { data: profile } = await supabase
       .from("profiles")
-      .select("avatar_url, first_name, email")
+      .select("avatar_url, first_name, email, is_admin")
       .eq("id", user.id)
       .single();
 
     avatarUrl = profile?.avatar_url ?? null;
     label = profile?.first_name || profile?.email || user.email || "Utilisateur";
+    isAdmin = profile?.is_admin ?? false;
   }
 
   return (
@@ -43,7 +45,7 @@ const Navbar = async () => {
 
         <div className="flex items-center gap-3">
           {user ? (
-            <UserMenu avatarUrl={avatarUrl} label={label} />
+            <UserMenu avatarUrl={avatarUrl} label={label} isAdmin={isAdmin} />
           ) : (
             <>
               <Button variant="ghost" render={<Link href="/login" />} nativeButton={false}>

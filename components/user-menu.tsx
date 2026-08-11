@@ -1,6 +1,6 @@
 "use client";
 
-import { LayoutDashboard, LogOut, UserRound } from "lucide-react";
+import { LayoutDashboard, LogOut, PenLine, UserRound } from "lucide-react";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -15,9 +15,11 @@ import { signOut } from "@/lib/supabase/actions";
 export function UserMenu({
   avatarUrl,
   label,
+  isAdmin,
 }: {
   avatarUrl: string | null;
   label: string;
+  isAdmin?: boolean;
 }) {
   return (
     <DropdownMenu>
@@ -37,6 +39,11 @@ export function UserMenu({
         <DropdownMenuItem render={<Link href="/dashboard" />}>
           <LayoutDashboard /> Tableau de bord
         </DropdownMenuItem>
+        {isAdmin && (
+          <DropdownMenuItem render={<Link href="/blog/nouveau" />}>
+            <PenLine /> Nouvel article
+          </DropdownMenuItem>
+        )}
         <DropdownMenuSeparator />
         <form action={signOut}>
           <DropdownMenuItem
