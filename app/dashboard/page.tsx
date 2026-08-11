@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AnnonceRowActions } from "./annonce-row-actions";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getActivityDisplayLabel } from "@/lib/annonces/activities";
@@ -70,15 +71,21 @@ export default async function DashboardAnnoncesPage() {
                       .join(" · ") || "Informations incomplètes"}
                   </span>
                 </div>
-                <Button
-                  render={<Link href={`/annonces/${annonce.id}/activite`} />}
-                  nativeButton={false}
-                  variant="outline"
-                  size="sm"
-                  className="rounded-full"
-                >
-                  Modifier
-                </Button>
+                <div className="flex items-center gap-2">
+                  <Button
+                    render={<Link href={`/annonces/${annonce.id}/activite`} />}
+                    nativeButton={false}
+                    variant="outline"
+                    size="sm"
+                    className="rounded-full"
+                  >
+                    Modifier
+                  </Button>
+                  <AnnonceRowActions
+                    annonceId={annonce.id}
+                    status={annonce.status ?? "brouillon"}
+                  />
+                </div>
               </li>
             );
           })}
