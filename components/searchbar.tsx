@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, Search } from "lucide-react";
+import { ChevronDown, Search, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,7 @@ export function SearchBar() {
   const [budgetOpen, setBudgetOpen] = useState(false);
 
   const budgetLabel = budgets.find((b) => b.value === budget)?.label;
+  const hasFilters = Boolean(type || location || budget);
 
   const handleSearch = () => {
     const params = new URLSearchParams();
@@ -28,6 +29,12 @@ export function SearchBar() {
     if (location) params.set("localisation", location);
     if (budget) params.set("budget", budget);
     router.push(`/recherche?${params.toString()}`);
+  };
+
+  const handleClear = () => {
+    setType("");
+    setLocation("");
+    setBudget("");
   };
 
   return (
@@ -87,6 +94,19 @@ export function SearchBar() {
           </div>
         </PopoverContent>
       </Popover>
+
+      {hasFilters && (
+        <Button
+          type="button"
+          size="icon"
+          variant="ghost"
+          className="size-10 shrink-0 rounded-full text-muted-foreground hover:text-foreground"
+          onClick={handleClear}
+          aria-label="Vider la recherche"
+        >
+          <X className="size-4" />
+        </Button>
+      )}
 
       <Button
         size="icon"
