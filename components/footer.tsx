@@ -21,7 +21,7 @@ const footerSections = [
       { title: "Notre mission", href: "#" },
       { title: "Presse", href: "#" },
       { title: "Actualités", href: "#" },
-      { title: "Nous contacter", href: "contact" },
+      { title: "Forfaits", href: "/forfait" },
     ],
   },
   {
