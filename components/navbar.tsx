@@ -45,7 +45,12 @@ const Navbar = async () => {
 
         <div className="flex items-center gap-3">
           {user ? (
-            <UserMenu avatarUrl={avatarUrl} label={label} isAdmin={isAdmin} />
+            <>
+              <Button variant="ghost" render={<Link href="/dashboard" />} nativeButton={false}>
+                Mon compte
+              </Button>
+              <UserMenu avatarUrl={avatarUrl} label={label} isAdmin={isAdmin} />
+            </>
           ) : (
             <>
               <Button variant="ghost" render={<Link href="/login" />} nativeButton={false}>
