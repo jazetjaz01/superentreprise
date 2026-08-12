@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  ),
   title: "Cession achat vente fonds de commerce - Vente et reprise Entreprise",
   description: "Cession commerce et entreprise, reprendre une entreprise, transmettre son entreprise, vendre un commerce avec le spécialiste  dans les annonces de cession acquisition d'entreprises, de fonds de commerce, de franchise, de locaux commerciaux, de bureaux",
 };
@@ -23,7 +26,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="fr"
       className={`${poppins.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">

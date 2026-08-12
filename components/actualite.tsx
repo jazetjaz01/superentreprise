@@ -1,5 +1,6 @@
 import { FileText } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
@@ -12,6 +13,7 @@ import {
 
 export type ActualitePost = {
   id: string;
+  slug: string;
   title: string;
   category: string | null;
   author: string;
@@ -56,7 +58,8 @@ const Actualite = ({ posts }: { posts: ActualitePost[] }) => {
       ) : (
         <div className="mt-6 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
-            <Card className="gap-3 bg-muted/30 py-0 shadow-none" key={post.id}>
+            <Link href={`/actualite/${post.slug}`} key={post.id}>
+            <Card className="gap-3 bg-muted/30 py-0 shadow-none transition-shadow hover:shadow-sm">
               <CardHeader className="p-1.5 pb-0">
                 <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
                   {post.image ? (
@@ -108,6 +111,7 @@ const Actualite = ({ posts }: { posts: ActualitePost[] }) => {
                 </div>
               </CardContent>
             </Card>
+            </Link>
           ))}
         </div>
       )}

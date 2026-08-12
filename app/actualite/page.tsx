@@ -22,6 +22,7 @@ export default async function ActualitePage() {
 
     return {
       id: article.id,
+      slug: article.slug,
       title: article.title,
       category: article.actualite_categories?.name ?? null,
       author: authorName,
