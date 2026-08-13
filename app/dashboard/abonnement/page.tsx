@@ -1,4 +1,6 @@
-import { CheckCircle2, XCircle } from "lucide-react";
+import { CheckCircle2, Loader2, XCircle } from "lucide-react";
+import Link from "next/link";
+import { SubscriptionStatusPoller } from "./subscription-status-poller";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/server";
@@ -50,10 +52,19 @@ export default async function AbonnementPage({
     <div className="flex max-w-lg flex-col gap-6">
       <h1 className="font-semibold text-xl">Mon abonnement</h1>
 
-      {params.success && (
+      {params.success && !isActive && (
+        <>
+          <SubscriptionStatusPoller userId={user!.id} isActive={isActive} />
+          <div className="flex items-center gap-2 rounded-lg border border-border bg-muted/50 p-4 text-sm">
+            <Loader2 className="size-5 shrink-0 animate-spin" />
+            <span>Paiement confirmé, activation de votre abonnement en cours...</span>
+          </div>
+        </>
+      )}
+      {params.success && isActive && (
         <div className="flex items-center gap-2 rounded-lg border border-border bg-muted/50 p-4 text-sm">
           <CheckCircle2 className="size-5 shrink-0" />
-          <span>Paiement confirmé, votre abonnement est en cours d&apos;activation.</span>
+          <span>Votre abonnement est actif.</span>
         </div>
       )}
       {params.canceled && (
@@ -85,15 +96,28 @@ export default async function AbonnementPage({
           </p>
         )}
 
-        {isActive ? (
+        {isActive && annonce && (
           <p className="text-muted-foreground text-sm">
             Votre annonce est diffusée. Vous pouvez la modifier librement tant que votre abonnement est actif.
           </p>
-        ) : !annonce ? (
-          <p className="text-muted-foreground text-sm">
-            Créez d&apos;abord votre annonce pour pouvoir vous abonner.
-          </p>
-        ) : (
+        )}
+
+        {isActive && !annonce && (
+          <div className="flex flex-col gap-2">
+            <p className="text-muted-foreground text-sm">
+              Votre abonnement est actif. Créez votre annonce pour la diffuser.
+            </p>
+            <Button
+              render={<Link href="/deposer-une-annonce" />}
+              nativeButton={false}
+              className="w-full rounded-full"
+            >
+              Créer mon annonce
+            </Button>
+          </div>
+        )}
+
+        {!isActive && (
           <form action="/api/stripe/checkout" method="POST">
             <Button type="submit" className="w-full rounded-full">
               S&apos;abonner — 30 € TTC / mois

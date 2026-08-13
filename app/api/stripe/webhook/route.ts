@@ -18,7 +18,7 @@ async function syncSubscription(
 ) {
   const supabase = createServiceClient();
   const userId = subscription.metadata.user_id;
-  const annonceId = subscription.metadata.annonce_id ?? fallbackAnnonceId;
+  const annonceId = subscription.metadata.annonce_id || fallbackAnnonceId || undefined;
 
   if (!userId) {
     return;

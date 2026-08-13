@@ -1,7 +1,9 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { getStripe } from "@/lib/stripe";
 import { createClient } from "@/lib/supabase/server";
+import { createServiceClient } from "@/lib/supabase/service";
 
 export async function createDraftAnnonce() {
   const supabase = await createClient();
@@ -35,6 +37,27 @@ export async function createDraftAnnonce() {
 
   if (error || !annonce) {
     throw new Error("Impossible de créer l'annonce.");
+  }
+
+  const { data: subscription } = await supabase
+    .from("subscriptions")
+    .select("stripe_subscription_id, annonce_id")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (subscription && !subscription.annonce_id) {
+    const serviceClient = createServiceClient();
+    await serviceClient
+      .from("subscriptions")
+      .update({ annonce_id: annonce.id })
+      .eq("user_id", user.id);
+
+    if (subscription.stripe_subscription_id) {
+      await getStripe().subscriptions.update(
+        subscription.stripe_subscription_id,
+        { metadata: { user_id: user.id, annonce_id: annonce.id } },
+      );
+    }
   }
 
   redirect(`/annonces/${annonce.id}/activite`);

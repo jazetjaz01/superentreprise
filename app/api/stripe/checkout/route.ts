@@ -21,13 +21,6 @@ export async function POST(request: Request) {
     .eq("author_id", user.id)
     .maybeSingle();
 
-  if (!annonce) {
-    return NextResponse.redirect(
-      new URL("/deposer-une-annonce", request.url),
-      303,
-    );
-  }
-
   const { data: subscription } = await supabase
     .from("subscriptions")
     .select("stripe_customer_id")
@@ -48,8 +41,10 @@ export async function POST(request: Request) {
       ? undefined
       : (profile?.email ?? user.email),
     client_reference_id: user.id,
-    metadata: { user_id: user.id, annonce_id: annonce.id },
-    subscription_data: { metadata: { user_id: user.id, annonce_id: annonce.id } },
+    metadata: { user_id: user.id, annonce_id: annonce?.id ?? "" },
+    subscription_data: {
+      metadata: { user_id: user.id, annonce_id: annonce?.id ?? "" },
+    },
     success_url: new URL(
       "/dashboard/abonnement?success=1",
       request.url,
