@@ -90,6 +90,15 @@ export default async function DashboardAnnoncesPage() {
                   >
                     Modifier
                   </Button>
+                  <Button
+                    render={<Link href="/dashboard/abonnement" />}
+                    nativeButton={false}
+                    variant="ghost"
+                    size="sm"
+                    className="rounded-full"
+                  >
+                    Abonnement
+                  </Button>
                   <AnnonceRowActions
                     annonceId={annonce.id}
                     status={annonce.status ?? "brouillon"}
