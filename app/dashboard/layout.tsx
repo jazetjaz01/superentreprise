@@ -1,5 +1,10 @@
 import { redirect } from "next/navigation";
-import { DashboardNav } from "@/components/dashboard-nav";
+import { DashboardSidebar } from "@/components/dashboard-sidebar";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function DashboardLayout({
@@ -17,11 +22,15 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="mx-auto grid w-full max-w-(--breakpoint-2xl) gap-8 px-6 py-12 lg:grid-cols-[220px_1fr]">
-      <aside className="lg:sticky lg:top-24 lg:self-start">
-        <DashboardNav />
-      </aside>
-      <div>{children}</div>
-    </div>
+    <SidebarProvider className="mx-auto max-w-(--breakpoint-2xl) items-start">
+      <DashboardSidebar />
+      <SidebarInset>
+        <div className="flex items-center gap-2 border-border border-b px-6 py-4 md:hidden">
+          <SidebarTrigger />
+          <span className="font-medium text-sm">Mon espace</span>
+        </div>
+        <div className="px-6 py-8 md:py-12">{children}</div>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }
