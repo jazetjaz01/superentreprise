@@ -42,14 +42,23 @@ export default async function DashboardAnnoncesPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <h1 className="font-semibold text-xl">Mes annonces</h1>
-        <Button
-          render={<Link href="/deposer-une-annonce" />}
-          nativeButton={false}
-          className="rounded-full"
-        >
-          Déposer une annonce
-        </Button>
+        {(!annonces || annonces.length === 0) && (
+          <Button
+            render={<Link href="/deposer-une-annonce" />}
+            nativeButton={false}
+            className="rounded-full"
+          >
+            Déposer une annonce
+          </Button>
+        )}
       </div>
+
+      {annonces && annonces.length > 0 && (
+        <p className="text-muted-foreground text-sm">
+          Votre abonnement ne permet la diffusion que d&apos;une seule
+          annonce à la fois.
+        </p>
+      )}
 
       {!annonces || annonces.length === 0 ? (
         <p className="text-muted-foreground text-sm">
@@ -109,6 +118,15 @@ export default async function DashboardAnnoncesPage() {
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center justify-end gap-2">
+                        <Button
+                          render={<Link href={`/annonce/${annonce.id}`} />}
+                          nativeButton={false}
+                          variant="ghost"
+                          size="sm"
+                          className="rounded-full"
+                        >
+                          Voir
+                        </Button>
                         <Button
                           render={<Link href={`/annonces/${annonce.id}/activite`} />}
                           nativeButton={false}
