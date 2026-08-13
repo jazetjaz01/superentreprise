@@ -84,7 +84,7 @@ const Footer = () => {
           {/* Copyright */}
           <span className="text-sm">
             &copy; {new Date().getFullYear()}{" "}
-            <Link href="/">Superentreprise</Link>. Tous droits réservés.
+            <Link href="/">Superentreprise</Link>. Tous droits réservés Perpignan.
           </span>
 
           <div className="flex items-center gap-5 text-muted-foreground">
