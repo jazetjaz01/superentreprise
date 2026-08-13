@@ -1,6 +1,6 @@
 "use client";
 
-import { FileText, User, Wallet } from "lucide-react";
+import { FileText, Home, User, Wallet } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -15,7 +15,8 @@ import {
 } from "@/components/ui/sidebar";
 
 const links = [
-  { href: "/dashboard", label: "Mes annonces", icon: FileText },
+  { href: "/dashboard", label: "Tableau de bord", icon: Home },
+  { href: "/dashboard/annonces", label: "Mes annonces", icon: FileText },
   { href: "/dashboard/abonnement", label: "Mon abonnement", icon: Wallet },
   { href: "/dashboard/profil", label: "Mon profil", icon: User },
 ] as const;

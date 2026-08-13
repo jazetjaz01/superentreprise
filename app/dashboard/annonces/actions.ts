@@ -37,7 +37,7 @@ export async function toggleArchiveAnnonce(formData: FormData) {
 
   await supabase.from("annonces").update({ status: nextStatus }).eq("id", annonceId);
 
-  revalidatePath("/dashboard");
+  revalidatePath("/dashboard/annonces");
 }
 
 export async function deleteAnnonce(formData: FormData) {
@@ -65,5 +65,5 @@ export async function deleteAnnonce(formData: FormData) {
 
   await supabase.from("annonces").delete().eq("id", annonceId);
 
-  revalidatePath("/dashboard");
+  revalidatePath("/dashboard/annonces");
 }

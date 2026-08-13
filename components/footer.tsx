@@ -11,7 +11,7 @@ const footerSections = [
       { title: "Vendre mon entreprise", href: "/deposer-une-annonce" },
       { title: "Acheter une entreprise", href: "/recherche" },
       { title: "Estimation gratuite", href: "#" },
-      { title: "Mes annonces", href: "/dashboard" },
+      { title: "Mes annonces", href: "/dashboard/annonces" },
     ],
   },
   {
