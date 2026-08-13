@@ -38,6 +38,19 @@ export async function publishAnnonce(
     return { error: "Merci de compléter les informations manquantes." };
   }
 
+  const { data: subscription } = await supabase
+    .from("subscriptions")
+    .select("status")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  const isSubscriptionActive =
+    subscription?.status === "active" || subscription?.status === "trialing";
+
+  if (!isSubscriptionActive) {
+    return { error: "Un abonnement actif est nécessaire pour publier." };
+  }
+
   const { error } = await supabase
     .from("annonces")
     .update({ status: "publiee" })

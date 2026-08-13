@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/dashboard", label: "Mes annonces" },
+  { href: "/dashboard/abonnement", label: "Mon abonnement" },
   { href: "/dashboard/profil", label: "Mon profil" },
 ] as const;
 

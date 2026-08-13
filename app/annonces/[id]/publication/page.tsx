@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PublishButton } from "./publish-button";
+import { Button } from "@/components/ui/button";
 import { getMissingFields } from "@/lib/annonces/get-missing-fields";
 import { getOwnedAnnonce } from "@/lib/annonces/get-owned-annonce";
 import { getActivityDisplayLabel } from "@/lib/annonces/activities";
@@ -22,6 +23,16 @@ export default async function PublicationPage({
   const missingFields = getMissingFields(annonce, images);
 
   const supabase = await createClient();
+
+  const { data: subscription } = await supabase
+    .from("subscriptions")
+    .select("status")
+    .eq("user_id", annonce.author_id)
+    .maybeSingle();
+
+  const isSubscriptionActive =
+    subscription?.status === "active" || subscription?.status === "trialing";
+
   const imageUrls = images.map(
     (image) =>
       supabase.storage.from("annonces-images").getPublicUrl(image.storage_path)
@@ -101,8 +112,20 @@ export default async function PublicationPage({
             ))}
           </ul>
         </div>
-      ) : (
+      ) : isSubscriptionActive ? (
         <PublishButton annonceId={id} />
+      ) : (
+        <div className="flex flex-col gap-2 rounded-lg border border-border bg-muted/50 p-4 text-sm">
+          <p>
+            Un abonnement de <span className="font-medium">30 € TTC / mois</span> est
+            nécessaire pour diffuser votre annonce.
+          </p>
+          <form action="/api/stripe/checkout" method="POST">
+            <Button type="submit" className="w-full rounded-full">
+              S&apos;abonner et publier
+            </Button>
+          </form>
+        </div>
       )}
 
       <div className="pt-2">

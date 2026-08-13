@@ -13,6 +13,16 @@ export async function createDraftAnnonce() {
     redirect("/login?next=/deposer-une-annonce");
   }
 
+  const { data: existingAnnonce } = await supabase
+    .from("annonces")
+    .select("id")
+    .eq("author_id", user.id)
+    .maybeSingle();
+
+  if (existingAnnonce) {
+    redirect(`/annonces/${existingAnnonce.id}/activite`);
+  }
+
   const { data: annonce, error } = await supabase
     .from("annonces")
     .insert({
