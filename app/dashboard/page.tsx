@@ -21,6 +21,7 @@ export default async function DashboardPage() {
         Retrouvez ici la gestion de vos annonces, de votre abonnement et de
         votre profil.
       </p>
+      
     </div>
   );
 }

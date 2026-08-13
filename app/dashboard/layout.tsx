@@ -24,12 +24,12 @@ export default async function DashboardLayout({
   return (
     <SidebarProvider className="mx-auto max-w-(--breakpoint-2xl) items-start">
       <DashboardSidebar />
-      <SidebarInset>
+      <SidebarInset className="min-w-0">
         <div className="flex items-center gap-2 border-border border-b px-6 py-4 md:hidden">
           <SidebarTrigger />
           <span className="font-medium text-sm">Mon espace</span>
         </div>
-        <div className="px-6 py-8 md:py-12">{children}</div>
+        <div className="min-w-0 px-6 py-8 md:py-12">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   );

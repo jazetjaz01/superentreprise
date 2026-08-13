@@ -16,7 +16,7 @@ export function AnnonceRowActions({
         <form action={toggleArchiveAnnonce}>
           <input type="hidden" name="annonceId" value={annonceId} />
           <Button type="submit" variant="outline" size="sm" className="rounded-full">
-            {status === "archivee" ? "Réactiver" : "Désactiver"}
+            {status === "archivee" ? "Réactiver" : "Mettre en veille"}
           </Button>
         </form>
       )}
