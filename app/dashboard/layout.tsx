@@ -22,7 +22,7 @@ export default async function DashboardLayout({
   }
 
   return (
-    <SidebarProvider className="mx-auto max-w-(--breakpoint-2xl) items-start">
+    <SidebarProvider className="items-start">
       <DashboardSidebar />
       <SidebarInset className="min-w-0">
         <div className="flex items-center gap-2 border-border border-b px-6 py-4 md:hidden">
