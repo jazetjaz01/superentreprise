@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { createServiceClient } from "@/lib/supabase/service";
 
 function getCurrentPeriodEnd(subscription: Stripe.Subscription) {
@@ -66,7 +66,7 @@ export async function POST(request: Request) {
   let event: Stripe.Event;
 
   try {
-    event = stripe.webhooks.constructEvent(
+    event = getStripe().webhooks.constructEvent(
       body,
       signature,
       process.env.STRIPE_WEBHOOK_SECRET!,
@@ -86,7 +86,7 @@ export async function POST(request: Request) {
           typeof session.subscription === "string"
             ? session.subscription
             : session.subscription.id;
-        const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+        const subscription = await getStripe().subscriptions.retrieve(subscriptionId);
         await syncSubscription(subscription, session.metadata?.annonce_id);
       }
       break;
