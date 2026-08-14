@@ -1,8 +1,9 @@
 "use client";
 
-import { FileText, Home, User, Wallet } from "lucide-react";
+import { CreditCard, FileText, Home, User, Wallet, XCircle } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { cancelSubscription } from "@/app/dashboard/abonnement/actions";
 import {
   Sidebar,
   SidebarContent,
@@ -12,13 +13,14 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 
 const links = [
   { href: "/dashboard", label: "Tableau de bord", icon: Home },
   { href: "/dashboard/annonces", label: "Mes annonces", icon: FileText },
-  { href: "/dashboard/abonnement", label: "Mon abonnement", icon: Wallet },
-  { href: "/dashboard/profil", label: "Mon profil", icon: User },
 ] as const;
 
 export function DashboardSidebar() {
@@ -44,6 +46,68 @@ export function DashboardSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  render={<Link href="/dashboard/abonnement" />}
+                  isActive={pathname === "/dashboard/abonnement"}
+                >
+                  <Wallet />
+                  <span>Mon abonnement</span>
+                </SidebarMenuButton>
+                <SidebarMenuSub>
+                  <SidebarMenuSubItem>
+                    <form action="/api/stripe/portal" method="POST">
+                      <SidebarMenuSubButton render={<button type="submit" />}>
+                        <FileText />
+                        <span>Factures</span>
+                      </SidebarMenuSubButton>
+                    </form>
+                  </SidebarMenuSubItem>
+                  <SidebarMenuSubItem>
+                    <form action="/api/stripe/portal" method="POST">
+                      <input
+                        type="hidden"
+                        name="flow"
+                        value="payment_method_update"
+                      />
+                      <SidebarMenuSubButton render={<button type="submit" />}>
+                        <CreditCard />
+                        <span>Moyen de paiement</span>
+                      </SidebarMenuSubButton>
+                    </form>
+                  </SidebarMenuSubItem>
+                  <SidebarMenuSubItem>
+                    <form
+                      action={cancelSubscription}
+                      onSubmit={(event) => {
+                        if (
+                          !confirm(
+                            "Résilier votre abonnement ? Votre annonce restera diffusée jusqu'à la fin de la période en cours, puis sera dépubliée.",
+                          )
+                        ) {
+                          event.preventDefault();
+                        }
+                      }}
+                    >
+                      <SidebarMenuSubButton render={<button type="submit" />}>
+                        <XCircle />
+                        <span>Résilier abonnement</span>
+                      </SidebarMenuSubButton>
+                    </form>
+                  </SidebarMenuSubItem>
+                </SidebarMenuSub>
+              </SidebarMenuItem>
+
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  render={<Link href="/dashboard/profil" />}
+                  isActive={pathname === "/dashboard/profil"}
+                >
+                  <User />
+                  <span>Mon profil</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
