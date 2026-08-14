@@ -42,6 +42,92 @@ export function ProfileForm({ profile }: { profile: Tables<"profiles"> }) {
         </div>
       </div>
 
+      <div className="flex flex-col gap-4 border-border border-t pt-5">
+        <div>
+          <h2 className="font-medium text-sm">Informations de facturation</h2>
+          <p className="text-muted-foreground text-xs">
+            Nécessaires pour émettre les factures d&apos;abonnement au nom de
+            votre société.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-1.5">
+          <Label htmlFor="company_name">
+            Nom de la société <span className="text-destructive">*</span>
+          </Label>
+          <Input
+            id="company_name"
+            name="company_name"
+            required
+            defaultValue={profile.company_name ?? ""}
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="siren">
+              N° SIREN <span className="text-destructive">*</span>
+            </Label>
+            <Input
+              id="siren"
+              name="siren"
+              required
+              placeholder="123 456 789"
+              defaultValue={profile.siren ?? ""}
+            />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="vat_number">
+              N° TVA intracommunautaire <span className="text-destructive">*</span>
+            </Label>
+            <Input
+              id="vat_number"
+              name="vat_number"
+              required
+              placeholder="FR12345678900"
+              defaultValue={profile.vat_number ?? ""}
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-1.5">
+          <Label htmlFor="company_address">
+            Adresse <span className="text-destructive">*</span>
+          </Label>
+          <Input
+            id="company_address"
+            name="company_address"
+            required
+            defaultValue={profile.company_address ?? ""}
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="company_postal_code">
+              Code postal <span className="text-destructive">*</span>
+            </Label>
+            <Input
+              id="company_postal_code"
+              name="company_postal_code"
+              required
+              defaultValue={profile.company_postal_code ?? ""}
+            />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="company_city">
+              Ville <span className="text-destructive">*</span>
+            </Label>
+            <Input
+              id="company_city"
+              name="company_city"
+              required
+              defaultValue={profile.company_city ?? ""}
+            />
+          </div>
+        </div>
+      </div>
+
       {state?.error && (
         <p className="text-destructive text-sm" aria-live="polite">
           {state.error}

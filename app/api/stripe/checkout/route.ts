@@ -29,21 +29,65 @@ export async function POST(request: Request) {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("email")
+    .select(
+      "email, company_name, siren, vat_number, company_address, company_postal_code, company_city",
+    )
     .eq("id", user.id)
     .single();
 
-  const session = await getStripe().checkout.sessions.create({
+  if (
+    !profile?.company_name ||
+    !profile.siren ||
+    !profile.vat_number ||
+    !profile.company_address ||
+    !profile.company_postal_code ||
+    !profile.company_city
+  ) {
+    return NextResponse.redirect(
+      new URL("/dashboard/profil?billing=required", request.url),
+      303,
+    );
+  }
+
+  const stripe = getStripe();
+  const customerParams = {
+    name: profile.company_name,
+    email: profile.email,
+    address: {
+      line1: profile.company_address,
+      postal_code: profile.company_postal_code,
+      city: profile.company_city,
+      country: "FR",
+    },
+    metadata: { siren: profile.siren },
+  };
+
+  const customerId = subscription?.stripe_customer_id
+    ? (await stripe.customers.update(
+        subscription.stripe_customer_id,
+        customerParams,
+      )).id
+    : (await stripe.customers.create(customerParams)).id;
+
+  try {
+    await stripe.customers.createTaxId(customerId, {
+      type: "eu_vat",
+      value: profile.vat_number,
+    });
+  } catch {
+    // Le numéro de TVA existe déjà ou n'est pas valide pour l'API Stripe :
+    // ce n'est pas bloquant, la facture reste émise au nom de la société.
+  }
+
+  const session = await stripe.checkout.sessions.create({
     mode: "subscription",
     line_items: [{ price: process.env.STRIPE_PRICE_ID!, quantity: 1 }],
-    customer: subscription?.stripe_customer_id ?? undefined,
-    customer_email: subscription?.stripe_customer_id
-      ? undefined
-      : (profile?.email ?? user.email),
+    customer: customerId,
     client_reference_id: user.id,
     metadata: { user_id: user.id, annonce_id: annonce?.id ?? "" },
     subscription_data: {
       metadata: { user_id: user.id, annonce_id: annonce?.id ?? "" },
+      default_tax_rates: [process.env.STRIPE_TAX_RATE_ID!],
     },
     success_url: new URL(
       "/dashboard/abonnement?success=1",

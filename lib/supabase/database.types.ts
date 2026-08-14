@@ -210,6 +210,10 @@ export type Database = {
       profiles: {
         Row: {
           avatar_url: string | null
+          company_address: string | null
+          company_city: string | null
+          company_name: string | null
+          company_postal_code: string | null
           created_at: string
           email: string
           first_name: string | null
@@ -219,10 +223,16 @@ export type Database = {
           last_name: string | null
           phone: string | null
           role: string | null
+          siren: string | null
           updated_at: string
+          vat_number: string | null
         }
         Insert: {
           avatar_url?: string | null
+          company_address?: string | null
+          company_city?: string | null
+          company_name?: string | null
+          company_postal_code?: string | null
           created_at?: string
           email: string
           first_name?: string | null
@@ -232,10 +242,16 @@ export type Database = {
           last_name?: string | null
           phone?: string | null
           role?: string | null
+          siren?: string | null
           updated_at?: string
+          vat_number?: string | null
         }
         Update: {
           avatar_url?: string | null
+          company_address?: string | null
+          company_city?: string | null
+          company_name?: string | null
+          company_postal_code?: string | null
           created_at?: string
           email?: string
           first_name?: string | null
@@ -245,7 +261,9 @@ export type Database = {
           last_name?: string | null
           phone?: string | null
           role?: string | null
+          siren?: string | null
           updated_at?: string
+          vat_number?: string | null
         }
         Relationships: []
       }
