@@ -19,7 +19,7 @@ export default async function DashboardPage() {
       <h1 className="font-semibold text-xl">Bonjour {name}</h1>
       <p className="text-muted-foreground text-sm">
         Retrouvez ici la gestion de vos annonces, de votre abonnement et de
-        votre profil.
+        votre profil. Pour pouvoir diffuser une annonce, il convient de souscrire à un abonnement mensuel à notre plafeforme. Cet abonnement peut être résilé sans préavis et sans justification via notre plateforme.
       </p>
       
     </div>
