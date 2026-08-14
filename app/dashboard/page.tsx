@@ -15,7 +15,7 @@ export default async function DashboardPage() {
   const name = profile?.first_name || "et bienvenue";
 
   return (
-    <div className="flex max-w-xl flex-col gap-2">
+    <div className="flex max-w-2xl flex-col gap-2">
       <h1 className="font-semibold text-xl">Bonjour {name}</h1>
       <p className="text-muted-foreground text-sm">
         Retrouvez ici la gestion de vos annonces, de votre abonnement et de
