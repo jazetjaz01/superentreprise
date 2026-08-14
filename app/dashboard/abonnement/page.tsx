@@ -9,6 +9,8 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableHead,
+  TableHeader,
   TableRow,
 } from "@/components/ui/table";
 import { createClient } from "@/lib/supabase/server";
@@ -56,8 +58,14 @@ export default async function AbonnementPage({
     subscription?.status === "active" || subscription?.status === "trialing";
   const status = subscription ? statusLabels[subscription.status] : null;
 
+  const renewalLabel = subscription?.cancel_at_period_end
+    ? "Fin de l'abonnement"
+    : isActive
+      ? "Renouvellement"
+      : "Fin de période";
+
   return (
-    <div className="flex max-w-2xl flex-col gap-6">
+    <div className="flex max-w-3xl flex-col gap-6">
       <h1 className="font-semibold text-xl">Mon abonnement</h1>
 
       {params.success && !isActive && (
@@ -82,19 +90,19 @@ export default async function AbonnementPage({
         </div>
       )}
 
-      <div className="overflow-hidden rounded-lg border border-border">
+      <div className="min-w-0 overflow-hidden rounded-lg border border-border">
         <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Formule</TableHead>
+              <TableHead>Statut</TableHead>
+              <TableHead>{renewalLabel}</TableHead>
+              <TableHead>Annonce diffusée</TableHead>
+            </TableRow>
+          </TableHeader>
           <TableBody>
             <TableRow>
-              <TableCell className="w-48 font-medium text-muted-foreground">
-                Formule
-              </TableCell>
               <TableCell>Diffusion d&apos;une annonce — 30 € TTC / mois</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell className="font-medium text-muted-foreground">
-                Statut
-              </TableCell>
               <TableCell>
                 {status ? (
                   <Badge variant={status.variant}>{status.label}</Badge>
@@ -102,24 +110,10 @@ export default async function AbonnementPage({
                   "—"
                 )}
               </TableCell>
-            </TableRow>
-            {subscription?.current_period_end && (
-              <TableRow>
-                <TableCell className="font-medium text-muted-foreground">
-                  {subscription.cancel_at_period_end
-                    ? "Fin de l'abonnement"
-                    : isActive
-                      ? "Renouvellement"
-                      : "Fin de période"}
-                </TableCell>
-                <TableCell>
-                  {dateFormatter.format(new Date(subscription.current_period_end))}
-                </TableCell>
-              </TableRow>
-            )}
-            <TableRow>
-              <TableCell className="font-medium text-muted-foreground">
-                Annonce diffusée
+              <TableCell>
+                {subscription?.current_period_end
+                  ? dateFormatter.format(new Date(subscription.current_period_end))
+                  : "—"}
               </TableCell>
               <TableCell>{annonce ? annonce.title : "—"}</TableCell>
             </TableRow>
@@ -128,11 +122,19 @@ export default async function AbonnementPage({
       </div>
 
       {subscription?.stripe_customer_id && (
-        <form action="/api/stripe/portal" method="POST">
-          <Button type="submit" variant="outline" className="w-full rounded-full">
-            Voir mes factures
-          </Button>
-        </form>
+        <div className="flex gap-2">
+          <form action="/api/stripe/portal" method="POST" className="flex-1">
+            <Button type="submit" variant="outline" className="w-full rounded-full">
+              Voir mes factures
+            </Button>
+          </form>
+          <form action="/api/stripe/portal" method="POST" className="flex-1">
+            <input type="hidden" name="flow" value="payment_method_update" />
+            <Button type="submit" variant="outline" className="w-full rounded-full">
+              Mettre à jour moyens de paiement
+            </Button>
+          </form>
+        </div>
       )}
 
       {isActive && subscription?.cancel_at_period_end && (

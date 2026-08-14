@@ -28,9 +28,16 @@ export async function POST(request: Request) {
     );
   }
 
+  const formData = await request.formData();
+  const flow = formData.get("flow");
+
   const session = await getStripe().billingPortal.sessions.create({
     customer: subscription.stripe_customer_id,
     return_url: new URL("/dashboard/abonnement", request.url).toString(),
+    flow_data:
+      flow === "payment_method_update"
+        ? { type: "payment_method_update" }
+        : undefined,
   });
 
   return NextResponse.redirect(session.url, 303);
