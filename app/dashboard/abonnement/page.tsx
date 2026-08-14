@@ -127,6 +127,14 @@ export default async function AbonnementPage({
         </Table>
       </div>
 
+      {subscription?.stripe_customer_id && (
+        <form action="/api/stripe/portal" method="POST">
+          <Button type="submit" variant="outline" className="w-full rounded-full">
+            Voir mes factures
+          </Button>
+        </form>
+      )}
+
       {isActive && subscription?.cancel_at_period_end && (
         <div className="flex flex-col gap-2 rounded-lg border border-border bg-muted/50 p-4 text-sm">
           <p>
