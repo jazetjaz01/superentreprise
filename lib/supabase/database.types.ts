@@ -252,6 +252,7 @@ export type Database = {
       subscriptions: {
         Row: {
           annonce_id: string | null
+          cancel_at_period_end: boolean
           created_at: string
           current_period_end: string | null
           id: string
@@ -263,6 +264,7 @@ export type Database = {
         }
         Insert: {
           annonce_id?: string | null
+          cancel_at_period_end?: boolean
           created_at?: string
           current_period_end?: string | null
           id?: string
@@ -274,6 +276,7 @@ export type Database = {
         }
         Update: {
           annonce_id?: string | null
+          cancel_at_period_end?: boolean
           created_at?: string
           current_period_end?: string | null
           id?: string

@@ -1,8 +1,16 @@
 import { CheckCircle2, Loader2, XCircle } from "lucide-react";
 import Link from "next/link";
+import { resumeSubscription } from "./actions";
+import { CancelSubscriptionButton } from "./cancel-subscription-button";
 import { SubscriptionStatusPoller } from "./subscription-status-poller";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+} from "@/components/ui/table";
 import { createClient } from "@/lib/supabase/server";
 
 const statusLabels: Record<string, { label: string; variant: "default" | "secondary" | "outline" }> = {
@@ -49,7 +57,7 @@ export default async function AbonnementPage({
   const status = subscription ? statusLabels[subscription.status] : null;
 
   return (
-    <div className="flex max-w-lg flex-col gap-6">
+    <div className="flex max-w-2xl flex-col gap-6">
       <h1 className="font-semibold text-xl">Mon abonnement</h1>
 
       {params.success && !isActive && (
@@ -74,39 +82,73 @@ export default async function AbonnementPage({
         </div>
       )}
 
-      <div className="flex flex-col gap-4 rounded-lg border border-border p-5">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="font-medium">Diffusion d&apos;une annonce</p>
-            <p className="text-muted-foreground text-sm">30 € TTC / mois</p>
-          </div>
-          {status && <Badge variant={status.variant}>{status.label}</Badge>}
+      <div className="overflow-hidden rounded-lg border border-border">
+        <Table>
+          <TableBody>
+            <TableRow>
+              <TableCell className="w-48 font-medium text-muted-foreground">
+                Formule
+              </TableCell>
+              <TableCell>Diffusion d&apos;une annonce — 30 € TTC / mois</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className="font-medium text-muted-foreground">
+                Statut
+              </TableCell>
+              <TableCell>
+                {status ? (
+                  <Badge variant={status.variant}>{status.label}</Badge>
+                ) : (
+                  "—"
+                )}
+              </TableCell>
+            </TableRow>
+            {subscription?.current_period_end && (
+              <TableRow>
+                <TableCell className="font-medium text-muted-foreground">
+                  {subscription.cancel_at_period_end
+                    ? "Fin de l'abonnement"
+                    : isActive
+                      ? "Renouvellement"
+                      : "Fin de période"}
+                </TableCell>
+                <TableCell>
+                  {dateFormatter.format(new Date(subscription.current_period_end))}
+                </TableCell>
+              </TableRow>
+            )}
+            <TableRow>
+              <TableCell className="font-medium text-muted-foreground">
+                Annonce diffusée
+              </TableCell>
+              <TableCell>{annonce ? annonce.title : "—"}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </div>
+
+      {isActive && subscription?.cancel_at_period_end && (
+        <div className="flex flex-col gap-2 rounded-lg border border-border bg-muted/50 p-4 text-sm">
+          <p>
+            Votre abonnement prendra fin le{" "}
+            {dateFormatter.format(new Date(subscription.current_period_end!))}.
+            Votre annonce sera alors dépubliée.
+          </p>
+          <form action={resumeSubscription}>
+            <Button
+              type="submit"
+              variant="outline"
+              className="w-full rounded-full"
+            >
+              Annuler la résiliation
+            </Button>
+          </form>
         </div>
+      )}
 
-        {subscription?.current_period_end && (
-          <p className="text-muted-foreground text-sm">
-            {isActive ? "Renouvellement" : "Fin de période"} le{" "}
-            {dateFormatter.format(new Date(subscription.current_period_end))}
-          </p>
-        )}
-
-        {annonce && (
-          <p className="text-muted-foreground text-sm">
-            Annonce diffusée : <span className="font-medium text-foreground">{annonce.title}</span>
-          </p>
-        )}
-
-        {isActive && annonce && (
-          <p className="text-muted-foreground text-sm">
-            Votre annonce est diffusée. Vous pouvez la modifier librement tant que votre abonnement est actif.
-          </p>
-        )}
-
-        {isActive && !annonce && (
-          <div className="flex flex-col gap-2">
-            <p className="text-muted-foreground text-sm">
-              Votre abonnement est actif. Créez votre annonce pour la diffuser.
-            </p>
+      {isActive && !subscription?.cancel_at_period_end && (
+        <div className="flex flex-col gap-2">
+          {!annonce && (
             <Button
               render={<Link href="/deposer-une-annonce" />}
               nativeButton={false}
@@ -114,17 +156,18 @@ export default async function AbonnementPage({
             >
               Créer mon annonce
             </Button>
-          </div>
-        )}
+          )}
+          <CancelSubscriptionButton />
+        </div>
+      )}
 
-        {!isActive && (
-          <form action="/api/stripe/checkout" method="POST">
-            <Button type="submit" className="w-full rounded-full">
-              S&apos;abonner — 30 € TTC / mois
-            </Button>
-          </form>
-        )}
-      </div>
+      {!isActive && (
+        <form action="/api/stripe/checkout" method="POST">
+          <Button type="submit" className="w-full rounded-full">
+            S&apos;abonner — 30 € TTC / mois
+          </Button>
+        </form>
+      )}
     </div>
   );
 }
