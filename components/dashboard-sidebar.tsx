@@ -58,8 +58,8 @@ export function DashboardSidebar() {
                 <SidebarMenuSub>
                   <SidebarMenuSubItem>
                     <SidebarMenuSubButton
-                      render={<Link href="/dashboard/abonnement" />}
-                      isActive={pathname === "/dashboard/abonnement"}
+                      render={<Link href="/dashboard/abonnement/offre" />}
+                      isActive={pathname === "/dashboard/abonnement/offre"}
                     >
                       <Tag />
                       <span>Offre abonnement</span>
