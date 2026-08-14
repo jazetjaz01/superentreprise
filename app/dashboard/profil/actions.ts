@@ -9,6 +9,7 @@ export async function updateProfile(
 ) {
   const firstName = String(formData.get("first_name") ?? "").trim();
   const lastName = String(formData.get("last_name") ?? "").trim();
+  const phone = String(formData.get("phone") ?? "").trim();
   const companyName = String(formData.get("company_name") ?? "").trim();
   const siren = String(formData.get("siren") ?? "").trim();
   const vatNumber = String(formData.get("vat_number") ?? "").trim();
@@ -28,6 +29,7 @@ export async function updateProfile(
   }
 
   if (
+    !phone ||
     !companyName ||
     !siren ||
     !vatNumber ||
@@ -37,7 +39,7 @@ export async function updateProfile(
   ) {
     return {
       error:
-        "Merci de compléter toutes les informations de facturation (obligatoires pour émettre les factures).",
+        "Merci de compléter le téléphone et les informations de facturation (obligatoires pour diffuser une annonce et émettre les factures).",
     };
   }
 
@@ -46,6 +48,7 @@ export async function updateProfile(
     .update({
       first_name: firstName || null,
       last_name: lastName || null,
+      phone,
       company_name: companyName,
       siren,
       vat_number: vatNumber,

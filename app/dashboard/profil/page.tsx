@@ -23,9 +23,9 @@ export default async function DashboardProfilePage({
       <h1 className="font-semibold text-xl">Mon profil</h1>
       {params.billing === "required" && (
         <div className="max-w-md rounded-lg border border-border bg-muted/50 p-4 text-sm">
-          Merci de compléter vos informations de facturation avant de vous
-          abonner : elles seront utilisées pour émettre la facture au nom de
-          votre société.
+          Merci de compléter votre téléphone et vos informations de
+          facturation avant de vous abonner : ils seront utilisés pour vous
+          contacter et émettre la facture au nom de votre société.
         </div>
       )}
       {profile && <ProfileForm profile={profile} />}

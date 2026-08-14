@@ -30,13 +30,14 @@ export async function POST(request: Request) {
   const { data: profile } = await supabase
     .from("profiles")
     .select(
-      "email, company_name, siren, vat_number, company_address, company_postal_code, company_city",
+      "email, phone, company_name, siren, vat_number, company_address, company_postal_code, company_city",
     )
     .eq("id", user.id)
     .single();
 
   if (
-    !profile?.company_name ||
+    !profile?.phone ||
+    !profile.company_name ||
     !profile.siren ||
     !profile.vat_number ||
     !profile.company_address ||

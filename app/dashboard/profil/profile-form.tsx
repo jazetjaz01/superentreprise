@@ -42,6 +42,23 @@ export function ProfileForm({ profile }: { profile: Tables<"profiles"> }) {
         </div>
       </div>
 
+      <div className="flex flex-col gap-1.5">
+        <Label htmlFor="phone">
+          Téléphone <span className="text-destructive">*</span>
+        </Label>
+        <Input
+          id="phone"
+          name="phone"
+          type="tel"
+          required
+          placeholder="06 12 34 56 78"
+          defaultValue={profile.phone ?? ""}
+        />
+        <p className="text-muted-foreground text-xs">
+          Obligatoire pour diffuser une annonce.
+        </p>
+      </div>
+
       <div className="flex flex-col gap-4 border-border border-t pt-5">
         <div>
           <h2 className="font-medium text-sm">Informations de facturation</h2>
