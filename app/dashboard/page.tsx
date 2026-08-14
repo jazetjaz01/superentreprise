@@ -1,3 +1,4 @@
+import { CheckCircle2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function DashboardPage() {
@@ -12,6 +13,25 @@ export default async function DashboardPage() {
     .eq("id", user!.id)
     .single();
 
+  const { data: subscription } = await supabase
+    .from("subscriptions")
+    .select("status, annonce_id")
+    .eq("user_id", user!.id)
+    .maybeSingle();
+
+  const isActive =
+    subscription?.status === "active" || subscription?.status === "trialing";
+
+  let annonceTitle: string | null = null;
+  if (isActive && subscription?.annonce_id) {
+    const { data: annonce } = await supabase
+      .from("annonces")
+      .select("title")
+      .eq("id", subscription.annonce_id)
+      .maybeSingle();
+    annonceTitle = annonce?.title ?? null;
+  }
+
   const name = profile?.first_name || "et bienvenue";
 
   return (
@@ -21,6 +41,25 @@ export default async function DashboardPage() {
         Retrouvez ici la gestion de vos annonces, de votre abonnement et de
         votre profil. Pour pouvoir diffuser une annonce, il convient de souscrire à un abonnement mensuel à notre plafeforme. Cet abonnement peut être résilé sans préavis et sans justification via notre plateforme.
       </p>
+
+      {isActive && (
+        <div className="mt-4 flex items-center gap-2 rounded-lg border border-border bg-muted/50 p-4 text-sm">
+          <CheckCircle2 className="size-5 shrink-0" />
+          <span>
+            Votre abonnement est actif
+            {annonceTitle && (
+              <>
+                {" "}
+                — annonce diffusée :{" "}
+                <span className="font-medium text-foreground">
+                  {annonceTitle}
+                </span>
+              </>
+            )}
+            .
+          </span>
+        </div>
+      )}
     </div>
   );
 }
