@@ -1,6 +1,6 @@
 "use client";
 
-import { CreditCard, FileText, Home, User, Wallet, XCircle } from "lucide-react";
+import { CreditCard, FileText, Home, Tag, User, Wallet, XCircle } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cancelSubscription } from "@/app/dashboard/abonnement/actions";
@@ -56,6 +56,15 @@ export function DashboardSidebar() {
                   <span>Mon abonnement</span>
                 </SidebarMenuButton>
                 <SidebarMenuSub>
+                  <SidebarMenuSubItem>
+                    <SidebarMenuSubButton
+                      render={<Link href="/dashboard/abonnement" />}
+                      isActive={pathname === "/dashboard/abonnement"}
+                    >
+                      <Tag />
+                      <span>Offre abonnement</span>
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
                   <SidebarMenuSubItem>
                     <form action="/api/stripe/portal" method="POST">
                       <SidebarMenuSubButton render={<button type="submit" />}>
