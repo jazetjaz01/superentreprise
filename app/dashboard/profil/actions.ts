@@ -28,14 +28,23 @@ export async function updateProfile(
     return { error: "Vous devez être connecté." };
   }
 
+  const { data: existingProfile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .single();
+
+  const isSeller = existingProfile?.role !== "acheteur";
+
   if (
-    !phone ||
-    !companyName ||
-    !siren ||
-    !vatNumber ||
-    !companyAddress ||
-    !companyPostalCode ||
-    !companyCity
+    isSeller &&
+    (!phone ||
+      !companyName ||
+      !siren ||
+      !vatNumber ||
+      !companyAddress ||
+      !companyPostalCode ||
+      !companyCity)
   ) {
     return {
       error:
@@ -48,13 +57,15 @@ export async function updateProfile(
     .update({
       first_name: firstName || null,
       last_name: lastName || null,
-      phone,
-      company_name: companyName,
-      siren,
-      vat_number: vatNumber,
-      company_address: companyAddress,
-      company_postal_code: companyPostalCode,
-      company_city: companyCity,
+      phone: phone || null,
+      ...(isSeller && {
+        company_name: companyName,
+        siren,
+        vat_number: vatNumber,
+        company_address: companyAddress,
+        company_postal_code: companyPostalCode,
+        company_city: companyCity,
+      }),
     })
     .eq("id", user.id);
 
