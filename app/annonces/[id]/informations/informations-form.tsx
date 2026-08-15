@@ -1,16 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { updateInformations } from "./actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { transactionTypes } from "@/lib/annonces/options";
 import type { Tables } from "@/lib/supabase/database.types";
-
-const selectClassName =
-  "h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 dark:bg-input/30";
+import { cn } from "@/lib/utils";
 
 export function InformationsForm({
   annonce,
@@ -20,6 +18,9 @@ export function InformationsForm({
   const [state, formAction, pending] = useActionState(
     updateInformations,
     null,
+  );
+  const [transactionType, setTransactionType] = useState(
+    annonce.transaction_type ?? "",
   );
 
   return (
@@ -46,23 +47,30 @@ export function InformationsForm({
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="transaction_type">Type de transaction</Label>
-        <select
-          id="transaction_type"
-          name="transaction_type"
-          defaultValue={annonce.transaction_type ?? ""}
-          className={selectClassName}
-          required
-        >
-          <option value="" disabled>
-            Sélectionner...
-          </option>
-          {transactionTypes.map((item) => (
-            <option key={item.value} value={item.value}>
-              {item.label}
-            </option>
-          ))}
-        </select>
+        <Label>Type de transaction</Label>
+        <div className="flex flex-wrap gap-2">
+          {transactionTypes.map((item) => {
+            const isActive = transactionType === item.value;
+
+            return (
+              <button
+                key={item.value}
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => setTransactionType(item.value)}
+                className={cn(
+                  "rounded-full border px-4 py-2 text-sm transition-colors",
+                  isActive
+                    ? "border-foreground bg-foreground text-background"
+                    : "border-input hover:bg-muted",
+                )}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+        </div>
+        <input type="hidden" name="transaction_type" value={transactionType} />
       </div>
 
       <div className="flex flex-col gap-1.5">
