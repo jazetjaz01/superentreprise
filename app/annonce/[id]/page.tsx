@@ -35,6 +35,12 @@ export default async function AnnonceDetailPage({
     notFound();
   }
 
+  const isOwner = user?.id === annonce.author_id;
+
+  if (annonce.status !== "publiee" && !isOwner) {
+    notFound();
+  }
+
   const images = [...(annonce.annonce_images ?? [])].sort(
     (a, b) => a.position - b.position,
   );
@@ -49,7 +55,6 @@ export default async function AnnonceDetailPage({
     (item) => item.value === annonce.transaction_type,
   )?.label;
   const department = getDepartment(annonce.postal_code);
-  const isOwner = user?.id === annonce.author_id;
 
   const stats = [
     { label: "Chiffre d'affaires", value: annonce.revenue },
@@ -59,7 +64,25 @@ export default async function AnnonceDetailPage({
 
   return (
     <div className="mx-auto w-full max-w-(--breakpoint-2xl) px-6 py-12">
-      {isOwner && (
+      {isOwner && annonce.status !== "publiee" && (
+        <div className="mb-6 flex items-center justify-between rounded-lg border border-destructive/50 bg-destructive/10 px-4 py-3 text-sm">
+          <span>
+            Aperçu uniquement — cette annonce n&apos;est pas publiée et n&apos;est
+            visible que par vous.
+          </span>
+          <Button
+            render={<Link href={`/annonces/${annonce.id}/publication`} />}
+            nativeButton={false}
+            size="sm"
+            variant="outline"
+            className="rounded-full"
+          >
+            Publier
+          </Button>
+        </div>
+      )}
+
+      {isOwner && annonce.status === "publiee" && (
         <div className="mb-6 flex items-center justify-between rounded-lg border border-border bg-muted/50 px-4 py-3 text-sm">
           <span className="text-muted-foreground">
             C&apos;est votre annonce.
