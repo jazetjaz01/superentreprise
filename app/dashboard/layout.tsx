@@ -21,9 +21,41 @@ export default async function DashboardLayout({
     redirect("/login?next=/dashboard");
   }
 
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .maybeSingle();
+
+  let role = profile?.role ?? null;
+
+  if (!role) {
+    const pendingRole = user.user_metadata?.role;
+    if (pendingRole === "vendeur" || pendingRole === "acheteur") {
+      await supabase.from("profiles").update({ role: pendingRole }).eq("id", user.id);
+      role = pendingRole;
+    } else {
+      redirect("/onboarding/role?next=/dashboard");
+    }
+  }
+
+  const { data: annonce } = await supabase
+    .from("annonces")
+    .select("id")
+    .eq("author_id", user.id)
+    .maybeSingle();
+
+  const { data: subscription } = await supabase
+    .from("subscriptions")
+    .select("id")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  const showSellerMenu = role === "vendeur" || !!annonce || !!subscription;
+
   return (
     <SidebarProvider className="items-start">
-      <DashboardSidebar />
+      <DashboardSidebar showSellerMenu={showSellerMenu} />
       <SidebarInset className="min-w-0">
         <div className="flex items-center gap-2 border-border border-b px-6 py-4 md:hidden">
           <SidebarTrigger />

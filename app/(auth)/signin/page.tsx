@@ -1,15 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { signup } from "./actions";
 import { Button } from "@/components/ui/button";
 import { GoogleAuthButton } from "@/components/google-auth-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
+
+const roles = [
+  { value: "vendeur", label: "Je vends une entreprise" },
+  { value: "acheteur", label: "Je recherche une entreprise" },
+] as const;
 
 export default function SignInPage() {
   const [state, formAction, pending] = useActionState(signup, null);
+  const [role, setRole] = useState<string>("vendeur");
 
   return (
     <div className="mx-auto flex w-full max-w-sm flex-col items-center text-center">
@@ -19,8 +26,34 @@ export default function SignInPage() {
         d&apos;entreprises.
       </p>
 
-      <div className="mt-8 w-full">
-        <GoogleAuthButton />
+      <div className="mt-6 flex w-full flex-col gap-1.5 text-left">
+        <Label>Vous êtes...</Label>
+        <div className="flex gap-2">
+          {roles.map((item) => {
+            const isActive = role === item.value;
+
+            return (
+              <button
+                key={item.value}
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => setRole(item.value)}
+                className={cn(
+                  "flex-1 rounded-full border px-3 py-2 text-xs transition-colors",
+                  isActive
+                    ? "border-foreground bg-foreground text-background"
+                    : "border-input hover:bg-muted",
+                )}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="mt-6 w-full">
+        <GoogleAuthButton next="/onboarding/role" />
       </div>
 
       <div className="my-6 flex w-full items-center gap-3 text-muted-foreground text-xs">
@@ -30,6 +63,7 @@ export default function SignInPage() {
       </div>
 
       <form action={formAction} className="w-full">
+        <input type="hidden" name="role" value={role} />
         <div className="flex flex-col gap-3">
           <div className="text-left">
             <Label htmlFor="email" className="sr-only">
