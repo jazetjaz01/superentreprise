@@ -1,9 +1,9 @@
 "use client";
 
-import { ImagePlus, Loader2, Star, Trash2 } from "lucide-react";
+import { ImagePlus, Loader2, Plus, Star, Trash2 } from "lucide-react";
 import { useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
-import { getStockImageForActivity } from "@/lib/annonces/stock-images";
+import { stockImages } from "@/lib/annonces/stock-images";
 import { compressImage } from "@/lib/images/compress-image";
 import { cn } from "@/lib/utils";
 import type { Tables } from "@/lib/supabase/database.types";
@@ -22,11 +22,9 @@ function publicUrlFor(storagePath: string) {
 export function AnnoncePhotoUploader({
   annonceId,
   initialImages,
-  activity,
 }: {
   annonceId: string;
   initialImages: AnnonceImage[];
-  activity?: string | null;
 }) {
   const [images, setImages] = useState(initialImages);
   const [uploading, setUploading] = useState(false);
@@ -34,7 +32,6 @@ export function AnnoncePhotoUploader({
   const inputRef = useRef<HTMLInputElement>(null);
 
   const remainingSlots = MAX_IMAGES - images.length;
-  const stockImageUrl = getStockImageForActivity(activity);
 
   const uploadOneFile = async (file: File, position: number) => {
     const supabase = createClient();
@@ -98,15 +95,15 @@ export function AnnoncePhotoUploader({
     }
   };
 
-  const handleUseStockImage = async () => {
-    if (!stockImageUrl || remainingSlots <= 0) return;
+  const handleUseStockImage = async (stockUrl: string) => {
+    if (remainingSlots <= 0) return;
 
     setUploading(true);
     setError(null);
     try {
-      const response = await fetch(stockImageUrl);
+      const response = await fetch(stockUrl);
       const blob = await response.blob();
-      const file = new File([blob], stockImageUrl.split("/").pop()!, {
+      const file = new File([blob], stockUrl.split("/").pop()!, {
         type: blob.type || "image/jpeg",
       });
 
@@ -144,31 +141,6 @@ export function AnnoncePhotoUploader({
 
   return (
     <div className="flex flex-col gap-4">
-      {images.length === 0 && stockImageUrl && (
-        <div className="flex items-center gap-3 rounded-lg border border-border bg-muted/50 p-3">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={stockImageUrl}
-            alt=""
-            className="size-16 shrink-0 rounded-md object-cover"
-          />
-          <div className="flex flex-1 flex-col gap-1">
-            <p className="text-sm">
-              Pas encore de photo ? Utilisez une image suggérée pour votre
-              activité.
-            </p>
-            <button
-              type="button"
-              onClick={handleUseStockImage}
-              disabled={uploading}
-              className="w-fit text-primary text-sm underline underline-offset-2 disabled:opacity-60"
-            >
-              Utiliser cette photo
-            </button>
-          </div>
-        </div>
-      )}
-
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         {images.map((image) => (
           <div
@@ -242,6 +214,37 @@ export function AnnoncePhotoUploader({
         <p className="text-destructive text-sm" aria-live="polite">
           {error}
         </p>
+      )}
+
+      {remainingSlots > 0 && (
+        <div className="flex flex-col gap-2 border-border border-t pt-4">
+          <p className="text-sm">
+            Pas de photo sous la main ? Choisissez une image parmi notre
+            bibliothèque.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {stockImages.map((stock) => (
+              <button
+                key={stock.url}
+                type="button"
+                disabled={uploading}
+                onClick={() => handleUseStockImage(stock.url)}
+                className="group relative size-16 shrink-0 overflow-hidden rounded-md ring-1 ring-border disabled:pointer-events-none disabled:opacity-60"
+                title={stock.label}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={stock.url}
+                  alt={stock.label}
+                  className="size-full object-cover"
+                />
+                <span className="absolute inset-0 flex items-center justify-center bg-black/0 text-transparent transition-colors group-hover:bg-black/40 group-hover:text-white">
+                  <Plus className="size-5" />
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
       )}
     </div>
   );

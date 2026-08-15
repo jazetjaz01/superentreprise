@@ -9,7 +9,7 @@ export default async function PhotosPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const { annonce, images } = await getOwnedAnnonce(id);
+  const { images } = await getOwnedAnnonce(id);
 
   return (
     <div className="flex max-w-lg flex-col gap-5">
@@ -21,11 +21,7 @@ export default async function PhotosPage({
         </p>
       </div>
 
-      <AnnoncePhotoUploader
-        annonceId={id}
-        initialImages={images}
-        activity={annonce.activity}
-      />
+      <AnnoncePhotoUploader annonceId={id} initialImages={images} />
 
       <div className="flex items-center justify-between pt-2">
         <Link
