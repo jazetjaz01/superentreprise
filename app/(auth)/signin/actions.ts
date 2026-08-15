@@ -13,7 +13,7 @@ export async function signup(_prevState: { error: string } | null, formData: For
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: { data: { role: role || undefined } },
@@ -21,6 +21,10 @@ export async function signup(_prevState: { error: string } | null, formData: For
 
   if (error) {
     return { error: error.message };
+  }
+
+  if (data.session) {
+    redirect("/dashboard");
   }
 
   redirect("/login?confirm=1");

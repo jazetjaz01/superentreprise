@@ -41,29 +41,31 @@ export default async function OnboardingRolePage({
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-sm flex-col items-center text-center">
-      <h1 className="font-semibold text-2xl">Vous êtes...</h1>
-      <p className="mt-2 text-muted-foreground text-sm">
-        Ça nous permet d&apos;adapter votre espace personnel.
-      </p>
+    <div className="flex min-h-[calc(100vh-5rem)] items-center justify-center px-6 py-16">
+      <div className="mx-auto flex w-full max-w-sm flex-col items-center text-center">
+        <h1 className="font-semibold text-2xl">Vous êtes...</h1>
+        <p className="mt-2 text-muted-foreground text-sm">
+          Ça nous permet d&apos;adapter votre espace personnel.
+        </p>
 
-      <form action={setRole} className="mt-8 flex w-full flex-col gap-3">
-        <input type="hidden" name="next" value={params.next ?? "/dashboard"} />
-        {roles.map((item) => (
-          <button
-            key={item.value}
-            type="submit"
-            name="role"
-            value={item.value}
-            className="flex flex-col gap-1 rounded-lg border border-input px-4 py-3 text-left transition-colors hover:border-foreground hover:bg-muted"
-          >
-            <span className="font-medium">{item.title}</span>
-            <span className="text-muted-foreground text-sm">
-              {item.description}
-            </span>
-          </button>
-        ))}
-      </form>
+        <form action={setRole} className="mt-8 flex w-full flex-col gap-3">
+          <input type="hidden" name="next" value={params.next ?? "/dashboard"} />
+          {roles.map((item) => (
+            <button
+              key={item.value}
+              type="submit"
+              name="role"
+              value={item.value}
+              className="flex flex-col gap-1 rounded-lg border border-input px-4 py-3 text-left transition-colors hover:border-foreground hover:bg-muted"
+            >
+              <span className="font-medium">{item.title}</span>
+              <span className="text-muted-foreground text-sm">
+                {item.description}
+              </span>
+            </button>
+          ))}
+        </form>
+      </div>
     </div>
   );
 }
