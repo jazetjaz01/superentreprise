@@ -81,6 +81,22 @@ export default async function PublicationPage({
           </span>
         </div>
 
+        {annonce.description_short && (
+          <div className="flex flex-col gap-1">
+            <span className="text-muted-foreground">Résumé court</span>
+            <span className="font-medium">{annonce.description_short}</span>
+          </div>
+        )}
+
+        {annonce.description_long && (
+          <div className="flex flex-col gap-1">
+            <span className="text-muted-foreground">Description</span>
+            <span className="whitespace-pre-line font-medium">
+              {annonce.description_long}
+            </span>
+          </div>
+        )}
+
         {imageUrls.length > 0 && (
           <div className="flex gap-2 pt-1">
             {imageUrls.map((url) => (
