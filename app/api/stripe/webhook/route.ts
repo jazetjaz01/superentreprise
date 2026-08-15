@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
 import { getStripe } from "@/lib/stripe";
+import { getMissingFields } from "@/lib/annonces/get-missing-fields";
 import { createServiceClient } from "@/lib/supabase/service";
 
 function getCurrentPeriodEnd(subscription: Stripe.Subscription) {
@@ -50,10 +51,39 @@ async function syncSubscription(
   const isActive =
     subscription.status === "active" || subscription.status === "trialing";
 
-  await supabase
+  if (!isActive) {
+    await supabase
+      .from("annonces")
+      .update({ status: "brouillon" })
+      .eq("id", annonceId);
+    return;
+  }
+
+  // Ne jamais publier automatiquement une annonce incomplète : le webhook
+  // peut se déclencher (renouvellement, changement de moyen de paiement,
+  // liaison d'une nouvelle annonce à un abonnement déjà actif...) alors que
+  // l'annonce n'a pas terminé le parcours de création.
+  const { data: annonce } = await supabase
     .from("annonces")
-    .update({ status: isActive ? "publiee" : "brouillon" })
-    .eq("id", annonceId);
+    .select("*")
+    .eq("id", annonceId)
+    .single();
+
+  if (!annonce) {
+    return;
+  }
+
+  const { data: images } = await supabase
+    .from("annonce_images")
+    .select("*")
+    .eq("annonce_id", annonceId);
+
+  if (getMissingFields(annonce, images ?? []).length === 0) {
+    await supabase
+      .from("annonces")
+      .update({ status: "publiee" })
+      .eq("id", annonceId);
+  }
 }
 
 export async function POST(request: Request) {
