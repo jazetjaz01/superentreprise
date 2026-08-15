@@ -3,10 +3,13 @@
 import { ImagePlus, Loader2, Star, Trash2 } from "lucide-react";
 import { useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { getStockImageForActivity } from "@/lib/annonces/stock-images";
+import { compressImage } from "@/lib/images/compress-image";
 import { cn } from "@/lib/utils";
 import type { Tables } from "@/lib/supabase/database.types";
 
 const BUCKET = "annonces-images";
+const MAX_IMAGES = 5;
 
 type AnnonceImage = Tables<"annonce_images">;
 
@@ -19,59 +22,100 @@ function publicUrlFor(storagePath: string) {
 export function AnnoncePhotoUploader({
   annonceId,
   initialImages,
+  activity,
 }: {
   annonceId: string;
   initialImages: AnnonceImage[];
+  activity?: string | null;
 }) {
   const [images, setImages] = useState(initialImages);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const remainingSlots = MAX_IMAGES - images.length;
+  const stockImageUrl = getStockImageForActivity(activity);
+
+  const uploadOneFile = async (file: File, position: number) => {
+    const supabase = createClient();
+    const compressedFile = await compressImage(file);
+    const path = `${annonceId}/${crypto.randomUUID()}-${compressedFile.name}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from(BUCKET)
+      .upload(path, compressedFile);
+
+    if (uploadError) {
+      setError(uploadError.message);
+      return null;
+    }
+
+    const { data: row, error: insertError } = await supabase
+      .from("annonce_images")
+      .insert({
+        annonce_id: annonceId,
+        storage_path: path,
+        position,
+        is_cover: position === 0,
+      })
+      .select("*")
+      .single();
+
+    if (insertError || !row) {
+      setError(insertError?.message ?? "Échec de l'enregistrement.");
+      return null;
+    }
+
+    return row;
+  };
+
   const handleFiles = async (files: FileList | null) => {
     if (!files || files.length === 0) return;
 
-    setUploading(true);
-    setError(null);
-    const supabase = createClient();
+    const selected = Array.from(files).slice(0, remainingSlots);
+    if (files.length > selected.length) {
+      setError(
+        `Vous ne pouvez ajouter que ${MAX_IMAGES} photos maximum par annonce.`,
+      );
+    } else {
+      setError(null);
+    }
+    if (selected.length === 0) return;
 
+    setUploading(true);
     try {
       let nextPosition = images.length;
-
-      for (const file of Array.from(files)) {
-        const path = `${annonceId}/${crypto.randomUUID()}-${file.name}`;
-
-        const { error: uploadError } = await supabase.storage
-          .from(BUCKET)
-          .upload(path, file);
-
-        if (uploadError) {
-          setError(uploadError.message);
-          continue;
+      for (const file of selected) {
+        const row = await uploadOneFile(file, nextPosition);
+        if (row) {
+          nextPosition += 1;
+          setImages((current) => [...current, row]);
         }
-
-        const { data: row, error: insertError } = await supabase
-          .from("annonce_images")
-          .insert({
-            annonce_id: annonceId,
-            storage_path: path,
-            position: nextPosition,
-            is_cover: nextPosition === 0,
-          })
-          .select("*")
-          .single();
-
-        if (insertError || !row) {
-          setError(insertError?.message ?? "Échec de l'enregistrement.");
-          continue;
-        }
-
-        nextPosition += 1;
-        setImages((current) => [...current, row]);
       }
     } finally {
       setUploading(false);
       if (inputRef.current) inputRef.current.value = "";
+    }
+  };
+
+  const handleUseStockImage = async () => {
+    if (!stockImageUrl || remainingSlots <= 0) return;
+
+    setUploading(true);
+    setError(null);
+    try {
+      const response = await fetch(stockImageUrl);
+      const blob = await response.blob();
+      const file = new File([blob], stockImageUrl.split("/").pop()!, {
+        type: blob.type || "image/jpeg",
+      });
+
+      const row = await uploadOneFile(file, images.length);
+      if (row) {
+        setImages((current) => [...current, row]);
+      }
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -100,6 +144,31 @@ export function AnnoncePhotoUploader({
 
   return (
     <div className="flex flex-col gap-4">
+      {images.length === 0 && stockImageUrl && (
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-muted/50 p-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={stockImageUrl}
+            alt=""
+            className="size-16 shrink-0 rounded-md object-cover"
+          />
+          <div className="flex flex-1 flex-col gap-1">
+            <p className="text-sm">
+              Pas encore de photo ? Utilisez une image suggérée pour votre
+              activité.
+            </p>
+            <button
+              type="button"
+              onClick={handleUseStockImage}
+              disabled={uploading}
+              className="w-fit text-primary text-sm underline underline-offset-2 disabled:opacity-60"
+            >
+              Utiliser cette photo
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         {images.map((image) => (
           <div
@@ -140,28 +209,34 @@ export function AnnoncePhotoUploader({
           </div>
         ))}
 
-        <label
-          className={cn(
-            "flex aspect-square cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-input border-dashed text-muted-foreground text-xs hover:bg-muted",
-            uploading && "pointer-events-none opacity-60",
-          )}
-        >
-          {uploading ? (
-            <Loader2 className="size-5 animate-spin" />
-          ) : (
-            <ImagePlus className="size-5" />
-          )}
-          Ajouter
-          <input
-            ref={inputRef}
-            type="file"
-            accept="image/*"
-            multiple
-            className="hidden"
-            onChange={(event) => handleFiles(event.target.files)}
-          />
-        </label>
+        {remainingSlots > 0 && (
+          <label
+            className={cn(
+              "flex aspect-square cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-input border-dashed text-muted-foreground text-xs hover:bg-muted",
+              uploading && "pointer-events-none opacity-60",
+            )}
+          >
+            {uploading ? (
+              <Loader2 className="size-5 animate-spin" />
+            ) : (
+              <ImagePlus className="size-5" />
+            )}
+            Ajouter
+            <input
+              ref={inputRef}
+              type="file"
+              accept="image/*"
+              multiple
+              className="hidden"
+              onChange={(event) => handleFiles(event.target.files)}
+            />
+          </label>
+        )}
       </div>
+
+      <p className="text-muted-foreground text-xs">
+        {images.length} / {MAX_IMAGES} photos
+      </p>
 
       {error && (
         <p className="text-destructive text-sm" aria-live="polite">

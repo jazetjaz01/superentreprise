@@ -36,7 +36,7 @@ export const activities: Activity[] = [
   { value: "garage_automobile", label: "Garage automobile", sector: "automobile" },
   { value: "entreprise_batiment", label: "Entreprise du bâtiment", sector: "batiment_construction" },
   { value: "licence_taxi", label: "Licence taxi", sector: "transport" },
-  { value: "licence_4", label: "Licence 4 (autorisation de vendre de l'alcool)", sector: "restauration" },
+  { value: "licence_4", label: "Licence 4 (vente alcool)", sector: "restauration" },
 ];
 
 export function findActivity(value: string | null | undefined) {
