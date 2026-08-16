@@ -1,4 +1,6 @@
 import { CheckCircle2 } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function DashboardPage() {
@@ -9,7 +11,7 @@ export default async function DashboardPage() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("first_name, role")
+    .select("first_name, last_name, phone, role")
     .eq("id", user!.id)
     .single();
 
@@ -34,6 +36,10 @@ export default async function DashboardPage() {
 
   const name = profile?.first_name || "et bienvenue";
 
+  const isBuyer = profile?.role === "acheteur";
+  const isProfileIncomplete =
+    isBuyer && (!profile?.first_name || !profile?.last_name || !profile?.phone);
+
   return (
     <div className="flex max-w-2xl flex-col gap-2">
       <h1 className="font-semibold text-xl">Bonjour {name}</h1>
@@ -42,6 +48,24 @@ export default async function DashboardPage() {
           ? "Retrouvez ici votre profil. Parcourez les annonces pour trouver l'entreprise qui vous correspond."
           : "Retrouvez ici la gestion de vos annonces, de votre abonnement et de votre profil. Pour pouvoir diffuser une annonce, il convient de souscrire à un abonnement mensuel à notre plateforme. Cet abonnement peut être résilié sans préavis et sans justification via notre plateforme."}
       </p>
+
+      {isProfileIncomplete && (
+        <div className="mt-4 flex items-center justify-between gap-4 rounded-lg border border-border bg-muted/50 p-4 text-sm">
+          <span>
+            Complétez votre profil (nom, prénom, téléphone) pour que les
+            vendeurs puissent vous recontacter facilement.
+          </span>
+          <Button
+            render={<Link href="/dashboard/profil" />}
+            nativeButton={false}
+            size="sm"
+            variant="outline"
+            className="shrink-0 rounded-full"
+          >
+            Compléter
+          </Button>
+        </div>
+      )}
 
       {isActive && (
         <div className="mt-4 flex items-center gap-2 rounded-lg border border-border bg-muted/50 p-4 text-sm">
