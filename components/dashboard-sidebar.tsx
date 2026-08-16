@@ -44,6 +44,16 @@ export function DashboardSidebar({
                 </SidebarMenuButton>
               </SidebarMenuItem>
 
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  render={<Link href="/dashboard/profil" />}
+                  isActive={pathname === "/dashboard/profil"}
+                >
+                  <User />
+                  <span>Mon profil</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+
               {showSellerMenu && (
                 <>
                   <SidebarMenuItem>
@@ -118,16 +128,6 @@ export function DashboardSidebar({
                   </SidebarMenuItem>
                 </>
               )}
-
-              <SidebarMenuItem>
-                <SidebarMenuButton
-                  render={<Link href="/dashboard/profil" />}
-                  isActive={pathname === "/dashboard/profil"}
-                >
-                  <User />
-                  <span>Mon profil</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
