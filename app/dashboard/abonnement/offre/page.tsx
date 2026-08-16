@@ -1,11 +1,24 @@
-import { CircleCheck, MessageCircle, Images, Megaphone } from "lucide-react";
+import { Images, MessageCircle, Megaphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/server";
 
 const features = [
-  { label: "Diffusion d'une annonce sur Superentreprise.com", icon: Megaphone },
-  { label: "Upload jusqu'à 5 photos par annonce", icon: Images },
-  { label: "Messagerie interne avec les acheteurs intéressés", icon: MessageCircle },
+  {
+    icon: Megaphone,
+    title: "Diffusion de votre annonce",
+    description: "Votre annonce visible sur Superentreprise.com, sans engagement.",
+  },
+  {
+    icon: Images,
+    title: "Jusqu'à 5 photos",
+    description: "Présentez votre commerce ou votre entreprise en images.",
+  },
+  {
+    icon: MessageCircle,
+    title: "Messagerie interne",
+    description: "Échangez directement avec les acheteurs intéressés.",
+  },
 ];
 
 export default async function OffreAbonnementPage() {
@@ -24,42 +37,50 @@ export default async function OffreAbonnementPage() {
     subscription?.status === "active" || subscription?.status === "trialing";
 
   return (
-    <div className="flex max-w-xl flex-col gap-6">
-      <h1 className="font-semibold text-xl">Offre abonnement</h1>
-
-      <div className="flex flex-col gap-5 rounded-lg border border-border p-6">
-        <div>
-          <h2 className="font-medium text-lg">Diffusion d&apos;une annonce</h2>
-          <p className="text-muted-foreground text-sm">
-            Un abonnement, une annonce, sans engagement.
-          </p>
-        </div>
-
-        <p className="font-semibold text-3xl">
+    <div className="flex max-w-3xl flex-col gap-6 text-center">
+      <div>
+        <strong className="font-medium text-muted-foreground text-sm uppercase tracking-wide">
+          Diffusion d&apos;une annonce
+        </strong>
+        <h1 className="mt-2 font-medium text-3xl tracking-[-0.02em]">
+          Tout ce qu&apos;il faut pour vendre votre entreprise
+        </h1>
+        <p className="mt-3 font-semibold text-2xl">
           30 € TTC<span className="font-normal text-base text-muted-foreground"> / mois</span>
         </p>
-
-        <ul className="flex flex-col gap-3">
-          {features.map((feature) => (
-            <li key={feature.label} className="flex items-center gap-3 text-sm">
-              <CircleCheck className="size-5 shrink-0 text-primary" />
-              <span>{feature.label}</span>
-            </li>
-          ))}
-        </ul>
-
-        {isActive ? (
-          <p className="rounded-lg bg-muted/50 p-3 text-center text-sm">
-            Votre abonnement est actif.
-          </p>
-        ) : (
-          <form action="/api/stripe/checkout" method="POST">
-            <Button type="submit" className="w-full rounded-full">
-              S&apos;abonner — 30 € TTC / mois
-            </Button>
-          </form>
-        )}
       </div>
+
+      <div className="grid grid-cols-1 border sm:grid-cols-3">
+        {features.map((feature, index) => (
+          <div
+            key={feature.title}
+            className={cn(
+              "flex flex-col items-center gap-2 border-t p-6 pt-9 first:border-t-0 sm:border-t-0 sm:first:border-s-0",
+              index > 0 && "sm:border-s",
+            )}
+          >
+            <feature.icon className="size-10 stroke-[1.5px] text-foreground" />
+            <h3 className="mt-4 font-medium text-lg tracking-[-0.005em]">
+              {feature.title}
+            </h3>
+            <p className="text-balance text-muted-foreground text-sm">
+              {feature.description}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {isActive ? (
+        <p className="rounded-lg bg-muted/50 p-3 text-sm">
+          Votre abonnement est actif.
+        </p>
+      ) : (
+        <form action="/api/stripe/checkout" method="POST">
+          <Button type="submit" className="w-full rounded-full">
+            S&apos;abonner — 30 € TTC / mois
+          </Button>
+        </form>
+      )}
     </div>
   );
 }
