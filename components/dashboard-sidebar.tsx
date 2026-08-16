@@ -1,6 +1,6 @@
 "use client";
 
-import { CreditCard, FileText, Home, Tag, User, Wallet, XCircle } from "lucide-react";
+import { Building2, CreditCard, FileText, Home, Tag, User, Wallet, XCircle } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cancelSubscription } from "@/app/dashboard/abonnement/actions";
@@ -52,6 +52,19 @@ export function DashboardSidebar({
                   <User />
                   <span>Mon profil</span>
                 </SidebarMenuButton>
+                {showSellerMenu && (
+                  <SidebarMenuSub>
+                    <SidebarMenuSubItem>
+                      <SidebarMenuSubButton
+                        render={<Link href="/dashboard/profil/societe" />}
+                        isActive={pathname === "/dashboard/profil/societe"}
+                      >
+                        <Building2 />
+                        <span>Profil société</span>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                  </SidebarMenuSub>
+                )}
               </SidebarMenuItem>
 
               {showSellerMenu && (

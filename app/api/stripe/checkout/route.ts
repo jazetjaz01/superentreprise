@@ -30,22 +30,28 @@ export async function POST(request: Request) {
   const { data: profile } = await supabase
     .from("profiles")
     .select(
-      "email, phone, company_name, siren, vat_number, company_address, company_postal_code, company_city",
+      "email, phone, company_name, siret, vat_number, company_address, company_postal_code, company_city",
     )
     .eq("id", user.id)
     .single();
 
+  if (!profile?.phone) {
+    return NextResponse.redirect(
+      new URL("/dashboard/profil?billing=required", request.url),
+      303,
+    );
+  }
+
   if (
-    !profile?.phone ||
     !profile.company_name ||
-    !profile.siren ||
+    !profile.siret ||
     !profile.vat_number ||
     !profile.company_address ||
     !profile.company_postal_code ||
     !profile.company_city
   ) {
     return NextResponse.redirect(
-      new URL("/dashboard/profil?billing=required", request.url),
+      new URL("/dashboard/profil/societe?billing=required", request.url),
       303,
     );
   }
@@ -60,7 +66,7 @@ export async function POST(request: Request) {
       city: profile.company_city,
       country: "FR",
     },
-    metadata: { siren: profile.siren },
+    metadata: { siret: profile.siret },
   };
 
   const customerId = subscription?.stripe_customer_id

@@ -224,7 +224,7 @@ export type Database = {
           last_name: string | null
           phone: string | null
           role: string | null
-          siren: string | null
+          siret: string | null
           updated_at: string
           vat_number: string | null
         }
@@ -244,7 +244,7 @@ export type Database = {
           last_name?: string | null
           phone?: string | null
           role?: string | null
-          siren?: string | null
+          siret?: string | null
           updated_at?: string
           vat_number?: string | null
         }
@@ -264,7 +264,7 @@ export type Database = {
           last_name?: string | null
           phone?: string | null
           role?: string | null
-          siren?: string | null
+          siret?: string | null
           updated_at?: string
           vat_number?: string | null
         }
