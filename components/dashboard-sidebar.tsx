@@ -52,20 +52,19 @@ export function DashboardSidebar({
                   <User />
                   <span>Mon profil</span>
                 </SidebarMenuButton>
-                {showSellerMenu && (
-                  <SidebarMenuSub>
-                    <SidebarMenuSubItem>
-                      <SidebarMenuSubButton
-                        render={<Link href="/dashboard/profil/societe" />}
-                        isActive={pathname === "/dashboard/profil/societe"}
-                      >
-                        <Building2 />
-                        <span>Profil société</span>
-                      </SidebarMenuSubButton>
-                    </SidebarMenuSubItem>
-                  </SidebarMenuSub>
-                )}
               </SidebarMenuItem>
+
+              {showSellerMenu && (
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    render={<Link href="/dashboard/profil/societe" />}
+                    isActive={pathname === "/dashboard/profil/societe"}
+                  >
+                    <Building2 />
+                    <span>Profil société</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              )}
 
               {showSellerMenu && (
                 <>
