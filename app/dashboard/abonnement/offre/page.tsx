@@ -37,7 +37,7 @@ export default async function OffreAbonnementPage() {
     subscription?.status === "active" || subscription?.status === "trialing";
 
   return (
-    <div className="flex max-w-3xl flex-col gap-6 text-center">
+    <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 text-center">
       <div>
         <strong className="font-medium text-muted-foreground text-sm uppercase tracking-wide">
           Diffusion d&apos;une annonce
