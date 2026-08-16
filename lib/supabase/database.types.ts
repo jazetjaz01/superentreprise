@@ -215,6 +215,7 @@ export type Database = {
           company_name: string | null
           company_postal_code: string | null
           created_at: string
+          display_name: string | null
           email: string
           first_name: string | null
           id: string
@@ -234,6 +235,7 @@ export type Database = {
           company_name?: string | null
           company_postal_code?: string | null
           created_at?: string
+          display_name?: string | null
           email: string
           first_name?: string | null
           id: string
@@ -253,6 +255,7 @@ export type Database = {
           company_name?: string | null
           company_postal_code?: string | null
           created_at?: string
+          display_name?: string | null
           email?: string
           first_name?: string | null
           id?: string
@@ -323,7 +326,16 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      public_profiles: {
+        Row: {
+          avatar_url: string | null
+          display_name: string | null
+          first_name: string | null
+          id: string | null
+          last_name: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never

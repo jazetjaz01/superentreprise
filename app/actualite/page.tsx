@@ -2,6 +2,7 @@ import Link from "next/link";
 import Actualite, { formatActualiteDate, type ActualitePost } from "@/components/actualite";
 import { Button } from "@/components/ui/button";
 import { getCurrentUserAdminStatus } from "@/lib/actualite/is-admin";
+import { getDisplayName } from "@/lib/profile/display-name";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function ActualitePage() {
@@ -10,15 +11,20 @@ export default async function ActualitePage() {
 
   const { data: articles } = await supabase
     .from("actualite_articles")
-    .select("*, actualite_categories(name), profiles(first_name, last_name, avatar_url)")
+    .select("*, actualite_categories(name)")
     .eq("status", "publie")
     .order("published_at", { ascending: false });
 
+  const authorIds = [...new Set((articles ?? []).map((article) => article.author_id))];
+  const { data: authors } = await supabase
+    .from("public_profiles")
+    .select("*")
+    .in("id", authorIds.length > 0 ? authorIds : [""]);
+  const authorsById = new Map((authors ?? []).map((author) => [author.id, author]));
+
   const posts: ActualitePost[] = (articles ?? []).map((article) => {
-    const author = article.profiles;
-    const authorName =
-      [author?.first_name, author?.last_name].filter(Boolean).join(" ") ||
-      "Superentreprise";
+    const author = authorsById.get(article.author_id);
+    const authorName = getDisplayName(author, "Superentreprise");
 
     return {
       id: article.id,

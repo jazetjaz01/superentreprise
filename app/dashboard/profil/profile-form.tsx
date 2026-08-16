@@ -44,6 +44,21 @@ export function ProfileForm({ profile }: { profile: Tables<"profiles"> }) {
       </div>
 
       <div className="flex flex-col gap-1.5">
+        <Label htmlFor="display_name">Surnom (optionnel)</Label>
+        <Input
+          id="display_name"
+          name="display_name"
+          maxLength={40}
+          placeholder="Ex : VendeurPro66"
+          defaultValue={profile.display_name ?? ""}
+        />
+        <p className="text-muted-foreground text-xs">
+          Affiché à la place de votre nom et prénom auprès des autres
+          utilisateurs, si renseigné.
+        </p>
+      </div>
+
+      <div className="flex flex-col gap-1.5">
         <Label htmlFor="phone">
           Téléphone <span className="text-destructive">*</span>
         </Label>
