@@ -117,6 +117,19 @@ export default async function DashboardPage() {
         </div>
       )}
 
+      {isSeller && !isActive && (
+        <div className="mt-4 flex items-center justify-between gap-4 rounded-lg border border-border bg-muted/50 p-4 text-sm">
+          <span>
+            Souscrivez un abonnement pour diffuser votre annonce.
+          </span>
+          <form action="/api/stripe/checkout" method="POST" className="shrink-0">
+            <Button type="submit" size="sm" className="rounded-full">
+              S&apos;abonner — 30 € TTC / mois
+            </Button>
+          </form>
+        </div>
+      )}
+
       {isActive && (
         <div className="mt-4 flex items-center gap-2 rounded-lg border border-border bg-muted/50 p-4 text-sm">
           <CheckCircle2 className="size-5 shrink-0" />
