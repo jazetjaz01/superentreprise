@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { getRegion } from "@/lib/annonces/regions";
 import { createClient } from "@/lib/supabase/server";
 
 export async function updateLocalisation(
@@ -22,6 +23,7 @@ export async function updateLocalisation(
     .update({
       postal_code: postalCode,
       city,
+      region: getRegion(postalCode),
       hide_exact_location: hideExactLocation,
     })
     .eq("id", id);

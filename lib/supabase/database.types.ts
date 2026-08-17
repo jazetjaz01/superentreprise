@@ -63,6 +63,7 @@ export type Database = {
           id: string
           postal_code: string | null
           price: number | null
+          region: string | null
           rent: number | null
           revenue: number | null
           sector: string | null
@@ -85,6 +86,7 @@ export type Database = {
           id?: string
           postal_code?: string | null
           price?: number | null
+          region?: string | null
           rent?: number | null
           revenue?: number | null
           sector?: string | null
@@ -107,6 +109,7 @@ export type Database = {
           id?: string
           postal_code?: string | null
           price?: number | null
+          region?: string | null
           rent?: number | null
           revenue?: number | null
           sector?: string | null
