@@ -1,4 +1,5 @@
 import { CheckCircle2, Loader2, XCircle } from "lucide-react";
+import Link from "next/link";
 import { resumeSubscription } from "./actions";
 import { SubscriptionStatusPoller } from "./subscription-status-poller";
 import { Badge } from "@/components/ui/badge";
@@ -118,6 +119,22 @@ export default async function AbonnementPage({
           </TableBody>
         </Table>
       </div>
+
+      {isActive && !annonce && (
+        <div className="flex flex-col gap-2 rounded-lg border border-border bg-muted/50 p-4 text-sm">
+          <p>
+            Votre abonnement est actif mais vous n&apos;avez pas encore
+            d&apos;annonce. Créez-la pour la diffuser.
+          </p>
+          <Button
+            render={<Link href="/deposer-une-annonce" />}
+            nativeButton={false}
+            className="w-full rounded-full"
+          >
+            Créer mon annonce
+          </Button>
+        </div>
+      )}
 
       {isActive && subscription?.cancel_at_period_end && (
         <div className="flex flex-col gap-2 rounded-lg border border-border bg-muted/50 p-4 text-sm">
