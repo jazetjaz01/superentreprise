@@ -11,7 +11,9 @@ export default async function DashboardPage() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("first_name, last_name, phone, role")
+    .select(
+      "first_name, last_name, phone, role, company_name, siret, vat_number, company_address, company_postal_code, company_city",
+    )
     .eq("id", user!.id)
     .single();
 
@@ -37,8 +39,20 @@ export default async function DashboardPage() {
   const name = profile?.first_name || "et bienvenue";
 
   const isBuyer = profile?.role === "acheteur";
+  const isSeller = !isBuyer;
   const isProfileIncomplete =
     isBuyer && (!profile?.first_name || !profile?.last_name || !profile?.phone);
+
+  const isSellerProfileIncomplete =
+    isSeller && (!profile?.first_name || !profile?.last_name || !profile?.phone);
+  const isCompanyProfileIncomplete =
+    isSeller &&
+    (!profile?.company_name ||
+      !profile?.siret ||
+      !profile?.vat_number ||
+      !profile?.company_address ||
+      !profile?.company_postal_code ||
+      !profile?.company_city);
 
   return (
     <div className="flex max-w-2xl flex-col gap-2">
@@ -57,6 +71,42 @@ export default async function DashboardPage() {
           </span>
           <Button
             render={<Link href="/dashboard/profil" />}
+            nativeButton={false}
+            size="sm"
+            variant="outline"
+            className="shrink-0 rounded-full"
+          >
+            Compléter
+          </Button>
+        </div>
+      )}
+
+      {isSellerProfileIncomplete && (
+        <div className="mt-4 flex items-center justify-between gap-4 rounded-lg border border-border bg-muted/50 p-4 text-sm">
+          <span>
+            Complétez votre profil (nom, prénom, téléphone) avant de
+            diffuser une annonce.
+          </span>
+          <Button
+            render={<Link href="/dashboard/profil" />}
+            nativeButton={false}
+            size="sm"
+            variant="outline"
+            className="shrink-0 rounded-full"
+          >
+            Compléter
+          </Button>
+        </div>
+      )}
+
+      {isCompanyProfileIncomplete && (
+        <div className="mt-4 flex items-center justify-between gap-4 rounded-lg border border-border bg-muted/50 p-4 text-sm">
+          <span>
+            Complétez votre profil société pour pouvoir émettre les
+            factures d&apos;abonnement.
+          </span>
+          <Button
+            render={<Link href="/dashboard/profil/societe" />}
             nativeButton={false}
             size="sm"
             variant="outline"
