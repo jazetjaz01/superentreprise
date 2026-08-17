@@ -55,7 +55,7 @@ export default async function DashboardPage() {
       !profile?.company_city);
 
   return (
-    <div className="flex max-w-2xl flex-col gap-2">
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-2">
       <h1 className="font-semibold text-xl">Bonjour {name}</h1>
       <p className="text-muted-foreground text-sm">
         {profile?.role === "acheteur"
