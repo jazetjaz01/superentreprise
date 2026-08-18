@@ -99,38 +99,36 @@ export default async function AnnonceDetailPage({
         </div>
       )}
 
-      <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
-        <div className="flex flex-col gap-6">
-          {imageUrls.length > 0 ? (
-            <div className="flex flex-col gap-2">
-              <div className="h-80 w-full overflow-hidden rounded-xl bg-muted">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={imageUrls[0]}
-                  alt={annonce.title}
-                  className="size-full object-cover"
-                />
+      {imageUrls.length > 0 ? (
+        <div className="grid h-105 grid-cols-4 grid-rows-2 gap-2 overflow-hidden rounded-xl">
+          <div className="relative col-span-2 row-span-2 bg-muted">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={imageUrls[0]}
+              alt={annonce.title}
+              className="size-full object-cover"
+            />
+          </div>
+          {Array.from({ length: 4 }).map((_, index) => {
+            const url = imageUrls[index + 1];
+            return (
+              <div key={url ?? `empty-${index}`} className="relative bg-muted">
+                {url && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={url} alt="" className="size-full object-cover" />
+                )}
               </div>
-              {imageUrls.length > 1 && (
-                <div className="grid grid-cols-4 gap-2 sm:grid-cols-6">
-                  {imageUrls.slice(1).map((url) => (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      key={url}
-                      src={url}
-                      alt=""
-                      className="aspect-square w-full rounded-lg object-cover"
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-          ) : (
-            <div className="flex h-80 w-full items-center justify-center rounded-xl bg-muted text-muted-foreground">
-              <ImageOff className="size-8" />
-            </div>
-          )}
+            );
+          })}
+        </div>
+      ) : (
+        <div className="flex h-105 w-full items-center justify-center rounded-xl bg-muted text-muted-foreground">
+          <ImageOff className="size-8" />
+        </div>
+      )}
 
+      <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_320px]">
+        <div className="flex flex-col gap-6">
           <div>
             <div className="flex flex-wrap items-center gap-2 text-muted-foreground text-sm">
               {activityLabel && <span>{activityLabel}</span>}
