@@ -1,6 +1,7 @@
 import { ImageOff } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { startConversation } from "./actions";
 import { Button } from "@/components/ui/button";
 import { getActivityDisplayLabel } from "@/lib/annonces/activities";
 import { getDepartment } from "@/lib/annonces/departments";
@@ -201,6 +202,14 @@ export default async function AnnonceDetailPage({
               <div className="text-muted-foreground text-sm">Salariés</div>
               <div className="font-medium">{annonce.employees_count}</div>
             </div>
+          )}
+          {!isOwner && (
+            <form action={startConversation}>
+              <input type="hidden" name="annonceId" value={annonce.id} />
+              <Button type="submit" className="w-full rounded-full">
+                Contacter le vendeur
+              </Button>
+            </form>
           )}
         </aside>
       </div>
