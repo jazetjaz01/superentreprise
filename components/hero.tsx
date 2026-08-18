@@ -1,11 +1,13 @@
 "use client";
 
 import { ArrowUpRight, CirclePlay } from "lucide-react";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 type Audience = "acheteur" | "vendeur";
+
+const videos = ["/video/video.mp4", "/video/video1.mp4", "/video/video2.mp4"];
 
 const content: Record<
   Audience,
@@ -40,6 +42,11 @@ export default function Hero() {
   const acheteurRef = useRef<HTMLButtonElement>(null);
   const vendeurRef = useRef<HTMLButtonElement>(null);
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
+  const [videoSrc, setVideoSrc] = useState(videos[0]);
+
+  useEffect(() => {
+    setVideoSrc(videos[Math.floor(Math.random() * videos.length)]);
+  }, []);
 
   useLayoutEffect(() => {
     const el = audience === "acheteur" ? acheteurRef.current : vendeurRef.current;
@@ -107,8 +114,9 @@ export default function Hero() {
           </div>
         </div>
         <video
+          key={videoSrc}
           className="mt-auto aspect-video w-full rounded-xl bg-accent object-cover"
-          src="/video/video.mp4"
+          src={videoSrc}
           autoPlay
           loop
           muted
