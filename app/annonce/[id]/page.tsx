@@ -101,8 +101,8 @@ export default async function AnnonceDetailPage({
       )}
 
       {imageUrls.length > 0 ? (
-        <div className="grid h-105 grid-cols-4 grid-rows-2 gap-2 overflow-hidden rounded-xl">
-          <div className="relative col-span-2 row-span-2 bg-muted">
+        <div className="flex flex-col gap-2 overflow-hidden rounded-xl lg:grid lg:h-105 lg:grid-cols-4 lg:grid-rows-2">
+          <div className="relative aspect-4/3 bg-muted lg:col-span-2 lg:row-span-2 lg:aspect-auto">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imageUrls[0]}
@@ -112,12 +112,18 @@ export default async function AnnonceDetailPage({
           </div>
           {Array.from({ length: 4 }).map((_, index) => {
             const url = imageUrls[index + 1];
+            if (!url) {
+              return (
+                <div
+                  key={`empty-${index}`}
+                  className="relative hidden bg-muted lg:block"
+                />
+              );
+            }
             return (
-              <div key={url ?? `empty-${index}`} className="relative bg-muted">
-                {url && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={url} alt="" className="size-full object-cover" />
-                )}
+              <div key={url} className="relative aspect-4/3 bg-muted lg:aspect-auto">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={url} alt="" className="size-full object-cover" />
               </div>
             );
           })}
