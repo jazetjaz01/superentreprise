@@ -37,7 +37,7 @@ const footerSections = [
   {
     title: "Légal",
     links: [
-      { title: "Conditions générales", href: "#" },
+      { title: "Conditions générales", href: "/conditions-generales" },
       { title: "Politique de confidentialité", href: "#" },
       { title: "Gestion des cookies", href: "#" },
       { title: "Mentions légales", href: "/mentions-legales" },
