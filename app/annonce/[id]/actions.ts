@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { isProfileIdentified } from "@/lib/profile/is-identified";
 import { createClient } from "@/lib/supabase/server";
 
 export async function startConversation(formData: FormData) {
@@ -13,6 +14,16 @@ export async function startConversation(formData: FormData) {
 
   if (!user) {
     redirect(`/login?next=/annonce/${annonceId}`);
+  }
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("first_name, last_name, display_name")
+    .eq("id", user.id)
+    .single();
+
+  if (!isProfileIdentified(profile)) {
+    redirect(`/dashboard/profil?identity=required&next=/annonce/${annonceId}`);
   }
 
   const { data: annonce } = await supabase

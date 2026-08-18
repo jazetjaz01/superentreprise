@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { isProfileIdentified } from "@/lib/profile/is-identified";
 import { createClient } from "@/lib/supabase/server";
 
 export async function sendMessage(
@@ -21,6 +22,19 @@ export async function sendMessage(
 
   if (!user) {
     return { error: "Vous devez être connecté." };
+  }
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("first_name, last_name, display_name")
+    .eq("id", user.id)
+    .single();
+
+  if (!isProfileIdentified(profile)) {
+    return {
+      error:
+        "Complétez votre nom et prénom (ou un surnom) dans votre profil avant d'envoyer un message.",
+    };
   }
 
   const { error } = await supabase.from("messages").insert({

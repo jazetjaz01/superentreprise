@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 export default async function DashboardProfilePage({
   searchParams,
 }: {
-  searchParams: Promise<{ billing?: string }>;
+  searchParams: Promise<{ billing?: string; identity?: string }>;
 }) {
   const params = await searchParams;
   const supabase = await createClient();
@@ -25,6 +25,12 @@ export default async function DashboardProfilePage({
         <div className="max-w-md rounded-lg border border-border bg-muted/50 p-4 text-sm">
           Merci de compléter votre téléphone avant de vous abonner : il
           sera utilisé pour vous contacter.
+        </div>
+      )}
+      {params.identity === "required" && (
+        <div className="max-w-md rounded-lg border border-border bg-muted/50 p-4 text-sm">
+          Merci de renseigner votre nom et prénom (ou un surnom) avant de
+          contacter un vendeur.
         </div>
       )}
       {profile && <ProfileForm profile={profile} />}
