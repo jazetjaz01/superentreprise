@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/logo";
 import { NavMenu } from "@/components/nav-menu";
-import { NavigationSheet } from "@/components/navigation-sheet";
 import { SearchBar } from "@/components/searchbar";
 import { UserMenu } from "@/components/user-menu";
 import { createClient } from "@/lib/supabase/server";
@@ -61,11 +60,6 @@ const Navbar = async () => {
               </Button>
             </>
           )}
-
-          {/* Mobile Menu */}
-          <div className="md:hidden">
-            <NavigationSheet />
-          </div>
         </div>
       </div>
     </nav>
