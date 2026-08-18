@@ -51,3 +51,25 @@ export async function sendMessage(
 
   return { error: "" };
 }
+
+export async function deleteMessage(formData: FormData) {
+  const messageId = String(formData.get("messageId") ?? "");
+  const conversationId = String(formData.get("conversationId") ?? "");
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return;
+  }
+
+  await supabase
+    .from("messages")
+    .delete()
+    .eq("id", messageId)
+    .eq("sender_id", user.id);
+
+  revalidatePath(`/dashboard/messages/${conversationId}`);
+}

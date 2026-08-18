@@ -1,5 +1,7 @@
+import { X } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { deleteMessage } from "./actions";
 import { MessageForm } from "./message-form";
 import { getDisplayName } from "@/lib/profile/display-name";
 import { createClient } from "@/lib/supabase/server";
@@ -104,8 +106,28 @@ export default async function ConversationPage({
             return (
               <div
                 key={message.id}
-                className={cn("flex", isMine ? "justify-end" : "justify-start")}
+                className={cn(
+                  "group flex items-center gap-1",
+                  isMine ? "justify-end" : "justify-start",
+                )}
               >
+                {isMine && (
+                  <form action={deleteMessage}>
+                    <input type="hidden" name="messageId" value={message.id} />
+                    <input
+                      type="hidden"
+                      name="conversationId"
+                      value={id}
+                    />
+                    <button
+                      type="submit"
+                      aria-label="Supprimer le message"
+                      className="rounded-full p-1 text-muted-foreground opacity-0 transition-opacity hover:text-destructive group-hover:opacity-100"
+                    >
+                      <X className="size-3.5" />
+                    </button>
+                  </form>
+                )}
                 <div
                   className={cn(
                     "max-w-[75%] rounded-lg px-3 py-2 text-sm",
