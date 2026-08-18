@@ -39,7 +39,7 @@ const footerSections = [
     links: [
       { title: "Conditions générales de ventes", href: "/conditions-generales" },
       { title: "Politique de confidentialité", href: "/politique-de-confidentialite" },
-      { title: "Gestion des cookies", href: "#" },
+      { title: "Gestion des cookies", href: "/gestion-des-cookies" },
       { title: "Mentions légales", href: "/mentions-legales" },
       { title: "Contact", href: "/contact" },
     ],
