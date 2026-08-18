@@ -55,7 +55,11 @@ const Navbar = async () => {
               <Button variant="ghost" render={<Link href="/login" />} nativeButton={false}>
                 Se connecter
               </Button>
-              <Button render={<Link href="/signin" />} nativeButton={false}>
+              <Button
+                className="hidden sm:inline-flex"
+                render={<Link href="/signin" />}
+                nativeButton={false}
+              >
                 S&apos;enregistrer
               </Button>
             </>
