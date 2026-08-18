@@ -2,10 +2,12 @@ import { ImageOff } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { startConversation } from "./actions";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { getActivityDisplayLabel } from "@/lib/annonces/activities";
 import { getDepartment } from "@/lib/annonces/departments";
 import { transactionTypes } from "@/lib/annonces/options";
+import { getDisplayName } from "@/lib/profile/display-name";
 import { createClient } from "@/lib/supabase/server";
 
 const priceFormatter = new Intl.NumberFormat("fr-FR", {
@@ -50,6 +52,18 @@ export default async function AnnonceDetailPage({
       supabase.storage.from("annonces-images").getPublicUrl(image.storage_path)
         .data.publicUrl,
   );
+
+  const { data: seller } = await supabase
+    .from("public_profiles")
+    .select("*")
+    .eq("id", annonce.author_id)
+    .maybeSingle();
+  const sellerName = getDisplayName(seller, "Vendeur");
+  const { count: sellerAnnoncesCount } = await supabase
+    .from("annonces")
+    .select("id", { count: "exact", head: true })
+    .eq("author_id", annonce.author_id)
+    .eq("status", "publiee");
 
   const activityLabel = getActivityDisplayLabel(annonce.activity);
   const transactionTypeLabel = transactionTypes.find(
@@ -209,15 +223,36 @@ export default async function AnnonceDetailPage({
               <div className="font-medium">{annonce.employees_count}</div>
             </div>
           )}
-          {!isOwner && (
+        </aside>
+
+        {!isOwner && (
+          <div className="flex h-fit flex-col gap-4 rounded-xl border border-border p-5 lg:col-start-2">
+            <div className="flex items-center gap-3">
+              <Avatar className="size-14">
+                <AvatarImage src={seller?.avatar_url ?? undefined} alt={sellerName} />
+                <AvatarFallback className="text-lg">
+                  {sellerName.slice(0, 1).toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
+              <div>
+                <div className="font-semibold text-lg">{sellerName}</div>
+                {sellerAnnoncesCount != null && sellerAnnoncesCount > 0 && (
+                  <div className="text-muted-foreground text-sm">
+                    {sellerAnnoncesCount} annonce
+                    {sellerAnnoncesCount > 1 ? "s" : ""}
+                  </div>
+                )}
+              </div>
+            </div>
+
             <form action={startConversation}>
               <input type="hidden" name="annonceId" value={annonce.id} />
               <Button type="submit" className="w-full rounded-full">
-                Contacter le vendeur
+                Envoyer un message
               </Button>
             </form>
-          )}
-        </aside>
+          </div>
+        )}
       </div>
     </div>
   );
