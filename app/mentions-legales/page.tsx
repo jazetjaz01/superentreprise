@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Mentions légales | Superentreprise",
   description:
-    "Mentions légales du site Superentreprise, édité par Merci Immobilier.",
+    "Mentions légales du site Superentreprise.com, édité par Merci Immobilier.",
 };
 
 export default function MentionsLegalesPage() {
@@ -22,7 +22,7 @@ export default function MentionsLegalesPage() {
           <div>
             <h3 className="font-medium">Éditeur du site</h3>
             <p className="mt-2">
-              Le site www.merci-immobilier.com est édité par :
+              Le site www.superentreprise.com est édité par :
               <br />
               Merci Immobilier
               <br />
@@ -34,9 +34,9 @@ export default function MentionsLegalesPage() {
               Email :{" "}
               <a
                 className="underline hover:text-foreground"
-                href="mailto:contact@merci-immobilier.com"
+                href="mailto:contact@superentreprise.com"
               >
-                contact@merci-immobilier.com
+                contact@superentreprise.com
               </a>
               <br />
               Tél. : 06 16 22 46 82
@@ -77,7 +77,7 @@ export default function MentionsLegalesPage() {
             <p className="mt-2">
               Tout internaute qui souhaite utiliser notre site internet est
               réputé avoir pris connaissance des conditions d&apos;utilisation
-              et les avoir acceptées. Merci Immobilier se réserve le droit de
+              et les avoir acceptées. Superentreprise se réserve le droit de
               les modifier à tout moment.
             </p>
           </div>
@@ -86,7 +86,7 @@ export default function MentionsLegalesPage() {
             <h3 className="font-medium">Annonces immobilières</h3>
             <p className="mt-2">
               Les informations contenues dans les annonces sont fournies à
-              titre indicatif. Merci Immobilier s&apos;efforce de diffuser des
+              titre indicatif. Superentreprise s&apos;efforce de diffuser des
               informations exactes mais ne saurait être tenue pour
               responsable en cas d&apos;erreurs, d&apos;inexactitudes ou de
               non-conformité des biens présentés.
@@ -108,8 +108,8 @@ export default function MentionsLegalesPage() {
           <div>
             <h3 className="font-medium">Accessibilité</h3>
             <p className="mt-2">
-              Le site est normalement accessible 24h/24. Toutefois, Merci
-              Immobilier se réserve le droit, sans préavis, de fermer
+              Le site est normalement accessible 24h/24. Toutefois, Superentreprise
+               se réserve le droit, sans préavis, de fermer
               temporairement le site pour maintenance ou mise à jour
               technique.
             </p>
