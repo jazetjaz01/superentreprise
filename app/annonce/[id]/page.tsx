@@ -200,59 +200,61 @@ export default async function AnnonceDetailPage({
           )}
         </div>
 
-        <aside className="flex h-fit flex-col gap-4 rounded-xl border border-border p-5">
-          <div>
-            <div className="text-muted-foreground text-sm">Prix de vente</div>
-            <div className="font-semibold text-2xl">
-              {annonce.price != null
-                ? priceFormatter.format(annonce.price)
-                : "Prix sur demande"}
-            </div>
-          </div>
-          {transactionTypeLabel && (
-            <div>
-              <div className="text-muted-foreground text-sm">
-                Type de transaction
+        <div className="flex h-fit flex-col gap-8">
+          {!isOwner && (
+            <div className="flex flex-col gap-4 rounded-xl border border-border p-5">
+              <div className="flex items-center gap-3">
+                <Avatar className="size-14">
+                  <AvatarImage src={seller?.avatar_url ?? undefined} alt={sellerName} />
+                  <AvatarFallback className="text-lg">
+                    {sellerName.slice(0, 1).toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <div className="font-semibold text-lg">{sellerName}</div>
+                  {sellerAnnoncesCount != null && sellerAnnoncesCount > 0 && (
+                    <div className="text-muted-foreground text-sm">
+                      {sellerAnnoncesCount} annonce
+                      {sellerAnnoncesCount > 1 ? "s" : ""}
+                    </div>
+                  )}
+                </div>
               </div>
-              <div className="font-medium">{transactionTypeLabel}</div>
-            </div>
-          )}
-          {annonce.employees_count != null && (
-            <div>
-              <div className="text-muted-foreground text-sm">Salariés</div>
-              <div className="font-medium">{annonce.employees_count}</div>
-            </div>
-          )}
-        </aside>
 
-        {!isOwner && (
-          <div className="flex h-fit flex-col gap-4 rounded-xl border border-border p-5 lg:col-start-2">
-            <div className="flex items-center gap-3">
-              <Avatar className="size-14">
-                <AvatarImage src={seller?.avatar_url ?? undefined} alt={sellerName} />
-                <AvatarFallback className="text-lg">
-                  {sellerName.slice(0, 1).toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
+              <form action={startConversation}>
+                <input type="hidden" name="annonceId" value={annonce.id} />
+                <Button type="submit" className="w-full rounded-full">
+                  Envoyer un message
+                </Button>
+              </form>
+            </div>
+          )}
+
+          <aside className="flex flex-col gap-4 rounded-xl border border-border p-5">
+            <div>
+              <div className="text-muted-foreground text-sm">Prix de vente</div>
+              <div className="font-semibold text-2xl">
+                {annonce.price != null
+                  ? priceFormatter.format(annonce.price)
+                  : "Prix sur demande"}
+              </div>
+            </div>
+            {transactionTypeLabel && (
               <div>
-                <div className="font-semibold text-lg">{sellerName}</div>
-                {sellerAnnoncesCount != null && sellerAnnoncesCount > 0 && (
-                  <div className="text-muted-foreground text-sm">
-                    {sellerAnnoncesCount} annonce
-                    {sellerAnnoncesCount > 1 ? "s" : ""}
-                  </div>
-                )}
+                <div className="text-muted-foreground text-sm">
+                  Type de transaction
+                </div>
+                <div className="font-medium">{transactionTypeLabel}</div>
               </div>
-            </div>
-
-            <form action={startConversation}>
-              <input type="hidden" name="annonceId" value={annonce.id} />
-              <Button type="submit" className="w-full rounded-full">
-                Envoyer un message
-              </Button>
-            </form>
-          </div>
-        )}
+            )}
+            {annonce.employees_count != null && (
+              <div>
+                <div className="text-muted-foreground text-sm">Salariés</div>
+                <div className="font-medium">{annonce.employees_count}</div>
+              </div>
+            )}
+          </aside>
+        </div>
       </div>
     </div>
   );
