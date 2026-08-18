@@ -28,7 +28,7 @@ export default function SignInPage() {
 
       <div className="mt-6 flex w-full flex-col gap-1.5 text-left">
         <Label>Vous êtes...</Label>
-        <div className="flex gap-2">
+        <div className="flex gap-2 mt-4">
           {roles.map((item) => {
             const isActive = role === item.value;
 
