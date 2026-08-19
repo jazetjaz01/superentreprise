@@ -45,7 +45,7 @@ export default async function OffreAbonnementPage() {
     .maybeSingle();
 
   if (profile?.is_professional && !isActive) {
-    redirect("/forfaitspro");
+    redirect("/dashboard/abonnement/offre-pro");
   }
 
   return (
@@ -98,7 +98,7 @@ export default async function OffreAbonnementPage() {
         Besoin de diffuser plusieurs annonces ?{" "}
         <Link
           className="font-medium text-primary underline"
-          href="/forfaitspro"
+          href="/dashboard/abonnement/offre-pro"
         >
           Découvrez nos forfaits professionnels
         </Link>

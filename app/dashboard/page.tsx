@@ -140,7 +140,7 @@ export default async function DashboardPage() {
             Souscrivez un forfait professionnel pour diffuser vos annonces.
           </span>
           <Button
-            render={<Link href="/forfaitspro" />}
+            render={<Link href="/dashboard/abonnement/offre-pro" />}
             nativeButton={false}
             size="sm"
             className="shrink-0 rounded-full"
@@ -163,7 +163,7 @@ export default async function DashboardPage() {
           <p className="text-muted-foreground text-xs">
             Vous êtes une agence ou un professionnel ?{" "}
             <Link
-              href="/forfaitspro"
+              href="/dashboard/abonnement/offre-pro"
               className="font-medium text-foreground underline"
             >
               Découvrez nos forfaits pour plusieurs annonces

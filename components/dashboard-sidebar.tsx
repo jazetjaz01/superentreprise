@@ -107,6 +107,15 @@ export function DashboardSidebar({
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                       <SidebarMenuSubItem>
+                        <SidebarMenuSubButton
+                          render={<Link href="/dashboard/abonnement/offre-pro" />}
+                          isActive={pathname === "/dashboard/abonnement/offre-pro"}
+                        >
+                          <Tag />
+                          <span>Offre pro</span>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
                         <form action="/api/stripe/portal" method="POST">
                           <SidebarMenuSubButton render={<button type="submit" />}>
                             <FileText />
