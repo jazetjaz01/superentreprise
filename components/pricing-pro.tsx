@@ -17,7 +17,7 @@ interface ProPricingPlan {
 
 const proPricingPlans: ProPricingPlan[] = [
   {
-    name: "5 annonces",
+    name: "Découverte",
     description: "Pour démarrer votre activité de mise en relation.",
     price: 49,
     billing: "HT / mois",
@@ -32,7 +32,7 @@ const proPricingPlans: ProPricingPlan[] = [
     ],
   },
   {
-    name: "10 annonces",
+    name: "Professionnel",
     description: "Pour les agences avec un portefeuille en croissance.",
     price: 99,
     billing: "HT / mois",
@@ -47,7 +47,7 @@ const proPricingPlans: ProPricingPlan[] = [
     ],
   },
   {
-    name: "25 annonces",
+    name: "Expert",
     description: "Pour les cabinets et agences à fort volume.",
     price: 199,
     billing: "HT / mois",
