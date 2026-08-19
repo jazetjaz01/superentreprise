@@ -429,6 +429,8 @@ export type Database = {
       public_profiles: {
         Row: {
           avatar_url: string | null
+          company_city: string | null
+          company_name: string | null
           display_name: string | null
           first_name: string | null
           id: string | null

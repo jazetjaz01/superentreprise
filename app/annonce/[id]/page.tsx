@@ -203,6 +203,19 @@ export default async function AnnonceDetailPage({
         <div className="flex h-fit flex-col gap-8">
           {!isOwner && (
             <div className="flex flex-col gap-4 rounded-xl border border-border p-5">
+              {seller?.company_name && (
+                <div>
+                  <div className="font-semibold text-lg">
+                    {seller.company_name}
+                  </div>
+                  {seller.company_city && (
+                    <div className="text-muted-foreground text-sm">
+                      {seller.company_city}
+                    </div>
+                  )}
+                </div>
+              )}
+
               <div className="flex items-center gap-3">
                 <Avatar className="size-14">
                   <AvatarImage src={seller?.avatar_url ?? undefined} alt={sellerName} />
