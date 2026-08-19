@@ -22,6 +22,7 @@ const footerSections = [
       { title: "Presse", href: "#" },
       { title: "Actualités", href: "#" },
       { title: "Forfaits", href: "/forfait" },
+      { title: "Forfaits pro", href: "/forfaitspro" },
     ],
   },
   {
