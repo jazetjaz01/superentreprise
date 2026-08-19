@@ -20,7 +20,7 @@ export default async function DashboardPage() {
   const { data: profile } = await supabase
     .from("profiles")
     .select(
-      "first_name, last_name, phone, role, company_name, siret, vat_number, company_address, company_postal_code, company_city",
+      "first_name, last_name, phone, role, is_professional, company_name, siret, vat_number, company_address, company_postal_code, company_city",
     )
     .eq("id", user!.id)
     .single();
@@ -134,7 +134,23 @@ export default async function DashboardPage() {
         </div>
       )}
 
-      {isSeller && !isActive && (
+      {isSeller && !isActive && profile?.is_professional && (
+        <div className="mt-4 flex items-center justify-between gap-4 rounded-lg border border-border bg-muted/50 p-4 text-sm">
+          <span>
+            Souscrivez un forfait professionnel pour diffuser vos annonces.
+          </span>
+          <Button
+            render={<Link href="/forfaitspro" />}
+            nativeButton={false}
+            size="sm"
+            className="shrink-0 rounded-full"
+          >
+            Voir les forfaits pro
+          </Button>
+        </div>
+      )}
+
+      {isSeller && !isActive && !profile?.is_professional && (
         <div className="mt-4 flex flex-col gap-3 rounded-lg border border-border bg-muted/50 p-4 text-sm">
           <div className="flex items-center justify-between gap-4">
             <span>Souscrivez un abonnement pour diffuser votre annonce.</span>

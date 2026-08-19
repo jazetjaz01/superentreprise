@@ -1,5 +1,6 @@
 import { Images, MessageCircle, Megaphone } from "lucide-react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/server";
@@ -36,6 +37,16 @@ export default async function OffreAbonnementPage() {
 
   const isActive =
     subscription?.status === "active" || subscription?.status === "trialing";
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("is_professional")
+    .eq("id", user!.id)
+    .maybeSingle();
+
+  if (profile?.is_professional && !isActive) {
+    redirect("/forfaitspro");
+  }
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 text-center">

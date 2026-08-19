@@ -22,7 +22,10 @@ export async function setRole(formData: FormData) {
     redirect("/login");
   }
 
-  await supabase.from("profiles").update({ role }).eq("id", user.id);
+  await supabase
+    .from("profiles")
+    .update({ role, is_professional: selection === "professionnel" })
+    .eq("id", user.id);
 
   if (selection === "professionnel") {
     redirect("/forfaitspro");

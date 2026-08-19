@@ -224,6 +224,7 @@ export type Database = {
           id: string
           identity_verified: boolean | null
           is_admin: boolean
+          is_professional: boolean
           last_name: string | null
           phone: string | null
           role: string | null
@@ -244,6 +245,7 @@ export type Database = {
           id: string
           identity_verified?: boolean | null
           is_admin?: boolean
+          is_professional?: boolean
           last_name?: string | null
           phone?: string | null
           role?: string | null
@@ -264,6 +266,7 @@ export type Database = {
           id?: string
           identity_verified?: boolean | null
           is_admin?: boolean
+          is_professional?: boolean
           last_name?: string | null
           phone?: string | null
           role?: string | null

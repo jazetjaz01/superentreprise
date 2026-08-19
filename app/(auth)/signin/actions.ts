@@ -25,6 +25,12 @@ export async function signup(_prevState: { error: string } | null, formData: For
   }
 
   if (data.session) {
+    if (intent === "pro") {
+      await supabase
+        .from("profiles")
+        .update({ is_professional: true })
+        .eq("id", data.session.user.id);
+    }
     redirect(intent === "pro" ? "/forfaitspro" : "/dashboard");
   }
 
