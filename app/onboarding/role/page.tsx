@@ -13,6 +13,11 @@ const roles = [
     title: "Je recherche une entreprise",
     description: "Parcourez les annonces et contactez les vendeurs.",
   },
+  {
+    value: "professionnel",
+    title: "Je suis un professionnel",
+    description: "Agence ou cabinet : diffusez plusieurs annonces à la fois.",
+  },
 ] as const;
 
 export default async function OnboardingRolePage({
