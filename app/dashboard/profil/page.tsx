@@ -19,7 +19,7 @@ export default async function DashboardProfilePage({
     .single();
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="mx-auto flex w-full max-w-md flex-col gap-6">
       <h1 className="font-semibold text-xl">Mon profil</h1>
       {params.billing === "required" && (
         <div className="max-w-md rounded-lg border border-border bg-muted/50 p-4 text-sm">
