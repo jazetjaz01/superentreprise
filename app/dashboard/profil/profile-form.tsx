@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { updateProfile } from "./actions";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -11,17 +11,41 @@ import type { Tables } from "@/lib/supabase/database.types";
 export function ProfileForm({ profile }: { profile: Tables<"profiles"> }) {
   const [state, formAction, pending] = useActionState(updateProfile, null);
   const isSeller = profile.role !== "acheteur";
+  const [avatarRemoved, setAvatarRemoved] = useState(false);
 
   return (
     <form action={formAction} className="flex max-w-md flex-col gap-5">
       <div className="flex items-center gap-3">
+        <input type="hidden" name="remove_avatar" value={avatarRemoved ? "1" : ""} />
         <Avatar size="lg">
-          <AvatarImage src={profile.avatar_url ?? undefined} alt="" />
+          {!avatarRemoved && (
+            <AvatarImage src={profile.avatar_url ?? undefined} alt="" />
+          )}
           <AvatarFallback>
             {(profile.first_name ?? profile.email).slice(0, 1).toUpperCase()}
           </AvatarFallback>
         </Avatar>
-        <span className="text-muted-foreground text-sm">{profile.email}</span>
+        <div className="flex flex-col gap-1">
+          <span className="text-muted-foreground text-sm">{profile.email}</span>
+          {profile.avatar_url && !avatarRemoved && (
+            <button
+              type="button"
+              onClick={() => setAvatarRemoved(true)}
+              className="w-fit text-left text-foreground text-xs underline underline-offset-2 hover:text-muted-foreground"
+            >
+              Utiliser un avatar par défaut
+            </button>
+          )}
+          {avatarRemoved && (
+            <button
+              type="button"
+              onClick={() => setAvatarRemoved(false)}
+              className="w-fit text-left text-foreground text-xs underline underline-offset-2 hover:text-muted-foreground"
+            >
+              Annuler
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">

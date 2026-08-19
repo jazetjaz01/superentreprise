@@ -11,6 +11,7 @@ export async function updateProfile(
   const lastName = String(formData.get("last_name") ?? "").trim();
   const displayName = String(formData.get("display_name") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
+  const removeAvatar = formData.get("remove_avatar") === "1";
 
   const supabase = await createClient();
   const {
@@ -46,6 +47,7 @@ export async function updateProfile(
       last_name: lastName || null,
       display_name: displayName || null,
       phone: phone || null,
+      ...(removeAvatar ? { avatar_url: null } : {}),
     })
     .eq("id", user.id);
 
