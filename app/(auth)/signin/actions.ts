@@ -7,6 +7,7 @@ export async function signup(_prevState: { error: string } | null, formData: For
   const email = String(formData.get("email") ?? "");
   const password = String(formData.get("password") ?? "");
   const role = String(formData.get("role") ?? "");
+  const intent = String(formData.get("intent") ?? "");
 
   if (!email || !password) {
     return { error: "Email et mot de passe requis." };
@@ -24,7 +25,7 @@ export async function signup(_prevState: { error: string } | null, formData: For
   }
 
   if (data.session) {
-    redirect("/dashboard");
+    redirect(intent === "pro" ? "/forfaitspro" : "/dashboard");
   }
 
   redirect("/login?confirm=1");

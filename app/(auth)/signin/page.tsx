@@ -12,11 +12,14 @@ import { cn } from "@/lib/utils";
 const roles = [
   { value: "vendeur", label: "Je vends une entreprise" },
   { value: "acheteur", label: "Je recherche une entreprise" },
+  { value: "professionnel", label: "Je suis un professionnel" },
 ] as const;
 
 export default function SignInPage() {
   const [state, formAction, pending] = useActionState(signup, null);
-  const [role, setRole] = useState<string>("vendeur");
+  const [selection, setSelection] = useState<string>("vendeur");
+  const role = selection === "acheteur" ? "acheteur" : "vendeur";
+  const intent = selection === "professionnel" ? "pro" : "";
 
   return (
     <div className="mx-auto flex w-full max-w-sm flex-col items-center text-center">
@@ -30,14 +33,14 @@ export default function SignInPage() {
         <Label>Vous êtes...</Label>
         <div className="flex gap-2 mt-4 ">
           {roles.map((item) => {
-            const isActive = role === item.value;
+            const isActive = selection === item.value;
 
             return (
               <button
                 key={item.value}
                 type="button"
                 aria-pressed={isActive}
-                onClick={() => setRole(item.value)}
+                onClick={() => setSelection(item.value)}
                 className={cn(
                   "flex-1 rounded-full border px-3 py-2 text-xs transition-colors",
                   isActive
@@ -64,6 +67,7 @@ export default function SignInPage() {
 
       <form action={formAction} className="w-full">
         <input type="hidden" name="role" value={role} />
+        <input type="hidden" name="intent" value={intent} />
         <div className="flex flex-col gap-3">
           <div className="text-left">
             <Label htmlFor="email" className="sr-only">
