@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/logo";
-import { NavMenu } from "@/components/nav-menu";
 import { SearchBar } from "@/components/searchbar";
 import { UserMenu } from "@/components/user-menu";
 import { createClient } from "@/lib/supabase/server";
@@ -30,19 +29,14 @@ const Navbar = async () => {
 
   return (
     <nav className="bg-background">
-      <div className="mx-auto flex h-20 w-full items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-8">
-          <Logo />
+      <div className="mx-auto grid h-20 w-full grid-cols-[auto_1fr_auto] items-center gap-4 px-4 sm:px-6 lg:px-8">
+        <Logo />
 
-          <div className="hidden lg:block">
-            <SearchBar />
-          </div>
-
-          {/* Desktop Menu */}
-          <NavMenu className="hidden md:block" />
+        <div className="hidden justify-center lg:flex">
+          <SearchBar />
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="col-start-3 flex items-center gap-3 justify-self-end">
           {user ? (
             <>
               <Button variant="ghost" render={<Link href="/dashboard" />} nativeButton={false}>
