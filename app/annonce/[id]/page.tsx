@@ -224,7 +224,7 @@ export default async function AnnonceDetailPage({
               <form action={startConversation}>
                 <input type="hidden" name="annonceId" value={annonce.id} />
                 <Button type="submit" className="w-full rounded-full">
-                  Envoyer un message
+                  Contacter
                 </Button>
               </form>
             </div>
