@@ -38,11 +38,24 @@ export default async function DashboardAnnoncesPage() {
     .eq("author_id", user!.id)
     .order("updated_at", { ascending: false });
 
+  const { data: subscription } = await supabase
+    .from("subscriptions")
+    .select("status, max_annonces")
+    .eq("user_id", user!.id)
+    .maybeSingle();
+
+  const isSubscriptionActive =
+    subscription?.status === "active" || subscription?.status === "trialing";
+  const effectiveMax = isSubscriptionActive ? (subscription?.max_annonces ?? 1) : 1;
+  const activeAnnoncesCount = (annonces ?? []).filter(
+    (annonce) => annonce.status !== "archivee",
+  ).length;
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <h1 className="font-semibold text-xl">Mes annonces</h1>
-        {(!annonces || annonces.length === 0) && (
+        {activeAnnoncesCount < effectiveMax && (
           <Button
             render={<Link href="/deposer-une-annonce" />}
             nativeButton={false}
@@ -55,8 +68,9 @@ export default async function DashboardAnnoncesPage() {
 
       {annonces && annonces.length > 0 && (
         <p className="text-muted-foreground text-sm">
-          Votre abonnement ne permet la diffusion que d&apos;une seule
-          annonce à la fois.
+          {effectiveMax === 1
+            ? "Votre abonnement ne permet la diffusion que d'une seule annonce à la fois."
+            : `Votre abonnement permet la diffusion de ${effectiveMax} annonces simultanées.`}
         </p>
       )}
 

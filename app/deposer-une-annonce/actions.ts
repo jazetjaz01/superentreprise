@@ -15,14 +15,24 @@ export async function createDraftAnnonce() {
     redirect("/login?next=/deposer-une-annonce");
   }
 
-  const { data: existingAnnonce } = await supabase
-    .from("annonces")
-    .select("id")
-    .eq("author_id", user.id)
+  const { data: subscription } = await supabase
+    .from("subscriptions")
+    .select("status, plan, max_annonces, stripe_subscription_id, annonce_id")
+    .eq("user_id", user.id)
     .maybeSingle();
 
-  if (existingAnnonce) {
-    redirect(`/annonces/${existingAnnonce.id}/activite`);
+  const isSubscriptionActive =
+    subscription?.status === "active" || subscription?.status === "trialing";
+  const effectiveMax = isSubscriptionActive ? (subscription?.max_annonces ?? 1) : 1;
+
+  const { count: existingCount } = await supabase
+    .from("annonces")
+    .select("*", { count: "exact", head: true })
+    .eq("author_id", user.id)
+    .neq("status", "archivee");
+
+  if ((existingCount ?? 0) >= effectiveMax) {
+    redirect("/dashboard/annonces");
   }
 
   const { data: annonce, error } = await supabase
@@ -39,13 +49,7 @@ export async function createDraftAnnonce() {
     throw new Error("Impossible de créer l'annonce.");
   }
 
-  const { data: subscription } = await supabase
-    .from("subscriptions")
-    .select("stripe_subscription_id, annonce_id")
-    .eq("user_id", user.id)
-    .maybeSingle();
-
-  if (subscription && !subscription.annonce_id) {
+  if (subscription && subscription.plan === "standard" && !subscription.annonce_id) {
     const serviceClient = createServiceClient();
     await serviceClient
       .from("subscriptions")

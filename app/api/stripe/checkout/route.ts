@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { resolvePlan } from "@/lib/subscriptions/pro-plans";
 import { getStripe } from "@/lib/stripe";
 import { createClient } from "@/lib/supabase/server";
 
@@ -15,11 +16,20 @@ export async function POST(request: Request) {
     );
   }
 
-  const { data: annonce } = await supabase
-    .from("annonces")
-    .select("id")
-    .eq("author_id", user.id)
-    .maybeSingle();
+  const formData = await request.formData().catch(() => null);
+  const planParam = formData?.get("plan")?.toString() ?? null;
+  const { plan, maxAnnonces, priceId } = resolvePlan(planParam);
+
+  const annonceId =
+    plan === "standard"
+      ? (
+          await supabase
+            .from("annonces")
+            .select("id")
+            .eq("author_id", user.id)
+            .limit(1)
+        ).data?.[0]?.id
+      : undefined;
 
   const { data: subscription } = await supabase
     .from("subscriptions")
@@ -86,14 +96,21 @@ export async function POST(request: Request) {
     // ce n'est pas bloquant, la facture reste émise au nom de la société.
   }
 
+  const metadata = {
+    user_id: user.id,
+    annonce_id: annonceId ?? "",
+    plan,
+    max_annonces: String(maxAnnonces),
+  };
+
   const session = await stripe.checkout.sessions.create({
     mode: "subscription",
-    line_items: [{ price: process.env.STRIPE_PRICE_ID!, quantity: 1 }],
+    line_items: [{ price: priceId, quantity: 1 }],
     customer: customerId,
     client_reference_id: user.id,
-    metadata: { user_id: user.id, annonce_id: annonce?.id ?? "" },
+    metadata,
     subscription_data: {
-      metadata: { user_id: user.id, annonce_id: annonce?.id ?? "" },
+      metadata,
       default_tax_rates: [process.env.STRIPE_TAX_RATE_ID!],
     },
     success_url: new URL(

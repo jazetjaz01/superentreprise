@@ -39,11 +39,10 @@ export default async function DashboardLayout({
     }
   }
 
-  const { data: annonce } = await supabase
+  const { count: annonceCount } = await supabase
     .from("annonces")
-    .select("id")
-    .eq("author_id", user.id)
-    .maybeSingle();
+    .select("*", { count: "exact", head: true })
+    .eq("author_id", user.id);
 
   const { data: subscription } = await supabase
     .from("subscriptions")
@@ -51,7 +50,7 @@ export default async function DashboardLayout({
     .eq("user_id", user.id)
     .maybeSingle();
 
-  const showSellerMenu = role === "vendeur" || !!annonce || !!subscription;
+  const showSellerMenu = role === "vendeur" || (annonceCount ?? 0) > 0 || !!subscription;
 
   return (
     <SidebarProvider className="items-start">

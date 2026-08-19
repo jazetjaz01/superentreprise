@@ -20,6 +20,8 @@ async function syncSubscription(
   const supabase = createServiceClient();
   const userId = subscription.metadata.user_id;
   const annonceId = subscription.metadata.annonce_id || fallbackAnnonceId || undefined;
+  const plan = subscription.metadata.plan || "standard";
+  const maxAnnonces = Number.parseInt(subscription.metadata.max_annonces ?? "1", 10) || 1;
 
   if (!userId) {
     return;
@@ -34,6 +36,8 @@ async function syncSubscription(
     {
       user_id: userId,
       annonce_id: annonceId ?? null,
+      plan,
+      max_annonces: maxAnnonces,
       stripe_customer_id: customerId,
       stripe_subscription_id: subscription.id,
       status: subscription.status,
@@ -45,6 +49,22 @@ async function syncSubscription(
   );
 
   if (!annonceId) {
+    // Abonnement pro multi-annonces : pas d'annonce unique à gérer ici, la
+    // publication se fait manuellement (voir app/annonces/[id]/publication/actions.ts).
+    // En cas de downgrade vers un quota inférieur, on ne dépublie pas
+    // automatiquement l'excédent — seules les nouvelles publications sont
+    // bloquées tant que le quota est dépassé.
+    const isActive =
+      subscription.status === "active" || subscription.status === "trialing";
+
+    if (!isActive) {
+      await supabase
+        .from("annonces")
+        .update({ status: "brouillon" })
+        .eq("author_id", userId)
+        .eq("status", "publiee");
+    }
+
     return;
   }
 

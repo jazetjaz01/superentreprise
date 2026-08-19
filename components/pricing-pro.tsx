@@ -6,6 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
 interface ProPricingPlan {
+  id: "decouverte" | "professionnel" | "expert";
   name: string;
   description: string;
   price: number;
@@ -17,6 +18,7 @@ interface ProPricingPlan {
 
 const proPricingPlans: ProPricingPlan[] = [
   {
+    id: "decouverte",
     name: "Découverte",
     description: "Pour démarrer votre activité de mise en relation.",
     price: 49,
@@ -32,6 +34,7 @@ const proPricingPlans: ProPricingPlan[] = [
     ],
   },
   {
+    id: "professionnel",
     name: "Professionnel",
     description: "Pour les agences avec un portefeuille en croissance.",
     price: 99,
@@ -47,6 +50,7 @@ const proPricingPlans: ProPricingPlan[] = [
     ],
   },
   {
+    id: "expert",
     name: "Expert",
     description: "Pour les cabinets et agences à fort volume.",
     price: 199,
@@ -125,14 +129,12 @@ const ProPlanCard = ({ plan }: { plan: ProPricingPlan }) => {
         <p className="mt-1 text-muted-foreground text-sm tracking-normal">
           {plan.billing}
         </p>
-        <Button
-          className="my-6 w-full"
-          size="lg"
-          render={<Link href="/contact" />}
-          nativeButton={false}
-        >
-          Nous contacter
-        </Button>
+        <form action="/api/stripe/checkout" method="POST">
+          <input type="hidden" name="plan" value={plan.id} />
+          <Button className="my-6 w-full" size="lg" type="submit">
+            S&apos;abonner
+          </Button>
+        </form>
         <ul className="mt-4 space-y-2">
           {plan.features.map((feature) => (
             <li className="flex items-center gap-2" key={feature}>

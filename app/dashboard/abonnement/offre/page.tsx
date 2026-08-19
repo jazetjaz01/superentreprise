@@ -1,4 +1,5 @@
 import { Images, MessageCircle, Megaphone } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/server";
@@ -81,6 +82,17 @@ export default async function OffreAbonnementPage() {
           </Button>
         </form>
       )}
+
+      <p className="text-muted-foreground text-sm">
+        Besoin de diffuser plusieurs annonces ?{" "}
+        <Link
+          className="font-medium text-primary underline"
+          href="/forfaitspro"
+        >
+          Découvrez nos forfaits professionnels
+        </Link>
+        .
+      </p>
     </div>
   );
 }

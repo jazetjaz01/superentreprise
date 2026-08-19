@@ -40,7 +40,7 @@ export async function publishAnnonce(
 
   const { data: subscription } = await supabase
     .from("subscriptions")
-    .select("status")
+    .select("status, max_annonces")
     .eq("user_id", user.id)
     .maybeSingle();
 
@@ -49,6 +49,20 @@ export async function publishAnnonce(
 
   if (!isSubscriptionActive) {
     return { error: "Un abonnement actif est nécessaire pour publier." };
+  }
+
+  const maxAnnonces = subscription?.max_annonces ?? 1;
+  const { count } = await supabase
+    .from("annonces")
+    .select("*", { count: "exact", head: true })
+    .eq("author_id", user.id)
+    .eq("status", "publiee");
+
+  if ((count ?? 0) >= maxAnnonces) {
+    return {
+      error:
+        "Vous avez atteint le nombre maximum d'annonces diffusées pour votre abonnement.",
+    };
   }
 
   const { error } = await supabase

@@ -12,7 +12,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { PRO_PLANS, type PlanId } from "@/lib/subscriptions/pro-plans";
 import { createClient } from "@/lib/supabase/server";
+
+const planLabels: Record<PlanId, string> = {
+  standard: "Diffusion d'une annonce — 30 € TTC / mois",
+  decouverte: `${PRO_PLANS.decouverte.label} — 49 € HT / mois`,
+  professionnel: `${PRO_PLANS.professionnel.label} — 99 € HT / mois`,
+  expert: `${PRO_PLANS.expert.label} — 199 € HT / mois`,
+};
 
 const statusLabels: Record<string, { label: string; variant: "default" | "secondary" | "outline" }> = {
   active: { label: "Actif", variant: "default" },
@@ -47,11 +55,29 @@ export default async function AbonnementPage({
     .eq("user_id", user!.id)
     .maybeSingle();
 
-  const { data: annonce } = await supabase
+  const plan = (subscription?.plan as PlanId | undefined) ?? "standard";
+
+  const { data: annonces } = await supabase
     .from("annonces")
     .select("id, title")
     .eq("author_id", user!.id)
-    .maybeSingle();
+    .limit(1);
+  const annonce = annonces?.[0] ?? null;
+
+  const { count: totalAnnoncesCount } = await supabase
+    .from("annonces")
+    .select("*", { count: "exact", head: true })
+    .eq("author_id", user!.id);
+
+  let publishedCount: number | null = null;
+  if (plan !== "standard") {
+    const { count } = await supabase
+      .from("annonces")
+      .select("*", { count: "exact", head: true })
+      .eq("author_id", user!.id)
+      .eq("status", "publiee");
+    publishedCount = count ?? 0;
+  }
 
   const isActive =
     subscription?.status === "active" || subscription?.status === "trialing";
@@ -101,7 +127,7 @@ export default async function AbonnementPage({
           </TableHeader>
           <TableBody>
             <TableRow>
-              <TableCell>Diffusion d&apos;une annonce — 30 € TTC / mois</TableCell>
+              <TableCell>{planLabels[plan]}</TableCell>
               <TableCell>
                 {status ? (
                   <Badge variant={status.variant}>{status.label}</Badge>
@@ -114,13 +140,29 @@ export default async function AbonnementPage({
                   ? dateFormatter.format(new Date(subscription.current_period_end))
                   : "—"}
               </TableCell>
-              <TableCell>{annonce ? annonce.title : "—"}</TableCell>
+              <TableCell>
+                {plan === "standard" ? (
+                  annonce ? (
+                    annonce.title
+                  ) : (
+                    "—"
+                  )
+                ) : (
+                  <Link
+                    href="/dashboard/annonces"
+                    className="underline underline-offset-2 hover:text-foreground"
+                  >
+                    {publishedCount ?? 0} / {subscription?.max_annonces ?? 0}{" "}
+                    annonces publiées
+                  </Link>
+                )}
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </div>
 
-      {isActive && !annonce && (
+      {isActive && (totalAnnoncesCount ?? 0) === 0 && (
         <div className="flex flex-col gap-2 rounded-lg border border-border bg-muted/50 p-4 text-sm">
           <p>
             Votre abonnement est actif mais vous n&apos;avez pas encore
