@@ -27,9 +27,5 @@ export async function setRole(formData: FormData) {
     .update({ role, is_professional: selection === "professionnel" })
     .eq("id", user.id);
 
-  if (selection === "professionnel") {
-    redirect("/forfaitspro");
-  }
-
   redirect(next.startsWith("/") && !next.startsWith("//") ? next : "/dashboard");
 }
