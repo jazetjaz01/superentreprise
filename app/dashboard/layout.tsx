@@ -23,7 +23,7 @@ export default async function DashboardLayout({
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("role")
+    .select("role, is_professional")
     .eq("id", user.id)
     .maybeSingle();
 
@@ -54,7 +54,10 @@ export default async function DashboardLayout({
 
   return (
     <SidebarProvider className="items-start">
-      <DashboardSidebar showSellerMenu={showSellerMenu} />
+      <DashboardSidebar
+        showSellerMenu={showSellerMenu}
+        isProfessional={profile?.is_professional ?? false}
+      />
       <SidebarInset className="min-w-0">
         <div className="flex items-center gap-2 border-border border-b px-6 py-4 md:hidden">
           <SidebarTrigger />

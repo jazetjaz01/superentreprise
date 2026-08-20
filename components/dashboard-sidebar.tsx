@@ -20,8 +20,10 @@ import {
 
 export function DashboardSidebar({
   showSellerMenu,
+  isProfessional,
 }: {
   showSellerMenu: boolean;
+  isProfessional: boolean;
 }) {
   const pathname = usePathname();
 
@@ -97,15 +99,17 @@ export function DashboardSidebar({
                       <span>Mon abonnement</span>
                     </SidebarMenuButton>
                     <SidebarMenuSub>
-                      <SidebarMenuSubItem>
-                        <SidebarMenuSubButton
-                          render={<Link href="/dashboard/abonnement/offre" />}
-                          isActive={pathname === "/dashboard/abonnement/offre"}
-                        >
-                          <Tag />
-                          <span>Offre abonnement</span>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
+                      {!isProfessional && (
+                        <SidebarMenuSubItem>
+                          <SidebarMenuSubButton
+                            render={<Link href="/dashboard/abonnement/offre" />}
+                            isActive={pathname === "/dashboard/abonnement/offre"}
+                          >
+                            <Tag />
+                            <span>Offre abonnement</span>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                      )}
                       <SidebarMenuSubItem>
                         <SidebarMenuSubButton
                           render={<Link href="/dashboard/abonnement/offre-pro" />}
