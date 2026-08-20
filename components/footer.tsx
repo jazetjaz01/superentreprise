@@ -32,7 +32,7 @@ const footerSections = [
       { title: "Guide du repreneur", href: "#" },
       { title: "Financement", href: "#" },
       { title: "Centre d'aide", href: "#" },
-      { title: "Questions fréquentes", href: "#" },
+      { title: "Questions fréquentes", href: "/faq" },
     ],
   },
   {
