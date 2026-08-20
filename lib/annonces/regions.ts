@@ -109,3 +109,7 @@ export function getRegion(postalCode: string | null | undefined) {
 
   return REGION_BY_DEPARTMENT[department.code] ?? null;
 }
+
+export const regions = Array.from(new Set(Object.values(REGION_BY_DEPARTMENT))).sort(
+  (a, b) => a.localeCompare(b, "fr"),
+);

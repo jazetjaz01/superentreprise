@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { AnnonceCard } from "@/components/annonce-card";
 import { getCoverImageUrl } from "@/lib/annonces/get-cover-image-url";
+import { getRegion, regions } from "@/lib/annonces/regions";
+import { sectorUniverses } from "@/lib/annonces/sectors";
+import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
@@ -9,15 +13,44 @@ export const metadata: Metadata = {
     "Parcourez l'ensemble des annonces de cession et d'acquisition d'entreprises, commerces et fonds de commerce diffusées sur Superentreprise.",
 };
 
-export default async function AnnoncesPage() {
+function buildHref(
+  params: { region?: string; sector?: string },
+  changes: { region?: string; sector?: string },
+) {
+  const next = { ...params, ...changes };
+  const query = new URLSearchParams();
+  if (next.region) query.set("region", next.region);
+  if (next.sector) query.set("sector", next.sector);
+  const qs = query.toString();
+  return qs ? `/annonces?${qs}` : "/annonces";
+}
+
+export default async function AnnoncesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ region?: string; sector?: string }>;
+}) {
+  const params = await searchParams;
+  const activeRegion = params.region ?? "";
+  const activeSector = params.sector ?? "";
+
   const supabase = await createClient();
-  const { data: annonces } = await supabase
+  let query = supabase
     .from("annonces")
     .select("*, annonce_images(*)")
-    .eq("status", "publiee")
-    .order("created_at", { ascending: false });
+    .eq("status", "publiee");
 
-  const results = annonces ?? [];
+  if (activeSector) {
+    query = query.eq("sector", activeSector);
+  }
+
+  const { data: annonces } = await query.order("created_at", {
+    ascending: false,
+  });
+
+  const results = (annonces ?? []).filter(
+    (annonce) => !activeRegion || getRegion(annonce.postal_code) === activeRegion,
+  );
 
   return (
     <div className="mx-auto w-full max-w-(--breakpoint-2xl) px-6 py-12">
@@ -25,9 +58,71 @@ export default async function AnnoncesPage() {
         {results.length} {results.length > 1 ? "annonces" : "annonce"}
       </h1>
 
+      <div className="mt-6 flex flex-col gap-4">
+        <div className="flex flex-wrap gap-2">
+          <Link
+            href={buildHref(params, { region: undefined })}
+            className={cn(
+              "rounded-full border px-3 py-1.5 text-sm transition-colors",
+              !activeRegion
+                ? "border-foreground bg-foreground text-background"
+                : "border-input hover:bg-muted",
+            )}
+          >
+            Toutes les régions
+          </Link>
+          {regions.map((region) => (
+            <Link
+              key={region}
+              href={buildHref(params, {
+                region: activeRegion === region ? undefined : region,
+              })}
+              className={cn(
+                "rounded-full border px-3 py-1.5 text-sm transition-colors",
+                activeRegion === region
+                  ? "border-foreground bg-foreground text-background"
+                  : "border-input hover:bg-muted",
+              )}
+            >
+              {region}
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          <Link
+            href={buildHref(params, { sector: undefined })}
+            className={cn(
+              "rounded-full border px-3 py-1.5 text-sm transition-colors",
+              !activeSector
+                ? "border-foreground bg-foreground text-background"
+                : "border-input hover:bg-muted",
+            )}
+          >
+            Toutes les activités
+          </Link>
+          {sectorUniverses.map((sector) => (
+            <Link
+              key={sector.value}
+              href={buildHref(params, {
+                sector: activeSector === sector.value ? undefined : sector.value,
+              })}
+              className={cn(
+                "rounded-full border px-3 py-1.5 text-sm transition-colors",
+                activeSector === sector.value
+                  ? "border-foreground bg-foreground text-background"
+                  : "border-input hover:bg-muted",
+              )}
+            >
+              {sector.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+
       {results.length === 0 ? (
         <div className="mt-10 rounded-lg border border-border p-8 text-center text-muted-foreground text-sm">
-          Aucune annonce n&apos;est publiée pour le moment.
+          Aucune annonce ne correspond à ces critères.
         </div>
       ) : (
         <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
