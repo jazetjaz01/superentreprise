@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowUpRight, CirclePlay } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -11,7 +12,7 @@ const videos = ["/video/video.mp4", "/video/video1.mp4", "/video/video2.mp4"];
 
 const content: Record<
   Audience,
-  { title: React.ReactNode; description: string; cta: string }
+  { title: React.ReactNode; description: string; cta: string; ctaHref: string }
 > = {
   acheteur: {
     title: (
@@ -22,6 +23,7 @@ const content: Record<
     description:
       "Superentreprise est le spécialiste français d'annonces de vente et achat d'entreprises, TPE, PME, commerces, fonds de commerce, immobilier entreprise et franchises.",
     cta: "Voir les annonces",
+    ctaHref: "/annonces",
   },
   vendeur: {
     title: (
@@ -32,6 +34,7 @@ const content: Record<
     description:
       "Superentreprise est le spécialiste français d'annonces de vente et achat d'entreprises, TPE, PME, commerces, fonds de commerce, immobilier entreprise et franchises.",
     cta: "Créer une annonce",
+    ctaHref: "/deposer-une-annonce",
   },
 };
 
@@ -100,7 +103,12 @@ export default function Hero() {
               {active.description}
             </p>
             <div className="mt-8 flex items-center gap-4 sm:mt-12">
-              <Button className="rounded-full" size="lg">
+              <Button
+                className="rounded-full"
+                size="lg"
+                render={<Link href={active.ctaHref} />}
+                nativeButton={false}
+              >
                 {active.cta} <ArrowUpRight className="h-5! w-5!" />
               </Button>
               <Button
