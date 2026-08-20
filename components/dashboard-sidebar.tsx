@@ -1,6 +1,6 @@
 "use client";
 
-import { Building2, CreditCard, FileText, Home, MessageCircle, Tag, User, Wallet, XCircle } from "lucide-react";
+import { Building2, CreditCard, FileText, HelpCircle, Home, MessageCircle, Tag, User, Wallet, XCircle } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cancelSubscription } from "@/app/dashboard/abonnement/actions";
@@ -159,6 +159,16 @@ export function DashboardSidebar({
                   </SidebarMenuItem>
                 </>
               )}
+
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  render={<Link href="/dashboard/faq" />}
+                  isActive={pathname === "/dashboard/faq"}
+                >
+                  <HelpCircle />
+                  <span>FAQ</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
