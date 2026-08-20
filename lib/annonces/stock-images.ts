@@ -19,4 +19,7 @@ export const stockImages: StockImage[] = [
   { label: "Paris", url: "/images/annonces/paris.jpg" },
   { label: "Perpignan", url: "/images/annonces/perpignan.jpg" },
   { label: "Nice", url: "/images/annonces/nice.jpg" },
+  { label: "Bordeaux", url: "/images/annonces/bordeaux.jpg" },
+  { label: "Marseille", url: "/images/annonces/marseille.jpg" },
+  { label: "Toulouse", url: "/images/annonces/toulouse.jpg" },
 ];
