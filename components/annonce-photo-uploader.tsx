@@ -222,14 +222,14 @@ export function AnnoncePhotoUploader({
             Pas de photo sous la main ? Choisissez une image parmi notre
             bibliothèque.
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-3">
             {stockImages.map((stock) => (
               <button
                 key={stock.url}
                 type="button"
                 disabled={uploading}
                 onClick={() => handleUseStockImage(stock.url)}
-                className="group relative size-16 shrink-0 overflow-hidden rounded-md ring-1 ring-border disabled:pointer-events-none disabled:opacity-60"
+                className="group relative size-28 shrink-0 overflow-hidden rounded-md ring-1 ring-border disabled:pointer-events-none disabled:opacity-60"
                 title={stock.label}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -239,7 +239,7 @@ export function AnnoncePhotoUploader({
                   className="size-full object-cover"
                 />
                 <span className="absolute inset-0 flex items-center justify-center bg-black/0 text-transparent transition-colors group-hover:bg-black/40 group-hover:text-white">
-                  <Plus className="size-5" />
+                  <Plus className="size-6" />
                 </span>
               </button>
             ))}
