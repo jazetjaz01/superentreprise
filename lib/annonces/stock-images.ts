@@ -16,4 +16,7 @@ export const stockImages: StockImage[] = [
   { label: "Restauration", url: "/images/annonces/restauration.jpg" },
   { label: "Taxi", url: "/images/annonces/taxi.jpg" },
   { label: "Concession automobile", url: "/images/annonces/voiture.jpg" },
+  { label: "Paris", url: "/images/annonces/paris.jpg" },
+  { label: "Perpignan", url: "/images/annonces/perpignan.jpg" },
+  { label: "Nice", url: "/images/annonces/nice.jpg" },
 ];
