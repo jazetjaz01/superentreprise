@@ -5,6 +5,13 @@ import { SearchBar } from "@/components/searchbar";
 import { UserMenu } from "@/components/user-menu";
 import { createClient } from "@/lib/supabase/server";
 
+const topLinks = [
+  { title: "Actualité", href: "/actualite" },
+  { title: "Nos offres", href: "/forfait" },
+  { title: "Déposer une annonce", href: "/deposer-une-annonce" },
+  { title: "Contact", href: "/contact" },
+];
+
 const Navbar = async () => {
   const supabase = await createClient();
   const {
@@ -29,6 +36,20 @@ const Navbar = async () => {
 
   return (
     <nav className="bg-background">
+      <div className="hidden border-border border-b lg:block">
+        <div className="mx-auto flex h-10 w-full items-center justify-end gap-6 px-4 sm:px-6 lg:px-8">
+          {topLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-muted-foreground text-sm hover:text-foreground"
+            >
+              {link.title}
+            </Link>
+          ))}
+        </div>
+      </div>
+
       <div className="mx-auto grid h-20 w-full grid-cols-[auto_1fr_auto] items-center gap-4 px-4 sm:px-6 lg:px-8">
         <Logo />
 
