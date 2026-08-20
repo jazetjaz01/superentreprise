@@ -63,7 +63,7 @@ export default async function AnnoncesPage({
           <Link
             href={buildHref(params, { region: undefined })}
             className={cn(
-              "rounded-full border px-3 py-1.5 text-sm transition-colors",
+              "rounded-full border px-2.5 py-1 text-xs transition-colors",
               !activeRegion
                 ? "border-foreground bg-foreground text-background"
                 : "border-input hover:bg-muted",
@@ -78,7 +78,7 @@ export default async function AnnoncesPage({
                 region: activeRegion === region ? undefined : region,
               })}
               className={cn(
-                "rounded-full border px-3 py-1.5 text-sm transition-colors",
+                "rounded-full border px-2.5 py-1 text-xs transition-colors",
                 activeRegion === region
                   ? "border-foreground bg-foreground text-background"
                   : "border-input hover:bg-muted",
@@ -93,7 +93,7 @@ export default async function AnnoncesPage({
           <Link
             href={buildHref(params, { sector: undefined })}
             className={cn(
-              "rounded-full border px-3 py-1.5 text-sm transition-colors",
+              "rounded-full border px-2.5 py-1 text-xs transition-colors",
               !activeSector
                 ? "border-foreground bg-foreground text-background"
                 : "border-input hover:bg-muted",
@@ -108,7 +108,7 @@ export default async function AnnoncesPage({
                 sector: activeSector === sector.value ? undefined : sector.value,
               })}
               className={cn(
-                "rounded-full border px-3 py-1.5 text-sm transition-colors",
+                "rounded-full border px-2.5 py-1 text-xs transition-colors",
                 activeSector === sector.value
                   ? "border-foreground bg-foreground text-background"
                   : "border-input hover:bg-muted",
