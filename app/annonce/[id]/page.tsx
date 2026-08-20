@@ -156,7 +156,7 @@ export default async function AnnonceDetailPage({
             <h1 className="mt-1 font-semibold text-3xl tracking-tight">
               {annonce.title}
             </h1>
-            <div className="mt-1 font-mono text-muted-foreground text-xs">
+            <div className="mt-1 font-mono text-rose-500 text-xs">
               Réf. {annonce.id.slice(0, 8).toUpperCase()}
             </div>
           </div>

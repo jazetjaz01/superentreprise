@@ -54,11 +54,7 @@ export default async function AnnoncesPage({
 
   return (
     <div className="mx-auto w-full max-w-(--breakpoint-2xl) px-6 py-12">
-      <h1 className="font-semibold text-2xl">
-        {results.length} {results.length > 1 ? "annonces" : "annonce"}
-      </h1>
-
-      <div className="mt-6 flex flex-col gap-4">
+      <div className="flex flex-col gap-4">
         <div className="flex flex-wrap gap-2">
           <Link
             href={buildHref(params, { region: undefined })}
@@ -119,6 +115,10 @@ export default async function AnnoncesPage({
           ))}
         </div>
       </div>
+
+      <h1 className="mt-6 font-medium text-muted-foreground text-sm">
+        {results.length} {results.length > 1 ? "annonces" : "annonce"}
+      </h1>
 
       {results.length === 0 ? (
         <div className="mt-10 rounded-lg border border-border p-8 text-center text-muted-foreground text-sm">
