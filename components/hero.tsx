@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, CirclePlay } from "lucide-react";
+import { ArrowUpRight, HelpCircle } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -115,8 +115,10 @@ export default function Hero() {
                 className="rounded-full shadow-none"
                 size="lg"
                 variant="outline"
+                render={<Link href="/faq" />}
+                nativeButton={false}
               >
-                <CirclePlay className="h-5! w-5!" /> Watch Demo
+                <HelpCircle className="h-5! w-5!" /> Foire aux questions
               </Button>
             </div>
           </div>
