@@ -9,6 +9,7 @@ const topLinks = [
   { title: "Actualité", href: "/actualite" },
   { title: "Nos offres", href: "/forfait" },
   { title: "Déposer une annonce", href: "/deposer-une-annonce" },
+  { title: "FAQ", href: "/faq" },
   { title: "Contact", href: "/contact" },
 ];
 
