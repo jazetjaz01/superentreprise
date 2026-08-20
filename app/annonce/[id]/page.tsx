@@ -9,6 +9,7 @@ import { getDepartment } from "@/lib/annonces/departments";
 import { transactionTypes } from "@/lib/annonces/options";
 import { getDisplayName } from "@/lib/profile/display-name";
 import { createClient } from "@/lib/supabase/server";
+import { cn } from "@/lib/utils";
 
 const priceFormatter = new Intl.NumberFormat("fr-FR", {
   style: "currency",
@@ -115,32 +116,40 @@ export default async function AnnonceDetailPage({
       )}
 
       {imageUrls.length > 0 ? (
-        <div className="flex flex-col gap-2 overflow-hidden rounded-xl lg:grid lg:h-105 lg:grid-cols-4 lg:grid-rows-2">
-          <div className="relative aspect-4/3 bg-muted lg:col-span-2 lg:row-span-2 lg:aspect-auto">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={imageUrls[0]}
-              alt={annonce.title}
-              className="size-full object-cover"
-            />
-          </div>
-          {Array.from({ length: 4 }).map((_, index) => {
-            const url = imageUrls[index + 1];
-            if (!url) {
-              return (
-                <div
-                  key={`empty-${index}`}
-                  className="relative hidden bg-muted lg:block"
-                />
-              );
-            }
-            return (
-              <div key={url} className="relative aspect-4/3 bg-muted lg:aspect-auto">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={url} alt="" className="size-full object-cover" />
-              </div>
-            );
-          })}
+        <div
+          className={cn(
+            "flex flex-col gap-2 overflow-hidden rounded-xl lg:grid lg:h-105",
+            imageUrls.length === 1 && "lg:grid-cols-1",
+            imageUrls.length === 2 && "lg:grid-cols-2",
+            imageUrls.length === 3 && "lg:grid-cols-3 lg:grid-rows-2",
+            imageUrls.length === 4 && "lg:grid-cols-2 lg:grid-rows-3",
+            imageUrls.length >= 5 && "lg:grid-cols-4 lg:grid-rows-2",
+          )}
+        >
+          {imageUrls.map((url, index) => (
+            <div
+              key={url}
+              className={cn(
+                "relative aspect-4/3 bg-muted lg:aspect-auto",
+                index === 0 &&
+                  imageUrls.length === 3 &&
+                  "lg:col-span-2 lg:row-span-2",
+                index === 0 &&
+                  imageUrls.length === 4 &&
+                  "lg:row-span-3",
+                index === 0 &&
+                  imageUrls.length >= 5 &&
+                  "lg:col-span-2 lg:row-span-2",
+              )}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={url}
+                alt={index === 0 ? annonce.title : ""}
+                className="size-full object-cover"
+              />
+            </div>
+          ))}
         </div>
       ) : (
         <div className="flex h-105 w-full items-center justify-center rounded-xl bg-muted text-muted-foreground">
