@@ -31,7 +31,7 @@ export async function signup(_prevState: { error: string } | null, formData: For
         .update({ is_professional: true })
         .eq("id", data.session.user.id);
     }
-    redirect(intent === "pro" ? "/forfaitspro" : "/dashboard");
+    redirect("/dashboard");
   }
 
   redirect("/login?confirm=1");
