@@ -92,7 +92,11 @@ const Footer = () => {
             <Link href="#" target="_blank" aria-label="Twitter / X">
               <FaXTwitter className="h-5 w-5 hover:text-foreground transition-colors" />
             </Link>
-            <Link href="#" target="_blank" aria-label="LinkedIn">
+            <Link
+              href="https://www.linkedin.com/company/superentreprise"
+              target="_blank"
+              aria-label="LinkedIn"
+            >
               <FaLinkedin className="h-5 w-5 hover:text-foreground transition-colors" />
             </Link>
             <Link href="#" target="_blank" aria-label="Facebook">
