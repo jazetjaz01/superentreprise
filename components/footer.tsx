@@ -8,7 +8,7 @@ const footerSections = [
     title: "Annonces",
     links: [
       { title: "Toutes les annonces", href: "/recherche" },
-      { title: "Vendre mon entreprise", href: "/deposer-une-annonce" },
+      { title: "Vendre mon entreprise", href: "/actualite/vendre-mon-entreprise-mt3g1e76" },
       { title: "Acheter une entreprise", href: "/recherche" },
       { title: "Estimation gratuite", href: "#" },
       { title: "Mes annonces", href: "/annonces" },
