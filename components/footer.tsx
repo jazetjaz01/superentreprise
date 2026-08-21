@@ -99,7 +99,11 @@ const Footer = () => {
             >
               <FaLinkedin className="h-5 w-5 hover:text-foreground transition-colors" />
             </Link>
-            <Link href="#" target="_blank" aria-label="Facebook">
+            <Link
+              href="https://www.facebook.com/profile.php?id=61586237204759"
+              target="_blank"
+              aria-label="Facebook"
+            >
               <FaFacebook className="h-5 w-5 hover:text-foreground transition-colors" />
             </Link>
             <Link href="#" target="_blank" aria-label="Instagram">
