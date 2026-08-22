@@ -43,7 +43,7 @@ const advantages = [
 
 const Mission = () => {
   return (
-    <div className="mx-auto max-w-(--breakpoint-2xl) px-6 py-20">
+    <div className="mx-auto max-w-(--breakpoint-lg) px-6 py-20">
       <div className="text-center">
         <strong className="font-medium text-muted-foreground text-sm uppercase tracking-wide">
           Notre mission
@@ -51,7 +51,7 @@ const Mission = () => {
         <h1 className="mt-2 text-balance font-medium text-3xl tracking-[-0.04em] sm:text-4xl md:text-[2.75rem]">
           Faciliter la cession et la reprise d&apos;entreprises en France
         </h1>
-        <p className="mx-auto mt-4  text-justify text-foreground/90 leading-relaxed">
+        <p className="mx-auto mt-4 max-w-2xl text-justify text-foreground/90 leading-relaxed">
           Superentreprise met en relation les cédants d&apos;entreprises, de
           commerces et de fonds de commerce avec des repreneurs sérieux, sur
           toute la France, en Belgique et en Suisse. Notre rôle est simple :
