@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { FaLinkedin } from "react-icons/fa6";
+import { FaFacebook, FaLinkedin } from "react-icons/fa6";
+
+const facebookUrl = "https://www.facebook.com/profile.php?id=61586237204759";
 
 const teamMembers = [
   {
@@ -7,17 +9,20 @@ const teamMembers = [
     image: "/images/team/alam.jpg",
     role: "Co-fondateur",
     linkedin: "https://www.linkedin.com/in/alami-er-haidi-a7287193/",
+    facebook: facebookUrl,
   },
   {
     name: "Ludovic Barbry",
     image: "/images/team/ludo-portrait-super.jpg",
     role: "Co-fondateur",
     linkedin: "https://www.linkedin.com/in/ludovic-barbry/",
+    facebook: facebookUrl,
   },
   {
     name: "Garcia Juan",
     image: "/images/team/technique.jpg",
     role: "Webmaster",
+    facebook: facebookUrl,
   },
 ];
 
@@ -48,17 +53,28 @@ const Team = () => {
             <p className="mt-0.5 text-center text-muted-foreground">
               {member.role}
             </p>
-            {member.linkedin && (
-              <Link
-                href={member.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Profil LinkedIn de ${member.name}`}
-                className="mt-3"
-              >
-                <FaLinkedin className="h-5 w-5 text-muted-foreground hover:text-primary" />
-              </Link>
-            )}
+            <div className="mt-3 flex items-center gap-4">
+              {member.linkedin && (
+                <Link
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Profil LinkedIn de ${member.name}`}
+                >
+                  <FaLinkedin className="h-5 w-5 text-muted-foreground hover:text-primary" />
+                </Link>
+              )}
+              {member.facebook && (
+                <Link
+                  href={member.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Profil Facebook de ${member.name}`}
+                >
+                  <FaFacebook className="h-5 w-5 text-muted-foreground hover:text-primary" />
+                </Link>
+              )}
+            </div>
           </div>
         ))}
       </div>
