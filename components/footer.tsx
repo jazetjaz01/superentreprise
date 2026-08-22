@@ -28,10 +28,10 @@ const footerSections = [
   {
     title: "Ressources",
     links: [
-      { title: "Guide du cédant", href: "#" },
-      { title: "Guide du repreneur", href: "#" },
-      { title: "Financement", href: "#" },
-      { title: "Centre d'aide", href: "#" },
+      { title: "Guide du cédant", href: "/ressources/guide-du-cedant" },
+      { title: "Guide du repreneur", href: "/ressources/guide-du-repreneur" },
+      { title: "Financement", href: "/ressources/financement" },
+      { title: "Centre d'aide", href: "/ressources/centre-aide" },
       { title: "Questions fréquentes", href: "/faq" },
     ],
   },
