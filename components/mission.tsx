@@ -43,7 +43,7 @@ const advantages = [
 
 const Mission = () => {
   return (
-    <div className="mx-auto max-w-(--breakpoint-lg) px-6 py-20">
+    <div className="mx-auto max-w-(--breakpoint-xl) px-6 py-20">
       <div className="text-center">
         <strong className="font-medium text-muted-foreground text-sm uppercase tracking-wide">
           Notre mission
