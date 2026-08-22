@@ -12,6 +12,7 @@ const teamMembers = [
     name: "Ludovic Barbry",
     image: "/images/team/ludo-portrait-super.jpg",
     role: "Co-fondateur",
+    linkedin: "https://www.linkedin.com/in/ludovic-barbry/",
   },
 ];
 
