@@ -2,7 +2,12 @@ const teamMembers = [
   {
     name: "Alami Er'haidi",
     image: "/images/team/alam.jpg",
-    role: "Fondateur",
+    role: "Co-fondateur",
+  },
+  {
+    name: "Ludovic Barbry",
+    image: "/images/team/ludo-portrait-super.jpg",
+    role: "Co-fondateur",
   },
 ];
 
@@ -16,7 +21,7 @@ const Team = () => {
         Les personnes derrière Superentreprise
       </p>
 
-      <div className="mt-12 flex justify-center sm:mt-16">
+      <div className="mt-12 flex flex-wrap justify-center gap-8 sm:mt-16 sm:gap-16">
         {teamMembers.map((member) => (
           <div className="flex flex-col items-center py-8" key={member.name}>
             <div className="mx-auto aspect-square w-48 overflow-hidden rounded-full bg-muted">
