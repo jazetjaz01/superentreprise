@@ -17,7 +17,7 @@ const footerSections = [
   {
     title: "À propos",
     links: [
-      { title: "Qui sommes-nous", href: "#" },
+      { title: "Qui sommes-nous", href: "/equipe" },
       { title: "Notre mission", href: "#" },
       { title: "Presse", href: "#" },
       { title: "Actualite", href: "/actualite" },
