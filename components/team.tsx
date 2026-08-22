@@ -14,6 +14,11 @@ const teamMembers = [
     role: "Co-fondateur",
     linkedin: "https://www.linkedin.com/in/ludovic-barbry/",
   },
+  {
+    name: "Garcia Juan",
+    image: "/images/team/technique.jpg",
+    role: "Webmaster",
+  },
 ];
 
 const Team = () => {
