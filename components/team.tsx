@@ -36,7 +36,7 @@ const Team = () => {
         Les personnes derrière Superentreprise
       </p>
 
-      <p className="mx-auto mt-8 max-w-2xl text-center text-foreground/90 leading-relaxed">
+      <p className="mx-auto mt-8 max-w-2xl text-justify text-foreground/90 leading-relaxed">
         Superentreprise est le spécialiste français des annonces de cession
         et d&apos;acquisition d&apos;entreprises, commerces et fonds de
         commerce, en France, en Belgique et en Suisse. Basée à Perpignan,
