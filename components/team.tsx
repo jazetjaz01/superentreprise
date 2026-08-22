@@ -32,7 +32,7 @@ const Team = () => {
       <h2 className="text-balance text-center font-medium text-3xl tracking-[-0.04em] sm:text-4xl md:text-[2.75rem]">
         Notre équipe
       </h2>
-      <p className="mt-3 text-balance text-center text-lg text-muted-foreground tracking-[-0.01em] md:text-2xl">
+      <p className="mt-3 text-balance text-center text-lg  tracking-[-0.01em] md:text-2xl">
         Les personnes derrière Superentreprise
       </p>
 
