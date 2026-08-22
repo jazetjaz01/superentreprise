@@ -1,8 +1,12 @@
+import Link from "next/link";
+import { FaLinkedin } from "react-icons/fa6";
+
 const teamMembers = [
   {
     name: "Alami Er'haidi",
     image: "/images/team/alam.jpg",
     role: "Co-fondateur",
+    linkedin: "https://www.linkedin.com/in/alami-er-haidi-a7287193/",
   },
   {
     name: "Ludovic Barbry",
@@ -38,6 +42,17 @@ const Team = () => {
             <p className="mt-0.5 text-center text-muted-foreground">
               {member.role}
             </p>
+            {member.linkedin && (
+              <Link
+                href={member.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Profil LinkedIn de ${member.name}`}
+                className="mt-3"
+              >
+                <FaLinkedin className="h-5 w-5 text-muted-foreground hover:text-primary" />
+              </Link>
+            )}
           </div>
         ))}
       </div>
