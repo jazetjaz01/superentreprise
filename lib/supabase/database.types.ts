@@ -424,6 +424,42 @@ export type Database = {
           },
         ]
       }
+      favoris: {
+        Row: {
+          annonce_id: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          annonce_id: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          annonce_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "favoris_annonce_id_fkey"
+            columns: ["annonce_id"]
+            isOneToOne: false
+            referencedRelation: "annonces"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "favoris_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       public_profiles: {

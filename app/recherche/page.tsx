@@ -7,6 +7,7 @@ import {
   resolveSectorMatches,
   sanitizeForFilter,
 } from "@/lib/annonces/search";
+import { getFavoriteIds } from "@/lib/favoris/get-favorite-ids";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function RecherchePage({
@@ -60,6 +61,11 @@ export default async function RecherchePage({
   });
   const results = annonces ?? [];
 
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const favoriteIds = await getFavoriteIds(supabase, user?.id);
+
   const budgetLabel = budgets.find((item) => item.value === budget)?.label;
   const filterSummary = [
     type && `« ${type} »`,
@@ -102,6 +108,8 @@ export default async function RecherchePage({
               key={annonce.id}
               annonce={annonce}
               imageUrl={getCoverImageUrl(supabase, annonce.annonce_images ?? [])}
+              isFavorite={favoriteIds.has(annonce.id)}
+              favoriteNext="/recherche"
             />
           ))}
         </div>

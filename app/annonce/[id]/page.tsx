@@ -7,7 +7,9 @@ import { Button } from "@/components/ui/button";
 import { getActivityDisplayLabel } from "@/lib/annonces/activities";
 import { getDepartment } from "@/lib/annonces/departments";
 import { transactionTypes } from "@/lib/annonces/options";
+import { FavoriteButton } from "@/components/favorite-button";
 import { getDisplayName } from "@/lib/profile/display-name";
+import { getFavoriteIds } from "@/lib/favoris/get-favorite-ids";
 import { createClient } from "@/lib/supabase/server";
 
 const priceFormatter = new Intl.NumberFormat("fr-FR", {
@@ -52,6 +54,9 @@ export default async function AnnonceDetailPage({
       supabase.storage.from("annonces-images").getPublicUrl(image.storage_path)
         .data.publicUrl,
   );
+
+  const favoriteIds = await getFavoriteIds(supabase, user?.id);
+  const isFavorite = favoriteIds.has(annonce.id);
 
   const { data: seller } = await supabase
     .from("public_profiles")
@@ -140,17 +145,26 @@ export default async function AnnonceDetailPage({
       <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_320px]">
         <div className="flex flex-col gap-6">
           <div>
-            <div className="flex flex-wrap items-center gap-2 text-muted-foreground text-sm">
-              {activityLabel && <span>{activityLabel}</span>}
-              {department && (
-                <>
-                  <span>·</span>
-                  <span>
-                    {annonce.hide_exact_location
-                      ? department.name
-                      : `${annonce.city} (${department.code})`}
-                  </span>
-                </>
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-2 text-muted-foreground text-sm">
+                {activityLabel && <span>{activityLabel}</span>}
+                {department && (
+                  <>
+                    <span>·</span>
+                    <span>
+                      {annonce.hide_exact_location
+                        ? department.name
+                        : `${annonce.city} (${department.code})`}
+                    </span>
+                  </>
+                )}
+              </div>
+              {!isOwner && (
+                <FavoriteButton
+                  annonceId={annonce.id}
+                  isFavorite={isFavorite}
+                  next={`/annonce/${annonce.id}`}
+                />
               )}
             </div>
             <h1 className="mt-1 font-semibold text-3xl tracking-tight">

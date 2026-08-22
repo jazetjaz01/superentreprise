@@ -4,6 +4,7 @@ import { AnnonceCard } from "@/components/annonce-card";
 import { getCoverImageUrl } from "@/lib/annonces/get-cover-image-url";
 import { getRegion, regions } from "@/lib/annonces/regions";
 import { sectorUniverses } from "@/lib/annonces/sectors";
+import { getFavoriteIds } from "@/lib/favoris/get-favorite-ids";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/server";
 
@@ -51,6 +52,11 @@ export default async function AnnoncesPage({
   const results = (annonces ?? []).filter(
     (annonce) => !activeRegion || getRegion(annonce.postal_code) === activeRegion,
   );
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const favoriteIds = await getFavoriteIds(supabase, user?.id);
 
   return (
     <div className="mx-auto w-full max-w-(--breakpoint-2xl) px-6 py-12">
@@ -131,6 +137,8 @@ export default async function AnnoncesPage({
               key={annonce.id}
               annonce={annonce}
               imageUrl={getCoverImageUrl(supabase, annonce.annonce_images ?? [])}
+              isFavorite={favoriteIds.has(annonce.id)}
+              favoriteNext="/annonces"
             />
           ))}
         </div>
