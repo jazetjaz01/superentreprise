@@ -43,24 +43,21 @@ export default async function ConversationPage({
       ? conversation.seller_id
       : conversation.buyer_id;
 
-  const [{ data: annonce }, { data: otherUser }, { data: messages }] =
+  const [{ data: annonce }, { data: otherUsers }, { data: messages }] =
     await Promise.all([
       supabase
         .from("annonces")
         .select("id, title")
         .eq("id", conversation.annonce_id)
         .maybeSingle(),
-      supabase
-        .from("public_profiles")
-        .select("*")
-        .eq("id", otherUserId)
-        .maybeSingle(),
+      supabase.rpc("get_public_profiles", { ids: [otherUserId] }),
       supabase
         .from("messages")
         .select("*")
         .eq("conversation_id", id)
         .order("created_at", { ascending: true }),
     ]);
+  const otherUser = otherUsers?.[0] ?? null;
 
   const unreadIds = (messages ?? [])
     .filter((message) => message.sender_id !== user!.id && !message.read_at)

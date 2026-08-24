@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { formatActualiteDate } from "@/components/actualite";
 import { Badge } from "@/components/ui/badge";
 import { getDisplayName } from "@/lib/profile/display-name";
+import { getPublicProfile } from "@/lib/profile/get-public-profile";
 import { createClient } from "@/lib/supabase/server";
 
 async function getArticle(slug: string) {
@@ -27,11 +28,7 @@ async function getArticle(slug: string) {
         .getPublicUrl(article.cover_image_path).data.publicUrl
     : null;
 
-  const { data: author } = await supabase
-    .from("public_profiles")
-    .select("*")
-    .eq("id", article.author_id)
-    .maybeSingle();
+  const author = await getPublicProfile(supabase, article.author_id);
   const authorName = getDisplayName(author, "Superentreprise");
 
   return {

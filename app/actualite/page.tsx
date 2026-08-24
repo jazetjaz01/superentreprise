@@ -16,10 +16,9 @@ export default async function ActualitePage() {
     .order("published_at", { ascending: false });
 
   const authorIds = [...new Set((articles ?? []).map((article) => article.author_id))];
-  const { data: authors } = await supabase
-    .from("public_profiles")
-    .select("*")
-    .in("id", authorIds.length > 0 ? authorIds : [""]);
+  const { data: authors } = await supabase.rpc("get_public_profiles", {
+    ids: authorIds,
+  });
   const authorsById = new Map((authors ?? []).map((author) => [author.id, author]));
 
   const posts: ActualitePost[] = (articles ?? []).map((article) => {

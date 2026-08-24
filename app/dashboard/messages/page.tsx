@@ -28,18 +28,14 @@ export default async function MessagesPage() {
           ? conversation.seller_id
           : conversation.buyer_id;
 
-      const [{ data: annonce }, { data: otherUser }, { data: lastMessage }] =
+      const [{ data: annonce }, { data: otherUsers }, { data: lastMessage }] =
         await Promise.all([
           supabase
             .from("annonces")
             .select("title")
             .eq("id", conversation.annonce_id)
             .maybeSingle(),
-          supabase
-            .from("public_profiles")
-            .select("*")
-            .eq("id", otherUserId)
-            .maybeSingle(),
+          supabase.rpc("get_public_profiles", { ids: [otherUserId] }),
           supabase
             .from("messages")
             .select("content, created_at")
@@ -48,6 +44,7 @@ export default async function MessagesPage() {
             .limit(1)
             .maybeSingle(),
         ]);
+      const otherUser = otherUsers?.[0] ?? null;
 
       return {
         id: conversation.id,

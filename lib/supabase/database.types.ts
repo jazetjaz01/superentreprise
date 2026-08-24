@@ -462,21 +462,21 @@ export type Database = {
       }
     }
     Views: {
-      public_profiles: {
-        Row: {
+      [_ in never]: never
+    }
+    Functions: {
+      get_public_profiles: {
+        Args: { ids: string[] }
+        Returns: {
           avatar_url: string | null
           company_city: string | null
           company_name: string | null
           display_name: string | null
           first_name: string | null
-          id: string | null
+          id: string
           last_name: string | null
-        }
-        Relationships: []
+        }[]
       }
-    }
-    Functions: {
-      [_ in never]: never
     }
     Enums: {
       [_ in never]: never

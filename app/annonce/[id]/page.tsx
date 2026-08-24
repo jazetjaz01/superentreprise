@@ -9,6 +9,7 @@ import { getDepartment } from "@/lib/annonces/departments";
 import { transactionTypes } from "@/lib/annonces/options";
 import { FavoriteButton } from "@/components/favorite-button";
 import { getDisplayName } from "@/lib/profile/display-name";
+import { getPublicProfile } from "@/lib/profile/get-public-profile";
 import { getFavoriteIds } from "@/lib/favoris/get-favorite-ids";
 import { createClient } from "@/lib/supabase/server";
 
@@ -58,11 +59,7 @@ export default async function AnnonceDetailPage({
   const favoriteIds = await getFavoriteIds(supabase, user?.id);
   const isFavorite = favoriteIds.has(annonce.id);
 
-  const { data: seller } = await supabase
-    .from("public_profiles")
-    .select("*")
-    .eq("id", annonce.author_id)
-    .maybeSingle();
+  const seller = await getPublicProfile(supabase, annonce.author_id);
   const sellerName = getDisplayName(seller, "Vendeur");
   const { count: sellerAnnoncesCount } = await supabase
     .from("annonces")
