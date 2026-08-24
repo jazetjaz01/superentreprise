@@ -19,7 +19,7 @@ export default async function CompanyProfilePage({
     .single();
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="mx-auto flex w-full max-w-md flex-col gap-6">
       <div>
         <h1 className="font-semibold text-xl">Profil société</h1>
         <p className="mt-1 text-muted-foreground text-sm">
