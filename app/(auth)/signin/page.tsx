@@ -10,9 +10,9 @@ import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 
 const roles = [
-  { value: "vendeur", label: "Je vends une entreprise" },
   { value: "acheteur", label: "Je recherche une entreprise" },
-  { value: "professionnel", label: "Je suis un professionnel" },
+  { value: "vendeur", label: "Je vends une entreprise" },
+  { value: "professionnel", label: "Je suis une agence" },
 ] as const;
 
 export default function SignInPage() {
