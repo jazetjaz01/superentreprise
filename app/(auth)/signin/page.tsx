@@ -29,33 +29,35 @@ export default function SignInPage() {
         d&apos;entreprises.
       </p>
 
-      <div className="mt-6 flex w-full flex-col gap-1.5 text-left">
-        <Label>Vous êtes...</Label>
-        <div className="flex gap-2 mt-4 ">
-          {roles.map((item) => {
-            const isActive = selection === item.value;
+      <div className="mt-6 w-full border-border border-b pb-8">
+        <div className="flex w-full flex-col gap-1.5 text-left">
+          <Label>Vous êtes...</Label>
+          <div className="flex gap-2 mt-4 ">
+            {roles.map((item) => {
+              const isActive = selection === item.value;
 
-            return (
-              <button
-                key={item.value}
-                type="button"
-                aria-pressed={isActive}
-                onClick={() => setSelection(item.value)}
-                className={cn(
-                  "flex-1 rounded-full border px-3 py-2 text-xs transition-colors",
-                  isActive
-                    ? "border-foreground bg-foreground text-background"
-                    : "border-input hover:bg-muted",
-                )}
-              >
-                {item.label}
-              </button>
-            );
-          })}
+              return (
+                <button
+                  key={item.value}
+                  type="button"
+                  aria-pressed={isActive}
+                  onClick={() => setSelection(item.value)}
+                  className={cn(
+                    "flex-1 rounded-full border px-3 py-2 text-xs transition-colors",
+                    isActive
+                      ? "border-foreground bg-foreground text-background"
+                      : "border-input hover:bg-muted",
+                  )}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
-      <div className="mt-6 w-full">
+      <div className="mt-8 w-full">
         <GoogleAuthButton next="/onboarding/role" />
       </div>
 
