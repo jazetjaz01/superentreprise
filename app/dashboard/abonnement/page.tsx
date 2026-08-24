@@ -90,7 +90,7 @@ export default async function AbonnementPage({
       : "Fin de période";
 
   return (
-    <div className="flex max-w-3xl flex-col gap-6">
+    <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
       <h1 className="font-semibold text-xl">Mon abonnement</h1>
 
       {params.success && !isActive && (
