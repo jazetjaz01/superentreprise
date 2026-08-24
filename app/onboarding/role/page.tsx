@@ -4,18 +4,19 @@ import { createClient } from "@/lib/supabase/server";
 
 const roles = [
   {
-    value: "vendeur",
-    title: "Je vends une entreprise",
-    description: "Déposez votre annonce et diffusez-la auprès d'acheteurs.",
-  },
-  {
     value: "acheteur",
     title: "Je recherche une entreprise",
     description: "Parcourez les annonces et contactez les vendeurs.",
   },
   {
+    value: "vendeur",
+    title: "Je vends une entreprise",
+    description: "Déposez votre annonce et diffusez-la auprès d'acheteurs.",
+  },
+  
+  {
     value: "professionnel",
-    title: "Je suis un professionnel",
+    title: "Je suis une agence",
     description: "Agence ou cabinet : diffusez plusieurs annonces à la fois.",
   },
 ] as const;
