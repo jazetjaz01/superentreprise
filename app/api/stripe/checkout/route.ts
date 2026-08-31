@@ -109,6 +109,7 @@ export async function POST(request: Request) {
     customer: customerId,
     client_reference_id: user.id,
     allow_promotion_codes: true,
+    payment_method_collection: "if_required",
     metadata,
     subscription_data: {
       metadata,
