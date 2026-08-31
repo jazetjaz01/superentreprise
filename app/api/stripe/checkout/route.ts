@@ -108,6 +108,7 @@ export async function POST(request: Request) {
     line_items: [{ price: priceId, quantity: 1 }],
     customer: customerId,
     client_reference_id: user.id,
+    allow_promotion_codes: true,
     metadata,
     subscription_data: {
       metadata,
