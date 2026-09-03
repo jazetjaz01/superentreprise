@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { AnnonceCard } from "@/components/annonce-card";
 import { getCoverImageUrl } from "@/lib/annonces/get-cover-image-url";
 import { getRegion, regions } from "@/lib/annonces/regions";
@@ -29,11 +30,45 @@ function buildHref(
 export default async function AnnoncesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ region?: string; sector?: string }>;
+  searchParams: Promise<{
+    region?: string | string[];
+    sector?: string | string[];
+  }>;
 }) {
-  const params = await searchParams;
-  const activeRegion = params.region ?? "";
-  const activeSector = params.sector ?? "";
+  const rawParams = await searchParams;
+  const rawRegion = Array.isArray(rawParams.region)
+    ? rawParams.region[0]
+    : rawParams.region;
+  const rawSector = Array.isArray(rawParams.sector)
+    ? rawParams.sector[0]
+    : rawParams.sector;
+
+  // N'accepter que des valeurs de filtre connues : sinon, n'importe quelle
+  // combinaison inventée (fuzzing de bots) déclencherait une vraie requête
+  // Supabase. On redirige vers l'URL canonique avant tout appel base de
+  // données, ce qui rend ces tentatives quasi gratuites à rejeter.
+  const validRegion = rawRegion && regions.includes(rawRegion) ? rawRegion : undefined;
+  const validSector =
+    rawSector && sectorUniverses.some((sector) => sector.value === rawSector)
+      ? rawSector
+      : undefined;
+
+  if (
+    rawRegion !== validRegion ||
+    rawSector !== validSector ||
+    Array.isArray(rawParams.region) ||
+    Array.isArray(rawParams.sector)
+  ) {
+    const canonicalQuery = new URLSearchParams();
+    if (validRegion) canonicalQuery.set("region", validRegion);
+    if (validSector) canonicalQuery.set("sector", validSector);
+    const qs = canonicalQuery.toString();
+    redirect(qs ? `/annonces?${qs}` : "/annonces");
+  }
+
+  const params = { region: validRegion, sector: validSector };
+  const activeRegion = validRegion ?? "";
+  const activeSector = validSector ?? "";
 
   const supabase = await createClient();
   let query = supabase
