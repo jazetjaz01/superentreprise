@@ -3,14 +3,16 @@ import type { NextRequest } from "next/server";
 import { updateSession } from "@/lib/supabase/proxy";
 
 // Bots connus pour explorer le site de façon agressive et/ou ignorer
-// robots.txt. Ajoutez ici d'autres user-agents si besoin (un par ligne
-// de l'alternative regex), en évitant les motifs trop génériques comme
-// "bot" qui bloqueraient aussi Googlebot/Bingbot (mauvais pour le SEO).
+// robots.txt. Ajoutez ici d'autres user-agents si besoin, en évitant les
+// motifs trop génériques comme "bot" qui bloqueraient aussi
+// Googlebot/Bingbot (mauvais pour le SEO).
 //
-// "meta-externalagent" (Facebook) est distinct de "facebookexternalhit",
-// qui lui reste autorisé : c'est ce dernier qui génère l'aperçu de lien
-// quand un utilisateur partage une URL sur Facebook/WhatsApp.
-const BLOCKED_USER_AGENT_PATTERN = /meta-externalagent/i;
+// Meta fait tourner plusieurs crawlers sous le préfixe "meta-" (constaté :
+// "meta-externalagent", "meta-webindexer" — d'autres variantes peuvent
+// apparaître). Ce préfixe est distinct de "facebookexternalhit", qui lui
+// reste autorisé : c'est ce dernier qui génère l'aperçu de lien quand un
+// utilisateur partage une URL sur Facebook/WhatsApp.
+const BLOCKED_USER_AGENT_PATTERN = /meta-\w+/i;
 
 export function proxy(request: NextRequest) {
   const userAgent = request.headers.get("user-agent") ?? "";
