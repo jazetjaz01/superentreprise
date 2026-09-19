@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/logo";
 import { NavMenu } from "@/components/nav-menu";
@@ -13,10 +14,16 @@ const Navbar = () => {
         <NavMenu className="hidden md:block" />
 
         <div className="flex items-center gap-3">
-          <Button className="hidden sm:inline-flex" variant="outline">
-            Sign In
+          <Button
+            className="hidden sm:inline-flex"
+            variant="outline"
+            render={<Link href="/auth/login" />}
+          >
+            Se connecter
           </Button>
-          <Button>Get Started</Button>
+          <Button render={<Link href="/auth/sign-up" />}>
+            S&apos;enregistrer
+          </Button>
 
           {/* Mobile Menu */}
           <div className="md:hidden">
