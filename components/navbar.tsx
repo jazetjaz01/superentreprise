@@ -17,11 +17,12 @@ const Navbar = () => {
           <Button
             className="hidden sm:inline-flex"
             variant="outline"
+            nativeButton={false}
             render={<Link href="/auth/login" />}
           >
             Se connecter
           </Button>
-          <Button render={<Link href="/auth/sign-up" />}>
+          <Button nativeButton={false} render={<Link href="/auth/sign-up" />}>
             S&apos;enregistrer
           </Button>
 
