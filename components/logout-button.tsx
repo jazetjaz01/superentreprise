@@ -1,12 +1,13 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import type { ComponentProps } from 'react'
 
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { useRouter } from '@/i18n/navigation'
 
-export function LogoutButton() {
+export function LogoutButton(props: ComponentProps<typeof Button>) {
   const t = useTranslations('Auth')
   const router = useRouter()
 
@@ -14,7 +15,12 @@ export function LogoutButton() {
     const supabase = createClient()
     await supabase.auth.signOut()
     router.push('/auth/login')
+    router.refresh()
   }
 
-  return <Button onClick={logout}>{t('logout')}</Button>
+  return (
+    <Button {...props} onClick={logout}>
+      {t('logout')}
+    </Button>
+  )
 }
