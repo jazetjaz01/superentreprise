@@ -67,6 +67,9 @@
     },
     "logout": "Se déconnecter"
   },
+  "Home": {
+    "title": "Bienvenue sur Superentreprise"
+  },
   "Protected": {
     "hello": "Bonjour {email}"
   }
