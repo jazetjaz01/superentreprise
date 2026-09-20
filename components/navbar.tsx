@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Logo } from "@/components/logo";
 import { LogoutButton } from "@/components/logout-button";
@@ -36,17 +35,18 @@ const Navbar = async () => {
             </>
           ) : (
             <>
-              <Button
-                className="hidden sm:inline-flex"
-                variant="outline"
-                nativeButton={false}
-                render={<Link href="/auth/login" />}
+              <Link
+                href="/auth/login"
+                className="hidden text-sm font-medium hover:underline sm:inline"
               >
                 {t("signIn")}
-              </Button>
-              <Button nativeButton={false} render={<Link href="/auth/sign-up" />}>
+              </Link>
+              <Link
+                href="/auth/sign-up"
+                className="text-sm font-medium hover:underline"
+              >
                 {t("signUp")}
-              </Button>
+              </Link>
             </>
           )}
 

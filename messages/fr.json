@@ -73,6 +73,77 @@
     },
     "logout": "Se déconnecter"
   },
+  "Footer": {
+    "copyright": "© {year} Superentreprise. Tous droits réservés.",
+    "sections": {
+      "product": {
+        "title": "Produit",
+        "links": {
+          "overview": "Aperçu",
+          "features": "Fonctionnalités",
+          "solutions": "Solutions",
+          "tutorials": "Tutoriels",
+          "pricing": "Tarifs",
+          "releases": "Nouveautés"
+        }
+      },
+      "company": {
+        "title": "Entreprise",
+        "links": {
+          "about": "À propos",
+          "careers": "Carrières",
+          "press": "Presse",
+          "news": "Actualités",
+          "mediaKit": "Kit média",
+          "contact": "Contact"
+        }
+      },
+      "resources": {
+        "title": "Ressources",
+        "links": {
+          "blog": "Blog",
+          "newsletter": "Newsletter",
+          "events": "Événements",
+          "helpCentre": "Centre d'aide",
+          "tutorials": "Tutoriels",
+          "support": "Assistance"
+        }
+      },
+      "useCases": {
+        "title": "Cas d'usage",
+        "links": {
+          "startups": "Startups",
+          "enterprise": "Grandes entreprises",
+          "government": "Secteur public",
+          "saas": "SaaS",
+          "marketplaces": "Places de marché",
+          "ecommerce": "E-commerce"
+        }
+      },
+      "social": {
+        "title": "Réseaux sociaux",
+        "links": {
+          "twitter": "Twitter",
+          "linkedin": "LinkedIn",
+          "facebook": "Facebook",
+          "github": "GitHub",
+          "angellist": "AngelList",
+          "dribbble": "Dribbble"
+        }
+      },
+      "legal": {
+        "title": "Mentions légales",
+        "links": {
+          "terms": "Conditions d'utilisation",
+          "privacy": "Confidentialité",
+          "cookies": "Cookies",
+          "licenses": "Licences",
+          "settings": "Paramètres",
+          "contact": "Contact"
+        }
+      }
+    }
+  },
   "Home": {
     "title": "Bienvenue sur Superentreprise"
   },

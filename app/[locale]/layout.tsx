@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
+import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
@@ -39,6 +40,7 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <Navbar />
           {children}
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>

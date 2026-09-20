@@ -73,6 +73,77 @@
     },
     "logout": "Sign out"
   },
+  "Footer": {
+    "copyright": "© {year} Superentreprise. All rights reserved.",
+    "sections": {
+      "product": {
+        "title": "Product",
+        "links": {
+          "overview": "Overview",
+          "features": "Features",
+          "solutions": "Solutions",
+          "tutorials": "Tutorials",
+          "pricing": "Pricing",
+          "releases": "Releases"
+        }
+      },
+      "company": {
+        "title": "Company",
+        "links": {
+          "about": "About us",
+          "careers": "Careers",
+          "press": "Press",
+          "news": "News",
+          "mediaKit": "Media kit",
+          "contact": "Contact"
+        }
+      },
+      "resources": {
+        "title": "Resources",
+        "links": {
+          "blog": "Blog",
+          "newsletter": "Newsletter",
+          "events": "Events",
+          "helpCentre": "Help centre",
+          "tutorials": "Tutorials",
+          "support": "Support"
+        }
+      },
+      "useCases": {
+        "title": "Use cases",
+        "links": {
+          "startups": "Startups",
+          "enterprise": "Enterprise",
+          "government": "Government",
+          "saas": "SaaS",
+          "marketplaces": "Marketplaces",
+          "ecommerce": "Ecommerce"
+        }
+      },
+      "social": {
+        "title": "Social",
+        "links": {
+          "twitter": "Twitter",
+          "linkedin": "LinkedIn",
+          "facebook": "Facebook",
+          "github": "GitHub",
+          "angellist": "AngelList",
+          "dribbble": "Dribbble"
+        }
+      },
+      "legal": {
+        "title": "Legal",
+        "links": {
+          "terms": "Terms",
+          "privacy": "Privacy",
+          "cookies": "Cookies",
+          "licenses": "Licenses",
+          "settings": "Settings",
+          "contact": "Contact"
+        }
+      }
+    }
+  },
   "Home": {
     "title": "Welcome to Superentreprise"
   },
