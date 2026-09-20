@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { safeNextPath } from '@/lib/safe-next-path'
 import { createClient } from '@/lib/supabase/client'
+import { GoogleAuth } from '@/components/google-auth'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -99,6 +100,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
               </Link>
             </div>
           </form>
+          <GoogleAuth />
         </CardContent>
       </Card>
     </div>

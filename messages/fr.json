@@ -20,6 +20,8 @@
   },
   "Auth": {
     "genericError": "Une erreur est survenue",
+    "or": "ou",
+    "google": "Continuer avec Google",
     "email": "E-mail",
     "password": "Mot de passe",
     "login": {

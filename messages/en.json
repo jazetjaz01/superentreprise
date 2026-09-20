@@ -20,6 +20,8 @@
   },
   "Auth": {
     "genericError": "An error occurred",
+    "or": "or",
+    "google": "Continue with Google",
     "email": "Email",
     "password": "Password",
     "login": {

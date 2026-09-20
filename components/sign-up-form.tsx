@@ -5,6 +5,7 @@ import { useState } from 'react'
 
 import { cn } from '@/lib/utils'
 import { createClient } from '@/lib/supabase/client'
+import { GoogleAuth } from '@/components/google-auth'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -112,6 +113,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
               </Link>
             </div>
           </form>
+          <GoogleAuth />
         </CardContent>
       </Card>
     </div>

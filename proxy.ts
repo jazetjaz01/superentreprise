@@ -8,9 +8,12 @@ const handleI18n = createMiddleware(routing)
 export async function proxy(request: NextRequest) {
   const sessionResponse = await updateSession(request)
 
-  // Unauthenticated redirect, or the locale-less /auth/confirm route handler.
+  // Unauthenticated redirect, or one of the locale-less auth route handlers.
+  const { pathname } = request.nextUrl
   const isRedirect = sessionResponse.status >= 300 && sessionResponse.status < 400
-  if (isRedirect || request.nextUrl.pathname.startsWith('/auth/confirm')) {
+  const isAuthRouteHandler =
+    pathname.startsWith('/auth/confirm') || pathname.startsWith('/auth/oauth')
+  if (isRedirect || isAuthRouteHandler) {
     return sessionResponse
   }
 
