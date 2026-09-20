@@ -147,6 +147,28 @@
   "Home": {
     "title": "Welcome to Superentreprise"
   },
+  "Profile": {
+    "anonymous": "User"
+  },
+  "Composer": {
+    "start": "Start a post",
+    "photo": "Photo",
+    "dialogTitle": "Create a post",
+    "textPlaceholder": "What do you want to talk about?",
+    "addPhoto": "Add a photo",
+    "removePhoto": "Remove photo",
+    "previewAlt": "Image preview",
+    "publish": "Post",
+    "publishing": "Posting...",
+    "fileType": "Unsupported format (JPEG, PNG, WebP or GIF).",
+    "fileTooLarge": "The image must not exceed 5 MB.",
+    "error": "Unable to publish the post. Please try again."
+  },
+  "Feed": {
+    "empty": "No posts yet. Be the first to post!",
+    "anonymous": "User",
+    "imageAlt": "Image posted by {name}"
+  },
   "Protected": {
     "hello": "Hello {email}"
   }

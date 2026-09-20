@@ -3,20 +3,24 @@ import Image from "next/image";
 type UserAvatarProps = {
   name: string;
   avatarUrl?: string | null;
+  size?: number;
 };
 
-export const UserAvatar = ({ name, avatarUrl }: UserAvatarProps) => {
+export const UserAvatar = ({ name, avatarUrl, size = 32 }: UserAvatarProps) => {
+  const dimensions = { width: size, height: size };
+
   if (avatarUrl) {
     return (
       <Image
         src={avatarUrl}
         alt={name}
         title={name}
-        width={32}
-        height={32}
+        width={size}
+        height={size}
         unoptimized
         referrerPolicy="no-referrer"
-        className="size-8 rounded-full object-cover"
+        style={dimensions}
+        className="shrink-0 rounded-full object-cover"
       />
     );
   }
@@ -24,7 +28,8 @@ export const UserAvatar = ({ name, avatarUrl }: UserAvatarProps) => {
   return (
     <span
       title={name}
-      className="flex size-8 items-center justify-center rounded-full bg-muted text-sm font-medium uppercase"
+      style={{ ...dimensions, fontSize: size * 0.4 }}
+      className="flex shrink-0 items-center justify-center rounded-full bg-muted font-medium uppercase"
     >
       {name.trim().charAt(0)}
     </span>

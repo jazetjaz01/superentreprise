@@ -147,6 +147,28 @@
   "Home": {
     "title": "Bienvenue sur Superentreprise"
   },
+  "Profile": {
+    "anonymous": "Utilisateur"
+  },
+  "Composer": {
+    "start": "Commencer un post",
+    "photo": "Photo",
+    "dialogTitle": "Créer un post",
+    "textPlaceholder": "De quoi voulez-vous discuter ?",
+    "addPhoto": "Ajouter une photo",
+    "removePhoto": "Retirer la photo",
+    "previewAlt": "Aperçu de l'image",
+    "publish": "Publier",
+    "publishing": "Publication...",
+    "fileType": "Format non pris en charge (JPEG, PNG, WebP ou GIF).",
+    "fileTooLarge": "L'image ne doit pas dépasser 5 Mo.",
+    "error": "Impossible de publier le post. Veuillez réessayer."
+  },
+  "Feed": {
+    "empty": "Aucun post pour le moment. Soyez le premier à publier !",
+    "anonymous": "Utilisateur",
+    "imageAlt": "Image publiée par {name}"
+  },
   "Protected": {
     "hello": "Bonjour {email}"
   }
