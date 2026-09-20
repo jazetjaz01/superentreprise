@@ -1,5 +1,6 @@
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Menu } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -11,10 +12,12 @@ import { Logo } from "@/components/logo";
 import { NavMenu } from "@/components/nav-menu";
 
 export const NavigationSheet = () => {
+  const t = useTranslations("Navbar");
+
   return (
     <Sheet>
       <VisuallyHidden>
-        <SheetTitle>Navigation Menu</SheetTitle>
+        <SheetTitle>{t("menuTitle")}</SheetTitle>
       </VisuallyHidden>
 
       <SheetTrigger render={<Button size="icon" variant="outline" />}><Menu /></SheetTrigger>

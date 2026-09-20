@@ -1,0 +1,73 @@
+{
+  "Navbar": {
+    "home": "Home",
+    "network": "Network",
+    "jobs": "Jobs",
+    "messaging": "Messaging",
+    "notifications": "Notifications",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "menuTitle": "Navigation menu"
+  },
+  "LanguageSwitcher": {
+    "label": "Change language",
+    "fr": "Français",
+    "en": "English"
+  },
+  "Auth": {
+    "genericError": "An error occurred",
+    "email": "Email",
+    "password": "Password",
+    "login": {
+      "title": "Sign in",
+      "description": "Enter your email below to sign in to your account",
+      "forgotPassword": "Forgot your password?",
+      "submit": "Sign in",
+      "submitting": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "signUpLink": "Sign up"
+    },
+    "signUp": {
+      "title": "Sign up",
+      "description": "Create a new account",
+      "repeatPassword": "Repeat password",
+      "passwordsMismatch": "Passwords do not match",
+      "submit": "Sign up",
+      "submitting": "Creating an account...",
+      "hasAccount": "Already have an account?",
+      "signInLink": "Sign in"
+    },
+    "signUpSuccess": {
+      "title": "Thank you for signing up!",
+      "description": "Check your email to confirm",
+      "body": "You've successfully signed up. Please check your email to confirm your account before signing in."
+    },
+    "forgotPassword": {
+      "successTitle": "Check your email",
+      "successDescription": "Password reset instructions sent",
+      "successBody": "If you registered using your email and password, you will receive a password reset email.",
+      "title": "Reset your password",
+      "description": "Type in your email and we'll send you a link to reset your password",
+      "submit": "Send reset email",
+      "submitting": "Sending...",
+      "hasAccount": "Already have an account?",
+      "signInLink": "Sign in"
+    },
+    "updatePassword": {
+      "title": "Reset your password",
+      "description": "Please enter your new password below.",
+      "newPassword": "New password",
+      "submit": "Save new password",
+      "submitting": "Saving..."
+    },
+    "error": {
+      "title": "Sorry, something went wrong.",
+      "code": "Error code: {error}",
+      "unspecified": "An unspecified error occurred."
+    },
+    "logout": "Sign out"
+  },
+  "Protected": {
+    "hello": "Hello {email}"
+  }
+}

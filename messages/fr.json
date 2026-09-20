@@ -1,0 +1,73 @@
+{
+  "Navbar": {
+    "home": "Accueil",
+    "network": "Réseau",
+    "jobs": "Emploi",
+    "messaging": "Messagerie",
+    "notifications": "Notifications",
+    "signIn": "Se connecter",
+    "signUp": "S'enregistrer",
+    "menuTitle": "Menu de navigation"
+  },
+  "LanguageSwitcher": {
+    "label": "Changer de langue",
+    "fr": "Français",
+    "en": "English"
+  },
+  "Auth": {
+    "genericError": "Une erreur est survenue",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "login": {
+      "title": "Connexion",
+      "description": "Saisissez votre e-mail pour vous connecter à votre compte",
+      "forgotPassword": "Mot de passe oublié ?",
+      "submit": "Se connecter",
+      "submitting": "Connexion...",
+      "noAccount": "Pas encore de compte ?",
+      "signUpLink": "S'enregistrer"
+    },
+    "signUp": {
+      "title": "Inscription",
+      "description": "Créez un nouveau compte",
+      "repeatPassword": "Répéter le mot de passe",
+      "passwordsMismatch": "Les mots de passe ne correspondent pas",
+      "submit": "S'enregistrer",
+      "submitting": "Création du compte...",
+      "hasAccount": "Vous avez déjà un compte ?",
+      "signInLink": "Se connecter"
+    },
+    "signUpSuccess": {
+      "title": "Merci de votre inscription !",
+      "description": "Vérifiez votre e-mail pour confirmer",
+      "body": "Votre inscription a bien été prise en compte. Veuillez consulter votre e-mail pour confirmer votre compte avant de vous connecter."
+    },
+    "forgotPassword": {
+      "successTitle": "Vérifiez votre e-mail",
+      "successDescription": "Les instructions de réinitialisation ont été envoyées",
+      "successBody": "Si vous vous êtes inscrit avec votre e-mail et un mot de passe, vous allez recevoir un e-mail de réinitialisation du mot de passe.",
+      "title": "Réinitialiser votre mot de passe",
+      "description": "Saisissez votre e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe",
+      "submit": "Envoyer l'e-mail de réinitialisation",
+      "submitting": "Envoi...",
+      "hasAccount": "Vous avez déjà un compte ?",
+      "signInLink": "Se connecter"
+    },
+    "updatePassword": {
+      "title": "Réinitialiser votre mot de passe",
+      "description": "Veuillez saisir votre nouveau mot de passe ci-dessous.",
+      "newPassword": "Nouveau mot de passe",
+      "submit": "Enregistrer le nouveau mot de passe",
+      "submitting": "Enregistrement..."
+    },
+    "error": {
+      "title": "Désolé, une erreur est survenue.",
+      "code": "Code d'erreur : {error}",
+      "unspecified": "Une erreur inconnue est survenue."
+    },
+    "logout": "Se déconnecter"
+  },
+  "Protected": {
+    "hello": "Bonjour {email}"
+  }
+}
