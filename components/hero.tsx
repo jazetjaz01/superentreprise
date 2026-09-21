@@ -4,7 +4,7 @@ import { OAuthButtons } from "@/components/oauth-buttons";
 import { Link } from "@/i18n/navigation";
 
 const legalLink = (chunks: React.ReactNode) => (
-  <Link href="#" className="font-semibold text-blue-700 hover:underline">
+  <Link href="#" className="font-bold text-foreground hover:underline">
     {chunks}
   </Link>
 );
@@ -34,7 +34,7 @@ export default function Hero() {
             {t("newHere")}{" "}
             <Link
               href="/auth/sign-up"
-              className="font-semibold text-blue-700 hover:underline"
+              className="font-bold text-foreground hover:underline"
             >
               {t("signUp")}
             </Link>

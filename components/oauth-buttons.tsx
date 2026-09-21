@@ -39,13 +39,12 @@ export function OAuthButtons() {
     <div className="flex flex-col gap-3">
       <Button
         type="button"
+        variant="outline"
         disabled={pending !== null}
         onClick={() => signIn('google')}
-        className="h-12 w-full rounded-full bg-blue-600 text-base font-medium text-white hover:bg-blue-700"
+        className="h-12 w-full rounded-full text-base font-medium"
       >
-        <span className="flex size-8 items-center justify-center rounded-full bg-white">
-          <GoogleIcon className="size-5" />
-        </span>
+        <GoogleIcon className="size-6" />
         {t('google')}
       </Button>
       <Button
