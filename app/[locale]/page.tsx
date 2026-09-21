@@ -16,8 +16,8 @@ export default async function Home() {
   if (!claims) {
     return (
       <>
-        <Hero />
         <ImageCarouselSection />
+        <Hero />
       </>
     );
   }

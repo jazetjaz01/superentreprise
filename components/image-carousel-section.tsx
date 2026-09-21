@@ -22,7 +22,7 @@ export default function ImageCarouselSection() {
   const t = useTranslations("ImageCarouselSection");
 
   return (
-    <section className="mx-auto w-full max-w-(--breakpoint-xl) px-4 py-12 sm:px-6 lg:px-8">
+    <section className="mx-auto w-full max-w-(--breakpoint-xl) px-4 pt-12 pb-0 sm:px-6 lg:px-8">
       <div className="grid gap-4 lg:grid-cols-2 lg:gap-6">
         <Carousel
           opts={{ loop: true }}
