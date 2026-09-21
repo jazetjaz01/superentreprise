@@ -12,6 +12,7 @@ import {
 const slides = [
   { src: "/home/paper-se_1.jpg", altKey: "slide1Alt" },
   { src: "/home/paper-se_2.jpg", altKey: "slide2Alt" },
+  { src: "/home/paper-se_3.jpg", altKey: "slide3Alt" },
 ] as const;
 
 const arrowClassName =
