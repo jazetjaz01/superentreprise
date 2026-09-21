@@ -14,11 +14,10 @@ export default async function Home() {
 
   if (!claims) {
     return (
-      <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-4 py-10 sm:px-6">
+      <main className="flex flex-1 items-center justify-center p-6">
         <h1 className="text-center text-4xl font-semibold tracking-tight">
           {t("title")}
         </h1>
-        <PostFeed />
       </main>
     );
   }
