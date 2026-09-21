@@ -43,13 +43,14 @@ export default function Hero() {
       </div>
 
       <Image
-        src="/hero-illustration.svg"
+        src="/home/hero_1.jpg"
         alt=""
         aria-hidden="true"
-        width={800}
-        height={700}
+        width={1746}
+        height={1069}
+        sizes="(min-width: 1024px) 50vw, 100vw"
         priority
-        className="mx-auto h-auto w-full max-w-xl"
+        className="h-auto w-full self-start rounded-2xl"
       />
     </section>
   );
