@@ -15,7 +15,7 @@ export default function Hero() {
   return (
     <section className="mx-auto grid w-full max-w-(--breakpoint-xl) flex-1 items-center gap-12 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:px-8">
       <div className="mx-auto w-full max-w-md lg:mx-0 lg:max-w-xl">
-        <h1 className="text-4xl leading-[1.2] font-semibold tracking-tight md:text-5xl lg:text-[3.25rem]">
+        <h1 className="text-4xl leading-[1.2] font-medium tracking-tight md:text-5xl lg:text-[3.25rem]">
           {t("title")}
         </h1>
 
