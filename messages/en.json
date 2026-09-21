@@ -144,8 +144,14 @@
       }
     }
   },
-  "Home": {
-    "title": "Welcome to Superentreprise"
+  "Hero": {
+    "title": "Welcome to your professional community",
+    "google": "Continue with Google",
+    "linkedin": "Continue with LinkedIn",
+    "legal": "By clicking Continue to join or sign in, you agree to Superentreprise's <terms>Terms of Use</terms>, <privacy>Privacy Policy</privacy> and <cookies>Cookie Policy</cookies>.",
+    "newHere": "New to Superentreprise?",
+    "signUp": "Join now",
+    "error": "Unable to sign in. Please try again."
   },
   "Profile": {
     "anonymous": "User"

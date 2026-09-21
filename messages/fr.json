@@ -144,8 +144,14 @@
       }
     }
   },
-  "Home": {
-    "title": "Bienvenue sur Superentreprise"
+  "Hero": {
+    "title": "Bienvenue dans votre communauté professionnelle",
+    "google": "Continuer avec Google",
+    "linkedin": "Continuer avec LinkedIn",
+    "legal": "En cliquant sur Continuer pour vous inscrire ou vous identifier, vous acceptez les <terms>Conditions d'utilisation</terms>, la <privacy>Politique de confidentialité</privacy> et la <cookies>Politique relative aux cookies</cookies> de Superentreprise.",
+    "newHere": "Nouveau sur Superentreprise ?",
+    "signUp": "S'inscrire",
+    "error": "Connexion impossible. Veuillez réessayer."
   },
   "Profile": {
     "anonymous": "Utilisateur"

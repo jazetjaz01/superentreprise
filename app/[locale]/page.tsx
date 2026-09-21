@@ -1,25 +1,19 @@
 import { getTranslations } from "next-intl/server";
 
+import Hero from "@/components/hero";
 import { PostComposer } from "@/components/post-composer";
 import { PostFeed } from "@/components/post-feed";
 import { ProfileCard } from "@/components/profile-card";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function Home() {
-  const t = await getTranslations("Home");
   const tProfile = await getTranslations("Profile");
   const supabase = await createClient();
   const { data } = await supabase.auth.getClaims();
   const claims = data?.claims;
 
   if (!claims) {
-    return (
-      <main className="flex flex-1 items-center justify-center p-6">
-        <h1 className="text-center text-4xl font-semibold tracking-tight">
-          {t("title")}
-        </h1>
-      </main>
-    );
+    return <Hero />;
   }
 
   const { data: profile } = await supabase
