@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 
 import Hero from "@/components/hero";
+import ImageCarouselSection from "@/components/image-carousel-section";
 import { PostComposer } from "@/components/post-composer";
 import { PostFeed } from "@/components/post-feed";
 import { ProfileCard } from "@/components/profile-card";
@@ -13,7 +14,12 @@ export default async function Home() {
   const claims = data?.claims;
 
   if (!claims) {
-    return <Hero />;
+    return (
+      <>
+        <Hero />
+        <ImageCarouselSection />
+      </>
+    );
   }
 
   const { data: profile } = await supabase

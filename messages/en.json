@@ -153,6 +153,15 @@
     "signUp": "Join now",
     "error": "Unable to sign in. Please try again."
   },
+  "ImageCarouselSection": {
+    "carouselLabel": "Image gallery",
+    "previous": "Previous image",
+    "next": "Next image",
+    "slide1Alt": "Superentreprise logo printed on textured paper",
+    "slide2Alt": "Superentreprise logo printed on a white sheet",
+    "title": "Share your expertise!",
+    "body": "Joining Superentreprise means becoming part of a community of professionals, entrepreneurs and talents who connect every day. Share your ideas, grow your network and seize new opportunities to move your career and your projects forward."
+  },
   "Profile": {
     "anonymous": "User"
   },
