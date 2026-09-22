@@ -42,58 +42,60 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     .order("created_at", { ascending: true });
 
   return (
-    <div className="mx-auto grid w-full max-w-5xl gap-4 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px]">
-      <div className="min-w-0">
-        <Card className="overflow-hidden pt-0">
-          <ProfileBanner
-            userId={profile.id}
-            bannerUrl={profile.banner_url}
-            isOwnProfile={isOwnProfile}
-          />
-          <CardContent className="relative">
-            <div className="-mt-12 flex items-end justify-between gap-3 sm:-mt-16">
-              <div className="rounded-full ring-4 ring-card">
-                <UserAvatar name={name} avatarUrl={profile.avatar_url} size={96} />
+    <div className="w-full flex-1 bg-muted">
+      <div className="mx-auto grid w-full max-w-5xl gap-4 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px]">
+        <div className="min-w-0">
+          <Card className="overflow-hidden pt-0">
+            <ProfileBanner
+              userId={profile.id}
+              bannerUrl={profile.banner_url}
+              isOwnProfile={isOwnProfile}
+            />
+            <CardContent className="relative">
+              <div className="-mt-12 flex items-end justify-between gap-3 sm:-mt-16">
+                <div className="rounded-full ring-4 ring-card">
+                  <UserAvatar name={name} avatarUrl={profile.avatar_url} size={96} />
+                </div>
+                {isOwnProfile && (
+                  <EditProfileDialog
+                    userId={profile.id}
+                    fullName={profile.full_name ?? ""}
+                    headline={profile.headline}
+                    about={profile.about}
+                    avatarUrl={profile.avatar_url}
+                  />
+                )}
               </div>
-              {isOwnProfile && (
-                <EditProfileDialog
-                  userId={profile.id}
-                  fullName={profile.full_name ?? ""}
-                  headline={profile.headline}
-                  about={profile.about}
-                  avatarUrl={profile.avatar_url}
-                />
+              <h1 className="mt-3 text-2xl font-semibold">{name}</h1>
+              {profile.headline && (
+                <p className="mt-1 text-muted-foreground">{profile.headline}</p>
               )}
-            </div>
-            <h1 className="mt-3 text-2xl font-semibold">{name}</h1>
-            {profile.headline && (
-              <p className="mt-1 text-muted-foreground">{profile.headline}</p>
-            )}
-          </CardContent>
-        </Card>
-
-        {profile.about && (
-          <Card className="mt-4">
-            <CardContent>
-              <h2 className="text-lg font-semibold">{t("about")}</h2>
-              <p className="mt-2 whitespace-pre-wrap text-foreground/80">
-                {profile.about}
-              </p>
             </CardContent>
           </Card>
-        )}
 
-        <ExperienceSection profileId={profile.id} isOwnProfile={isOwnProfile} />
-        <EducationSection profileId={profile.id} isOwnProfile={isOwnProfile} />
-        <SkillsSection
-          profileId={profile.id}
-          isOwnProfile={isOwnProfile}
-          skills={skills ?? []}
-        />
-      </div>
+          {profile.about && (
+            <Card className="mt-4">
+              <CardContent>
+                <h2 className="text-lg font-semibold">{t("about")}</h2>
+                <p className="mt-2 whitespace-pre-wrap text-foreground/80">
+                  {profile.about}
+                </p>
+              </CardContent>
+            </Card>
+          )}
 
-      <div className="flex flex-col gap-4">
-        <ProfileUrlCard path={`/profile/${slug}`} />
+          <ExperienceSection profileId={profile.id} isOwnProfile={isOwnProfile} />
+          <EducationSection profileId={profile.id} isOwnProfile={isOwnProfile} />
+          <SkillsSection
+            profileId={profile.id}
+            isOwnProfile={isOwnProfile}
+            skills={skills ?? []}
+          />
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <ProfileUrlCard path={`/profile/${slug}`} />
+        </div>
       </div>
     </div>
   );
