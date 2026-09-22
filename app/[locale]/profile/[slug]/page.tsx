@@ -43,7 +43,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
   return (
     <div className="w-full flex-1 bg-muted">
-      <div className="mx-auto grid w-full max-w-5xl gap-4 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px]">
+      <div className="mx-auto grid w-full max-w-(--breakpoint-xl) gap-4 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-8">
         <div className="min-w-0">
           <Card className="overflow-hidden pt-0">
             <ProfileBanner
