@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import type { ComponentProps } from "react";
+import { cn } from "cn";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -11,12 +12,18 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Link } from "@/i18n/navigation";
 
-export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => {
+export const NavMenu = ({
+  orientation,
+  ...props
+}: ComponentProps<typeof NavigationMenu>) => {
   const t = useTranslations("Navbar");
+  const isVertical = orientation === "vertical";
 
   return (
-    <NavigationMenu {...props}>
-      <NavigationMenuList className="data-[orientation=vertical]:-ms-2 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-start">
+    <NavigationMenu orientation={orientation} {...props}>
+      <NavigationMenuList
+        className={cn(isVertical && "-ms-2 flex-col items-start justify-start")}
+      >
         <NavigationMenuItem>
           <NavigationMenuLink className={navigationMenuTriggerStyle()} render={<Link href="/" />}>{t("home")}</NavigationMenuLink>
         </NavigationMenuItem>

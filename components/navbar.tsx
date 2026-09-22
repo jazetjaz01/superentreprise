@@ -54,7 +54,7 @@ const Navbar = async () => {
 
           {/* Mobile Menu */}
           <div className="md:hidden">
-            <NavigationSheet />
+            <NavigationSheet isAuthenticated={!!claims} />
           </div>
         </div>
       </div>
