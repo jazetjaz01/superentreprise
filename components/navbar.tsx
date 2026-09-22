@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/logo";
 import { LogoutButton } from "@/components/logout-button";
 import { NavMenu } from "@/components/nav-menu";
@@ -41,12 +42,13 @@ const Navbar = async () => {
               >
                 {t("signIn")}
               </Link>
-              <Link
-                href="/auth/sign-up"
-                className="text-sm font-medium hover:underline"
+              <Button
+                nativeButton={false}
+                render={<Link href="/auth/sign-up" />}
+                className="rounded-full bg-black text-white hover:bg-black/80"
               >
                 {t("signUp")}
-              </Link>
+              </Button>
             </>
           )}
 
