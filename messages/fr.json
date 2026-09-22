@@ -181,6 +181,17 @@
       "fileTooLarge": "L'image ne doit pas dépasser 2 Mo.",
       "error": "Impossible d'enregistrer le profil. Veuillez réessayer."
     },
+    "banner": {
+      "trigger": "Changer la photo de couverture",
+      "fileType": "Format non pris en charge (JPEG, PNG, WebP ou GIF).",
+      "fileTooLarge": "L'image ne doit pas dépasser 5 Mo.",
+      "error": "Impossible d'enregistrer la photo de couverture. Veuillez réessayer."
+    },
+    "publicUrl": {
+      "title": "Profil public et URL",
+      "copy": "Copier le lien",
+      "copied": "Lien copié"
+    },
     "experience": {
       "sectionTitle": "Expérience",
       "empty": "Aucune expérience ajoutée.",

@@ -32,6 +32,7 @@ type EditProfileDialogProps = {
   headline: string | null
   about: string | null
   avatarUrl: string | null
+  className?: string
 }
 
 export const EditProfileDialog = ({
@@ -40,6 +41,7 @@ export const EditProfileDialog = ({
   headline,
   about,
   avatarUrl,
+  className,
 }: EditProfileDialogProps) => {
   const t = useTranslations('ProfilePage.edit')
   const router = useRouter()
@@ -120,12 +122,12 @@ export const EditProfileDialog = ({
     <>
       <Button
         variant="outline"
-        size="sm"
-        className="gap-2"
+        size="icon-sm"
+        className={className}
+        aria-label={t('trigger')}
         onClick={() => setOpen(true)}
       >
         <Pencil className="size-3.5" />
-        {t('trigger')}
       </Button>
 
       <Dialog open={open} onOpenChange={setOpen}>

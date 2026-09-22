@@ -181,6 +181,17 @@
       "fileTooLarge": "The image must not exceed 2 MB.",
       "error": "Unable to save the profile. Please try again."
     },
+    "banner": {
+      "trigger": "Change cover photo",
+      "fileType": "Unsupported format (JPEG, PNG, WebP or GIF).",
+      "fileTooLarge": "The image must not exceed 5 MB.",
+      "error": "Unable to save the cover photo. Please try again."
+    },
+    "publicUrl": {
+      "title": "Public profile & URL",
+      "copy": "Copy link",
+      "copied": "Link copied"
+    },
     "experience": {
       "sectionTitle": "Experience",
       "empty": "No experience added yet.",
