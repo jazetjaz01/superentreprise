@@ -167,7 +167,65 @@
     "anonymous": "User"
   },
   "ProfilePage": {
-    "about": "About"
+    "about": "About",
+    "edit": {
+      "trigger": "Edit profile",
+      "title": "Edit profile",
+      "fullName": "Full name",
+      "headline": "Headline",
+      "about": "About",
+      "changePhoto": "Change photo",
+      "save": "Save",
+      "saving": "Saving...",
+      "fileType": "Unsupported format (JPEG, PNG, WebP or GIF).",
+      "fileTooLarge": "The image must not exceed 2 MB.",
+      "error": "Unable to save the profile. Please try again."
+    },
+    "experience": {
+      "sectionTitle": "Experience",
+      "empty": "No experience added yet.",
+      "add": "Add experience",
+      "addTitle": "Add experience",
+      "editTitle": "Edit experience",
+      "edit": "Edit",
+      "delete": "Delete",
+      "titleLabel": "Job title",
+      "company": "Company",
+      "location": "Location",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "current": "I currently work here",
+      "present": "Present",
+      "description": "Description",
+      "save": "Save",
+      "saving": "Saving...",
+      "error": "Something went wrong. Please try again."
+    },
+    "education": {
+      "sectionTitle": "Education",
+      "empty": "No education added yet.",
+      "add": "Add education",
+      "addTitle": "Add education",
+      "editTitle": "Edit education",
+      "edit": "Edit",
+      "delete": "Delete",
+      "school": "School",
+      "degree": "Degree",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "description": "Description",
+      "save": "Save",
+      "saving": "Saving...",
+      "error": "Something went wrong. Please try again."
+    },
+    "skills": {
+      "sectionTitle": "Skills",
+      "empty": "No skills added yet.",
+      "addPlaceholder": "Add a skill",
+      "add": "Add",
+      "remove": "Remove {name}",
+      "error": "Something went wrong. Please try again."
+    }
   },
   "Composer": {
     "start": "Start a post",

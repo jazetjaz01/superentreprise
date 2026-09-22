@@ -167,7 +167,65 @@
     "anonymous": "Utilisateur"
   },
   "ProfilePage": {
-    "about": "À propos"
+    "about": "À propos",
+    "edit": {
+      "trigger": "Modifier le profil",
+      "title": "Modifier le profil",
+      "fullName": "Nom complet",
+      "headline": "Titre",
+      "about": "À propos",
+      "changePhoto": "Changer la photo",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "fileType": "Format non pris en charge (JPEG, PNG, WebP ou GIF).",
+      "fileTooLarge": "L'image ne doit pas dépasser 2 Mo.",
+      "error": "Impossible d'enregistrer le profil. Veuillez réessayer."
+    },
+    "experience": {
+      "sectionTitle": "Expérience",
+      "empty": "Aucune expérience ajoutée.",
+      "add": "Ajouter une expérience",
+      "addTitle": "Ajouter une expérience",
+      "editTitle": "Modifier l'expérience",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "titleLabel": "Intitulé du poste",
+      "company": "Entreprise",
+      "location": "Lieu",
+      "startDate": "Date de début",
+      "endDate": "Date de fin",
+      "current": "J'occupe actuellement ce poste",
+      "present": "Aujourd'hui",
+      "description": "Description",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "error": "Une erreur est survenue. Veuillez réessayer."
+    },
+    "education": {
+      "sectionTitle": "Formation",
+      "empty": "Aucune formation ajoutée.",
+      "add": "Ajouter une formation",
+      "addTitle": "Ajouter une formation",
+      "editTitle": "Modifier la formation",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "school": "Établissement",
+      "degree": "Diplôme",
+      "startDate": "Date de début",
+      "endDate": "Date de fin",
+      "description": "Description",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "error": "Une erreur est survenue. Veuillez réessayer."
+    },
+    "skills": {
+      "sectionTitle": "Compétences",
+      "empty": "Aucune compétence ajoutée.",
+      "addPlaceholder": "Ajouter une compétence",
+      "add": "Ajouter",
+      "remove": "Retirer {name}",
+      "error": "Une erreur est survenue. Veuillez réessayer."
+    }
   },
   "Composer": {
     "start": "Commencer un post",
