@@ -166,6 +166,9 @@
   "Profile": {
     "anonymous": "Utilisateur"
   },
+  "ProfilePage": {
+    "about": "À propos"
+  },
   "Composer": {
     "start": "Commencer un post",
     "photo": "Photo",

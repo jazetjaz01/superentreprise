@@ -15,9 +15,19 @@ const Navbar = async () => {
   const { data } = await supabase.auth.getClaims();
   const claims = data?.claims;
   const metadata = claims?.user_metadata;
+
+  const { data: profile } = claims
+    ? await supabase
+        .from("profiles")
+        .select("full_name, avatar_url, slug")
+        .eq("id", claims.sub)
+        .maybeSingle()
+    : { data: null };
+
   const displayName: string =
-    metadata?.full_name ?? metadata?.name ?? claims?.email ?? "";
-  const avatarUrl: string | undefined = metadata?.avatar_url ?? metadata?.picture;
+    profile?.full_name ?? metadata?.full_name ?? metadata?.name ?? claims?.email ?? "";
+  const avatarUrl: string | null | undefined =
+    profile?.avatar_url ?? metadata?.avatar_url ?? metadata?.picture;
 
   return (
     <nav className="h-16 border-b bg-background">
@@ -31,7 +41,13 @@ const Navbar = async () => {
           <LanguageSwitcher />
           {claims ? (
             <>
-              <UserAvatar name={displayName} avatarUrl={avatarUrl} />
+              {profile?.slug ? (
+                <Link href={`/profile/${profile.slug}`}>
+                  <UserAvatar name={displayName} avatarUrl={avatarUrl} />
+                </Link>
+              ) : (
+                <UserAvatar name={displayName} avatarUrl={avatarUrl} />
+              )}
               <LogoutButton variant="outline" />
             </>
           ) : (
