@@ -34,7 +34,7 @@ export default async function Home() {
     profile?.avatar_url ?? claims.user_metadata?.avatar_url ?? null;
 
   return (
-    <div className="mx-auto grid w-full max-w-(--breakpoint-xl) flex-1 content-start gap-6 px-4 py-6 sm:px-6 md:grid-cols-[240px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)_300px] lg:px-8 bg-muted">
+    <div className="mx-auto grid w-full max-w-(--breakpoint-xl) flex-1 content-start gap-6 px-4 py-6 sm:px-6 md:grid-cols-[240px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)_300px] lg:px-8 ">
       <aside className="hidden md:block">
         <ProfileCard
           name={name}
