@@ -260,7 +260,9 @@
   "Feed": {
     "empty": "No posts yet. Be the first to post!",
     "anonymous": "User",
-    "imageAlt": "Image posted by {name}"
+    "imageAlt": "Image posted by {name}",
+    "delete": "Delete post",
+    "deleteError": "Unable to delete the post. Please try again."
   },
   "Ads": {
     "placeholder": "Ad space"

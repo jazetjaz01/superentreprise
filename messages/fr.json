@@ -260,7 +260,9 @@
   "Feed": {
     "empty": "Aucun post pour le moment. Soyez le premier à publier !",
     "anonymous": "Utilisateur",
-    "imageAlt": "Image publiée par {name}"
+    "imageAlt": "Image publiée par {name}",
+    "delete": "Supprimer le post",
+    "deleteError": "Impossible de supprimer le post. Veuillez réessayer."
   },
   "Ads": {
     "placeholder": "Emplacement publicitaire"

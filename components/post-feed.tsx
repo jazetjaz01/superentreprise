@@ -1,12 +1,14 @@
 import Image from "next/image";
 import { getFormatter, getTranslations } from "next-intl/server";
 
+import { PostDeleteButton } from "@/components/post-delete-button";
 import { Card, CardContent } from "@/components/ui/card";
 import { UserAvatar } from "@/components/user-avatar";
 import { createClient } from "@/lib/supabase/server";
 
 type FeedPost = {
   id: string;
+  author_id: string;
   content: string | null;
   image_path: string | null;
   created_at: string;
@@ -18,13 +20,19 @@ export const PostFeed = async () => {
   const format = await getFormatter();
   const supabase = await createClient();
 
-  const { data } = await supabase
-    .from("posts")
-    .select("id, content, image_path, created_at, profiles(full_name, avatar_url)")
-    .order("created_at", { ascending: false })
-    .limit(20)
-    .overrideTypes<FeedPost[], { merge: false }>();
+  const [{ data }, { data: claimsData }] = await Promise.all([
+    supabase
+      .from("posts")
+      .select(
+        "id, author_id, content, image_path, created_at, profiles(full_name, avatar_url)",
+      )
+      .order("created_at", { ascending: false })
+      .limit(20)
+      .overrideTypes<FeedPost[], { merge: false }>(),
+    supabase.auth.getClaims(),
+  ]);
   const posts = data ?? [];
+  const currentUserId = claimsData?.claims?.sub;
 
   if (posts.length === 0) {
     return (
@@ -61,6 +69,9 @@ export const PostFeed = async () => {
                     })}
                   </p>
                 </div>
+                {currentUserId === post.author_id && (
+                  <PostDeleteButton postId={post.id} imagePath={post.image_path} />
+                )}
               </div>
               {post.content && (
                 <p className="break-words whitespace-pre-wrap">{post.content}</p>
