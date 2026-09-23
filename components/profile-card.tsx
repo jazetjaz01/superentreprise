@@ -22,10 +22,10 @@ export const ProfileCard = ({
       </div>
       <p className="mt-2 font-semibold break-words">{name}</p>
       {headline && (
-        <p className="text-sm text-foreground break-words">{headline}</p>
+        <p className="text-xs text-foreground break-words">{headline}</p>
       )}
       {location && (
-        <p className="text-sm text-foreground break-words">{location}</p>
+        <p className="text-xs text-muted-foreground break-words">{location}</p>
       )}
     </CardContent>
   </Card>
