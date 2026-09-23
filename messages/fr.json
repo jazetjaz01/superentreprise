@@ -257,6 +257,9 @@
     "anonymous": "Utilisateur",
     "imageAlt": "Image publiée par {name}"
   },
+  "Ads": {
+    "placeholder": "Emplacement publicitaire"
+  },
   "Protected": {
     "hello": "Bonjour {email}"
   }
