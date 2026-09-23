@@ -24,7 +24,9 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const [{ data: profile }, { data: claimsData }] = await Promise.all([
     supabase
       .from("profiles")
-      .select("id, full_name, avatar_url, banner_url, headline, about")
+      .select(
+        "id, full_name, avatar_url, banner_url, headline, about, city, region, country",
+      )
       .eq("slug", slug)
       .maybeSingle(),
     supabase.auth.getClaims(),
@@ -34,6 +36,9 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
   const isOwnProfile = claimsData?.claims?.sub === profile.id;
   const name = profile.full_name ?? tProfile("anonymous");
+  const location = [profile.city, profile.region, profile.country]
+    .filter(Boolean)
+    .join(", ");
 
   const { data: skills } = await supabase
     .from("skills")
@@ -63,12 +68,18 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                     headline={profile.headline}
                     about={profile.about}
                     avatarUrl={profile.avatar_url}
+                    city={profile.city}
+                    region={profile.region}
+                    country={profile.country}
                   />
                 )}
               </div>
               <h1 className="mt-3 text-2xl font-semibold">{name}</h1>
               {profile.headline && (
                 <p className="mt-1 text-foreground">{profile.headline}</p>
+              )}
+              {location && (
+                <p className="mt-1 text-sm text-foreground">{location}</p>
               )}
             </CardContent>
           </Card>

@@ -32,6 +32,9 @@ type EditProfileDialogProps = {
   headline: string | null
   about: string | null
   avatarUrl: string | null
+  city: string | null
+  region: string | null
+  country: string | null
   className?: string
 }
 
@@ -41,6 +44,9 @@ export const EditProfileDialog = ({
   headline,
   about,
   avatarUrl,
+  city,
+  region,
+  country,
   className,
 }: EditProfileDialogProps) => {
   const t = useTranslations('ProfilePage.edit')
@@ -50,6 +56,9 @@ export const EditProfileDialog = ({
   const [name, setName] = useState(fullName)
   const [headlineValue, setHeadlineValue] = useState(headline ?? '')
   const [aboutValue, setAboutValue] = useState(about ?? '')
+  const [cityValue, setCityValue] = useState(city ?? '')
+  const [regionValue, setRegionValue] = useState(region ?? '')
+  const [countryValue, setCountryValue] = useState(country ?? '')
   const [file, setFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -104,6 +113,9 @@ export const EditProfileDialog = ({
           full_name: name.trim(),
           headline: headlineValue.trim() || null,
           about: aboutValue.trim() || null,
+          city: cityValue.trim() || null,
+          region: regionValue.trim() || null,
+          country: countryValue.trim() || null,
           ...(newAvatarUrl ? { avatar_url: newAvatarUrl } : {}),
         })
         .eq('id', userId)
@@ -184,6 +196,33 @@ export const EditProfileDialog = ({
                 value={headlineValue}
                 onChange={(e) => setHeadlineValue(e.target.value)}
               />
+            </div>
+
+            <div className="grid grid-cols-3 gap-2">
+              <div className="grid gap-2">
+                <Label htmlFor="city">{t('city')}</Label>
+                <Input
+                  id="city"
+                  value={cityValue}
+                  onChange={(e) => setCityValue(e.target.value)}
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="region">{t('region')}</Label>
+                <Input
+                  id="region"
+                  value={regionValue}
+                  onChange={(e) => setRegionValue(e.target.value)}
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="country">{t('country')}</Label>
+                <Input
+                  id="country"
+                  value={countryValue}
+                  onChange={(e) => setCountryValue(e.target.value)}
+                />
+              </div>
             </div>
 
             <div className="grid gap-2">

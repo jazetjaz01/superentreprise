@@ -12,7 +12,7 @@ export default function Hero() {
   const t = useTranslations("Hero");
 
   return (
-    <section className="mt-4 flex w-full flex-1 flex-col justify-center bg-muted lg:mt-6">
+    <section className="mt-4 flex w-full flex-1 flex-col justify-center bg-slate-200 lg:mt-6">
       <div className="mx-auto grid w-full max-w-(--breakpoint-xl) items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:gap-6 lg:px-8 lg:py-16">
         <h1 className="text-3xl leading-[1.2] font-semibold tracking-tight md:text-4xl lg:text-[3.25rem]">
           {t("title")}
