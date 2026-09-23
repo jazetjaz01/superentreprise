@@ -186,9 +186,11 @@
     },
     "banner": {
       "trigger": "Changer la photo de couverture",
+      "remove": "Supprimer la photo de couverture",
       "fileType": "Format non pris en charge (JPEG, PNG, WebP ou GIF).",
       "fileTooLarge": "L'image ne doit pas dépasser 5 Mo.",
-      "error": "Impossible d'enregistrer la photo de couverture. Veuillez réessayer."
+      "error": "Impossible d'enregistrer la photo de couverture. Veuillez réessayer.",
+      "removeError": "Impossible de supprimer la photo de couverture. Veuillez réessayer."
     },
     "publicUrl": {
       "title": "Profil public et URL",

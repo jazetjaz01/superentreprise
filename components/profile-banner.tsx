@@ -1,6 +1,6 @@
 'use client'
 
-import { Camera } from 'lucide-react'
+import { Camera, X } from 'lucide-react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { useRef, useState } from 'react'
@@ -28,8 +28,10 @@ export const ProfileBanner = ({ userId, bannerUrl, isOwnProfile }: ProfileBanner
   const router = useRouter()
   const fileInput = useRef<HTMLInputElement>(null)
   const [preview, setPreview] = useState<string | null>(null)
+  const [removed, setRemoved] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [isUploading, setIsUploading] = useState(false)
+  const [isRemoving, setIsRemoving] = useState(false)
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0]
@@ -47,6 +49,7 @@ export const ProfileBanner = ({ userId, bannerUrl, isOwnProfile }: ProfileBanner
 
     setError(null)
     setPreview(URL.createObjectURL(selected))
+    setRemoved(false)
     setIsUploading(true)
 
     try {
@@ -79,7 +82,34 @@ export const ProfileBanner = ({ userId, bannerUrl, isOwnProfile }: ProfileBanner
     }
   }
 
-  const shownUrl = preview ?? bannerUrl
+  const handleRemove = async () => {
+    setError(null)
+    setIsRemoving(true)
+
+    try {
+      const supabase = createClient()
+      const { error: removeError } = await supabase.storage
+        .from('banners')
+        .remove([`${userId}/banner`])
+      if (removeError) throw removeError
+
+      const { error: updateError } = await supabase
+        .from('profiles')
+        .update({ banner_url: null })
+        .eq('id', userId)
+      if (updateError) throw updateError
+
+      setPreview(null)
+      setRemoved(true)
+      router.refresh()
+    } catch {
+      setError(t('removeError'))
+    } finally {
+      setIsRemoving(false)
+    }
+  }
+
+  const shownUrl = removed ? null : (preview ?? bannerUrl)
 
   return (
     <div className="relative h-32 w-full bg-muted sm:h-48">
@@ -102,17 +132,32 @@ export const ProfileBanner = ({ userId, bannerUrl, isOwnProfile }: ProfileBanner
             className="hidden"
             onChange={handleFileChange}
           />
-          <Button
-            type="button"
-            variant="secondary"
-            size="icon-sm"
-            className="absolute top-3 right-3 rounded-full"
-            aria-label={t('trigger')}
-            disabled={isUploading}
-            onClick={() => fileInput.current?.click()}
-          >
-            <Camera className="size-3.5" />
-          </Button>
+          <div className="absolute top-3 right-3 flex gap-2">
+            <Button
+              type="button"
+              variant="secondary"
+              size="icon-sm"
+              className="rounded-full"
+              aria-label={t('trigger')}
+              disabled={isUploading || isRemoving}
+              onClick={() => fileInput.current?.click()}
+            >
+              <Camera className="size-3.5" />
+            </Button>
+            {shownUrl && (
+              <Button
+                type="button"
+                variant="secondary"
+                size="icon-sm"
+                className="rounded-full"
+                aria-label={t('remove')}
+                disabled={isUploading || isRemoving}
+                onClick={handleRemove}
+              >
+                <X className="size-3.5" />
+              </Button>
+            )}
+          </div>
         </>
       )}
 

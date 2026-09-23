@@ -186,9 +186,11 @@
     },
     "banner": {
       "trigger": "Change cover photo",
+      "remove": "Remove cover photo",
       "fileType": "Unsupported format (JPEG, PNG, WebP or GIF).",
       "fileTooLarge": "The image must not exceed 5 MB.",
-      "error": "Unable to save the cover photo. Please try again."
+      "error": "Unable to save the cover photo. Please try again.",
+      "removeError": "Unable to remove the cover photo. Please try again."
     },
     "publicUrl": {
       "title": "Public profile & URL",
