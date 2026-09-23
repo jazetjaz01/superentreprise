@@ -25,7 +25,7 @@ export default async function Home() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("full_name, avatar_url, headline, city, region")
+    .select("full_name, avatar_url, banner_url, headline, city, region")
     .eq("id", claims.sub)
     .maybeSingle();
 
@@ -42,6 +42,7 @@ export default async function Home() {
           avatarUrl={avatarUrl}
           headline={profile?.headline ?? null}
           location={location || null}
+          bannerUrl={profile?.banner_url ?? null}
         />
       </aside>
       <main className="mx-auto flex w-full max-w-2xl flex-col gap-4">

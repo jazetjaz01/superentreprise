@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { UserAvatar } from "@/components/user-avatar";
 
@@ -6,6 +8,7 @@ type ProfileCardProps = {
   avatarUrl: string | null;
   headline: string | null;
   location?: string | null;
+  bannerUrl?: string | null;
 };
 
 export const ProfileCard = ({
@@ -13,9 +16,14 @@ export const ProfileCard = ({
   avatarUrl,
   headline,
   location,
+  bannerUrl,
 }: ProfileCardProps) => (
   <Card className="overflow-hidden pt-0">
-    <div className="h-14 bg-muted" />
+    <div className="relative h-14 bg-muted">
+      {bannerUrl && (
+        <Image src={bannerUrl} alt="" fill unoptimized className="object-cover" />
+      )}
+    </div>
     <CardContent className="-mt-9 flex flex-col items-start gap-1 text-left">
       <div className="rounded-full ring-4 ring-card">
         <UserAvatar name={name} avatarUrl={avatarUrl} size={72} />
