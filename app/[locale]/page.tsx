@@ -25,13 +25,14 @@ export default async function Home() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("full_name, avatar_url, headline")
+    .select("full_name, avatar_url, headline, city, region")
     .eq("id", claims.sub)
     .maybeSingle();
 
   const name = profile?.full_name ?? claims.email ?? tProfile("anonymous");
   const avatarUrl: string | null =
     profile?.avatar_url ?? claims.user_metadata?.avatar_url ?? null;
+  const location = [profile?.city, profile?.region].filter(Boolean).join(", ");
 
   return (
     <div className="mx-auto grid w-full max-w-(--breakpoint-xl) flex-1 content-start gap-6 px-4 py-6 sm:px-6 md:grid-cols-[240px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)_300px] lg:px-8 ">
@@ -40,6 +41,7 @@ export default async function Home() {
           name={name}
           avatarUrl={avatarUrl}
           headline={profile?.headline ?? null}
+          location={location || null}
         />
       </aside>
       <main className="mx-auto flex w-full max-w-2xl flex-col gap-4">
