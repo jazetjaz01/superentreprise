@@ -24,7 +24,7 @@ export const ProfileCard = ({
         <Image src={bannerUrl} alt="" fill unoptimized className="object-cover" />
       )}
     </div>
-    <CardContent className="-mt-9 flex flex-col items-start gap-1 text-left">
+    <CardContent className="-mt-13 flex flex-col items-start gap-1 text-left">
       <div className="rounded-full ring-4 ring-card">
         <UserAvatar name={name} avatarUrl={avatarUrl} size={72} />
       </div>
