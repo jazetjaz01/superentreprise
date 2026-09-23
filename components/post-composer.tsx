@@ -127,7 +127,7 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="h-12 flex-1 rounded-full border px-5 text-left font-semibold text-muted-foreground transition-colors hover:bg-muted"
+              className="h-12 flex-1 rounded-full border px-5 text-left font-semibold text-foreground transition-colors hover:bg-muted"
             >
               {t("start")}
             </button>

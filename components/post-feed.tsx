@@ -28,7 +28,7 @@ export const PostFeed = async () => {
 
   if (posts.length === 0) {
     return (
-      <p className="py-8 text-center text-sm text-muted-foreground">
+      <p className="py-8 text-center text-sm text-foreground">
         {t("empty")}
       </p>
     );
@@ -54,7 +54,7 @@ export const PostFeed = async () => {
                 />
                 <div className="min-w-0">
                   <p className="font-semibold break-words">{authorName}</p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-foreground">
                     {format.dateTime(new Date(post.created_at), {
                       dateStyle: "medium",
                       timeStyle: "short",

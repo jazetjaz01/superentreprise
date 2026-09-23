@@ -35,7 +35,7 @@ export const EducationSection = async ({ profileId, isOwnProfile }: EducationSec
         </div>
 
         {items.length === 0 ? (
-          <p className="mt-3 text-sm text-muted-foreground">{t('empty')}</p>
+          <p className="mt-3 text-sm text-foreground">{t('empty')}</p>
         ) : (
           <ul className="mt-4 flex flex-col gap-5">
             {items.map((education) => (
@@ -43,17 +43,17 @@ export const EducationSection = async ({ profileId, isOwnProfile }: EducationSec
                 <div>
                   <p className="font-medium">{education.school}</p>
                   {education.degree && (
-                    <p className="text-sm text-muted-foreground">{education.degree}</p>
+                    <p className="text-sm text-foreground">{education.degree}</p>
                   )}
                   {(education.start_date || education.end_date) && (
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-foreground">
                       {education.start_date ? formatMonth(education.start_date) : ''}
                       {education.start_date && education.end_date ? ' – ' : ''}
                       {education.end_date ? formatMonth(education.end_date) : ''}
                     </p>
                   )}
                   {education.description && (
-                    <p className="mt-1 whitespace-pre-wrap text-sm text-foreground/80">
+                    <p className="mt-1 whitespace-pre-wrap text-sm text-foreground">
                       {education.description}
                     </p>
                   )}

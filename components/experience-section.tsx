@@ -35,23 +35,23 @@ export const ExperienceSection = async ({ profileId, isOwnProfile }: ExperienceS
         </div>
 
         {items.length === 0 ? (
-          <p className="mt-3 text-sm text-muted-foreground">{t('empty')}</p>
+          <p className="mt-3 text-sm text-foreground">{t('empty')}</p>
         ) : (
           <ul className="mt-4 flex flex-col gap-5">
             {items.map((experience) => (
               <li key={experience.id} className="flex items-start justify-between gap-2">
                 <div>
                   <p className="font-medium">{experience.title}</p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-foreground">
                     {experience.company}
                     {experience.location ? ` · ${experience.location}` : ''}
                   </p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-foreground">
                     {formatMonth(experience.start_date)} –{' '}
                     {experience.end_date ? formatMonth(experience.end_date) : t('present')}
                   </p>
                   {experience.description && (
-                    <p className="mt-1 whitespace-pre-wrap text-sm text-foreground/80">
+                    <p className="mt-1 whitespace-pre-wrap text-sm text-foreground">
                       {experience.description}
                     </p>
                   )}

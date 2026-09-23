@@ -16,7 +16,7 @@ export const ProfileCard = ({ name, avatarUrl, headline }: ProfileCardProps) => 
       </div>
       <p className="mt-2 font-semibold break-words">{name}</p>
       {headline && (
-        <p className="text-sm text-muted-foreground break-words">{headline}</p>
+        <p className="text-sm text-foreground break-words">{headline}</p>
       )}
     </CardContent>
   </Card>

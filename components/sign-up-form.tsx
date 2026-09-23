@@ -85,7 +85,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
           {t('google')}
         </Button>
 
-        <div className="my-7 flex w-full items-center justify-center gap-2 overflow-hidden text-xs text-muted-foreground">
+        <div className="my-7 flex w-full items-center justify-center gap-2 overflow-hidden text-xs text-foreground">
           <span className="h-px flex-1 bg-border" />
           {t('or')}
           <span className="h-px flex-1 bg-border" />

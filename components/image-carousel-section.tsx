@@ -58,7 +58,7 @@ export default function ImageCarouselSection() {
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
             {t("title")}
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-foreground/80">
+          <p className="mt-6 text-lg leading-relaxed text-foreground">
             {t("body")}
           </p>
         </div>

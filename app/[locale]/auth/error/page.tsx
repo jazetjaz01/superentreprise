@@ -16,9 +16,9 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ e
             </CardHeader>
             <CardContent>
               {params?.error ? (
-                <p className="text-sm text-muted-foreground">{t('code', { error: params.error })}</p>
+                <p className="text-sm text-foreground">{t('code', { error: params.error })}</p>
               ) : (
-                <p className="text-sm text-muted-foreground">{t('unspecified')}</p>
+                <p className="text-sm text-foreground">{t('unspecified')}</p>
               )}
             </CardContent>
           </Card>

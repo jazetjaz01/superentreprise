@@ -34,7 +34,7 @@ export const ProfileUrlCard = ({ path }: ProfileUrlCardProps) => {
     <Card>
       <CardContent>
         <h2 className="font-semibold">{t('title')}</h2>
-        <p className="mt-2 truncate text-sm text-muted-foreground">{url}</p>
+        <p className="mt-2 truncate text-sm text-foreground">{url}</p>
         <Button
           type="button"
           variant="outline"

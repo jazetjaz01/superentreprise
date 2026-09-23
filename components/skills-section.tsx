@@ -70,7 +70,7 @@ export const SkillsSection = ({ profileId, isOwnProfile, skills }: SkillsSection
         <h2 className="text-lg font-semibold">{t('sectionTitle')}</h2>
 
         {skills.length === 0 ? (
-          <p className="mt-3 text-sm text-muted-foreground">{t('empty')}</p>
+          <p className="mt-3 text-sm text-foreground">{t('empty')}</p>
         ) : (
           <ul className="mt-3 flex flex-wrap gap-2">
             {skills.map((skill) => (
@@ -84,7 +84,7 @@ export const SkillsSection = ({ profileId, isOwnProfile, skills }: SkillsSection
                     type="button"
                     aria-label={t('remove', { name: skill.name })}
                     onClick={() => handleRemove(skill.id)}
-                    className="text-muted-foreground hover:text-foreground"
+                    className="text-foreground hover:opacity-70"
                   >
                     <X className="size-3.5" />
                   </button>

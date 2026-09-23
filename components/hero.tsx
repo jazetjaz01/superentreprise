@@ -21,7 +21,7 @@ export default function Hero() {
         <div className="w-full max-w-md lg:justify-self-end">
           <OAuthButtons />
 
-          <p className="mt-6 text-center text-xs leading-relaxed text-muted-foreground">
+          <p className="mt-6 text-center text-xs leading-relaxed text-foreground">
             {t.rich("legal", {
               terms: legalLink,
               privacy: legalLink,

@@ -45,7 +45,7 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
           title={t('forgotPassword.successTitle')}
           description={t('forgotPassword.successDescription')}
         >
-          <p className="mt-6 text-center text-sm text-muted-foreground">
+          <p className="mt-6 text-center text-sm text-foreground">
             {t('forgotPassword.successBody')}
           </p>
         </AuthCard>

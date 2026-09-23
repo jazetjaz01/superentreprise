@@ -68,7 +68,7 @@ export function AuthCard({ title, description, className, children }: AuthCardPr
         <Logo />
         <h1 className="mt-4 text-xl font-medium">{title}</h1>
         {description && (
-          <p className="mt-1 text-center text-sm text-muted-foreground">
+          <p className="mt-1 text-center text-sm text-foreground">
             {description}
           </p>
         )}

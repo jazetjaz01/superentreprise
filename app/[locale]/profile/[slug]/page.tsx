@@ -68,7 +68,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               </div>
               <h1 className="mt-3 text-2xl font-semibold">{name}</h1>
               {profile.headline && (
-                <p className="mt-1 text-muted-foreground">{profile.headline}</p>
+                <p className="mt-1 text-foreground">{profile.headline}</p>
               )}
             </CardContent>
           </Card>
@@ -77,7 +77,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             <Card className="mt-4">
               <CardContent>
                 <h2 className="text-lg font-semibold">{t("about")}</h2>
-                <p className="mt-2 whitespace-pre-wrap text-foreground/80">
+                <p className="mt-2 whitespace-pre-wrap text-foreground">
                   {profile.about}
                 </p>
               </CardContent>

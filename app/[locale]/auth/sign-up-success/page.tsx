@@ -21,7 +21,7 @@ export default function Page() {
               <CardDescription>{t('description')}</CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">{t('body')}</p>
+              <p className="text-sm text-foreground">{t('body')}</p>
             </CardContent>
           </Card>
         </div>
