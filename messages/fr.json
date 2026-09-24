@@ -305,7 +305,7 @@
     "headline": "{name}, développez votre plein potentiel avec Superentreprise Premium",
     "premiumBadge": "Premium",
     "question": "Qui a vu votre profil ces 365 derniers jours ?",
-    "cta": "Essai gratuit"
+    "cta": "Essayer"
   },
   "Protected": {
     "hello": "Bonjour {email}"

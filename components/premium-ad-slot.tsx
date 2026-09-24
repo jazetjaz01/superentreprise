@@ -12,7 +12,7 @@ export const PremiumAdSlot = async ({ name, avatarUrl }: PremiumAdSlotProps) => 
   const t = await getTranslations("PremiumAd");
 
   return (
-    <div className="overflow-hidden rounded-2xl border p-4">
+    <div className="overflow-hidden rounded-2xl border bg-white p-4">
       <div className="flex items-center justify-between">
         <span className="text-xs text-muted-foreground">{t("sponsored")}</span>
         <MoreHorizontal className="size-4 text-muted-foreground" />
