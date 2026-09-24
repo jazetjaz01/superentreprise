@@ -1,6 +1,6 @@
 "use client";
 
-import { ImageIcon, X } from "lucide-react";
+import { ImageIcon, NewspaperIcon, X } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { UserAvatar } from "@/components/user-avatar";
-import { useRouter } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
@@ -132,10 +132,14 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
               {t("start")}
             </button>
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center gap-2">
             <Button variant="ghost" onClick={() => setOpen(true)}>
               <ImageIcon className="text-sky-600" />
               {t("photo")}
+            </Button>
+            <Button variant="ghost" nativeButton={false} render={<Link href="/articles/write" />}>
+              <NewspaperIcon className="text-red-700" />
+              {t("writeArticle")}
             </Button>
           </div>
         </CardContent>

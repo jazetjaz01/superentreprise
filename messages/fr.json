@@ -246,6 +246,7 @@
   "Composer": {
     "start": "Commencer un post",
     "photo": "Photo",
+    "writeArticle": "Rédiger un article",
     "dialogTitle": "Créer un post",
     "textPlaceholder": "De quoi voulez-vous discuter ?",
     "addPhoto": "Ajouter une photo",
@@ -256,6 +257,29 @@
     "fileType": "Format non pris en charge (JPEG, PNG, WebP ou GIF).",
     "fileTooLarge": "L'image ne doit pas dépasser 5 Mo.",
     "error": "Impossible de publier le post. Veuillez réessayer."
+  },
+  "Articles": {
+    "anonymous": "Utilisateur",
+    "edit": "Modifier",
+    "delete": "Supprimer l'article",
+    "deleteError": "Impossible de supprimer l'article. Veuillez réessayer.",
+    "write": {
+      "pageTitle": "Rédiger un article",
+      "editPageTitle": "Modifier l'article",
+      "titleLabel": "Titre",
+      "titlePlaceholder": "Donnez un titre à votre article",
+      "cover": "Image de couverture",
+      "addCover": "Ajouter une image de couverture",
+      "removeCover": "Retirer l'image de couverture",
+      "contentLabel": "Contenu",
+      "contentPlaceholder": "Rédigez votre article...",
+      "fileType": "Format non pris en charge (JPEG, PNG, WebP ou GIF).",
+      "fileTooLarge": "L'image ne doit pas dépasser 5 Mo.",
+      "publish": "Publier",
+      "publishing": "Publication...",
+      "save": "Enregistrer",
+      "error": "Impossible de publier l'article. Veuillez réessayer."
+    }
   },
   "Feed": {
     "empty": "Aucun post pour le moment. Soyez le premier à publier !",

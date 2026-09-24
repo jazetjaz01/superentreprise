@@ -246,6 +246,7 @@
   "Composer": {
     "start": "Start a post",
     "photo": "Photo",
+    "writeArticle": "Write an article",
     "dialogTitle": "Create a post",
     "textPlaceholder": "What do you want to talk about?",
     "addPhoto": "Add a photo",
@@ -256,6 +257,29 @@
     "fileType": "Unsupported format (JPEG, PNG, WebP or GIF).",
     "fileTooLarge": "The image must not exceed 5 MB.",
     "error": "Unable to publish the post. Please try again."
+  },
+  "Articles": {
+    "anonymous": "User",
+    "edit": "Edit",
+    "delete": "Delete article",
+    "deleteError": "Unable to delete the article. Please try again.",
+    "write": {
+      "pageTitle": "Write an article",
+      "editPageTitle": "Edit article",
+      "titleLabel": "Title",
+      "titlePlaceholder": "Give your article a title",
+      "cover": "Cover image",
+      "addCover": "Add a cover image",
+      "removeCover": "Remove cover image",
+      "contentLabel": "Content",
+      "contentPlaceholder": "Write your article...",
+      "fileType": "Unsupported format (JPEG, PNG, WebP or GIF).",
+      "fileTooLarge": "The image must not exceed 5 MB.",
+      "publish": "Publish",
+      "publishing": "Publishing...",
+      "save": "Save",
+      "error": "Unable to publish the article. Please try again."
+    }
   },
   "Feed": {
     "empty": "No posts yet. Be the first to post!",
