@@ -5,6 +5,7 @@ import Hero from "@/components/hero";
 import ImageCarouselSection from "@/components/image-carousel-section";
 import { PostComposer } from "@/components/post-composer";
 import { PostFeed } from "@/components/post-feed";
+import { PremiumAdSlot } from "@/components/premium-ad-slot";
 import { ProfileCard } from "@/components/profile-card";
 import { createClient } from "@/lib/supabase/server";
 
@@ -49,7 +50,8 @@ export default async function Home() {
         <PostComposer userId={claims.sub} name={name} avatarUrl={avatarUrl} />
         <PostFeed />
       </main>
-      <aside className="hidden lg:block">
+      <aside className="hidden lg:flex lg:flex-col lg:gap-4">
+        <PremiumAdSlot name={name} avatarUrl={avatarUrl} />
         <AdSlot />
       </aside>
     </div>

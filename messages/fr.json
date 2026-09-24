@@ -300,6 +300,13 @@
     "letsgoBody": "Trouvez ou proposez un trajet en covoiturage près de chez vous.",
     "sponsored": "Publicité"
   },
+  "PremiumAd": {
+    "sponsored": "Pub",
+    "headline": "{name}, développez votre plein potentiel avec Superentreprise Premium",
+    "premiumBadge": "Premium",
+    "question": "Qui a vu votre profil ces 365 derniers jours ?",
+    "cta": "Essai gratuit"
+  },
   "Protected": {
     "hello": "Bonjour {email}"
   }

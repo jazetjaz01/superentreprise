@@ -300,6 +300,13 @@
     "letsgoBody": "Find or offer a carpool ride near you.",
     "sponsored": "Sponsored"
   },
+  "PremiumAd": {
+    "sponsored": "Ad",
+    "headline": "{name}, unlock your full potential with Superentreprise Premium",
+    "premiumBadge": "Premium",
+    "question": "Who viewed your profile in the last 365 days?",
+    "cta": "Try for free"
+  },
   "Protected": {
     "hello": "Hello {email}"
   }
