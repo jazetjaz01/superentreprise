@@ -11,9 +11,10 @@ import { createClient } from '@/lib/supabase/client'
 type PostDeleteButtonProps = {
   postId: string
   imagePath: string | null
+  videoPath: string | null
 }
 
-export const PostDeleteButton = ({ postId, imagePath }: PostDeleteButtonProps) => {
+export const PostDeleteButton = ({ postId, imagePath, videoPath }: PostDeleteButtonProps) => {
   const t = useTranslations('Feed')
   const router = useRouter()
   const [isDeleting, setIsDeleting] = useState(false)
@@ -30,6 +31,9 @@ export const PostDeleteButton = ({ postId, imagePath }: PostDeleteButtonProps) =
 
       if (imagePath) {
         await supabase.storage.from('post-images').remove([imagePath])
+      }
+      if (videoPath) {
+        await supabase.storage.from('post-videos').remove([videoPath])
       }
 
       router.refresh()

@@ -11,6 +11,7 @@ type FeedPost = {
   author_id: string;
   content: string | null;
   image_path: string | null;
+  video_path: string | null;
   created_at: string;
   profiles: { full_name: string | null; avatar_url: string | null } | null;
 };
@@ -24,7 +25,7 @@ export const PostFeed = async () => {
     supabase
       .from("posts")
       .select(
-        "id, author_id, content, image_path, created_at, profiles(full_name, avatar_url)",
+        "id, author_id, content, image_path, video_path, created_at, profiles(full_name, avatar_url)",
       )
       .order("created_at", { ascending: false })
       .limit(20)
@@ -50,6 +51,10 @@ export const PostFeed = async () => {
           ? supabase.storage.from("post-images").getPublicUrl(post.image_path)
               .data.publicUrl
           : null;
+        const videoUrl = post.video_path
+          ? supabase.storage.from("post-videos").getPublicUrl(post.video_path)
+              .data.publicUrl
+          : null;
 
         return (
           <Card key={post.id}>
@@ -70,7 +75,11 @@ export const PostFeed = async () => {
                   </p>
                 </div>
                 {currentUserId === post.author_id && (
-                  <PostDeleteButton postId={post.id} imagePath={post.image_path} />
+                  <PostDeleteButton
+                    postId={post.id}
+                    imagePath={post.image_path}
+                    videoPath={post.video_path}
+                  />
                 )}
               </div>
               {post.content && (
@@ -83,6 +92,14 @@ export const PostFeed = async () => {
                   width={1200}
                   height={800}
                   unoptimized
+                  className="h-auto w-full rounded-lg"
+                />
+              )}
+              {videoUrl && (
+                // eslint-disable-next-line jsx-a11y/media-has-caption
+                <video
+                  src={videoUrl}
+                  controls
                   className="h-auto w-full rounded-lg"
                 />
               )}

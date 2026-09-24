@@ -246,16 +246,21 @@
   "Composer": {
     "start": "Commencer un post",
     "photo": "Photo",
+    "video": "Vidéo",
     "writeArticle": "Rédiger un article",
     "dialogTitle": "Créer un post",
     "textPlaceholder": "De quoi voulez-vous discuter ?",
     "addPhoto": "Ajouter une photo",
     "removePhoto": "Retirer la photo",
+    "addVideo": "Ajouter une vidéo",
+    "removeVideo": "Retirer la vidéo",
     "previewAlt": "Aperçu de l'image",
     "publish": "Publier",
     "publishing": "Publication...",
     "fileType": "Format non pris en charge (JPEG, PNG, WebP ou GIF).",
     "fileTooLarge": "L'image ne doit pas dépasser 5 Mo.",
+    "videoFileType": "Format vidéo non pris en charge (MP4, WebM, MOV ou OGG).",
+    "videoTooLarge": "La vidéo ne doit pas dépasser 50 Mo.",
     "error": "Impossible de publier le post. Veuillez réessayer."
   },
   "Articles": {

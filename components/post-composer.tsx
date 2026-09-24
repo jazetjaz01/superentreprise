@@ -1,6 +1,6 @@
 "use client";
 
-import { ImageIcon, NewspaperIcon, X } from "lucide-react";
+import { ImageIcon, NewspaperIcon, VideoIcon, X } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
@@ -26,6 +26,14 @@ const IMAGE_EXTENSIONS: Record<string, string> = {
   "image/gif": "gif",
 };
 
+const MAX_VIDEO_BYTES = 50 * 1024 * 1024;
+const VIDEO_EXTENSIONS: Record<string, string> = {
+  "video/mp4": "mp4",
+  "video/webm": "webm",
+  "video/quicktime": "mov",
+  "video/ogg": "ogv",
+};
+
 type PostComposerProps = {
   userId: string;
   name: string;
@@ -36,9 +44,11 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
   const t = useTranslations("Composer");
   const router = useRouter();
   const fileInput = useRef<HTMLInputElement>(null);
+  const videoInput = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [fileKind, setFileKind] = useState<"image" | "video" | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -56,10 +66,11 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
   const reset = () => {
     setContent("");
     setFile(null);
+    setFileKind(null);
     setError(null);
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0];
     e.target.value = "";
     if (!selected) return;
@@ -74,6 +85,25 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
     }
     setError(null);
     setFile(selected);
+    setFileKind("image");
+  };
+
+  const handleVideoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selected = e.target.files?.[0];
+    e.target.value = "";
+    if (!selected) return;
+
+    if (!(selected.type in VIDEO_EXTENSIONS)) {
+      setError(t("videoFileType"));
+      return;
+    }
+    if (selected.size > MAX_VIDEO_BYTES) {
+      setError(t("videoTooLarge"));
+      return;
+    }
+    setError(null);
+    setFile(selected);
+    setFileKind("video");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -86,12 +116,22 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
     setError(null);
 
     let imagePath: string | null = null;
+    let videoPath: string | null = null;
     try {
-      if (file) {
+      if (file && fileKind === "image") {
         imagePath = `${userId}/${crypto.randomUUID()}.${IMAGE_EXTENSIONS[file.type]}`;
         const { error: uploadError } = await supabase.storage
           .from("post-images")
           .upload(imagePath, file, {
+            contentType: file.type,
+            cacheControl: "31536000",
+          });
+        if (uploadError) throw uploadError;
+      } else if (file && fileKind === "video") {
+        videoPath = `${userId}/${crypto.randomUUID()}.${VIDEO_EXTENSIONS[file.type]}`;
+        const { error: uploadError } = await supabase.storage
+          .from("post-videos")
+          .upload(videoPath, file, {
             contentType: file.type,
             cacheControl: "31536000",
           });
@@ -102,6 +142,7 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
         author_id: userId,
         content: text || null,
         image_path: imagePath,
+        video_path: videoPath,
       });
       if (insertError) throw insertError;
 
@@ -111,6 +152,9 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
     } catch {
       if (imagePath) {
         await supabase.storage.from("post-images").remove([imagePath]);
+      }
+      if (videoPath) {
+        await supabase.storage.from("post-videos").remove([videoPath]);
       }
       setError(t("error"));
     } finally {
@@ -136,6 +180,10 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
             <Button variant="ghost" onClick={() => setOpen(true)}>
               <ImageIcon className="text-sky-600" />
               {t("photo")}
+            </Button>
+            <Button variant="ghost" onClick={() => setOpen(true)}>
+              <VideoIcon className="text-emerald-600" />
+              {t("video")}
             </Button>
             <Button variant="ghost" nativeButton={false} render={<Link href="/articles/write" />}>
               <NewspaperIcon className="text-red-700" />
@@ -166,7 +214,7 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
               className="max-h-64 resize-none border-0 px-0 text-base shadow-none focus-visible:ring-0"
             />
 
-            {previewUrl && (
+            {previewUrl && fileKind === "image" && (
               <div className="relative">
                 <Image
                   src={previewUrl}
@@ -189,24 +237,64 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
               </div>
             )}
 
+            {previewUrl && fileKind === "video" && (
+              <div className="relative">
+                {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+                <video
+                  src={previewUrl}
+                  controls
+                  className="max-h-72 w-full rounded-lg"
+                />
+                <Button
+                  type="button"
+                  size="icon-sm"
+                  variant="secondary"
+                  aria-label={t("removeVideo")}
+                  className="absolute top-2 right-2"
+                  onClick={() => setFile(null)}
+                >
+                  <X />
+                </Button>
+              </div>
+            )}
+
             {error && <p className="text-sm text-red-500">{error}</p>}
 
             <div className="flex items-center justify-between">
-              <input
-                ref={fileInput}
-                type="file"
-                accept={Object.keys(IMAGE_EXTENSIONS).join(",")}
-                className="hidden"
-                onChange={handleFileChange}
-              />
-              <Button
-                type="button"
-                variant="ghost"
-                onClick={() => fileInput.current?.click()}
-              >
-                <ImageIcon className="text-sky-600" />
-                {t("addPhoto")}
-              </Button>
+              <div className="flex gap-1">
+                <input
+                  ref={fileInput}
+                  type="file"
+                  accept={Object.keys(IMAGE_EXTENSIONS).join(",")}
+                  className="hidden"
+                  onChange={handleImageChange}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  disabled={fileKind === "video"}
+                  onClick={() => fileInput.current?.click()}
+                >
+                  <ImageIcon className="text-sky-600" />
+                  {t("addPhoto")}
+                </Button>
+                <input
+                  ref={videoInput}
+                  type="file"
+                  accept={Object.keys(VIDEO_EXTENSIONS).join(",")}
+                  className="hidden"
+                  onChange={handleVideoChange}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  disabled={fileKind === "image"}
+                  onClick={() => videoInput.current?.click()}
+                >
+                  <VideoIcon className="text-emerald-600" />
+                  {t("addVideo")}
+                </Button>
+              </div>
               <Button
                 type="submit"
                 disabled={isSubmitting || (!content.trim() && !file)}

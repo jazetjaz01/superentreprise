@@ -246,16 +246,21 @@
   "Composer": {
     "start": "Start a post",
     "photo": "Photo",
+    "video": "Video",
     "writeArticle": "Write an article",
     "dialogTitle": "Create a post",
     "textPlaceholder": "What do you want to talk about?",
     "addPhoto": "Add a photo",
     "removePhoto": "Remove photo",
+    "addVideo": "Add a video",
+    "removeVideo": "Remove video",
     "previewAlt": "Image preview",
     "publish": "Post",
     "publishing": "Posting...",
     "fileType": "Unsupported format (JPEG, PNG, WebP or GIF).",
     "fileTooLarge": "The image must not exceed 5 MB.",
+    "videoFileType": "Unsupported video format (MP4, WebM, MOV or OGG).",
+    "videoTooLarge": "The video must not exceed 50 MB.",
     "error": "Unable to publish the post. Please try again."
   },
   "Articles": {
