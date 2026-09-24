@@ -265,7 +265,11 @@
     "deleteError": "Unable to delete the post. Please try again."
   },
   "Ads": {
-    "placeholder": "Ad space"
+    "placeholder": "Ad space",
+    "letsgoAlt": "LetsGo Today carpooling app on iPhone",
+    "letsgoTitle": "LetsGo Today",
+    "letsgoBody": "Find or offer a carpool ride near you.",
+    "sponsored": "Sponsored"
   },
   "Protected": {
     "hello": "Hello {email}"

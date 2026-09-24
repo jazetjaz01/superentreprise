@@ -265,7 +265,11 @@
     "deleteError": "Impossible de supprimer le post. Veuillez réessayer."
   },
   "Ads": {
-    "placeholder": "Emplacement publicitaire"
+    "placeholder": "Emplacement publicitaire",
+    "letsgoAlt": "Application de covoiturage LetsGo Today sur iPhone",
+    "letsgoTitle": "LetsGo Today",
+    "letsgoBody": "Trouvez ou proposez un trajet en covoiturage près de chez vous.",
+    "sponsored": "Publicité"
   },
   "Protected": {
     "hello": "Bonjour {email}"
