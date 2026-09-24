@@ -37,7 +37,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
       if (error) throw error
       // Update this route to redirect to an authenticated route. The user already has an active session.
       const next = new URLSearchParams(window.location.search).get('next')
-      router.push(safeNextPath(next, '/protected'))
+      router.push(safeNextPath(next, '/'))
       router.refresh()
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : t('genericError'))
@@ -52,7 +52,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
     setError(null)
 
     try {
-      const next = getPathname({ href: '/protected', locale })
+      const next = getPathname({ href: '/', locale })
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {

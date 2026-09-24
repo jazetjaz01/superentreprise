@@ -40,7 +40,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/protected`,
+          emailRedirectTo: window.location.origin,
         },
       })
       if (error) throw error
@@ -58,7 +58,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
     setError(null)
 
     try {
-      const next = getPathname({ href: '/protected', locale })
+      const next = getPathname({ href: '/', locale })
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
