@@ -7,7 +7,7 @@ export const ArticleBanner = async () => {
   const monthYear = format.dateTime(new Date(), { month: "long", year: "numeric" });
 
   return (
-    <div className="relative isolate h-40 w-full overflow-hidden sm:h-52">
+    <div className="relative isolate h-40 w-full overflow-hidden sm:h-52 border-8">
       <Image
         src="/actualite/carte-monde.jpg"
         alt=""
