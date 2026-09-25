@@ -4,6 +4,7 @@ import { getFormatter, getTranslations } from "next-intl/server";
 import sanitizeHtml from "sanitize-html";
 
 import { ArticleDeleteButton } from "@/components/article-delete-button";
+import { NewsSlot } from "@/components/news-slot";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { UserAvatar } from "@/components/user-avatar";
@@ -78,7 +79,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   });
 
   return (
-    <div className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6">
+    <div className="mx-auto grid w-full max-w-(--breakpoint-lg) gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px]">
       <Card className="overflow-hidden pt-0">
         {coverUrl && (
           <div className="relative h-64 w-full sm:h-96">
@@ -132,6 +133,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           />
         </CardContent>
       </Card>
+
+      <aside className="hidden lg:block">
+        <NewsSlot />
+      </aside>
     </div>
   );
 }
