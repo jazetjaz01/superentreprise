@@ -87,11 +87,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     plainText.length > 220 ? `${plainText.slice(0, 220).trimEnd()}…` : plainText;
 
   return (
-    <div className="mx-auto grid w-full max-w-(--breakpoint-xl) gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-8">
+    <div className="mx-auto grid w-full max-w-(--breakpoint-xl) gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-12">
       <Card className="overflow-hidden pt-0">
         <ArticleBanner />
 
-        <CardContent className="p-8 sm:p-6">
+        <CardContent className="p-4 sm:p-6">
           <div className="bg-slate-100 p-8 sm:p-12">
             <p className="text-sm text-muted-foreground">
               {t("publishedTimeAgo", { time: format.relativeTime(new Date(article.created_at)) })}
