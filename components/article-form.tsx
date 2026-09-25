@@ -21,6 +21,7 @@ import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 
+import { DashedGridBackground } from '@/components/dashed-grid-background'
 import { Button } from '@/components/ui/button'
 import { UserAvatar } from '@/components/user-avatar'
 import { useRouter } from '@/i18n/navigation'
@@ -361,10 +362,16 @@ export const ArticleForm = ({
             </Button>
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center gap-4 rounded-lg border bg-muted/40 px-6 py-16 text-center">
-            <ImageIcon className="size-10 text-muted-foreground" />
-            <p className="text-foreground">{t('coverPrompt')}</p>
-            <Button type="button" variant="outline" onClick={() => fileInput.current?.click()}>
+          <div className="relative isolate flex flex-col items-center justify-center gap-4 overflow-hidden rounded-lg border bg-muted/40 px-6 py-16 text-center">
+            <DashedGridBackground />
+            <ImageIcon className="relative size-10 text-muted-foreground" />
+            <p className="relative text-foreground">{t('coverPrompt')}</p>
+            <Button
+              type="button"
+              variant="outline"
+              className="relative bg-background"
+              onClick={() => fileInput.current?.click()}
+            >
               {t('addCover')}
             </Button>
           </div>
