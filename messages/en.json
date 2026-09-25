@@ -282,6 +282,7 @@
       "contentPlaceholder": "Write the article here ...",
       "fileType": "Unsupported format (JPEG, PNG, WebP or GIF).",
       "fileTooLarge": "The image must not exceed 5 MB.",
+      "contentTooLong": "The article content is too long. Please shorten it.",
       "style": "Style",
       "styleParagraph": "Paragraph",
       "styleHeading2": "Heading",

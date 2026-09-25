@@ -282,6 +282,7 @@
       "contentPlaceholder": "Rédigez l'article ici ...",
       "fileType": "Format non pris en charge (JPEG, PNG, WebP ou GIF).",
       "fileTooLarge": "L'image ne doit pas dépasser 5 Mo.",
+      "contentTooLong": "Le contenu de l'article est trop long. Veuillez le raccourcir.",
       "style": "Style",
       "styleParagraph": "Paragraphe",
       "styleHeading2": "Titre",

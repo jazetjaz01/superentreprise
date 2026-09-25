@@ -1,9 +1,10 @@
 'use client'
 
+import CharacterCount from '@tiptap/extension-character-count'
 import TiptapImage from '@tiptap/extension-image'
 import TiptapLink from '@tiptap/extension-link'
 import Placeholder from '@tiptap/extension-placeholder'
-import { EditorContent, useEditor } from '@tiptap/react'
+import { EditorContent, useEditor, useEditorState } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import {
   Bold,
@@ -29,6 +30,8 @@ import { useRouter } from '@/i18n/navigation'
 import { createClient } from '@/lib/supabase/client'
 
 const MAX_COVER_BYTES = 5 * 1024 * 1024
+const MAX_CONTENT_CHARACTERS = 25000
+const MAX_CONTENT_HTML_LENGTH = 50000
 const IMAGE_EXTENSIONS: Record<string, string> = {
   'image/jpeg': 'jpg',
   'image/png': 'png',
@@ -76,6 +79,7 @@ export const ArticleForm = ({
       TiptapLink.configure({ openOnClick: false }),
       TiptapImage,
       Placeholder.configure({ placeholder: t('contentPlaceholder') }),
+      CharacterCount.configure({ limit: MAX_CONTENT_CHARACTERS }),
     ],
     content: article?.content ?? '',
     editorProps: {
@@ -85,6 +89,13 @@ export const ArticleForm = ({
       },
     },
   })
+
+  const characterCount =
+    useEditorState({
+      editor,
+      selector: ({ editor: currentEditor }) =>
+        currentEditor?.storage.characterCount.characters() ?? 0,
+    }) ?? 0
 
   const existingCoverUrl =
     !coverRemoved && article?.coverImagePath
@@ -172,6 +183,10 @@ export const ArticleForm = ({
     e.preventDefault()
     if (!editor) return
     const content = editor.getHTML()
+    if (content.length > MAX_CONTENT_HTML_LENGTH) {
+      setError(t('contentTooLong'))
+      return
+    }
     const supabase = createClient()
     setIsSubmitting(true)
     setError(null)
@@ -398,6 +413,14 @@ export const ArticleForm = ({
         <div className="mt-6">
           <EditorContent editor={editor} />
         </div>
+
+        <p
+          className={`mt-2 text-right text-xs ${
+            characterCount >= MAX_CONTENT_CHARACTERS ? 'text-red-500' : 'text-muted-foreground'
+          }`}
+        >
+          {characterCount} / {MAX_CONTENT_CHARACTERS}
+        </p>
 
         {error && <p className="mt-4 text-sm text-red-500">{error}</p>}
       </div>
