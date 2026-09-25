@@ -88,7 +88,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <div className="mx-auto grid w-full max-w-(--breakpoint-xl) gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-8">
-      <Card className="overflow-hidden pt-0">
+      <Card className="gap-0 overflow-hidden pt-0">
         <ArticleBanner />
 
         <CardContent className="px-4  pb-4 sm:px-12  sm:pb-12">
