@@ -1,3 +1,4 @@
+import { Info } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getFormatter, getTranslations } from "next-intl/server";
@@ -79,6 +80,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     },
     allowedSchemes: ["http", "https"],
   });
+  const plainText = sanitizeHtml(article.content, { allowedTags: [], allowedAttributes: {} })
+    .replace(/\s+/g, " ")
+    .trim();
+  const introText =
+    plainText.length > 220 ? `${plainText.slice(0, 220).trimEnd()}…` : plainText;
 
   return (
     <div className="mx-auto grid w-full max-w-(--breakpoint-xl) gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-8">
@@ -95,7 +101,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <ArticleShareButton path={`/articles/${slug}`} />
           </div>
 
-          <div className="mt-3 flex items-center gap-3">
+          <div className="mt-3 flex items-center gap-2">
             {author?.slug ? (
               <Link href={`/profile/${author.slug}`} className="flex items-center gap-3">
                 <UserAvatar name={authorName} avatarUrl={author.avatar_url} size={32} />
@@ -107,7 +113,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 <span className="text-sm font-semibold">{authorName}</span>
               </>
             )}
+            <Info className="size-3.5 shrink-0 text-muted-foreground" />
           </div>
+
+          {introText && (
+            <p className="mt-4 text-foreground">{introText}</p>
+          )}
         </CardContent>
 
         <CardContent className="p-6 sm:p-8">
