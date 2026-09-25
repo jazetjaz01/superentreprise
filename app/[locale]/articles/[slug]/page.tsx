@@ -147,7 +147,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               />
 
               {coverUrl && (
-                <div className="relative mt-6 h-56 w-full overflow-hidden rounded-lg sm:h-72">
+                <div className="relative -mx-6 -mb-6 mt-6 h-56 overflow-hidden rounded-b-xl sm:h-72">
                   <Image src={coverUrl} alt="" fill unoptimized className="object-cover" />
                 </div>
               )}
