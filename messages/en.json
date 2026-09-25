@@ -279,7 +279,7 @@
       "addCover": "Upload a file from your computer",
       "removeCover": "Remove cover image",
       "contentLabel": "Content",
-      "contentPlaceholder": "Write your article...",
+      "contentPlaceholder": "Write the article here ...",
       "fileType": "Unsupported format (JPEG, PNG, WebP or GIF).",
       "fileTooLarge": "The image must not exceed 5 MB.",
       "style": "Style",

@@ -2,6 +2,7 @@
 
 import TiptapImage from '@tiptap/extension-image'
 import TiptapLink from '@tiptap/extension-link'
+import Placeholder from '@tiptap/extension-placeholder'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import {
@@ -74,6 +75,7 @@ export const ArticleForm = ({
       StarterKit,
       TiptapLink.configure({ openOnClick: false }),
       TiptapImage,
+      Placeholder.configure({ placeholder: t('contentPlaceholder') }),
     ],
     content: article?.content ?? '',
     editorProps: {

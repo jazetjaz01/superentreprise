@@ -279,7 +279,7 @@
       "addCover": "Chargez le fichier depuis votre ordinateur",
       "removeCover": "Retirer l'image de couverture",
       "contentLabel": "Contenu",
-      "contentPlaceholder": "Rédigez votre article...",
+      "contentPlaceholder": "Rédigez l'article ici ...",
       "fileType": "Format non pris en charge (JPEG, PNG, WebP ou GIF).",
       "fileTooLarge": "L'image ne doit pas dépasser 5 Mo.",
       "style": "Style",
