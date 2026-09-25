@@ -364,12 +364,12 @@ export const ArticleForm = ({
         ) : (
           <div className="relative isolate flex flex-col items-center justify-center gap-4 overflow-hidden rounded-lg border bg-white px-6 py-16 text-center">
             <DashedGridBackground />
-            <ImageIcon className="relative size-10 text-muted-foreground" />
+            <Image src="/logose.svg" alt="" width={40} height={40} className="relative" />
             <p className="relative text-foreground">{t('coverPrompt')}</p>
             <Button
               type="button"
               variant="outline"
-              className="relative bg-background"
+              className="relative border-black bg-background"
               onClick={() => fileInput.current?.click()}
             >
               {t('addCover')}
