@@ -28,7 +28,7 @@ export const NewsSlot = async () => {
   return (
     <div className="overflow-hidden rounded-2xl border bg-white p-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-bold text-foreground">{t("title")}</h2>
+        <h2 className="text-lg font-semibold text-foreground">{t("title")}</h2>
         <Info className="size-4 text-muted-foreground" />
       </div>
       <p className="mt-1 text-sm text-muted-foreground">{t("subtitle")}</p>
