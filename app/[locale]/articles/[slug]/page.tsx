@@ -4,6 +4,8 @@ import { getFormatter, getTranslations } from "next-intl/server";
 import sanitizeHtml from "sanitize-html";
 
 import { ArticleDeleteButton } from "@/components/article-delete-button";
+import { ArticleShareButton } from "@/components/article-share-button";
+import { DashedGridBackground } from "@/components/dashed-grid-background";
 import { NewsSlot } from "@/components/news-slot";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -80,59 +82,77 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <div className="mx-auto grid w-full max-w-(--breakpoint-lg) gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px]">
-      <Card className="overflow-hidden pt-0">
-        {coverUrl && (
-          <div className="relative h-64 w-full sm:h-96">
-            <Image src={coverUrl} alt="" fill unoptimized className="object-cover" />
-          </div>
-        )}
-        <CardContent>
-          <div className="flex items-start justify-between gap-2">
-            <h1 className="text-3xl font-bold">{article.title}</h1>
-            {isOwnArticle && (
-              <div className="flex shrink-0 items-center gap-1">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  nativeButton={false}
-                  render={<Link href={`/articles/${slug}/edit`} />}
-                >
-                  {t("edit")}
-                </Button>
-                <ArticleDeleteButton
-                  articleId={article.id}
-                  coverImagePath={article.cover_image_path}
-                />
+      <div>
+        <div className="relative isolate overflow-hidden rounded-t-2xl border border-b-0">
+          {coverUrl ? (
+            <div className="relative h-56 w-full sm:h-72">
+              <Image src={coverUrl} alt="" fill unoptimized className="object-cover" />
+            </div>
+          ) : (
+            <div className="relative isolate h-40 w-full overflow-hidden bg-muted/40 sm:h-48">
+              <DashedGridBackground />
+              <div className="relative flex h-full items-center justify-center">
+                <Image src="/logose.svg" alt="" width={56} height={56} />
               </div>
-            )}
+            </div>
+          )}
+        </div>
+
+        <div className="rounded-b-2xl border border-t-0 bg-muted/40 px-6 py-6 sm:px-8">
+          <p className="text-sm text-muted-foreground">
+            {t("publishedTimeAgo", { time: format.relativeTime(new Date(article.created_at)) })}
+          </p>
+
+          <div className="mt-1 flex items-start justify-between gap-3">
+            <h1 className="text-3xl font-bold text-foreground">{article.title}</h1>
+            <ArticleShareButton path={`/articles/${slug}`} />
           </div>
 
-          <div className="mt-4 flex items-center gap-3">
+          <div className="mt-3 flex items-center gap-3">
             {author?.slug ? (
               <Link href={`/profile/${author.slug}`} className="flex items-center gap-3">
-                <UserAvatar name={authorName} avatarUrl={author.avatar_url} size={40} />
-                <span className="font-semibold hover:underline">{authorName}</span>
+                <UserAvatar name={authorName} avatarUrl={author.avatar_url} size={32} />
+                <span className="text-sm font-semibold hover:underline">{authorName}</span>
               </Link>
             ) : (
               <>
-                <UserAvatar name={authorName} avatarUrl={null} size={40} />
-                <span className="font-semibold">{authorName}</span>
+                <UserAvatar name={authorName} avatarUrl={null} size={32} />
+                <span className="text-sm font-semibold">{authorName}</span>
               </>
             )}
-            <span className="text-sm text-muted-foreground">
-              {format.dateTime(new Date(article.created_at), {
-                dateStyle: "medium",
-              })}
-            </span>
           </div>
+        </div>
 
-          <div
-            className="prose prose-lg mt-6 max-w-none text-foreground **:text-foreground"
-            // eslint-disable-next-line react/no-danger -- sanitized above with DOMPurify's allowlist
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
-          />
-        </CardContent>
-      </Card>
+        <Card className="mt-4">
+          <CardContent>
+            <div className="flex items-center justify-between gap-2">
+              <h2 className="text-lg font-bold text-foreground">{t("articleContent")}</h2>
+              {isOwnArticle && (
+                <div className="flex shrink-0 items-center gap-1">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    nativeButton={false}
+                    render={<Link href={`/articles/${slug}/edit`} />}
+                  >
+                    {t("edit")}
+                  </Button>
+                  <ArticleDeleteButton
+                    articleId={article.id}
+                    coverImagePath={article.cover_image_path}
+                  />
+                </div>
+              )}
+            </div>
+
+            <div
+              className="prose prose-lg mt-4 max-w-none text-foreground **:text-foreground"
+              // eslint-disable-next-line react/no-danger -- sanitized above with DOMPurify's allowlist
+              dangerouslySetInnerHTML={{ __html: contentHtml }}
+            />
+          </CardContent>
+        </Card>
+      </div>
 
       <aside className="hidden lg:block">
         <NewsSlot />
