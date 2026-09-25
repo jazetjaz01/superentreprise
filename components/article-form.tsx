@@ -362,7 +362,7 @@ export const ArticleForm = ({
             </Button>
           </div>
         ) : (
-          <div className="relative isolate flex flex-col items-center justify-center gap-4 overflow-hidden rounded-lg border bg-muted/40 px-6 py-16 text-center">
+          <div className="relative isolate flex flex-col items-center justify-center gap-4 overflow-hidden rounded-lg border bg-white px-6 py-16 text-center">
             <DashedGridBackground />
             <ImageIcon className="relative size-10 text-muted-foreground" />
             <p className="relative text-foreground">{t('coverPrompt')}</p>
