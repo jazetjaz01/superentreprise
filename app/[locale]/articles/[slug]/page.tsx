@@ -91,67 +91,67 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <Card className="overflow-hidden pt-0">
         <ArticleBanner />
 
-        <CardContent className="bg-muted/40">
-          <p className="text-sm text-muted-foreground">
-            {t("publishedTimeAgo", { time: format.relativeTime(new Date(article.created_at)) })}
-          </p>
+        <CardContent className="p-4 sm:p-6">
+          <div className="rounded-xl bg-slate-200 p-6 sm:p-8">
+            <p className="text-sm text-muted-foreground">
+              {t("publishedTimeAgo", { time: format.relativeTime(new Date(article.created_at)) })}
+            </p>
 
-          {introText && <p className="mt-2 text-foreground">{introText}</p>}
+            {introText && <p className="mt-2 text-foreground">{introText}</p>}
 
-          <div className="mt-4 flex items-start justify-between gap-3">
-            <h1 className="text-3xl font-bold text-foreground">{article.title}</h1>
-            <ArticleShareButton path={`/articles/${slug}`} />
-          </div>
+            <div className="mt-4 flex items-start justify-between gap-3">
+              <h1 className="text-3xl font-bold text-foreground">{article.title}</h1>
+              <ArticleShareButton path={`/articles/${slug}`} />
+            </div>
 
-          <div className="mt-3 flex items-center gap-2">
-            {author?.slug ? (
-              <Link href={`/profile/${author.slug}`} className="flex items-center gap-3">
-                <UserAvatar name={authorName} avatarUrl={author.avatar_url} size={32} />
-                <span className="text-sm font-semibold hover:underline">{authorName}</span>
-              </Link>
-            ) : (
-              <>
-                <UserAvatar name={authorName} avatarUrl={null} size={32} />
-                <span className="text-sm font-semibold">{authorName}</span>
-              </>
-            )}
-            <Info className="size-3.5 shrink-0 text-muted-foreground" />
-          </div>
-        </CardContent>
+            <div className="mt-3 flex items-center gap-2">
+              {author?.slug ? (
+                <Link href={`/profile/${author.slug}`} className="flex items-center gap-3">
+                  <UserAvatar name={authorName} avatarUrl={author.avatar_url} size={32} />
+                  <span className="text-sm font-semibold hover:underline">{authorName}</span>
+                </Link>
+              ) : (
+                <>
+                  <UserAvatar name={authorName} avatarUrl={null} size={32} />
+                  <span className="text-sm font-semibold">{authorName}</span>
+                </>
+              )}
+              <Info className="size-3.5 shrink-0 text-muted-foreground" />
+            </div>
 
-        <CardContent className="p-6 sm:p-8">
-          <div className="flex items-center justify-between gap-2">
-            <h2 className="text-lg font-bold text-foreground">{t("articleContent")}</h2>
-            {isOwnArticle && (
-              <div className="flex shrink-0 items-center gap-1">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  nativeButton={false}
-                  render={<Link href={`/articles/${slug}/edit`} />}
-                >
-                  {t("edit")}
-                </Button>
-                <ArticleDeleteButton
-                  articleId={article.id}
-                  coverImagePath={article.cover_image_path}
-                />
-              </div>
-            )}
-          </div>
+            <div className="mt-6 flex items-center justify-between gap-2">
+              <h2 className="text-lg font-bold text-foreground">{t("articleContent")}</h2>
+              {isOwnArticle && (
+                <div className="flex shrink-0 items-center gap-1">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    nativeButton={false}
+                    render={<Link href={`/articles/${slug}/edit`} />}
+                  >
+                    {t("edit")}
+                  </Button>
+                  <ArticleDeleteButton
+                    articleId={article.id}
+                    coverImagePath={article.cover_image_path}
+                  />
+                </div>
+              )}
+            </div>
 
-          <div className="mt-4 rounded-xl border p-6">
-            <div
-              className="prose prose-lg max-w-none text-foreground **:text-foreground"
-              // eslint-disable-next-line react/no-danger -- sanitized above with DOMPurify's allowlist
-              dangerouslySetInnerHTML={{ __html: contentHtml }}
-            />
+            <div className="mt-4 rounded-xl border bg-white p-6">
+              <div
+                className="prose prose-lg max-w-none text-foreground **:text-foreground"
+                // eslint-disable-next-line react/no-danger -- sanitized above with DOMPurify's allowlist
+                dangerouslySetInnerHTML={{ __html: contentHtml }}
+              />
 
-            {coverUrl && (
-              <div className="relative mt-6 h-56 w-full overflow-hidden rounded-lg sm:h-72">
-                <Image src={coverUrl} alt="" fill unoptimized className="object-cover" />
-              </div>
-            )}
+              {coverUrl && (
+                <div className="relative mt-6 h-56 w-full overflow-hidden rounded-lg sm:h-72">
+                  <Image src={coverUrl} alt="" fill unoptimized className="object-cover" />
+                </div>
+              )}
+            </div>
           </div>
         </CardContent>
       </Card>
