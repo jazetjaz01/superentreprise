@@ -324,6 +324,10 @@
     "question": "Who viewed your profile in the last 365 days?",
     "cta": "Try it"
   },
+  "News": {
+    "title": "Superentreprise News",
+    "subtitle": "Featured articles"
+  },
   "Protected": {
     "hello": "Hello {email}"
   }

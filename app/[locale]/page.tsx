@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { AdSlot } from "@/components/ad-slot";
 import Hero from "@/components/hero";
 import ImageCarouselSection from "@/components/image-carousel-section";
+import { NewsSlot } from "@/components/news-slot";
 import { PostComposer } from "@/components/post-composer";
 import { PostFeed } from "@/components/post-feed";
 import { PremiumAdSlot } from "@/components/premium-ad-slot";
@@ -51,6 +52,7 @@ export default async function Home() {
         <PostFeed />
       </main>
       <aside className="hidden lg:flex lg:flex-col lg:gap-4">
+        <NewsSlot />
         <PremiumAdSlot name={name} avatarUrl={avatarUrl} />
         <AdSlot />
       </aside>
