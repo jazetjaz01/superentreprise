@@ -83,15 +83,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   return (
     <div className="mx-auto grid w-full max-w-(--breakpoint-xl) gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-8">
       <Card className="overflow-hidden pt-0">
-        <div className="flex flex-col">
-          <ArticleBanner />
-
-          {coverUrl && (
-            <div className="relative h-56 w-full sm:h-72">
-              <Image src={coverUrl} alt="" fill unoptimized className="object-cover" />
-            </div>
-          )}
-        </div>
+        <ArticleBanner />
 
         <CardContent className="bg-muted/40">
           <p className="text-sm text-muted-foreground">
@@ -118,7 +110,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </div>
         </CardContent>
 
-        <CardContent>
+        <CardContent className="p-6 sm:p-8">
           <div className="flex items-center justify-between gap-2">
             <h2 className="text-lg font-bold text-foreground">{t("articleContent")}</h2>
             {isOwnArticle && (
@@ -139,11 +131,19 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             )}
           </div>
 
-          <div
-            className="prose prose-lg mt-4 max-w-none text-foreground **:text-foreground"
-            // eslint-disable-next-line react/no-danger -- sanitized above with DOMPurify's allowlist
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
-          />
+          <div className="mt-4 rounded-xl border p-6">
+            <div
+              className="prose prose-lg max-w-none text-foreground **:text-foreground"
+              // eslint-disable-next-line react/no-danger -- sanitized above with DOMPurify's allowlist
+              dangerouslySetInnerHTML={{ __html: contentHtml }}
+            />
+
+            {coverUrl && (
+              <div className="relative mt-6 h-56 w-full overflow-hidden rounded-lg sm:h-72">
+                <Image src={coverUrl} alt="" fill unoptimized className="object-cover" />
+              </div>
+            )}
+          </div>
         </CardContent>
       </Card>
 
