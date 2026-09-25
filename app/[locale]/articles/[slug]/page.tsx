@@ -96,7 +96,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             {t("publishedTimeAgo", { time: format.relativeTime(new Date(article.created_at)) })}
           </p>
 
-          <div className="mt-1 flex items-start justify-between gap-3">
+          {introText && <p className="mt-2 text-foreground">{introText}</p>}
+
+          <div className="mt-4 flex items-start justify-between gap-3">
             <h1 className="text-3xl font-bold text-foreground">{article.title}</h1>
             <ArticleShareButton path={`/articles/${slug}`} />
           </div>
@@ -115,10 +117,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             )}
             <Info className="size-3.5 shrink-0 text-muted-foreground" />
           </div>
-
-          {introText && (
-            <p className="mt-4 text-foreground">{introText}</p>
-          )}
         </CardContent>
 
         <CardContent className="p-6 sm:p-8">
