@@ -141,7 +141,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               </div>
 
               <div
-                className="prose prose-lg mt-4 max-w-none text-foreground **:text-foreground"
+                className="prose prose-sm mt-4 max-w-none text-foreground **:text-foreground"
                 // eslint-disable-next-line react/no-danger -- sanitized above with DOMPurify's allowlist
                 dangerouslySetInnerHTML={{ __html: contentHtml }}
               />
