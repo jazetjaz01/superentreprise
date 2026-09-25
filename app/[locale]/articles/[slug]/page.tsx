@@ -1,3 +1,4 @@
+import DOMPurify from "isomorphic-dompurify";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getFormatter, getTranslations } from "next-intl/server";
@@ -50,6 +51,27 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     ? supabase.storage.from("article-covers").getPublicUrl(article.cover_image_path)
         .data.publicUrl
     : null;
+  const contentHtml = DOMPurify.sanitize(article.content, {
+    ALLOWED_TAGS: [
+      "p",
+      "br",
+      "strong",
+      "em",
+      "s",
+      "code",
+      "pre",
+      "blockquote",
+      "ul",
+      "ol",
+      "li",
+      "h2",
+      "h3",
+      "a",
+      "img",
+      "hr",
+    ],
+    ALLOWED_ATTR: ["href", "target", "rel", "src", "alt"],
+  });
 
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6">
@@ -99,9 +121,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </span>
           </div>
 
-          <p className="mt-6 whitespace-pre-wrap text-foreground">
-            {article.content}
-          </p>
+          <div
+            className="prose prose-lg mt-6 max-w-none text-foreground **:text-foreground"
+            // eslint-disable-next-line react/no-danger -- sanitized above with DOMPurify's allowlist
+            dangerouslySetInnerHTML={{ __html: contentHtml }}
+          />
         </CardContent>
       </Card>
     </div>
