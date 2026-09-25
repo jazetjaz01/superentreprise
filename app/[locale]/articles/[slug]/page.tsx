@@ -1,7 +1,7 @@
-import DOMPurify from "isomorphic-dompurify";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getFormatter, getTranslations } from "next-intl/server";
+import sanitizeHtml from "sanitize-html";
 
 import { ArticleDeleteButton } from "@/components/article-delete-button";
 import { Button } from "@/components/ui/button";
@@ -51,8 +51,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     ? supabase.storage.from("article-covers").getPublicUrl(article.cover_image_path)
         .data.publicUrl
     : null;
-  const contentHtml = DOMPurify.sanitize(article.content, {
-    ALLOWED_TAGS: [
+  const contentHtml = sanitizeHtml(article.content, {
+    allowedTags: [
       "p",
       "br",
       "strong",
@@ -70,7 +70,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       "img",
       "hr",
     ],
-    ALLOWED_ATTR: ["href", "target", "rel", "src", "alt"],
+    allowedAttributes: {
+      a: ["href", "target", "rel"],
+      img: ["src", "alt"],
+    },
+    allowedSchemes: ["http", "https"],
   });
 
   return (
