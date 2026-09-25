@@ -272,6 +272,10 @@
     "articleContent": "Article",
     "share": "Partager",
     "linkCopied": "Lien copié",
+    "banner": {
+      "label": "Actualités",
+      "title": "Superentreprise Actualités"
+    },
     "write": {
       "pageTitle": "Rédiger un article",
       "editPageTitle": "Modifier l'article",
