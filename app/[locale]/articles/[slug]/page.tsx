@@ -99,26 +99,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
             {introText && <p className="mt-2 text-foreground">{introText}</p>}
 
-            <div className="mt-4 flex items-start justify-between gap-3">
-              <h1 className="text-3xl font-bold text-foreground">{article.title}</h1>
-              <ArticleShareButton path={`/articles/${slug}`} />
-            </div>
-
-            <div className="mt-3 flex items-center gap-2">
-              {author?.slug ? (
-                <Link href={`/profile/${author.slug}`} className="flex items-center gap-3">
-                  <UserAvatar name={authorName} avatarUrl={author.avatar_url} size={32} />
-                  <span className="text-sm font-semibold hover:underline">{authorName}</span>
-                </Link>
-              ) : (
-                <>
-                  <UserAvatar name={authorName} avatarUrl={null} size={32} />
-                  <span className="text-sm font-semibold">{authorName}</span>
-                </>
-              )}
-              <Info className="size-3.5 shrink-0 text-muted-foreground" />
-            </div>
-
             <div className="mt-6 flex items-center justify-between gap-2">
               <h2 className="text-lg font-bold text-foreground">{t("articleContent")}</h2>
               {isOwnArticle && (
@@ -140,8 +120,28 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </div>
 
             <div className="mt-4 rounded-xl border bg-white p-6">
+              <div className="flex items-start justify-between gap-3">
+                <h1 className="text-3xl font-bold text-foreground">{article.title}</h1>
+                <ArticleShareButton path={`/articles/${slug}`} />
+              </div>
+
+              <div className="mt-3 flex items-center gap-2">
+                {author?.slug ? (
+                  <Link href={`/profile/${author.slug}`} className="flex items-center gap-3">
+                    <UserAvatar name={authorName} avatarUrl={author.avatar_url} size={32} />
+                    <span className="text-sm font-semibold hover:underline">{authorName}</span>
+                  </Link>
+                ) : (
+                  <>
+                    <UserAvatar name={authorName} avatarUrl={null} size={32} />
+                    <span className="text-sm font-semibold">{authorName}</span>
+                  </>
+                )}
+                <Info className="size-3.5 shrink-0 text-muted-foreground" />
+              </div>
+
               <div
-                className="prose prose-lg max-w-none text-foreground **:text-foreground"
+                className="prose prose-lg mt-4 max-w-none text-foreground **:text-foreground"
                 // eslint-disable-next-line react/no-danger -- sanitized above with DOMPurify's allowlist
                 dangerouslySetInnerHTML={{ __html: contentHtml }}
               />
