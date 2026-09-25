@@ -227,7 +227,7 @@ export const ArticleForm = ({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex min-h-screen flex-col">
+    <form onSubmit={handleSubmit} className="flex min-h-screen flex-col bg-muted">
       <div className="sticky top-0 z-10 flex flex-wrap items-center gap-3 border-b bg-white px-4 py-2 sm:px-6">
         <div className="flex items-center gap-2">
           <UserAvatar name={authorName} avatarUrl={authorAvatarUrl} size={40} />
@@ -329,7 +329,11 @@ export const ArticleForm = ({
           />
         </div>
 
-        <Button type="submit" disabled={isSubmitting} className="rounded-full px-6">
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          className="rounded-full bg-sky-600 px-6 text-white hover:bg-sky-700"
+        >
           {isSubmitting ? t('publishing') : isEdit ? t('save') : t('publish')}
         </Button>
       </div>
