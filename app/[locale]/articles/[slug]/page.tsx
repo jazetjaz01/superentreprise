@@ -6,7 +6,6 @@ import sanitizeHtml from "sanitize-html";
 import { ArticleBanner } from "@/components/article-banner";
 import { ArticleDeleteButton } from "@/components/article-delete-button";
 import { ArticleShareButton } from "@/components/article-share-button";
-import { DashedGridBackground } from "@/components/dashed-grid-background";
 import { NewsSlot } from "@/components/news-slot";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -83,25 +82,18 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <div className="mx-auto grid w-full max-w-(--breakpoint-xl) gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-8">
-      <div>
-        <ArticleBanner />
+      <Card className="overflow-hidden pt-0">
+        <div className="flex flex-col">
+          <ArticleBanner />
 
-        <div className="relative isolate mt-4 overflow-hidden rounded-t-2xl border border-b-0">
-          {coverUrl ? (
+          {coverUrl && (
             <div className="relative h-56 w-full sm:h-72">
               <Image src={coverUrl} alt="" fill unoptimized className="object-cover" />
-            </div>
-          ) : (
-            <div className="relative isolate h-40 w-full overflow-hidden bg-muted/40 sm:h-48">
-              <DashedGridBackground />
-              <div className="relative flex h-full items-center justify-center">
-                <Image src="/logose.svg" alt="" width={56} height={56} />
-              </div>
             </div>
           )}
         </div>
 
-        <div className="rounded-b-2xl border border-t-0 bg-muted/40 px-6 py-6 sm:px-8">
+        <CardContent className="bg-muted/40">
           <p className="text-sm text-muted-foreground">
             {t("publishedTimeAgo", { time: format.relativeTime(new Date(article.created_at)) })}
           </p>
@@ -124,38 +116,36 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               </>
             )}
           </div>
-        </div>
+        </CardContent>
 
-        <Card className="mt-4">
-          <CardContent>
-            <div className="flex items-center justify-between gap-2">
-              <h2 className="text-lg font-bold text-foreground">{t("articleContent")}</h2>
-              {isOwnArticle && (
-                <div className="flex shrink-0 items-center gap-1">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    nativeButton={false}
-                    render={<Link href={`/articles/${slug}/edit`} />}
-                  >
-                    {t("edit")}
-                  </Button>
-                  <ArticleDeleteButton
-                    articleId={article.id}
-                    coverImagePath={article.cover_image_path}
-                  />
-                </div>
-              )}
-            </div>
+        <CardContent>
+          <div className="flex items-center justify-between gap-2">
+            <h2 className="text-lg font-bold text-foreground">{t("articleContent")}</h2>
+            {isOwnArticle && (
+              <div className="flex shrink-0 items-center gap-1">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  nativeButton={false}
+                  render={<Link href={`/articles/${slug}/edit`} />}
+                >
+                  {t("edit")}
+                </Button>
+                <ArticleDeleteButton
+                  articleId={article.id}
+                  coverImagePath={article.cover_image_path}
+                />
+              </div>
+            )}
+          </div>
 
-            <div
-              className="prose prose-lg mt-4 max-w-none text-foreground **:text-foreground"
-              // eslint-disable-next-line react/no-danger -- sanitized above with DOMPurify's allowlist
-              dangerouslySetInnerHTML={{ __html: contentHtml }}
-            />
-          </CardContent>
-        </Card>
-      </div>
+          <div
+            className="prose prose-lg mt-4 max-w-none text-foreground **:text-foreground"
+            // eslint-disable-next-line react/no-danger -- sanitized above with DOMPurify's allowlist
+            dangerouslySetInnerHTML={{ __html: contentHtml }}
+          />
+        </CardContent>
+      </Card>
 
       <aside className="hidden lg:block">
         <NewsSlot />
