@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getFormatter, getTranslations } from "next-intl/server";
 
+import { FollowButton } from "@/components/follow-button";
 import { PostDeleteButton } from "@/components/post-delete-button";
 import { Card, CardContent } from "@/components/ui/card";
 import { UserAvatar } from "@/components/user-avatar";
@@ -34,6 +35,19 @@ export const PostFeed = async () => {
   ]);
   const posts = data ?? [];
   const currentUserId = claimsData?.claims?.sub;
+
+  const authorIds = [...new Set(posts.map((post) => post.author_id))].filter(
+    (authorId) => authorId !== currentUserId,
+  );
+  const { data: followedRows } =
+    currentUserId && authorIds.length > 0
+      ? await supabase
+          .from("follows")
+          .select("followee_id")
+          .eq("follower_id", currentUserId)
+          .in("followee_id", authorIds)
+      : { data: null };
+  const followedAuthorIds = new Set((followedRows ?? []).map((row) => row.followee_id));
 
   if (posts.length === 0) {
     return (
@@ -74,12 +88,22 @@ export const PostFeed = async () => {
                     })}
                   </p>
                 </div>
-                {currentUserId === post.author_id && (
+                {currentUserId === post.author_id ? (
                   <PostDeleteButton
                     postId={post.id}
                     imagePath={post.image_path}
                     videoPath={post.video_path}
                   />
+                ) : (
+                  currentUserId && (
+                    <FollowButton
+                      viewerId={currentUserId}
+                      profileId={post.author_id}
+                      initialIsFollowing={followedAuthorIds.has(post.author_id)}
+                      size="sm"
+                      className="ml-auto"
+                    />
+                  )
                 )}
               </div>
               {post.content && (

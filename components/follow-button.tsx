@@ -5,15 +5,24 @@ import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { useRouter } from '@/i18n/navigation'
+import { cn } from '@/lib/utils'
 import { createClient } from '@/lib/supabase/client'
 
 type FollowButtonProps = {
   viewerId: string
   profileId: string
   initialIsFollowing: boolean
+  size?: 'default' | 'sm'
+  className?: string
 }
 
-export const FollowButton = ({ viewerId, profileId, initialIsFollowing }: FollowButtonProps) => {
+export const FollowButton = ({
+  viewerId,
+  profileId,
+  initialIsFollowing,
+  size = 'default',
+  className,
+}: FollowButtonProps) => {
   const t = useTranslations('ProfilePage.follow')
   const router = useRouter()
   const [isFollowing, setIsFollowing] = useState(initialIsFollowing)
@@ -52,10 +61,11 @@ export const FollowButton = ({ viewerId, profileId, initialIsFollowing }: Follow
   }
 
   return (
-    <div className="flex flex-col items-end gap-1">
+    <div className={cn('flex flex-col items-end gap-1', className)}>
       <Button
         type="button"
         variant={isFollowing ? 'outline' : 'default'}
+        size={size}
         disabled={isSubmitting}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
