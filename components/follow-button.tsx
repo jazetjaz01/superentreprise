@@ -50,7 +50,10 @@ export const FollowButton = ({
         const { error: insertError } = await supabase
           .from('follows')
           .insert({ follower_id: viewerId, followee_id: profileId })
-        if (insertError) throw insertError
+        // A duplicate-key error means another button for the same author already
+        // created the relationship (e.g. a second post from the same author whose
+        // local state hadn't caught up yet) — treat it as success, not a failure.
+        if (insertError && insertError.code !== '23505') throw insertError
         setIsFollowing(true)
       }
       router.refresh()

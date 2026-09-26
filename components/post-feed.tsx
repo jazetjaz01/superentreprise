@@ -127,6 +127,7 @@ export const PostFeed = async () => {
                 ) : (
                   currentUserId && (
                     <FollowButton
+                      key={`${post.author_id}-${followedAuthorIds.has(post.author_id)}`}
                       viewerId={currentUserId}
                       profileId={post.author_id}
                       initialIsFollowing={followedAuthorIds.has(post.author_id)}
