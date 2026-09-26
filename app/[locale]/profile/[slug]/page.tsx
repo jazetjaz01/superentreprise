@@ -115,6 +115,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                       viewerId={viewerId}
                       profileId={profile.id}
                       initialIsFollowing={isFollowing}
+                      variant="text"
                     />
                   )
                 )}
