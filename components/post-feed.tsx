@@ -4,6 +4,7 @@ import { getFormatter, getTranslations } from "next-intl/server";
 import { FollowButton } from "@/components/follow-button";
 import { PostContent } from "@/components/post-content";
 import { PostDeleteButton } from "@/components/post-delete-button";
+import { PostEditDialog } from "@/components/post-edit-dialog";
 import { Card, CardContent } from "@/components/ui/card";
 import { UserAvatar } from "@/components/user-avatar";
 import { Link } from "@/i18n/navigation";
@@ -115,11 +116,14 @@ export const PostFeed = async () => {
                   </>
                 )}
                 {currentUserId === post.author_id ? (
-                  <PostDeleteButton
-                    postId={post.id}
-                    imagePath={post.image_path}
-                    videoPath={post.video_path}
-                  />
+                  <div className="ml-auto flex items-center">
+                    <PostEditDialog postId={post.id} content={post.content} />
+                    <PostDeleteButton
+                      postId={post.id}
+                      imagePath={post.image_path}
+                      videoPath={post.video_path}
+                    />
+                  </div>
                 ) : (
                   currentUserId && (
                     <FollowButton

@@ -44,7 +44,7 @@ export const PostDeleteButton = ({ postId, imagePath, videoPath }: PostDeleteBut
   }
 
   return (
-    <div className="ml-auto flex flex-col items-end">
+    <div className="flex flex-col items-end">
       <Button
         type="button"
         variant="ghost"

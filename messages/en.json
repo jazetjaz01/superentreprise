@@ -328,7 +328,13 @@
     "imageAlt": "Image posted by {name}",
     "delete": "Delete post",
     "deleteError": "Unable to delete the post. Please try again.",
-    "seeMore": "...more"
+    "seeMore": "...more",
+    "edit": "Edit post",
+    "editTitle": "Edit post",
+    "editPlaceholder": "What do you want to talk about?",
+    "editSave": "Save",
+    "editSaving": "Saving...",
+    "editError": "Unable to edit the post. Please try again."
   },
   "Ads": {
     "placeholder": "Ad space",
