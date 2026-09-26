@@ -327,7 +327,8 @@
     "anonymous": "Utilisateur",
     "imageAlt": "Image publiée par {name}",
     "delete": "Supprimer le post",
-    "deleteError": "Impossible de supprimer le post. Veuillez réessayer."
+    "deleteError": "Impossible de supprimer le post. Veuillez réessayer.",
+    "seeMore": "...plus"
   },
   "Ads": {
     "placeholder": "Emplacement publicitaire",

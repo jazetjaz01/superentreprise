@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getFormatter, getTranslations } from "next-intl/server";
 
 import { FollowButton } from "@/components/follow-button";
+import { PostContent } from "@/components/post-content";
 import { PostDeleteButton } from "@/components/post-delete-button";
 import { Card, CardContent } from "@/components/ui/card";
 import { UserAvatar } from "@/components/user-avatar";
@@ -131,9 +132,7 @@ export const PostFeed = async () => {
                   )
                 )}
               </div>
-              {post.content && (
-                <p className="break-words whitespace-pre-wrap">{post.content}</p>
-              )}
+              {post.content && <PostContent content={post.content} />}
               {imageUrl && (
                 <Image
                   src={imageUrl}

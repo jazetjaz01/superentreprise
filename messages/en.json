@@ -327,7 +327,8 @@
     "anonymous": "User",
     "imageAlt": "Image posted by {name}",
     "delete": "Delete post",
-    "deleteError": "Unable to delete the post. Please try again."
+    "deleteError": "Unable to delete the post. Please try again.",
+    "seeMore": "...more"
   },
   "Ads": {
     "placeholder": "Ad space",
