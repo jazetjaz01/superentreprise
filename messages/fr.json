@@ -197,6 +197,17 @@
       "copy": "Copier le lien",
       "copied": "Lien copié"
     },
+    "follow": {
+      "follow": "Suivre",
+      "following": "Abonné",
+      "unfollow": "Ne plus suivre",
+      "error": "Une erreur est survenue. Veuillez réessayer.",
+      "followersCount": "{count, plural, =0 {Aucun abonné} one {# abonné} other {# abonnés}}",
+      "followingCount": "{count, plural, =0 {Aucun abonnement} one {# abonnement} other {# abonnements}}",
+      "followersDialogTitle": "Abonnés",
+      "noFollowers": "Vous n'avez pas encore d'abonnés.",
+      "removeFollower": "Retirer"
+    },
     "experience": {
       "sectionTitle": "Expérience",
       "empty": "Aucune expérience ajoutée.",

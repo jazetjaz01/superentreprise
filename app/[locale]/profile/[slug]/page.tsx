@@ -5,6 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { EditProfileDialog } from "@/components/edit-profile-dialog";
 import { EducationSection } from "@/components/education-section";
 import { ExperienceSection } from "@/components/experience-section";
+import { FollowButton } from "@/components/follow-button";
+import { FollowersManager, type FollowerProfile } from "@/components/followers-manager";
 import { ProfileBanner } from "@/components/profile-banner";
 import { ProfileUrlCard } from "@/components/profile-url-card";
 import { SkillsSection } from "@/components/skills-section";
@@ -34,17 +36,52 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
   if (!profile) notFound();
 
-  const isOwnProfile = claimsData?.claims?.sub === profile.id;
+  const viewerId = claimsData?.claims?.sub;
+  const isOwnProfile = viewerId === profile.id;
   const name = profile.full_name ?? tProfile("anonymous");
   const location = [profile.city, profile.region, profile.country]
     .filter(Boolean)
     .join(", ");
 
-  const { data: skills } = await supabase
-    .from("skills")
-    .select("id, name")
-    .eq("profile_id", profile.id)
-    .order("created_at", { ascending: true });
+  const [{ data: skills }, { count: followerCount }, { count: followingCount }, followingRow, followersResult] =
+    await Promise.all([
+      supabase
+        .from("skills")
+        .select("id, name")
+        .eq("profile_id", profile.id)
+        .order("created_at", { ascending: true }),
+      supabase
+        .from("follows")
+        .select("*", { count: "exact", head: true })
+        .eq("followee_id", profile.id),
+      supabase
+        .from("follows")
+        .select("*", { count: "exact", head: true })
+        .eq("follower_id", profile.id),
+      !isOwnProfile && viewerId
+        ? supabase
+            .from("follows")
+            .select("follower_id")
+            .eq("follower_id", viewerId)
+            .eq("followee_id", profile.id)
+            .maybeSingle()
+        : Promise.resolve({ data: null }),
+      isOwnProfile
+        ? supabase
+            .from("follows")
+            .select("follower_id, profiles!follows_follower_id_fkey(id, slug, full_name, avatar_url, headline)")
+            .eq("followee_id", profile.id)
+            .overrideTypes<
+              { follower_id: string; profiles: FollowerProfile | null }[],
+              { merge: false }
+            >()
+        : Promise.resolve({ data: null }),
+    ]);
+
+  const isFollowing = !!followingRow?.data;
+  const followers: FollowerProfile[] = (followersResult?.data ?? [])
+    .map((row) => row.profiles)
+    .filter((followerProfile): followerProfile is FollowerProfile => !!followerProfile);
 
   return (
     <div className="w-full flex-1 bg-muted">
@@ -61,7 +98,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 <div className="rounded-full ring-4 ring-card">
                   <UserAvatar name={name} avatarUrl={profile.avatar_url} size={96} />
                 </div>
-                {isOwnProfile && (
+                {isOwnProfile ? (
                   <EditProfileDialog
                     userId={profile.id}
                     fullName={profile.full_name ?? ""}
@@ -72,6 +109,14 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                     region={profile.region}
                     country={profile.country}
                   />
+                ) : (
+                  viewerId && (
+                    <FollowButton
+                      viewerId={viewerId}
+                      profileId={profile.id}
+                      initialIsFollowing={isFollowing}
+                    />
+                  )
                 )}
               </div>
               <h1 className="mt-3 text-2xl font-semibold">{name}</h1>
@@ -81,6 +126,23 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               {location && (
                 <p className="mt-1 text-sm text-foreground">{location}</p>
               )}
+
+              <div className="mt-3 flex items-center gap-4">
+                {isOwnProfile ? (
+                  <FollowersManager
+                    profileId={profile.id}
+                    followers={followers}
+                    anonymousLabel={tProfile("anonymous")}
+                  />
+                ) : (
+                  <span className="text-sm font-semibold text-foreground">
+                    {t("follow.followersCount", { count: followerCount ?? 0 })}
+                  </span>
+                )}
+                <span className="text-sm text-muted-foreground">
+                  {t("follow.followingCount", { count: followingCount ?? 0 })}
+                </span>
+              </div>
             </CardContent>
           </Card>
 
