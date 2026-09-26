@@ -5,6 +5,7 @@ import { FollowButton } from "@/components/follow-button";
 import { PostDeleteButton } from "@/components/post-delete-button";
 import { Card, CardContent } from "@/components/ui/card";
 import { UserAvatar } from "@/components/user-avatar";
+import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
 
 type FeedPost = {
@@ -14,7 +15,7 @@ type FeedPost = {
   image_path: string | null;
   video_path: string | null;
   created_at: string;
-  profiles: { full_name: string | null; avatar_url: string | null } | null;
+  profiles: { slug: string; full_name: string | null; avatar_url: string | null } | null;
 };
 
 export const PostFeed = async () => {
@@ -26,7 +27,7 @@ export const PostFeed = async () => {
     supabase
       .from("posts")
       .select(
-        "id, author_id, content, image_path, video_path, created_at, profiles(full_name, avatar_url)",
+        "id, author_id, content, image_path, video_path, created_at, profiles(slug, full_name, avatar_url)",
       )
       .order("created_at", { ascending: false })
       .limit(20)
@@ -74,20 +75,44 @@ export const PostFeed = async () => {
           <Card key={post.id}>
             <CardContent className="flex flex-col gap-3">
               <div className="flex items-center gap-3">
-                <UserAvatar
-                  name={authorName}
-                  avatarUrl={post.profiles?.avatar_url}
-                  size={48}
-                />
-                <div className="min-w-0">
-                  <p className="font-semibold break-words">{authorName}</p>
-                  <p className="text-xs text-foreground">
-                    {format.dateTime(new Date(post.created_at), {
-                      dateStyle: "medium",
-                      timeStyle: "short",
-                    })}
-                  </p>
-                </div>
+                {post.profiles?.slug ? (
+                  <Link
+                    href={`/profile/${post.profiles.slug}`}
+                    className="flex min-w-0 items-center gap-3"
+                  >
+                    <UserAvatar
+                      name={authorName}
+                      avatarUrl={post.profiles?.avatar_url}
+                      size={48}
+                    />
+                    <div className="min-w-0">
+                      <p className="font-semibold break-words hover:underline">{authorName}</p>
+                      <p className="text-xs text-foreground">
+                        {format.dateTime(new Date(post.created_at), {
+                          dateStyle: "medium",
+                          timeStyle: "short",
+                        })}
+                      </p>
+                    </div>
+                  </Link>
+                ) : (
+                  <>
+                    <UserAvatar
+                      name={authorName}
+                      avatarUrl={post.profiles?.avatar_url}
+                      size={48}
+                    />
+                    <div className="min-w-0">
+                      <p className="font-semibold break-words">{authorName}</p>
+                      <p className="text-xs text-foreground">
+                        {format.dateTime(new Date(post.created_at), {
+                          dateStyle: "medium",
+                          timeStyle: "short",
+                        })}
+                      </p>
+                    </div>
+                  </>
+                )}
                 {currentUserId === post.author_id ? (
                   <PostDeleteButton
                     postId={post.id}
@@ -100,7 +125,7 @@ export const PostFeed = async () => {
                       viewerId={currentUserId}
                       profileId={post.author_id}
                       initialIsFollowing={followedAuthorIds.has(post.author_id)}
-                      size="sm"
+                      variant="text"
                       className="ml-auto"
                     />
                   )

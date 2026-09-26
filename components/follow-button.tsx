@@ -13,6 +13,7 @@ type FollowButtonProps = {
   profileId: string
   initialIsFollowing: boolean
   size?: 'default' | 'sm'
+  variant?: 'button' | 'text'
   className?: string
 }
 
@@ -21,6 +22,7 @@ export const FollowButton = ({
   profileId,
   initialIsFollowing,
   size = 'default',
+  variant = 'button',
   className,
 }: FollowButtonProps) => {
   const t = useTranslations('ProfilePage.follow')
@@ -58,6 +60,24 @@ export const FollowButton = ({
       setIsSubmitting(false)
       setIsHovering(false)
     }
+  }
+
+  if (variant === 'text') {
+    return (
+      <div className={cn('flex flex-col items-end gap-1', className)}>
+        <button
+          type="button"
+          disabled={isSubmitting}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+          onClick={handleClick}
+          className="text-sm font-semibold text-sky-600 hover:underline disabled:opacity-50"
+        >
+          {isFollowing ? (isHovering ? t('unfollow') : t('following')) : `+ ${t('follow')}`}
+        </button>
+        {error && <p className="text-xs text-red-500">{error}</p>}
+      </div>
+    )
   }
 
   return (
