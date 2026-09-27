@@ -120,7 +120,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                   )
                 )}
               </div>
-              <h1 className="mt-3 text-2xl font-semibold">{name}</h1>
+              <h1 className="font-heading mt-3 text-2xl font-semibold">{name}</h1>
               {profile.headline && (
                 <p className="mt-1 text-foreground">{profile.headline}</p>
               )}

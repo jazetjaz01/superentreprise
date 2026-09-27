@@ -61,7 +61,7 @@ const Navbar = async () => {
               <Button
                 nativeButton={false}
                 render={<Link href="/auth/sign-up" />}
-                className="rounded-full bg-black text-white hover:bg-black/80"
+                className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 {t("signUp")}
               </Button>

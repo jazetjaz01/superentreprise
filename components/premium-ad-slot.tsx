@@ -37,7 +37,7 @@ export const PremiumAdSlot = async ({ name, avatarUrl }: PremiumAdSlotProps) => 
       <div className="mt-4 flex justify-center">
         <button
           type="button"
-          className="rounded-full border-2 border-sky-700 px-6 py-2 text-sm font-semibold text-sky-700 transition-colors hover:bg-sky-50"
+          className="rounded-full border-2 border-primary px-6 py-2 text-sm font-semibold text-primary transition-colors hover:bg-primary/10"
         >
           {t("cta")}
         </button>

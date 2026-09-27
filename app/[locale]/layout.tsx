@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Fraunces, Poppins } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
@@ -12,6 +12,13 @@ const poppins = Poppins({
   variable: "--font-sans",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+});
+
+const fraunces = Fraunces({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
 });
 
 export async function generateMetadata({
@@ -34,7 +41,7 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={`${poppins.variable} h-full antialiased`}
+      className={`${poppins.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-muted">
         <NextIntlClientProvider>

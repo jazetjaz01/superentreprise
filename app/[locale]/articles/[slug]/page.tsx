@@ -92,7 +92,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <ArticleBanner />
 
         <CardContent className="px-4  pb-4 sm:px-12  sm:pb-12">
-          <div className="bg-slate-100 p-8 sm:p-12">
+          <div className="bg-muted p-8 sm:p-12">
             <p className="text-sm text-muted-foreground">
               {t("publishedTimeAgo", { time: format.relativeTime(new Date(article.created_at)) })}
             </p>
@@ -121,7 +121,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
             <div className="mt-4 rounded-xl border bg-white p-6">
               <div className="flex items-start justify-between gap-3">
-                <h1 className="text-3xl font-bold text-foreground">{article.title}</h1>
+                <h1 className="font-heading text-3xl font-semibold text-foreground">
+                  {article.title}
+                </h1>
                 <ArticleShareButton path={`/articles/${slug}`} />
               </div>
 

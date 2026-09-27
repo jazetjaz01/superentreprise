@@ -19,7 +19,7 @@ export const ArticleBanner = async () => {
 
       <div className="relative flex h-full flex-col items-center justify-center gap-4 px-4 text-center">
         <div className="flex items-center gap-2 rounded-full bg-white py-1.5 pr-4 pl-1.5 shadow-md">
-          <span className="flex size-8 items-center justify-center rounded-full bg-sky-700">
+          <span className="flex size-8 items-center justify-center rounded-full bg-primary">
             <Image src="/logose.svg" alt="" width={18} height={18} className="invert" />
           </span>
           <span className="text-sm font-bold text-foreground">{t("banner.label")}</span>
@@ -27,7 +27,9 @@ export const ArticleBanner = async () => {
             {monthYear}
           </span>
         </div>
-        <p className="text-xl font-bold text-foreground sm:text-2xl">{t("banner.title")}</p>
+        <p className="font-heading text-xl font-semibold text-foreground sm:text-2xl">
+          {t("banner.title")}
+        </p>
       </div>
     </div>
   );
