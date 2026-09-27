@@ -22,7 +22,6 @@ export default function ImageCarouselSection() {
           src="/home/video-home.mp4"
           autoPlay
           muted
-          loop
           playsInline
           className="aspect-16/8 w-full object-cover"
         />
