@@ -341,7 +341,14 @@
     "editPlaceholder": "De quoi voulez-vous discuter ?",
     "editSave": "Enregistrer",
     "editSaving": "Enregistrement...",
-    "editError": "Impossible de modifier le post. Veuillez réessayer."
+    "editError": "Impossible de modifier le post. Veuillez réessayer.",
+    "like": "J'aime",
+    "comment": "Commenter",
+    "commentPlaceholder": "Ajouter un commentaire...",
+    "commentSend": "Publier",
+    "commentSending": "Publication...",
+    "commentError": "Impossible de publier le commentaire. Veuillez réessayer.",
+    "deleteComment": "Supprimer le commentaire"
   },
   "Ads": {
     "placeholder": "Emplacement publicitaire",

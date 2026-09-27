@@ -49,7 +49,7 @@ export default async function Home() {
       </aside>
       <main className="mx-auto flex w-full max-w-2xl flex-col gap-4">
         <PostComposer userId={claims.sub} name={name} avatarUrl={avatarUrl} />
-        <PostFeed />
+        <PostFeed viewerName={name} viewerAvatarUrl={avatarUrl} />
       </main>
       <aside className="hidden lg:flex lg:flex-col lg:gap-4">
         <NewsSlot />

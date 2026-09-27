@@ -341,7 +341,14 @@
     "editPlaceholder": "What do you want to talk about?",
     "editSave": "Save",
     "editSaving": "Saving...",
-    "editError": "Unable to edit the post. Please try again."
+    "editError": "Unable to edit the post. Please try again.",
+    "like": "Like",
+    "comment": "Comment",
+    "commentPlaceholder": "Add a comment...",
+    "commentSend": "Post",
+    "commentSending": "Posting...",
+    "commentError": "Unable to post the comment. Please try again.",
+    "deleteComment": "Delete comment"
   },
   "Ads": {
     "placeholder": "Ad space",
