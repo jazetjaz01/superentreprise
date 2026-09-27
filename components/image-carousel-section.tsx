@@ -22,49 +22,47 @@ export default function ImageCarouselSection() {
   const t = useTranslations("ImageCarouselSection");
 
   return (
-    <section className="mx-auto w-full max-w-(--breakpoint-xl) px-4 pt-12 pb-0 sm:px-6 lg:px-8">
-      <div className="grid gap-4 lg:grid-cols-2 lg:gap-6">
-        <Carousel
-          opts={{ loop: true }}
-          aria-label={t("carouselLabel")}
-          className="overflow-hidden rounded-2xl"
-        >
-          <CarouselContent className="ml-0">
-            {slides.map(({ src, altKey }) => (
-              <CarouselItem key={src} className="pl-0">
-                <Image
-                  src={src}
-                  alt={t(altKey)}
-                  width={2500}
-                  height={2250}
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  loading="eager"
-                  className="aspect-[10/9] w-full object-cover"
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious
-            aria-label={t("previous")}
-            className={`${arrowClassName} left-3`}
-          />
-          <CarouselNext
-            aria-label={t("next")}
-            className={`${arrowClassName} right-3`}
-          />
-        </Carousel>
-
-        <div className="flex flex-col justify-center rounded-2xl bg-secondary p-8 sm:p-12 lg:p-16">
-          <h2 className="font-heading text-4xl leading-[1.15] font-medium tracking-tight text-foreground md:text-5xl">
-            {t("title")}
-            <br />
-            <span className="text-primary italic">{t("titleAccent")}</span>
-          </h2>
-          <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
-            {t("body")}
-          </p>
-        </div>
+    <section className="mx-auto w-full max-w-(--breakpoint-xl) px-4 pt-16 pb-0 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-3xl text-center">
+        <h2 className="font-heading text-4xl leading-[1.15] font-medium tracking-tight text-foreground md:text-6xl">
+          {t("title")}
+          <br />
+          <span className="text-primary ">{t("titleAccent")}</span>
+        </h2>
+        <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
+          {t("body")}
+        </p>
       </div>
+
+      <Carousel
+        opts={{ loop: true }}
+        aria-label={t("carouselLabel")}
+        className="mt-12 overflow-hidden rounded-2xl"
+      >
+        <CarouselContent className="ml-0">
+          {slides.map(({ src, altKey }) => (
+            <CarouselItem key={src} className="pl-0">
+              <Image
+                src={src}
+                alt={t(altKey)}
+                width={2500}
+                height={1400}
+                sizes="100vw"
+                loading="eager"
+                className="aspect-16/8 w-full object-cover"
+              />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious
+          aria-label={t("previous")}
+          className={`${arrowClassName} left-3`}
+        />
+        <CarouselNext
+          aria-label={t("next")}
+          className={`${arrowClassName} right-3`}
+        />
+      </Carousel>
     </section>
   );
 }
