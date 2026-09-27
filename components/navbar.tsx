@@ -31,7 +31,7 @@ const Navbar = async () => {
     profile?.avatar_url ?? metadata?.avatar_url ?? metadata?.picture;
 
   return (
-    <nav className="sticky top-0 z-40 border-b border-border bg-background">
+    <nav className="sticky top-0 z-40  border-border bg-background">
       <div className="mx-auto flex h-full max-w-(--breakpoint-xl) items-center justify-between gap-4 px-4 py-[9.2px] sm:px-6 lg:px-8">
         <div className="flex min-w-0 items-center gap-6">
           <Logo />
