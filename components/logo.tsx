@@ -4,8 +4,6 @@ import { Link } from "@/i18n/navigation";
 export const Logo = () => (
   <Link href="/" className="flex items-center gap-2">
     <Image src="/logose.svg" alt="Logo" width={28} height={28} priority />
-    <span className="font-heading text-[26px] leading-none font-normal text-foreground">
-      Superentreprise
-    </span>
+    
   </Link>
 );
