@@ -25,11 +25,22 @@ export default async function Home() {
     );
   }
 
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("full_name, avatar_url, banner_url, headline, city, region")
-    .eq("id", claims.sub)
-    .maybeSingle();
+  const [{ data: profile }, { count: followerCount }, { count: followingCount }] =
+    await Promise.all([
+      supabase
+        .from("profiles")
+        .select("full_name, avatar_url, banner_url, headline, city, region")
+        .eq("id", claims.sub)
+        .maybeSingle(),
+      supabase
+        .from("follows")
+        .select("*", { count: "exact", head: true })
+        .eq("followee_id", claims.sub),
+      supabase
+        .from("follows")
+        .select("*", { count: "exact", head: true })
+        .eq("follower_id", claims.sub),
+    ]);
 
   const name = profile?.full_name ?? claims.email ?? tProfile("anonymous");
   const avatarUrl: string | null =
@@ -45,6 +56,8 @@ export default async function Home() {
           headline={profile?.headline ?? null}
           location={location || null}
           bannerUrl={profile?.banner_url ?? null}
+          followerCount={followerCount ?? 0}
+          followingCount={followingCount ?? 0}
         />
       </aside>
       <main className="mx-auto flex w-full max-w-2xl flex-col gap-4">

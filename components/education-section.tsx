@@ -28,9 +28,9 @@ export const EducationSection = async ({ profileId, isOwnProfile }: EducationSec
 
   return (
     <Card className="mt-4">
-      <CardContent>
+      <CardContent className="p-[27.6px]">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">{t('sectionTitle')}</h2>
+          <h2 className="font-heading text-2xl font-semibold">{t('sectionTitle')}</h2>
           {isOwnProfile && <EducationDialog profileId={profileId} />}
         </div>
 
@@ -40,23 +40,23 @@ export const EducationSection = async ({ profileId, isOwnProfile }: EducationSec
           <ul className="mt-4 flex flex-col gap-5">
             {items.map((education) => (
               <li key={education.id} className="flex items-start justify-between gap-2">
-                <div>
-                  <p className="font-medium">{education.school}</p>
-                  {education.degree && (
-                    <p className="text-sm text-foreground">{education.degree}</p>
-                  )}
-                  {(education.start_date || education.end_date) && (
-                    <p className="text-xs text-foreground">
-                      {education.start_date ? formatMonth(education.start_date) : ''}
-                      {education.start_date && education.end_date ? ' – ' : ''}
-                      {education.end_date ? formatMonth(education.end_date) : ''}
-                    </p>
-                  )}
-                  {education.description && (
-                    <p className="mt-1 whitespace-pre-wrap text-sm text-foreground">
-                      {education.description}
-                    </p>
-                  )}
+                <div className="flex items-start gap-4">
+                  <p className="text-ink-600 w-23 shrink-0 text-xs [font-variant-numeric:tabular-nums]">
+                    {education.start_date ? formatMonth(education.start_date) : ''}
+                    {education.start_date && education.end_date ? ' – ' : ''}
+                    {education.end_date ? formatMonth(education.end_date) : ''}
+                  </p>
+                  <div>
+                    <p className="font-heading font-semibold">{education.school}</p>
+                    {education.degree && (
+                      <p className="text-sm text-foreground">{education.degree}</p>
+                    )}
+                    {education.description && (
+                      <p className="mt-1 whitespace-pre-wrap text-sm text-foreground">
+                        {education.description}
+                      </p>
+                    )}
+                  </div>
                 </div>
                 {isOwnProfile && <EducationDialog profileId={profileId} education={education} />}
               </li>

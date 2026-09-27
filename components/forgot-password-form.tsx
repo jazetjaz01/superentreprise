@@ -76,7 +76,7 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
 
           <p className="mt-5 text-center text-sm">
             {t('forgotPassword.hasAccount')}{' '}
-            <Link href="/auth/login" className="underline underline-offset-4">
+            <Link href="/auth/login" className="text-primary underline underline-offset-4">
               {t('forgotPassword.signInLink')}
             </Link>
           </p>

@@ -8,6 +8,7 @@ import { PostDeleteButton } from "@/components/post-delete-button";
 import { PostEditDialog } from "@/components/post-edit-dialog";
 import { PostLikeButton } from "@/components/post-like-button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { UserAvatar } from "@/components/user-avatar";
 import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
@@ -113,7 +114,7 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl }: PostFeedProps) =
 
         return (
           <Card key={post.id}>
-            <CardContent className="flex flex-col gap-3">
+            <CardContent className="flex flex-col gap-[13.8px] p-[18.4px]">
               <div className="flex items-center gap-3">
                 {post.profiles?.slug ? (
                   <Link
@@ -123,11 +124,13 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl }: PostFeedProps) =
                     <UserAvatar
                       name={authorName}
                       avatarUrl={post.profiles?.avatar_url}
-                      size={48}
+                      size={44}
                     />
                     <div className="min-w-0">
-                      <p className="font-semibold break-words hover:underline">{authorName}</p>
-                      <p className="text-xs text-foreground">
+                      <p className="font-heading wrap-break-word text-lg font-semibold hover:underline">
+                        {authorName}
+                      </p>
+                      <p className="text-ink-600 text-[11px]">
                         {format.dateTime(new Date(post.created_at), {
                           dateStyle: "medium",
                           timeStyle: "short",
@@ -140,11 +143,13 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl }: PostFeedProps) =
                     <UserAvatar
                       name={authorName}
                       avatarUrl={post.profiles?.avatar_url}
-                      size={48}
+                      size={44}
                     />
                     <div className="min-w-0">
-                      <p className="font-semibold break-words">{authorName}</p>
-                      <p className="text-xs text-foreground">
+                      <p className="font-heading wrap-break-word text-lg font-semibold">
+                        {authorName}
+                      </p>
+                      <p className="text-ink-600 text-[11px]">
                         {format.dateTime(new Date(post.created_at), {
                           dateStyle: "medium",
                           timeStyle: "short",
@@ -177,43 +182,59 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl }: PostFeedProps) =
               </div>
               {post.content && <PostContent content={post.content} />}
               {imageUrl && (
-                <Image
-                  src={imageUrl}
-                  alt={t("imageAlt", { name: authorName })}
-                  width={1200}
-                  height={800}
-                  unoptimized
-                  className="h-auto w-full rounded-lg"
-                />
+                <div
+                  className="border-secondary outline-border overflow-hidden border-[6px] outline outline-offset-0"
+                  style={{ filter: "sepia(.22) saturate(.82) contrast(1.05)" }}
+                >
+                  <Image
+                    src={imageUrl}
+                    alt={t("imageAlt", { name: authorName })}
+                    width={1200}
+                    height={800}
+                    unoptimized
+                    className="h-auto w-full"
+                  />
+                </div>
               )}
               {videoUrl && (
                 // eslint-disable-next-line jsx-a11y/media-has-caption
                 <video
                   src={videoUrl}
                   controls
-                  className="h-auto w-full rounded-lg"
+                  className="h-auto w-full rounded-md"
                 />
               )}
 
               {currentUserId && (
-                <div className="flex items-start gap-1 border-t pt-2">
-                  <PostLikeButton
-                    postId={post.id}
-                    viewerId={currentUserId}
-                    initialLikeCount={likes.count}
-                    initialIsLiked={likes.likedByViewer}
-                  />
-                  <PostComments
-                    postId={post.id}
-                    postAuthorId={post.author_id}
-                    viewerId={currentUserId}
-                    viewerName={viewerName}
-                    viewerAvatarUrl={viewerAvatarUrl}
-                    initialComments={comments}
-                    anonymousLabel={t("anonymous")}
-                    className="flex-1"
-                  />
-                </div>
+                <>
+                  {(likes.count > 0 || comments.length > 0) && (
+                    <p className="text-ink-600 text-xs [font-variant-numeric:tabular-nums]">
+                      {likes.count > 0 &&
+                        t("likeCount", { count: likes.count })}
+                      {likes.count > 0 && comments.length > 0 && " · "}
+                      {comments.length > 0 &&
+                        t("commentCount", { count: comments.length })}
+                    </p>
+                  )}
+                  <Separator />
+                  <div className="flex items-start gap-1">
+                    <PostLikeButton
+                      postId={post.id}
+                      viewerId={currentUserId}
+                      initialIsLiked={likes.likedByViewer}
+                    />
+                    <PostComments
+                      postId={post.id}
+                      postAuthorId={post.author_id}
+                      viewerId={currentUserId}
+                      viewerName={viewerName}
+                      viewerAvatarUrl={viewerAvatarUrl}
+                      initialComments={comments}
+                      anonymousLabel={t("anonymous")}
+                      className="flex-1"
+                    />
+                  </div>
+                </>
               )}
             </CardContent>
           </Card>

@@ -97,13 +97,10 @@ export const PostComments = ({
       <button
         type="button"
         onClick={() => setOpen((current) => !current)}
-        className="flex cursor-pointer items-center gap-1.5 rounded-md px-2 py-1.5 text-sm font-semibold text-muted-foreground transition-colors hover:bg-muted"
+        className="flex cursor-pointer items-center gap-1.5 rounded-md px-2 py-1.5 text-sm font-normal text-ink-800 transition-colors hover:bg-primary/10"
       >
-        <MessageCircle className="size-4" />
+        <MessageCircle className="size-4" strokeWidth={1.5} />
         {t('comment')}
-        {comments.length > 0 && (
-          <span className="text-xs font-normal">{comments.length}</span>
-        )}
       </button>
 
       {open && (
@@ -121,17 +118,17 @@ export const PostComments = ({
                 ) : (
                   <UserAvatar name={name} avatarUrl={comment.profiles?.avatar_url} size={32} />
                 )}
-                <div className="min-w-0 flex-1 rounded-2xl bg-muted px-3 py-2">
+                <div className="min-w-0 flex-1 rounded-md border border-border bg-secondary px-3 py-2">
                   <div className="flex items-center justify-between gap-2">
                     {comment.profiles?.slug ? (
                       <Link
                         href={`/profile/${comment.profiles.slug}`}
-                        className="text-sm font-semibold hover:underline"
+                        className="font-heading text-sm font-semibold hover:underline"
                       >
                         {name}
                       </Link>
                     ) : (
-                      <span className="text-sm font-semibold">{name}</span>
+                      <span className="font-heading text-sm font-semibold">{name}</span>
                     )}
                     {canDelete && (
                       <button
@@ -161,16 +158,11 @@ export const PostComments = ({
                 placeholder={t('commentPlaceholder')}
                 maxLength={3000}
                 rows={1}
-                className="min-h-9 resize-none rounded-2xl py-2"
+                className="min-h-9 resize-none py-2"
               />
               {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
               {value.trim() && (
-                <Button
-                  type="submit"
-                  size="sm"
-                  disabled={isSubmitting}
-                  className="mt-2 rounded-full"
-                >
+                <Button type="submit" size="sm" disabled={isSubmitting} className="mt-2">
                   {isSubmitting ? t('commentSending') : t('commentSend')}
                 </Button>
               )}

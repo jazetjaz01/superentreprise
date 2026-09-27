@@ -18,7 +18,10 @@ export const PostContent = ({ content }: PostContentProps) => {
   const truncated = words.slice(0, WORD_LIMIT).join(' ')
 
   return (
-    <p className="wrap-break-word font-normal whitespace-pre-wrap">
+    <p
+      className="wrap-break-word text-[15px] leading-[1.6] font-normal whitespace-pre-wrap"
+      style={{ textAlign: 'justify', hyphens: 'auto' }}
+    >
       {expanded || !isTruncatable ? content : `${truncated}… `}
       {isTruncatable && !expanded && (
         <button

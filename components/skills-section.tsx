@@ -4,6 +4,7 @@ import { X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -66,29 +67,28 @@ export const SkillsSection = ({ profileId, isOwnProfile, skills }: SkillsSection
 
   return (
     <Card className="mt-4">
-      <CardContent>
-        <h2 className="text-lg font-semibold">{t('sectionTitle')}</h2>
+      <CardContent className="p-[27.6px]">
+        <h2 className="font-heading text-2xl font-semibold">{t('sectionTitle')}</h2>
 
         {skills.length === 0 ? (
           <p className="mt-3 text-sm text-foreground">{t('empty')}</p>
         ) : (
           <ul className="mt-3 flex flex-wrap gap-2">
             {skills.map((skill) => (
-              <li
-                key={skill.id}
-                className="flex items-center gap-1 rounded-full border px-3 py-1 text-sm"
-              >
-                {skill.name}
-                {isOwnProfile && (
-                  <button
-                    type="button"
-                    aria-label={t('remove', { name: skill.name })}
-                    onClick={() => handleRemove(skill.id)}
-                    className="text-foreground hover:opacity-70"
-                  >
-                    <X className="size-3.5" />
-                  </button>
-                )}
+              <li key={skill.id}>
+                <Badge variant="outline" className="gap-1">
+                  {skill.name}
+                  {isOwnProfile && (
+                    <button
+                      type="button"
+                      aria-label={t('remove', { name: skill.name })}
+                      onClick={() => handleRemove(skill.id)}
+                      className="hover:opacity-70"
+                    >
+                      <X className="size-3" />
+                    </button>
+                  )}
+                </Badge>
               </li>
             ))}
           </ul>

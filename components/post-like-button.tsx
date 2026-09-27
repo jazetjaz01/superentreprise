@@ -1,28 +1,23 @@
 'use client'
 
-import { ThumbsUp } from 'lucide-react'
+import { Heart } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
+import { useRouter } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
 import { createClient } from '@/lib/supabase/client'
 
 type PostLikeButtonProps = {
   postId: string
   viewerId: string
-  initialLikeCount: number
   initialIsLiked: boolean
 }
 
-export const PostLikeButton = ({
-  postId,
-  viewerId,
-  initialLikeCount,
-  initialIsLiked,
-}: PostLikeButtonProps) => {
+export const PostLikeButton = ({ postId, viewerId, initialIsLiked }: PostLikeButtonProps) => {
   const t = useTranslations('Feed')
+  const router = useRouter()
   const [isLiked, setIsLiked] = useState(initialIsLiked)
-  const [likeCount, setLikeCount] = useState(initialLikeCount)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleClick = async () => {
@@ -31,7 +26,6 @@ export const PostLikeButton = ({
 
     const wasLiked = isLiked
     setIsLiked(!wasLiked)
-    setLikeCount((count) => count + (wasLiked ? -1 : 1))
 
     try {
       if (wasLiked) {
@@ -47,9 +41,9 @@ export const PostLikeButton = ({
           .insert({ post_id: postId, user_id: viewerId })
         if (error && error.code !== '23505') throw error
       }
+      router.refresh()
     } catch {
       setIsLiked(wasLiked)
-      setLikeCount((count) => count + (wasLiked ? 1 : -1))
     } finally {
       setIsSubmitting(false)
     }
@@ -61,13 +55,12 @@ export const PostLikeButton = ({
       disabled={isSubmitting}
       onClick={handleClick}
       className={cn(
-        'flex cursor-pointer items-center gap-1.5 rounded-md px-2 py-1.5 text-sm font-semibold transition-colors hover:bg-muted disabled:opacity-50',
-        isLiked ? 'text-primary' : 'text-muted-foreground',
+        'flex cursor-pointer items-center gap-1.5 rounded-md px-2 py-1.5 text-sm font-normal transition-colors hover:bg-primary/10 disabled:opacity-45',
+        isLiked ? 'text-primary' : 'text-ink-800',
       )}
     >
-      <ThumbsUp className={cn('size-4', isLiked && 'fill-primary')} />
+      <Heart className={cn('size-4', isLiked && 'fill-primary')} strokeWidth={1.5} />
       {t('like')}
-      {likeCount > 0 && <span className="text-xs font-normal">{likeCount}</span>}
     </button>
   )
 }

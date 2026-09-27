@@ -84,7 +84,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     .filter((followerProfile): followerProfile is FollowerProfile => !!followerProfile);
 
   return (
-    <div className="w-full flex-1 bg-muted">
+    <div className="w-full flex-1 bg-secondary">
       <div className="mx-auto grid w-full max-w-(--breakpoint-xl) gap-4 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-8">
         <div className="min-w-0">
           <Card className="overflow-hidden pt-0">
@@ -94,9 +94,9 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               isOwnProfile={isOwnProfile}
             />
             <CardContent className="relative">
-              <div className="-mt-12 flex items-end justify-between gap-3 sm:-mt-16">
-                <div className="rounded-full ring-4 ring-card">
-                  <UserAvatar name={name} avatarUrl={profile.avatar_url} size={96} />
+              <div className="-mt-15 flex items-end justify-between gap-3">
+                <div className="rounded-full border border-primary bg-background p-1.5">
+                  <UserAvatar name={name} avatarUrl={profile.avatar_url} size={120} />
                 </div>
                 {isOwnProfile ? (
                   <EditProfileDialog
@@ -120,12 +120,12 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                   )
                 )}
               </div>
-              <h1 className="font-heading mt-3 text-2xl font-semibold">{name}</h1>
+              <h1 className="font-heading mt-3 text-[44px] leading-tight font-normal">{name}</h1>
               {profile.headline && (
-                <p className="mt-1 text-foreground">{profile.headline}</p>
+                <p className="mt-1 text-[15px] text-foreground">{profile.headline}</p>
               )}
               {location && (
-                <p className="mt-1 text-sm text-foreground">{location}</p>
+                <p className="text-ink-600 mt-1 text-sm">{location}</p>
               )}
 
               <div className="mt-3 flex items-center gap-4">
@@ -136,11 +136,11 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                     anonymousLabel={tProfile("anonymous")}
                   />
                 ) : (
-                  <span className="text-sm font-semibold text-foreground">
+                  <span className="text-sm font-normal text-foreground">
                     {t("follow.followersCount", { count: followerCount ?? 0 })}
                   </span>
                 )}
-                <span className="text-sm text-muted-foreground">
+                <span className="text-ink-600 text-sm">
                   {t("follow.followingCount", { count: followingCount ?? 0 })}
                 </span>
               </div>
@@ -149,8 +149,8 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
           {profile.about && (
             <Card className="mt-4">
-              <CardContent>
-                <h2 className="text-lg font-semibold">{t("about")}</h2>
+              <CardContent className="p-[27.6px]">
+                <h2 className="font-heading text-2xl font-semibold">{t("about")}</h2>
                 <p className="mt-2 whitespace-pre-wrap text-foreground">
                   {profile.about}
                 </p>

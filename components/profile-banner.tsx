@@ -112,7 +112,7 @@ export const ProfileBanner = ({ userId, bannerUrl, isOwnProfile }: ProfileBanner
   const shownUrl = removed ? null : (preview ?? bannerUrl)
 
   return (
-    <div className="relative h-32 w-full bg-muted sm:h-48">
+    <div className="relative h-37.5 w-full bg-secondary">
       {shownUrl && (
         <Image
           src={shownUrl}

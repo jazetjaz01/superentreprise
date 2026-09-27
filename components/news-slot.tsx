@@ -26,21 +26,21 @@ export const NewsSlot = async () => {
   if (articles.length === 0) return null;
 
   return (
-    <div className="overflow-hidden rounded-2xl border bg-card p-4">
+    <div className="overflow-hidden rounded-md border border-border bg-card p-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-foreground">{t("title")}</h2>
-        <Info className="size-4 text-muted-foreground" />
+        <h2 className="font-heading text-xl font-semibold text-foreground">{t("title")}</h2>
+        <Info className="text-muted-foreground size-4" strokeWidth={1.5} />
       </div>
-      <p className="mt-1 text-sm text-muted-foreground">{t("subtitle")}</p>
+      <p className="mt-1 text-xs text-muted-foreground">{t("subtitle")}</p>
 
       <ul className="mt-3 flex flex-col gap-3">
         {articles.map((article) => (
           <li key={article.slug}>
             <Link href={`/articles/${article.slug}`} className="block group">
-              <p className="line-clamp-2 text-sm font-semibold text-foreground group-hover:underline">
+              <p className="font-heading line-clamp-2 text-base font-semibold text-foreground group-hover:underline">
                 {article.title}
               </p>
-              <p className="mt-0.5 text-xs text-muted-foreground">
+              <p className="text-ink-600 mt-0.5 text-[11px]">
                 {format.relativeTime(new Date(article.created_at))}
               </p>
             </Link>

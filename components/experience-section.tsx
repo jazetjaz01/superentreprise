@@ -28,9 +28,9 @@ export const ExperienceSection = async ({ profileId, isOwnProfile }: ExperienceS
 
   return (
     <Card className="mt-4">
-      <CardContent>
+      <CardContent className="p-[27.6px]">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">{t('sectionTitle')}</h2>
+          <h2 className="font-heading text-2xl font-semibold">{t('sectionTitle')}</h2>
           {isOwnProfile && <ExperienceDialog profileId={profileId} />}
         </div>
 
@@ -40,21 +40,23 @@ export const ExperienceSection = async ({ profileId, isOwnProfile }: ExperienceS
           <ul className="mt-4 flex flex-col gap-5">
             {items.map((experience) => (
               <li key={experience.id} className="flex items-start justify-between gap-2">
-                <div>
-                  <p className="font-medium">{experience.title}</p>
-                  <p className="text-sm text-foreground">
-                    {experience.company}
-                    {experience.location ? ` · ${experience.location}` : ''}
-                  </p>
-                  <p className="text-xs text-foreground">
+                <div className="flex items-start gap-4">
+                  <p className="text-ink-600 w-23 shrink-0 text-xs [font-variant-numeric:tabular-nums]">
                     {formatMonth(experience.start_date)} –{' '}
                     {experience.end_date ? formatMonth(experience.end_date) : t('present')}
                   </p>
-                  {experience.description && (
-                    <p className="mt-1 whitespace-pre-wrap text-sm text-foreground">
-                      {experience.description}
+                  <div>
+                    <p className="font-heading font-semibold">{experience.title}</p>
+                    <p className="text-sm text-foreground">
+                      {experience.company}
+                      {experience.location ? ` · ${experience.location}` : ''}
                     </p>
-                  )}
+                    {experience.description && (
+                      <p className="mt-1 whitespace-pre-wrap text-sm text-foreground">
+                        {experience.description}
+                      </p>
+                    )}
+                  </div>
                 </div>
                 {isOwnProfile && (
                   <ExperienceDialog profileId={profileId} experience={experience} />

@@ -74,7 +74,7 @@ export const FollowButton = ({
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
           onClick={handleClick}
-          className="cursor-pointer rounded-md px-2 py-1 text-sm font-semibold text-primary transition-colors hover:bg-primary/10 disabled:opacity-50"
+          className="cursor-pointer rounded-md px-2 py-1 text-sm font-normal text-primary transition-colors hover:bg-primary/10 disabled:opacity-45"
         >
           {isFollowing ? (isHovering ? t('unfollow') : t('following')) : `+ ${t('follow')}`}
         </button>
@@ -93,7 +93,6 @@ export const FollowButton = ({
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
         onClick={handleClick}
-        className="rounded-full"
       >
         {isFollowing ? (isHovering ? t('unfollow') : t('following')) : t('follow')}
       </Button>

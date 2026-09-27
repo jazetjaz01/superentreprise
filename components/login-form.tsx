@@ -103,7 +103,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
                 <Label htmlFor="password">{t('password')}</Label>
                 <Link
                   href="/auth/forgot-password"
-                  className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                  className="text-primary ml-auto inline-block text-sm underline-offset-4 hover:underline"
                 >
                   {t('login.forgotPassword')}
                 </Link>
@@ -125,7 +125,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
 
         <p className="mt-5 text-center text-sm">
           {t('login.noAccount')}{' '}
-          <Link href="/auth/sign-up" className="underline underline-offset-4">
+          <Link href="/auth/sign-up" className="text-primary underline underline-offset-4">
             {t('login.signUpLink')}
           </Link>
         </p>

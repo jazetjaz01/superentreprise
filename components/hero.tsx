@@ -3,7 +3,7 @@ import { OAuthButtons } from "@/components/oauth-buttons";
 import { Link } from "@/i18n/navigation";
 
 const legalLink = (chunks: React.ReactNode) => (
-  <Link href="#" className="font-bold text-foreground hover:underline">
+  <Link href="#" className="text-primary hover:underline">
     {chunks}
   </Link>
 );
@@ -12,9 +12,9 @@ export default function Hero() {
   const t = useTranslations("Hero");
 
   return (
-    <section className="mt-4 flex w-full flex-1 flex-col justify-center bg-muted lg:mt-6">
+    <section className="mt-4 flex w-full flex-1 flex-col justify-center bg-secondary lg:mt-6">
       <div className="mx-auto grid w-full max-w-(--breakpoint-xl) items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:gap-6 lg:px-8 lg:py-16">
-        <h1 className="font-heading text-3xl leading-[1.2] font-semibold tracking-tight md:text-4xl lg:text-[3.25rem]">
+        <h1 className="font-heading text-3xl leading-[1.2] font-normal md:text-4xl lg:text-[3.25rem]">
           {t("title")}
         </h1>
 
@@ -33,7 +33,7 @@ export default function Hero() {
             {t("newHere")}{" "}
             <Link
               href="/auth/sign-up"
-              className="font-bold text-foreground hover:underline"
+              className="text-primary hover:underline"
             >
               {t("signUp")}
             </Link>

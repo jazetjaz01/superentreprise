@@ -11,7 +11,9 @@
     "notifications": "Notifications",
     "signIn": "Se connecter",
     "signUp": "S'enregistrer",
-    "menuTitle": "Menu de navigation"
+    "menuTitle": "Menu de navigation",
+    "search": "Rechercher",
+    "me": "Moi"
   },
   "LanguageSwitcher": {
     "label": "Changer de langue",
@@ -348,7 +350,9 @@
     "commentSend": "Publier",
     "commentSending": "Publication...",
     "commentError": "Impossible de publier le commentaire. Veuillez réessayer.",
-    "deleteComment": "Supprimer le commentaire"
+    "deleteComment": "Supprimer le commentaire",
+    "likeCount": "{count, plural, one {# j'aime} other {# j'aime}}",
+    "commentCount": "{count, plural, one {# commentaire} other {# commentaires}}"
   },
   "Ads": {
     "placeholder": "Emplacement publicitaire",

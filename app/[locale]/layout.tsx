@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Cormorant_Garamond, Lora } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
@@ -8,16 +8,16 @@ import Navbar from "@/components/navbar";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
-const outfit = Outfit({
-  variable: "--font-serif",
+const display = Cormorant_Garamond({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "600"],
 });
 
-const inter = Inter({
-  variable: "--font-nav",
+const body = Lora({
+  variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "600"],
 });
 
 export async function generateMetadata({
@@ -40,9 +40,9 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={`${outfit.variable} ${inter.variable} h-full antialiased`}
+      className={`${display.variable} ${body.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-muted">
+      <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>
           <Navbar />
           {children}

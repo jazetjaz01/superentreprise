@@ -171,22 +171,22 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="h-12 flex-1 rounded-full border px-5 text-left font-semibold text-foreground transition-colors hover:bg-muted"
+              className="h-11 flex-1 rounded-md border border-border px-5 text-left font-normal text-foreground transition-colors hover:bg-foreground/[.07]"
             >
               {t("start")}
             </button>
           </div>
           <div className="flex justify-center gap-2">
             <Button variant="ghost" onClick={() => setOpen(true)}>
-              <ImageIcon className="text-sky-600" />
+              <ImageIcon />
               {t("photo")}
             </Button>
             <Button variant="ghost" onClick={() => setOpen(true)}>
-              <VideoIcon className="text-emerald-600" />
+              <VideoIcon />
               {t("video")}
             </Button>
             <Button variant="ghost" nativeButton={false} render={<Link href="/articles/write" />}>
-              <NewspaperIcon className="text-red-700" />
+              <NewspaperIcon />
               {t("writeArticle")}
             </Button>
           </div>
@@ -275,7 +275,7 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
                   disabled={fileKind === "video"}
                   onClick={() => fileInput.current?.click()}
                 >
-                  <ImageIcon className="text-sky-600" />
+                  <ImageIcon />
                   {t("addPhoto")}
                 </Button>
                 <input
@@ -291,7 +291,7 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
                   disabled={fileKind === "image"}
                   onClick={() => videoInput.current?.click()}
                 >
-                  <VideoIcon className="text-emerald-600" />
+                  <VideoIcon />
                   {t("addVideo")}
                 </Button>
               </div>

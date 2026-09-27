@@ -35,19 +35,19 @@ const Footer = () => {
   type FooterKey = Parameters<typeof t>[0];
 
   return (
-    <footer className="border-t">
+    <footer className="border-t border-border">
       <div className="mx-auto max-w-(--breakpoint-xl)">
         <div className="grid grid-cols-2 gap-x-8 gap-y-10 px-4 py-12 sm:grid-cols-3 sm:px-6 md:grid-cols-4 lg:grid-cols-5 lg:px-8 xl:grid-cols-6">
           {footerSections.map(({ id, links }) => (
             <div key={id}>
-              <h6 className="font-medium">
+              <h6 className="font-heading text-base font-semibold">
                 {t(`sections.${id}.title` as FooterKey)}
               </h6>
               <ul className="mt-6 space-y-4">
                 {links.map((link) => (
                   <li key={link}>
                     <Link
-                      className="text-foreground hover:underline"
+                      className="text-ink-600 text-sm hover:text-primary hover:underline"
                       href="#"
                     >
                       {t(`sections.${id}.links.${link}` as FooterKey)}
@@ -62,7 +62,7 @@ const Footer = () => {
         <div className="flex flex-col items-center justify-between gap-x-2 gap-y-4 px-4 py-8 sm:flex-row sm:px-6 lg:px-8">
           <Logo />
 
-          <span className="text-foreground">
+          <span className="text-ink-600 text-sm">
             {t("copyright", { year: new Date().getFullYear() })}
           </span>
         </div>

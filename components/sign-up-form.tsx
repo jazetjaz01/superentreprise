@@ -137,7 +137,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
 
         <p className="mt-5 text-center text-sm">
           {t('signUp.hasAccount')}{' '}
-          <Link href="/auth/login" className="underline underline-offset-4">
+          <Link href="/auth/login" className="text-primary underline underline-offset-4">
             {t('signUp.signInLink')}
           </Link>
         </p>

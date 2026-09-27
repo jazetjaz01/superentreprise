@@ -42,7 +42,7 @@ export function OAuthButtons() {
         variant="outline"
         disabled={pending !== null}
         onClick={() => signIn('google')}
-        className="h-12 w-full rounded-full text-base font-medium"
+        className="h-12 w-full text-base"
       >
         <GoogleIcon className="size-6" />
         {t('google')}
@@ -52,7 +52,7 @@ export function OAuthButtons() {
         variant="outline"
         disabled={pending !== null}
         onClick={() => signIn('linkedin_oidc')}
-        className="h-12 w-full rounded-full text-base font-medium"
+        className="h-12 w-full text-base"
       >
         <LinkedInIcon className="size-6" />
         {t('linkedin')}

@@ -11,7 +11,9 @@
     "notifications": "Notifications",
     "signIn": "Sign in",
     "signUp": "Sign up",
-    "menuTitle": "Navigation menu"
+    "menuTitle": "Navigation menu",
+    "search": "Search",
+    "me": "Me"
   },
   "LanguageSwitcher": {
     "label": "Change language",
@@ -348,7 +350,9 @@
     "commentSend": "Post",
     "commentSending": "Posting...",
     "commentError": "Unable to post the comment. Please try again.",
-    "deleteComment": "Delete comment"
+    "deleteComment": "Delete comment",
+    "likeCount": "{count, plural, one {# like} other {# likes}}",
+    "commentCount": "{count, plural, one {# comment} other {# comments}}"
   },
   "Ads": {
     "placeholder": "Ad space",
