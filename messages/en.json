@@ -160,8 +160,15 @@
     "slide1Alt": "Superentreprise logo",
     "slide2Alt": "Smiling professional working on a laptop",
     "slide3Alt": "Superentreprise logo printed on a white sheet",
-    "title": "Share your expertise!",
-    "body": "Joining Superentreprise means becoming part of a community of professionals, entrepreneurs and talents who connect every day. Share your ideas, grow your network and seize new opportunities to move your career and your projects forward."
+    "eyebrow": "The professional network, reinvented.",
+    "title": "Your professional network.",
+    "titleAccent": "One single community.",
+    "body": "Joining Superentreprise means becoming part of a community of professionals, entrepreneurs and talents who connect every day. Share your ideas, grow your network and seize new opportunities to move your career and your projects forward.",
+    "cta1": "Join Superentreprise",
+    "cta2": "Sign in",
+    "trustItem1": "Create your profile in minutes",
+    "trustItem2": "Free to get started",
+    "trustItem3": "🇫🇷 Hosted in France"
   },
   "Profile": {
     "anonymous": "User"

@@ -54,11 +54,13 @@ export default function ImageCarouselSection() {
           />
         </Carousel>
 
-        <div className="flex flex-col justify-center rounded-2xl bg-[#fdf8e8] p-8 sm:p-12 lg:p-16">
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+        <div className="flex flex-col justify-center rounded-2xl bg-secondary p-8 sm:p-12 lg:p-16">
+          <h2 className="font-heading text-4xl leading-[1.15] font-medium tracking-tight text-foreground md:text-5xl">
             {t("title")}
+            <br />
+            <span className="text-primary italic">{t("titleAccent")}</span>
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-foreground">
+          <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
             {t("body")}
           </p>
         </div>
