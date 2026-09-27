@@ -14,13 +14,14 @@ import { Link } from "@/i18n/navigation";
 
 export const NavMenu = ({
   orientation,
+  className,
   ...props
 }: ComponentProps<typeof NavigationMenu>) => {
   const t = useTranslations("Navbar");
   const isVertical = orientation === "vertical";
 
   return (
-    <NavigationMenu orientation={orientation} {...props}>
+    <NavigationMenu orientation={orientation} className={cn("font-sans", className)} {...props}>
       <NavigationMenuList
         className={cn(isVertical && "-ms-2 flex-col items-start justify-start")}
       >
