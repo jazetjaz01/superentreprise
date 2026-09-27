@@ -1,23 +1,6 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-
-const slides = [
-  { src: "/home/paper-se_1.jpg", altKey: "slide1Alt" },
-  { src: "/home/paper-se_2.jpg", altKey: "slide2Alt" },
-  { src: "/home/paper-se_3.jpg", altKey: "slide3Alt" },
-] as const;
-
-const arrowClassName =
-  "size-10 border-0 bg-white/80 text-foreground shadow-sm hover:bg-white";
-
 export default function ImageCarouselSection() {
   const t = useTranslations("ImageCarouselSection");
 
@@ -34,35 +17,17 @@ export default function ImageCarouselSection() {
         </p>
       </div>
 
-      <Carousel
-        opts={{ loop: true }}
-        aria-label={t("carouselLabel")}
-        className="mt-12 overflow-hidden rounded-2xl"
-      >
-        <CarouselContent className="ml-0">
-          {slides.map(({ src, altKey }) => (
-            <CarouselItem key={src} className="pl-0">
-              <Image
-                src={src}
-                alt={t(altKey)}
-                width={2500}
-                height={1400}
-                sizes="100vw"
-                loading="eager"
-                className="aspect-16/8 w-full object-cover"
-              />
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious
-          aria-label={t("previous")}
-          className={`${arrowClassName} left-3`}
+      <div className="mt-12 overflow-hidden rounded-2xl">
+        <Image
+          src="/home/paper-se_3.jpg"
+          alt={t("slide3Alt")}
+          width={2500}
+          height={1400}
+          sizes="100vw"
+          loading="eager"
+          className="aspect-16/8 w-full object-cover"
         />
-        <CarouselNext
-          aria-label={t("next")}
-          className={`${arrowClassName} right-3`}
-        />
-      </Carousel>
+      </div>
     </section>
   );
 }
