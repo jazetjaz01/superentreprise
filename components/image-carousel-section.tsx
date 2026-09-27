@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 export default function ImageCarouselSection() {
@@ -18,13 +17,13 @@ export default function ImageCarouselSection() {
       </div>
 
       <div className="mt-12 overflow-hidden rounded-2xl">
-        <Image
-          src="/home/paper-se_3.jpg"
-          alt={t("slide3Alt")}
-          width={2500}
-          height={1400}
-          sizes="100vw"
-          loading="eager"
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption -- decorative autoplaying background video */}
+        <video
+          src="/home/video-home.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
           className="aspect-16/8 w-full object-cover"
         />
       </div>
