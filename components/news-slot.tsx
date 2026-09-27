@@ -26,7 +26,7 @@ export const NewsSlot = async () => {
   if (articles.length === 0) return null;
 
   return (
-    <div className="overflow-hidden rounded-2xl border bg-white p-4">
+    <div className="overflow-hidden rounded-2xl border bg-card p-4">
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold text-foreground">{t("title")}</h2>
         <Info className="size-4 text-muted-foreground" />

@@ -5,7 +5,7 @@ export const AdSlot = () => {
   const t = useTranslations("Ads");
 
   return (
-    <div className="overflow-hidden rounded-2xl border">
+    <div className="overflow-hidden rounded-2xl border bg-card">
       <a
         href="https://www.letsgo-today.com"
         target="_blank"
