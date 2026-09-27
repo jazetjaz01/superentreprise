@@ -30,7 +30,7 @@ const Navbar = async () => {
     profile?.avatar_url ?? metadata?.avatar_url ?? metadata?.picture;
 
   return (
-    <nav className="h-16 border-b bg-background">
+    <nav className="h-16 border-b bg-background [font-family:var(--font-nav)]">
       <div className="mx-auto flex h-full max-w-(--breakpoint-xl) items-center justify-between px-4 sm:px-6 lg:px-8">
         <Logo />
 
