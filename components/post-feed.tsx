@@ -182,10 +182,7 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl }: PostFeedProps) =
               </div>
               {post.content && <PostContent content={post.content} />}
               {imageUrl && (
-                <div
-                  className="border-secondary outline-border overflow-hidden border-[6px] outline outline-offset-0"
-                  style={{ filter: "sepia(.22) saturate(.82) contrast(1.05)" }}
-                >
+                <div className="overflow-hidden rounded-md">
                   <Image
                     src={imageUrl}
                     alt={t("imageAlt", { name: authorName })}

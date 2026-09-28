@@ -12,18 +12,13 @@ export const AdSlot = () => {
         rel="noopener noreferrer sponsored"
         className="block"
       >
-        <div
-          className="border-secondary outline-border overflow-hidden border-[6px] outline outline-offset-0"
-          style={{ filter: "sepia(.22) saturate(.82) contrast(1.05)" }}
-        >
-          <Image
-            src="/publicite/iphone-screen.png"
-            alt={t("letsgoAlt")}
-            width={1111}
-            height={1271}
-            className="h-auto w-full"
-          />
-        </div>
+        <Image
+          src="/publicite/iphone-screen.png"
+          alt={t("letsgoAlt")}
+          width={1111}
+          height={1271}
+          className="h-auto w-full"
+        />
         <div className="p-4">
           <p className="font-heading font-semibold">{t("letsgoTitle")}</p>
           <p className="mt-1 text-sm text-foreground">{t("letsgoBody")}</p>

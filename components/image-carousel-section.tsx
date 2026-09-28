@@ -16,10 +16,7 @@ export default function ImageCarouselSection() {
         </p>
       </div>
 
-      <div
-        className="border-secondary outline-border mt-12 overflow-hidden border-[6px] outline outline-offset-0"
-        style={{ filter: "sepia(.22) saturate(.82) contrast(1.05)" }}
-      >
+      <div className="mt-12 overflow-hidden rounded-md">
         {/* eslint-disable-next-line jsx-a11y/media-has-caption -- decorative autoplaying background video */}
         <video
           src="/home/video-home.mp4"
