@@ -4,7 +4,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import { useState } from 'react'
 
 import { AuthCard } from '@/components/auth-card'
-import { GoogleIcon } from '@/components/brand-icons'
+import { GoogleIcon, LinkedInIcon } from '@/components/brand-icons'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -22,6 +22,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [isGoogleLoading, setIsGoogleLoading] = useState(false)
+  const [isLinkedInLoading, setIsLinkedInLoading] = useState(false)
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -46,15 +47,18 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
     }
   }
 
-  const handleGoogleLogin = async () => {
+  const handleOAuthLogin = async (
+    provider: 'google' | 'linkedin_oidc',
+    setLoading: (loading: boolean) => void,
+  ) => {
     const supabase = createClient()
-    setIsGoogleLoading(true)
+    setLoading(true)
     setError(null)
 
     try {
       const next = getPathname({ href: '/', locale })
       const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
+        provider,
         options: {
           redirectTo: `${window.location.origin}/auth/oauth?next=${encodeURIComponent(next)}`,
         },
@@ -62,7 +66,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
       if (error) throw error
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : t('genericError'))
-      setIsGoogleLoading(false)
+      setLoading(false)
     }
   }
 
@@ -72,11 +76,20 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
         <Button
           type="button"
           className="mt-8 w-full gap-3"
-          disabled={isGoogleLoading}
-          onClick={handleGoogleLogin}
+          disabled={isGoogleLoading || isLinkedInLoading}
+          onClick={() => handleOAuthLogin('google', setIsGoogleLoading)}
         >
           <GoogleIcon className="size-4" />
           {t('google')}
+        </Button>
+        <Button
+          type="button"
+          className="mt-3 w-full gap-3"
+          disabled={isGoogleLoading || isLinkedInLoading}
+          onClick={() => handleOAuthLogin('linkedin_oidc', setIsLinkedInLoading)}
+        >
+          <LinkedInIcon className="size-4" />
+          {t('linkedin')}
         </Button>
 
         <div className="my-7 flex w-full items-center justify-center gap-2 overflow-hidden text-xs text-foreground">
