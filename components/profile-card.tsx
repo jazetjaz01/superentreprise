@@ -13,6 +13,7 @@ type ProfileCardProps = {
   bannerUrl?: string | null;
   followerCount?: number;
   followingCount?: number;
+  profileViewCount?: number;
 };
 
 export const ProfileCard = async ({
@@ -23,8 +24,10 @@ export const ProfileCard = async ({
   bannerUrl,
   followerCount,
   followingCount,
+  profileViewCount,
 }: ProfileCardProps) => {
   const t = await getTranslations("ProfilePage.follow");
+  const tViews = await getTranslations("ProfilePage.views");
 
   return (
     <Card className="overflow-hidden pt-0">
@@ -47,7 +50,9 @@ export const ProfileCard = async ({
           <p className="text-ink-600 text-xs break-words">{location}</p>
         )}
 
-        {(followerCount !== undefined || followingCount !== undefined) && (
+        {(followerCount !== undefined ||
+          followingCount !== undefined ||
+          profileViewCount !== undefined) && (
           <>
             <Separator className="my-2" />
             <div className="flex w-full flex-col gap-1 text-[13px]">
@@ -59,6 +64,11 @@ export const ProfileCard = async ({
               {followingCount !== undefined && (
                 <p className="text-ink-700 flex justify-between">
                   <span>{t("followingCount", { count: followingCount })}</span>
+                </p>
+              )}
+              {profileViewCount !== undefined && (
+                <p className="text-ink-700 flex justify-between">
+                  <span>{tViews("count", { count: profileViewCount })}</span>
                 </p>
               )}
             </div>
