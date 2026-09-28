@@ -218,6 +218,9 @@
       "noFollowers": "You don't have any followers yet.",
       "removeFollower": "Remove"
     },
+    "views": {
+      "count": "{count, plural, =0 {No profile views} one {# view of your profile} other {# views of your profile}}"
+    },
     "experience": {
       "sectionTitle": "Experience",
       "empty": "No experience added yet.",

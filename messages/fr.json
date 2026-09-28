@@ -218,6 +218,9 @@
       "noFollowers": "Vous n'avez pas encore d'abonnés.",
       "removeFollower": "Retirer"
     },
+    "views": {
+      "count": "{count, plural, =0 {Aucune vue de profil} one {# vue de votre profil} other {# vues de votre profil}}"
+    },
     "experience": {
       "sectionTitle": "Expérience",
       "empty": "Aucune expérience ajoutée.",

@@ -43,40 +43,57 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     .filter(Boolean)
     .join(", ");
 
-  const [{ data: skills }, { count: followerCount }, { count: followingCount }, followingRow, followersResult] =
-    await Promise.all([
-      supabase
-        .from("skills")
-        .select("id, name")
-        .eq("profile_id", profile.id)
-        .order("created_at", { ascending: true }),
-      supabase
-        .from("follows")
-        .select("*", { count: "exact", head: true })
-        .eq("followee_id", profile.id),
-      supabase
-        .from("follows")
-        .select("*", { count: "exact", head: true })
-        .eq("follower_id", profile.id),
-      !isOwnProfile && viewerId
-        ? supabase
-            .from("follows")
-            .select("follower_id")
-            .eq("follower_id", viewerId)
-            .eq("followee_id", profile.id)
-            .maybeSingle()
-        : Promise.resolve({ data: null }),
-      isOwnProfile
-        ? supabase
-            .from("follows")
-            .select("follower_id, profiles!follows_follower_id_fkey(id, slug, full_name, avatar_url, headline)")
-            .eq("followee_id", profile.id)
-            .overrideTypes<
-              { follower_id: string; profiles: FollowerProfile | null }[],
-              { merge: false }
-            >()
-        : Promise.resolve({ data: null }),
-    ]);
+  const [
+    { data: skills },
+    { count: followerCount },
+    { count: followingCount },
+    followingRow,
+    followersResult,
+    { count: profileViewCount },
+  ] = await Promise.all([
+    supabase
+      .from("skills")
+      .select("id, name")
+      .eq("profile_id", profile.id)
+      .order("created_at", { ascending: true }),
+    supabase
+      .from("follows")
+      .select("*", { count: "exact", head: true })
+      .eq("followee_id", profile.id),
+    supabase
+      .from("follows")
+      .select("*", { count: "exact", head: true })
+      .eq("follower_id", profile.id),
+    !isOwnProfile && viewerId
+      ? supabase
+          .from("follows")
+          .select("follower_id")
+          .eq("follower_id", viewerId)
+          .eq("followee_id", profile.id)
+          .maybeSingle()
+      : Promise.resolve({ data: null }),
+    isOwnProfile
+      ? supabase
+          .from("follows")
+          .select("follower_id, profiles!follows_follower_id_fkey(id, slug, full_name, avatar_url, headline)")
+          .eq("followee_id", profile.id)
+          .overrideTypes<
+            { follower_id: string; profiles: FollowerProfile | null }[],
+            { merge: false }
+          >()
+      : Promise.resolve({ data: null }),
+    isOwnProfile
+      ? supabase
+          .from("profile_views")
+          .select("*", { count: "exact", head: true })
+          .eq("profile_id", profile.id)
+      : Promise.resolve({ count: null }),
+  ]);
+
+  if (viewerId && !isOwnProfile) {
+    // Unique constraint on (profile_id, viewer_id, viewed_on) dedupes same-day views; ignore the conflict.
+    await supabase.from("profile_views").insert({ profile_id: profile.id, viewer_id: viewerId });
+  }
 
   const isFollowing = !!followingRow?.data;
   const followers: FollowerProfile[] = (followersResult?.data ?? [])
@@ -144,6 +161,11 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                   {t("follow.followingCount", { count: followingCount ?? 0 })}
                 </span>
               </div>
+              {isOwnProfile && (
+                <p className="text-ink-600 mt-1 text-sm">
+                  {t("views.count", { count: profileViewCount ?? 0 })}
+                </p>
+              )}
             </CardContent>
           </Card>
 
