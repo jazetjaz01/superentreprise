@@ -18,6 +18,9 @@ import { createClient } from "@/lib/supabase/server";
 
 type ManagedCompany = { slug: string; name: string; logo_url: string | null };
 
+const toTitleCase = (value: string) =>
+  value.toLowerCase().replace(/(^|\s)\S/g, (letter) => letter.toUpperCase());
+
 type ProfilePageProps = {
   params: Promise<{ slug: string }>;
 };
@@ -43,7 +46,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
   const viewerId = claimsData?.claims?.sub;
   const isOwnProfile = viewerId === profile.id;
-  const name = profile.full_name ?? tProfile("anonymous");
+  const name = profile.full_name ? toTitleCase(profile.full_name) : tProfile("anonymous");
   const location = [profile.city, profile.region, profile.country]
     .filter(Boolean)
     .join(", ");
