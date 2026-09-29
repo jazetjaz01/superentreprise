@@ -8,7 +8,6 @@ import { EditProfileDialog } from "@/components/edit-profile-dialog";
 import { EducationSection } from "@/components/education-section";
 import { ExperienceSection } from "@/components/experience-section";
 import { FollowButton } from "@/components/follow-button";
-import { FollowersManager, type FollowerProfile } from "@/components/followers-manager";
 import { ProfileBanner } from "@/components/profile-banner";
 import { ProfileUrlCard } from "@/components/profile-url-card";
 import { SkillsSection } from "@/components/skills-section";
@@ -53,11 +52,8 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
   const [
     { data: skills },
-    { count: followerCount },
     { count: followingCount },
     followingRow,
-    followersResult,
-    { count: profileViewCount },
     { data: managedCompaniesRows },
   ] = await Promise.all([
     supabase
@@ -65,10 +61,6 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
       .select("id, name")
       .eq("profile_id", profile.id)
       .order("created_at", { ascending: true }),
-    supabase
-      .from("follows")
-      .select("*", { count: "exact", head: true })
-      .eq("followee_id", profile.id),
     supabase
       .from("follows")
       .select("*", { count: "exact", head: true })
@@ -81,22 +73,6 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           .eq("followee_id", profile.id)
           .maybeSingle()
       : Promise.resolve({ data: null }),
-    isOwnProfile
-      ? supabase
-          .from("follows")
-          .select("follower_id, profiles!follows_follower_id_fkey(id, slug, full_name, avatar_url, headline)")
-          .eq("followee_id", profile.id)
-          .overrideTypes<
-            { follower_id: string; profiles: FollowerProfile | null }[],
-            { merge: false }
-          >()
-      : Promise.resolve({ data: null }),
-    isOwnProfile
-      ? supabase
-          .from("profile_views")
-          .select("*", { count: "exact", head: true })
-          .eq("profile_id", profile.id)
-      : Promise.resolve({ count: null }),
     supabase
       .from("company_admins")
       .select("companies(slug, name, logo_url)")
@@ -110,9 +86,6 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   }
 
   const isFollowing = !!followingRow?.data;
-  const followers: FollowerProfile[] = (followersResult?.data ?? [])
-    .map((row) => row.profiles)
-    .filter((followerProfile): followerProfile is FollowerProfile => !!followerProfile);
   const managedCompanies: ManagedCompany[] = (managedCompaniesRows ?? [])
     .map((row) => row.companies)
     .filter((company): company is ManagedCompany => !!company);
@@ -196,28 +169,10 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               )}
 
               <div className="mt-3 flex flex-col gap-1 text-sm">
-                {isOwnProfile ? (
-                  <FollowersManager
-                    profileId={profile.id}
-                    followers={followers}
-                    anonymousLabel={tProfile("anonymous")}
-                  />
-                ) : (
-                  <p className="text-ink-700 flex items-center gap-1 font-semibold">
-                    <span>{t("follow.followersLabel")}</span>
-                    <span className="text-primary">{followerCount ?? 0}</span>
-                  </p>
-                )}
-                <p className="text-ink-700 flex items-center gap-1 font-semibold">
-                  <span>{t("follow.followingLabel")}</span>
-                  <span className="text-primary">{followingCount ?? 0}</span>
+                <p className="flex items-center gap-1">
+                  <span className="text-primary">{t("follow.followingLabel")}</span>
+                  <span className="font-semibold">{followingCount ?? 0}</span>
                 </p>
-                {isOwnProfile && (
-                  <p className="text-ink-700 flex items-center gap-1 font-semibold">
-                    <span>{t("views.label")}</span>
-                    <span className="text-primary">{profileViewCount ?? 0}</span>
-                  </p>
-                )}
               </div>
             </CardContent>
           </Card>
