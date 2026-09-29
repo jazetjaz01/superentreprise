@@ -214,12 +214,15 @@
       "error": "Une erreur est survenue. Veuillez réessayer.",
       "followersCount": "{count, plural, =0 {Aucun abonné} one {# abonné} other {# abonnés}}",
       "followingCount": "{count, plural, =0 {Aucun abonnement} one {# abonnement} other {# abonnements}}",
+      "followersLabel": "Abonnés",
+      "followingLabel": "Abonnements",
       "followersDialogTitle": "Abonnés",
       "noFollowers": "Vous n'avez pas encore d'abonnés.",
       "removeFollower": "Retirer"
     },
     "views": {
-      "count": "{count, plural, =0 {Aucune vue de profil} one {# vue de votre profil} other {# vues de votre profil}}"
+      "count": "{count, plural, =0 {Aucune vue de profil} one {# vue de votre profil} other {# vues de votre profil}}",
+      "label": "Vues du profil"
     },
     "experience": {
       "sectionTitle": "Expérience",
