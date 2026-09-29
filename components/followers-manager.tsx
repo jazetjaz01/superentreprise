@@ -61,7 +61,7 @@ export const FollowersManager = ({ profileId, followers, anonymousLabel }: Follo
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="text-sm font-semibold text-foreground hover:underline"
+        className="self-start text-left text-sm font-semibold text-foreground hover:underline"
       >
         {t('followersCount', { count: followers.length })}
       </button>
