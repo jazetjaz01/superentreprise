@@ -388,6 +388,9 @@
       "description": "Créez une page pour présenter votre entreprise.",
       "cta": "Créer une page entreprise"
     },
+    "managedCard": {
+      "title": "Vos pages entreprise"
+    },
     "create": {
       "pageTitle": "Créer une page entreprise",
       "name": "Nom de l'entreprise",

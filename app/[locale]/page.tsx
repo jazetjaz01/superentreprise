@@ -3,11 +3,12 @@ import { getTranslations } from "next-intl/server";
 import { AdSlot } from "@/components/ad-slot";
 import Hero from "@/components/hero";
 import ImageCarouselSection from "@/components/image-carousel-section";
+import { ManagedCompaniesCard, type ManagedCompany } from "@/components/managed-companies-card";
 import { NewsSlot } from "@/components/news-slot";
 import { PostComposer } from "@/components/post-composer";
 import { PostFeed } from "@/components/post-feed";
 import { PremiumAdSlot } from "@/components/premium-ad-slot";
-import { ProfileCard, type ManagedCompany } from "@/components/profile-card";
+import { ProfileCard } from "@/components/profile-card";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function Home() {
@@ -67,7 +68,7 @@ export default async function Home() {
 
   return (
     <div className="mx-auto grid w-full max-w-(--breakpoint-xl) flex-1 content-start gap-6 px-4 py-6 sm:px-6 md:grid-cols-[240px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)_300px] lg:px-8 ">
-      <aside className="hidden md:block">
+      <aside className="hidden md:flex md:flex-col md:gap-4">
         <ProfileCard
           name={name}
           avatarUrl={avatarUrl}
@@ -77,8 +78,8 @@ export default async function Home() {
           followerCount={followerCount ?? 0}
           followingCount={followingCount ?? 0}
           profileViewCount={profileViewCount ?? 0}
-          managedCompanies={managedCompanies}
         />
+        <ManagedCompaniesCard companies={managedCompanies} />
       </aside>
       <main className="mx-auto flex w-full max-w-2xl flex-col gap-4">
         <PostComposer userId={claims.sub} name={name} avatarUrl={avatarUrl} />

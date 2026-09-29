@@ -4,9 +4,6 @@ import { getTranslations } from "next-intl/server";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { UserAvatar } from "@/components/user-avatar";
-import { Link } from "@/i18n/navigation";
-
-export type ManagedCompany = { slug: string; name: string; logo_url: string | null };
 
 type ProfileCardProps = {
   name: string;
@@ -17,7 +14,6 @@ type ProfileCardProps = {
   followerCount?: number;
   followingCount?: number;
   profileViewCount?: number;
-  managedCompanies?: ManagedCompany[];
 };
 
 export const ProfileCard = async ({
@@ -29,7 +25,6 @@ export const ProfileCard = async ({
   followerCount,
   followingCount,
   profileViewCount,
-  managedCompanies,
 }: ProfileCardProps) => {
   const t = await getTranslations("ProfilePage.follow");
   const tViews = await getTranslations("ProfilePage.views");
@@ -53,38 +48,6 @@ export const ProfileCard = async ({
         )}
         {location && (
           <p className="text-ink-600 text-xs break-words">{location}</p>
-        )}
-
-        {managedCompanies && managedCompanies.length > 0 && (
-          <div className="mt-2 flex w-full flex-col gap-2">
-            {managedCompanies.map((company) => (
-              <Link
-                key={company.slug}
-                href={`/company/${company.slug}`}
-                className="flex items-center gap-2 hover:underline"
-              >
-                <span className="flex size-6 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-secondary">
-                  {company.logo_url ? (
-                    <Image
-                      src={company.logo_url}
-                      alt=""
-                      width={24}
-                      height={24}
-                      unoptimized
-                      className="size-full object-cover"
-                    />
-                  ) : (
-                    <span className="font-heading text-ink-600 text-[10px]">
-                      {company.name.charAt(0).toUpperCase()}
-                    </span>
-                  )}
-                </span>
-                <span className="wrap-break-word text-[13px] font-semibold text-foreground">
-                  {company.name}
-                </span>
-              </Link>
-            ))}
-          </div>
         )}
 
         {(followerCount !== undefined ||

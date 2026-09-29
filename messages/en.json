@@ -388,6 +388,9 @@
       "description": "Create a page to showcase your company.",
       "cta": "Create a company page"
     },
+    "managedCard": {
+      "title": "Your company pages"
+    },
     "create": {
       "pageTitle": "Create a company page",
       "name": "Company name",
