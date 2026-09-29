@@ -125,7 +125,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               isOwnProfile={isOwnProfile}
             />
             <CardContent className="relative">
-              <div className="-mt-16.75 flex items-end justify-between gap-3">
+              <div className="-mt-20 flex items-end justify-between gap-3">
                 <div className="rounded-full border border-primary bg-background p-1.5">
                   <UserAvatar name={name} avatarUrl={profile.avatar_url} size={120} />
                 </div>
