@@ -195,7 +195,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 <p className="text-ink-600 mt-1 text-sm">{location}</p>
               )}
 
-              <div className="mt-3 flex w-full flex-col gap-1 text-sm">
+              <div className="mt-3 flex flex-col gap-1 text-sm">
                 {isOwnProfile ? (
                   <FollowersManager
                     profileId={profile.id}
@@ -203,19 +203,19 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                     anonymousLabel={tProfile("anonymous")}
                   />
                 ) : (
-                  <p className="text-ink-700 flex w-full items-center justify-between font-semibold">
+                  <p className="text-ink-700 flex items-center gap-1 font-semibold">
                     <span>{t("follow.followersLabel")}</span>
                     <span className="text-primary">{followerCount ?? 0}</span>
                   </p>
                 )}
-                <p className="text-ink-700 flex w-full items-center justify-between font-semibold">
+                <p className="text-ink-700 flex items-center gap-1 font-semibold">
                   <span>{t("follow.followingLabel")}</span>
                   <span className="text-primary">{followingCount ?? 0}</span>
                 </p>
                 {isOwnProfile && (
-                  <p className="text-ink-700 flex w-full items-center justify-between font-semibold">
+                  <p className="text-ink-700 flex items-center gap-1 font-semibold">
                     <span>{t("views.label")}</span>
-                    <span className="font-semibold text-primary">{profileViewCount ?? 0}</span>
+                    <span className="text-primary">{profileViewCount ?? 0}</span>
                   </p>
                 )}
               </div>
