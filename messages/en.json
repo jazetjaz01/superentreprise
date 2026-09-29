@@ -378,5 +378,43 @@
   },
   "Protected": {
     "hello": "Hello {email}"
+  },
+  "Company": {
+    "createCard": {
+      "title": "Company page",
+      "description": "Create a page to showcase your company.",
+      "cta": "Create a company page"
+    },
+    "create": {
+      "pageTitle": "Create a company page",
+      "name": "Company name",
+      "tagline": "Tagline",
+      "industry": "Industry",
+      "companySize": "Company size",
+      "companySizePlaceholder": "e.g. 11-50 employees",
+      "website": "Website",
+      "about": "About",
+      "changeLogo": "Change logo",
+      "changeBanner": "Change banner",
+      "submit": "Create page",
+      "submitting": "Creating...",
+      "fileType": "Unsupported format (JPEG, PNG, WebP or GIF).",
+      "fileTooLarge": "The image must not exceed 5 MB.",
+      "error": "Unable to create the page. Please try again."
+    },
+    "page": {
+      "industryLabel": "Industry",
+      "sizeLabel": "Size",
+      "websiteLabel": "Website",
+      "about": "About",
+      "admin": "You manage this page"
+    },
+    "follow": {
+      "follow": "Follow",
+      "following": "Following",
+      "unfollow": "Unfollow",
+      "error": "Something went wrong. Please try again.",
+      "followersCount": "{count, plural, =0 {No followers} one {# follower} other {# followers}}"
+    }
   }
 }

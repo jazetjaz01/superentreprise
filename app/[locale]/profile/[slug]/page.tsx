@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { CreateCompanyCard } from "@/components/create-company-card";
 import { EditProfileDialog } from "@/components/edit-profile-dialog";
 import { EducationSection } from "@/components/education-section";
 import { ExperienceSection } from "@/components/experience-section";
@@ -191,6 +192,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
         <div className="flex flex-col gap-4">
           <ProfileUrlCard path={`/profile/${slug}`} />
+          {isOwnProfile && <CreateCompanyCard />}
         </div>
       </div>
     </div>

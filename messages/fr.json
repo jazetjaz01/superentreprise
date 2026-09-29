@@ -378,5 +378,43 @@
   },
   "Protected": {
     "hello": "Bonjour {email}"
+  },
+  "Company": {
+    "createCard": {
+      "title": "Page entreprise",
+      "description": "Créez une page pour présenter votre entreprise.",
+      "cta": "Créer une page entreprise"
+    },
+    "create": {
+      "pageTitle": "Créer une page entreprise",
+      "name": "Nom de l'entreprise",
+      "tagline": "Slogan",
+      "industry": "Secteur d'activité",
+      "companySize": "Taille de l'entreprise",
+      "companySizePlaceholder": "ex. 11-50 employés",
+      "website": "Site web",
+      "about": "À propos",
+      "changeLogo": "Changer le logo",
+      "changeBanner": "Changer la bannière",
+      "submit": "Créer la page",
+      "submitting": "Création...",
+      "fileType": "Format non pris en charge (JPEG, PNG, WebP ou GIF).",
+      "fileTooLarge": "L'image ne doit pas dépasser 5 Mo.",
+      "error": "Impossible de créer la page. Veuillez réessayer."
+    },
+    "page": {
+      "industryLabel": "Secteur",
+      "sizeLabel": "Taille",
+      "websiteLabel": "Site web",
+      "about": "À propos",
+      "admin": "Vous gérez cette page"
+    },
+    "follow": {
+      "follow": "Suivre",
+      "following": "Abonné",
+      "unfollow": "Ne plus suivre",
+      "error": "Une erreur est survenue. Veuillez réessayer.",
+      "followersCount": "{count, plural, =0 {Aucun abonné} one {# abonné} other {# abonnés}}"
+    }
   }
 }
