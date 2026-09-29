@@ -170,7 +170,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
               <div className="mt-3 flex flex-col gap-1 text-sm">
                 <p className="flex items-center gap-1">
-                  <span className="text-primary">{t("follow.followingLabel")}</span>
+                  <span className="text-primary font-semibold">{t("follow.followingLabel")}</span>
                   <span className="font-semibold">{followingCount ?? 0}</span>
                 </p>
               </div>
