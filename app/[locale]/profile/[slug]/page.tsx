@@ -125,7 +125,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               isOwnProfile={isOwnProfile}
             />
             <CardContent className="relative">
-              <div className="-mt-15 flex items-end justify-between gap-3">
+              <div className="-mt-16.75 flex items-end justify-between gap-3">
                 <div className="rounded-full border border-primary bg-background p-1.5">
                   <UserAvatar name={name} avatarUrl={profile.avatar_url} size={120} />
                 </div>
@@ -152,7 +152,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 )}
               </div>
               <div className="mt-3 flex items-start justify-between gap-4">
-                <h1 className="font-heading text-[32px] leading-tight font-normal">{name}</h1>
+                <h1 className="font-heading text-[26px] leading-tight font-semibold">{name}</h1>
                 {managedCompanies.length > 0 && (
                   <div className="flex flex-col items-end gap-2 pt-2">
                     {managedCompanies.map((company) => (
