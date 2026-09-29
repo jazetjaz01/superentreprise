@@ -71,9 +71,9 @@
 :root {
   --background: #f3f2f2;
   --foreground: #201f1d;
-  --card: #f3f2f2;
+  --card: #ffffff;
   --card-foreground: #201f1d;
-  --popover: #f3f2f2;
+  --popover: #ffffff;
   --popover-foreground: #201f1d;
   --primary: #b68235;
   --primary-foreground: #201f1d;
