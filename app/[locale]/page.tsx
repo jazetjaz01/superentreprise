@@ -7,7 +7,7 @@ import { NewsSlot } from "@/components/news-slot";
 import { PostComposer } from "@/components/post-composer";
 import { PostFeed } from "@/components/post-feed";
 import { PremiumAdSlot } from "@/components/premium-ad-slot";
-import { ProfileCard } from "@/components/profile-card";
+import { ProfileCard, type ManagedCompany } from "@/components/profile-card";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function Home() {
@@ -30,6 +30,7 @@ export default async function Home() {
     { count: followerCount },
     { count: followingCount },
     { count: profileViewCount },
+    { data: managedCompaniesRows },
   ] = await Promise.all([
     supabase
       .from("profiles")
@@ -48,7 +49,16 @@ export default async function Home() {
       .from("profile_views")
       .select("*", { count: "exact", head: true })
       .eq("profile_id", claims.sub),
+    supabase
+      .from("company_admins")
+      .select("companies(slug, name, logo_url)")
+      .eq("admin_id", claims.sub)
+      .overrideTypes<{ companies: ManagedCompany | null }[], { merge: false }>(),
   ]);
+
+  const managedCompanies: ManagedCompany[] = (managedCompaniesRows ?? [])
+    .map((row) => row.companies)
+    .filter((company): company is ManagedCompany => !!company);
 
   const name = profile?.full_name ?? claims.email ?? tProfile("anonymous");
   const avatarUrl: string | null =
@@ -67,6 +77,7 @@ export default async function Home() {
           followerCount={followerCount ?? 0}
           followingCount={followingCount ?? 0}
           profileViewCount={profileViewCount ?? 0}
+          managedCompanies={managedCompanies}
         />
       </aside>
       <main className="mx-auto flex w-full max-w-2xl flex-col gap-4">
