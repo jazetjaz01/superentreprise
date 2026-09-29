@@ -413,7 +413,8 @@
       "sizeLabel": "Taille",
       "websiteLabel": "Site web",
       "about": "À propos",
-      "admin": "Vous gérez cette page"
+      "admin": "Vous gérez cette page",
+      "followCardTitle": "Abonnement"
     },
     "follow": {
       "follow": "Suivre",
