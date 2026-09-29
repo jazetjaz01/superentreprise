@@ -87,7 +87,7 @@
   --border: color-mix(in srgb, #201f1d 16%, transparent);
   --input: color-mix(in srgb, #201f1d 16%, transparent);
   --ring: #b68235;
-  --radius: 0.25rem;
+  --radius: 0.5rem;
   --chart-1: #b68235;
   --chart-2: #7d5411;
   --chart-3: #9b9797;
