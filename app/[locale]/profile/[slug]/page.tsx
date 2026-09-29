@@ -192,7 +192,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 <p className="text-ink-600 mt-1 text-sm">{location}</p>
               )}
 
-              <div className="mt-3 flex items-center gap-4">
+              <div className="mt-3 flex w-full flex-col gap-1 text-sm">
                 {isOwnProfile ? (
                   <FollowersManager
                     profileId={profile.id}
@@ -200,19 +200,22 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                     anonymousLabel={tProfile("anonymous")}
                   />
                 ) : (
-                  <span className="text-sm font-normal text-foreground">
-                    {t("follow.followersCount", { count: followerCount ?? 0 })}
-                  </span>
+                  <p className="text-ink-700 flex w-full items-center justify-between font-semibold">
+                    <span>{t("follow.followersLabel")}</span>
+                    <span className="text-primary">{followerCount ?? 0}</span>
+                  </p>
                 )}
-                <span className="text-ink-600 text-sm">
-                  {t("follow.followingCount", { count: followingCount ?? 0 })}
-                </span>
-              </div>
-              {isOwnProfile && (
-                <p className="text-ink-600 mt-1 text-sm">
-                  {t("views.count", { count: profileViewCount ?? 0 })}
+                <p className="text-ink-700 flex w-full items-center justify-between font-semibold">
+                  <span>{t("follow.followingLabel")}</span>
+                  <span className="text-primary">{followingCount ?? 0}</span>
                 </p>
-              )}
+                {isOwnProfile && (
+                  <p className="text-ink-700 flex w-full items-center justify-between font-semibold">
+                    <span>{t("views.label")}</span>
+                    <span className="font-semibold text-primary">{profileViewCount ?? 0}</span>
+                  </p>
+                )}
+              </div>
             </CardContent>
           </Card>
 

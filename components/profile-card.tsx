@@ -94,21 +94,21 @@ export const ProfileCard = async ({
             <Separator className="my-2" />
             <div className="flex w-full flex-col gap-1 text-[13px]">
               {followerCount !== undefined && (
-                <p className="text-ink-700 flex w-full items-center justify-between">
+                <p className="text-ink-700 flex w-full items-center justify-between font-semibold">
                   <span>{t("followersLabel")}</span>
-                  <span className="font-semibold text-primary">{followerCount}</span>
+                  <span className="text-primary">{followerCount}</span>
                 </p>
               )}
               {followingCount !== undefined && (
-                <p className="text-ink-700 flex w-full items-center justify-between">
+                <p className="text-ink-700 flex w-full items-center justify-between font-semibold">
                   <span>{t("followingLabel")}</span>
-                  <span className="font-semibold text-primary">{followingCount}</span>
+                  <span className="text-primary">{followingCount}</span>
                 </p>
               )}
               {profileViewCount !== undefined && (
-                <p className="text-ink-700 flex w-full items-center justify-between">
+                <p className="text-ink-700 flex w-full items-center justify-between font-semibold">
                   <span>{tViews("label")}</span>
-                  <span className="font-semibold text-primary">{profileViewCount}</span>
+                  <span className="text-primary">{profileViewCount}</span>
                 </p>
               )}
             </div>
