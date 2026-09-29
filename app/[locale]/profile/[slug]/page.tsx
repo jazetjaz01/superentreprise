@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 
@@ -12,7 +13,10 @@ import { ProfileBanner } from "@/components/profile-banner";
 import { ProfileUrlCard } from "@/components/profile-url-card";
 import { SkillsSection } from "@/components/skills-section";
 import { UserAvatar } from "@/components/user-avatar";
+import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
+
+type ManagedCompany = { slug: string; name: string; logo_url: string | null };
 
 type ProfilePageProps = {
   params: Promise<{ slug: string }>;
@@ -51,6 +55,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     followingRow,
     followersResult,
     { count: profileViewCount },
+    { data: managedCompaniesRows },
   ] = await Promise.all([
     supabase
       .from("skills")
@@ -89,6 +94,11 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           .select("*", { count: "exact", head: true })
           .eq("profile_id", profile.id)
       : Promise.resolve({ count: null }),
+    supabase
+      .from("company_admins")
+      .select("companies(slug, name, logo_url)")
+      .eq("admin_id", profile.id)
+      .overrideTypes<{ companies: ManagedCompany | null }[], { merge: false }>(),
   ]);
 
   if (viewerId && !isOwnProfile) {
@@ -100,6 +110,9 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const followers: FollowerProfile[] = (followersResult?.data ?? [])
     .map((row) => row.profiles)
     .filter((followerProfile): followerProfile is FollowerProfile => !!followerProfile);
+  const managedCompanies: ManagedCompany[] = (managedCompaniesRows ?? [])
+    .map((row) => row.companies)
+    .filter((company): company is ManagedCompany => !!company);
 
   return (
     <div className="w-full flex-1 bg-secondary">
@@ -138,7 +151,40 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                   )
                 )}
               </div>
-              <h1 className="font-heading mt-3 text-[44px] leading-tight font-normal">{name}</h1>
+              <div className="mt-3 flex items-start justify-between gap-4">
+                <h1 className="font-heading text-[44px] leading-tight font-normal">{name}</h1>
+                {managedCompanies.length > 0 && (
+                  <div className="flex flex-col items-end gap-2 pt-2">
+                    {managedCompanies.map((company) => (
+                      <Link
+                        key={company.slug}
+                        href={`/company/${company.slug}`}
+                        className="flex items-center gap-2 hover:underline"
+                      >
+                        <span className="font-heading text-sm font-semibold text-foreground">
+                          {company.name}
+                        </span>
+                        <span className="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-secondary">
+                          {company.logo_url ? (
+                            <Image
+                              src={company.logo_url}
+                              alt=""
+                              width={32}
+                              height={32}
+                              unoptimized
+                              className="size-full object-cover"
+                            />
+                          ) : (
+                            <span className="font-heading text-xs text-ink-600">
+                              {company.name.charAt(0).toUpperCase()}
+                            </span>
+                          )}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
               {profile.headline && (
                 <p className="mt-1 text-[15px] text-foreground">{profile.headline}</p>
               )}
