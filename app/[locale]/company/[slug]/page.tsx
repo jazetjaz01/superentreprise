@@ -111,7 +111,7 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
               isAdmin={isAdminView}
             />
             <CardContent className="relative p-[27.6px]">
-              <div className="-mt-15 flex items-end gap-3">
+              <div className="-mt-20 flex items-end gap-3">
                 <div className="rounded-full border border-primary bg-background p-1.5">
                   <div className="flex size-30 items-center justify-center overflow-hidden rounded-full bg-secondary">
                     {company.logo_url ? (
@@ -132,7 +132,7 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
                 </div>
               </div>
 
-              <h1 className="font-heading mt-3 text-[44px] leading-tight font-normal">
+              <h1 className="font-heading mt-3 text-[26px] leading-tight font-semibold">
                 {company.name}
               </h1>
               {company.tagline && (

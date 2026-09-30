@@ -107,7 +107,7 @@ export const CompanyBanner = ({ companyId, bannerUrl, isAdmin }: CompanyBannerPr
   const shownUrl = removed ? null : (preview ?? bannerUrl)
 
   return (
-    <div className="relative h-37.5 w-full bg-secondary">
+    <div className="relative h-56 w-full bg-secondary">
       {shownUrl && (
         <Image src={shownUrl} alt="" fill unoptimized className="object-cover" />
       )}
