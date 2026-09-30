@@ -398,6 +398,19 @@
       "inviteToFollow": "Invite to follow",
       "preferences": "Preferences"
     },
+    "adminDashboard": {
+      "managePostsTitle": "Manage recent posts",
+      "managePostsDescription": "Manage your Page's content and amplify your reach with a boost.",
+      "learnMore": "Learn more",
+      "managePostsEmptyTitle": "Your Page has no posts in the last 90 days",
+      "managePostsEmptySubtitle": "Pages that post twice a week see 5x faster growth",
+      "startPost": "Start a post",
+      "discussionsTitle": "Join the conversation",
+      "discussionsDescription": "Build brand awareness and grow your community by engaging with recent discussions",
+      "discussionsEmptyTitle": "Your feed is empty",
+      "discussionsEmptySubtitle": "Follow other Pages in your industry to find fresh, inspiring content",
+      "followPages": "Add pages to follow"
+    },
     "createCard": {
       "title": "Company page",
       "description": "Create a page to showcase your company.",

@@ -398,6 +398,19 @@
       "inviteToFollow": "Inviter à suivre",
       "preferences": "Préférences"
     },
+    "adminDashboard": {
+      "managePostsTitle": "Gérer les posts récents",
+      "managePostsDescription": "Gérez le contenu de votre page et amplifiez votre portée avec un boost.",
+      "learnMore": "En savoir plus",
+      "managePostsEmptyTitle": "Votre page ne contient aucun post sur les 90 derniers jours",
+      "managePostsEmptySubtitle": "Les pages qui publient 2 fois par semaine affichent une croissance 5 fois plus rapide",
+      "startPost": "Commencer un post",
+      "discussionsTitle": "Participez à des discussions",
+      "discussionsDescription": "Renforcez la notoriété de votre marque et développez votre communauté en réagissant à des discussions récentes",
+      "discussionsEmptyTitle": "Votre fil d'actualité est vide",
+      "discussionsEmptySubtitle": "Suivez d'autres pages dans votre secteur pour trouver de nouveaux contenus inspirants",
+      "followPages": "Ajouter des pages à suivre"
+    },
     "createCard": {
       "title": "Page entreprise",
       "description": "Créez une page pour présenter votre entreprise.",

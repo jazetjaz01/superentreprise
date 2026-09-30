@@ -2,6 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 
+import { CompanyAdminDashboardCards } from "@/components/company-admin-dashboard-cards";
 import { CompanyAdminSidebar } from "@/components/company-admin-sidebar";
 import { CompanyBanner } from "@/components/company-banner";
 import { CompanyFollowButton } from "@/components/company-follow-button";
@@ -82,7 +83,7 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
         <div
           className={`mx-auto grid w-full max-w-(--breakpoint-xl) gap-4 px-4 py-8 sm:px-6 lg:px-8 ${
             isAdminView
-              ? "lg:grid-cols-[240px_minmax(0,1fr)_300px]"
+              ? "lg:grid-cols-[240px_minmax(0,1fr)]"
               : "lg:grid-cols-[minmax(0,1fr)_300px]"
           }`}
         >
@@ -186,25 +187,33 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
               </CardContent>
             </Card>
           )}
+
+          {isAdminView && (
+            <div className="mt-4">
+              <CompanyAdminDashboardCards />
+            </div>
+          )}
         </div>
 
-        <div className="flex flex-col gap-4">
-          <Card>
-            <CardContent>
-              <h2 className="font-heading text-lg font-semibold">{t("followCardTitle")}</h2>
-              <p className="text-ink-700 mt-2 text-sm">
-                {tFollow("followersCount", { count: followerCount ?? 0 })}
-              </p>
-              {viewerId && !isAdminView && (
-                <CompanyFollowButton
-                  viewerId={viewerId}
-                  companyId={company.id}
-                  initialIsFollowing={isFollowing}
-                />
-              )}
-            </CardContent>
-          </Card>
-        </div>
+        {!isAdminView && (
+          <div className="flex flex-col gap-4">
+            <Card>
+              <CardContent>
+                <h2 className="font-heading text-lg font-semibold">{t("followCardTitle")}</h2>
+                <p className="text-ink-700 mt-2 text-sm">
+                  {tFollow("followersCount", { count: followerCount ?? 0 })}
+                </p>
+                {viewerId && (
+                  <CompanyFollowButton
+                    viewerId={viewerId}
+                    companyId={company.id}
+                    initialIsFollowing={isFollowing}
+                  />
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
     </div>
     </>
