@@ -111,7 +111,7 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
               isAdmin={isAdminView}
             />
             <CardContent className="relative p-[27.6px]">
-              <div className="-mt-20 flex items-end gap-3">
+              <div className="-mt-24 flex items-end gap-3">
                 <div className="rounded-full border border-primary bg-background p-1.5">
                   <div className="flex size-30 items-center justify-center overflow-hidden rounded-full bg-secondary">
                     {company.logo_url ? (
