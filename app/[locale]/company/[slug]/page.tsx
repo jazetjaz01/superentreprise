@@ -105,94 +105,91 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
           </aside>
         )}
         <div className="min-w-0">
-          <Card className="overflow-hidden pt-0">
-            <CompanyBanner
-              companyId={company.id}
-              bannerUrl={company.banner_url}
-              isAdmin={isAdminView}
-            />
-            <CardContent className="relative p-[27.6px]">
-              <div className="-mt-24 flex items-end gap-3">
-                <div className="rounded-full border border-primary bg-background p-1.5">
-                  <div className="flex size-30 items-center justify-center overflow-hidden rounded-full bg-secondary">
-                    {company.logo_url ? (
-                      <Image
-                        src={company.logo_url}
-                        alt=""
-                        width={120}
-                        height={120}
-                        unoptimized
-                        className="size-full object-cover"
-                      />
-                    ) : (
-                      <span className="font-heading text-3xl text-ink-600">
-                        {company.name.charAt(0).toUpperCase()}
-                      </span>
-                    )}
+          {!isAdminView && (
+            <>
+              <Card className="overflow-hidden pt-0">
+                <CompanyBanner
+                  companyId={company.id}
+                  bannerUrl={company.banner_url}
+                  isAdmin={isAdminView}
+                />
+                <CardContent className="relative p-[27.6px]">
+                  <div className="-mt-24 flex items-end gap-3">
+                    <div className="rounded-full border border-primary bg-background p-1.5">
+                      <div className="flex size-30 items-center justify-center overflow-hidden rounded-full bg-secondary">
+                        {company.logo_url ? (
+                          <Image
+                            src={company.logo_url}
+                            alt=""
+                            width={120}
+                            height={120}
+                            unoptimized
+                            className="size-full object-cover"
+                          />
+                        ) : (
+                          <span className="font-heading text-3xl text-ink-600">
+                            {company.name.charAt(0).toUpperCase()}
+                          </span>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              <h1 className="font-heading mt-3 text-[26px] leading-tight font-semibold">
-                {company.name}
-              </h1>
-              {company.tagline && (
-                <p className="mt-1 text-[15px] text-foreground">{company.tagline}</p>
-              )}
-              {isAdminView && (
-                <p className="text-ink-600 mt-1 text-sm">{t("admin")}</p>
-              )}
-
-              <p className="text-ink-700 mt-3 text-sm">
-                {tFollow("followersCount", { count: followerCount ?? 0 })}
-              </p>
-
-              {(company.industry || company.company_size || company.website) && (
-                <div className="text-ink-600 mt-2 flex flex-col gap-1 text-sm">
-                  {company.industry && (
-                    <p>
-                      <span className="text-ink-800">{t("industryLabel")} : </span>
-                      {company.industry}
-                    </p>
+                  <h1 className="font-heading mt-3 text-[26px] leading-tight font-semibold">
+                    {company.name}
+                  </h1>
+                  {company.tagline && (
+                    <p className="mt-1 text-[15px] text-foreground">{company.tagline}</p>
                   )}
-                  {company.company_size && (
-                    <p>
-                      <span className="text-ink-800">{t("sizeLabel")} : </span>
-                      {company.company_size}
-                    </p>
-                  )}
-                  {company.website && (
-                    <p>
-                      <span className="text-ink-800">{t("websiteLabel")} : </span>
-                      <a
-                        href={company.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-primary hover:underline"
-                      >
-                        {company.website}
-                      </a>
-                    </p>
-                  )}
-                </div>
-              )}
-            </CardContent>
-          </Card>
 
-          {company.about && (
-            <Card className="mt-4">
-              <CardContent className="p-[27.6px]">
-                <h2 className="font-heading text-2xl font-semibold">{t("about")}</h2>
-                <p className="mt-2 whitespace-pre-wrap text-foreground">{company.about}</p>
-              </CardContent>
-            </Card>
+                  <p className="text-ink-700 mt-3 text-sm">
+                    {tFollow("followersCount", { count: followerCount ?? 0 })}
+                  </p>
+
+                  {(company.industry || company.company_size || company.website) && (
+                    <div className="text-ink-600 mt-2 flex flex-col gap-1 text-sm">
+                      {company.industry && (
+                        <p>
+                          <span className="text-ink-800">{t("industryLabel")} : </span>
+                          {company.industry}
+                        </p>
+                      )}
+                      {company.company_size && (
+                        <p>
+                          <span className="text-ink-800">{t("sizeLabel")} : </span>
+                          {company.company_size}
+                        </p>
+                      )}
+                      {company.website && (
+                        <p>
+                          <span className="text-ink-800">{t("websiteLabel")} : </span>
+                          <a
+                            href={company.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-primary hover:underline"
+                          >
+                            {company.website}
+                          </a>
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              {company.about && (
+                <Card className="mt-4">
+                  <CardContent className="p-[27.6px]">
+                    <h2 className="font-heading text-2xl font-semibold">{t("about")}</h2>
+                    <p className="mt-2 whitespace-pre-wrap text-foreground">{company.about}</p>
+                  </CardContent>
+                </Card>
+              )}
+            </>
           )}
 
-          {isAdminView && (
-            <div className="mt-4">
-              <CompanyAdminDashboardCards />
-            </div>
-          )}
+          {isAdminView && <CompanyAdminDashboardCards />}
         </div>
 
         {!isAdminView && (
