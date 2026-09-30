@@ -272,6 +272,7 @@
   },
   "Composer": {
     "start": "Start a post",
+    "startAsCompany": "Start a post",
     "photo": "Photo",
     "video": "Video",
     "writeArticle": "Write an article",

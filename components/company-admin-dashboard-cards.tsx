@@ -1,10 +1,23 @@
 import { MessagesSquare, Newspaper, Plus } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
+import { CompanyPostComposer } from "@/components/company-post-composer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "@/i18n/navigation";
 
-export const CompanyAdminDashboardCards = async () => {
+type CompanyAdminDashboardCardsProps = {
+  adminUserId: string;
+  companyId: string;
+  companyName: string;
+  companyLogoUrl: string | null;
+};
+
+export const CompanyAdminDashboardCards = async ({
+  adminUserId,
+  companyId,
+  companyName,
+  companyLogoUrl,
+}: CompanyAdminDashboardCardsProps) => {
   const t = await getTranslations("Company.adminDashboard");
 
   return (
@@ -27,13 +40,14 @@ export const CompanyAdminDashboardCards = async () => {
               {t("managePostsEmptyTitle")}
             </p>
             <p className="text-ink-600 mt-1 text-sm">{t("managePostsEmptySubtitle")}</p>
-            <Link
-              href="#"
-              className="border-primary text-primary hover:bg-primary/10 mt-4 flex items-center gap-1.5 rounded-full border px-5 py-2 text-sm font-semibold"
-            >
-              <Plus className="size-4" strokeWidth={1.5} />
-              {t("startPost")}
-            </Link>
+            <div className="mt-4">
+              <CompanyPostComposer
+                adminUserId={adminUserId}
+                companyId={companyId}
+                companyName={companyName}
+                companyLogoUrl={companyLogoUrl}
+              />
+            </div>
           </div>
         </CardContent>
       </Card>

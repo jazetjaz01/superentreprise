@@ -189,7 +189,14 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
             </>
           )}
 
-          {isAdminView && <CompanyAdminDashboardCards />}
+          {isAdminView && viewerId && (
+            <CompanyAdminDashboardCards
+              adminUserId={viewerId}
+              companyId={company.id}
+              companyName={company.name}
+              companyLogoUrl={company.logo_url}
+            />
+          )}
         </div>
 
         {!isAdminView && (

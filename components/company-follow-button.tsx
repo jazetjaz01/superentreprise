@@ -5,18 +5,23 @@ import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { useRouter } from '@/i18n/navigation'
+import { cn } from '@/lib/utils'
 import { createClient } from '@/lib/supabase/client'
 
 type CompanyFollowButtonProps = {
   viewerId: string
   companyId: string
   initialIsFollowing: boolean
+  variant?: 'button' | 'text'
+  className?: string
 }
 
 export const CompanyFollowButton = ({
   viewerId,
   companyId,
   initialIsFollowing,
+  variant = 'button',
+  className,
 }: CompanyFollowButtonProps) => {
   const t = useTranslations('Company.follow')
   const router = useRouter()
@@ -55,8 +60,26 @@ export const CompanyFollowButton = ({
     }
   }
 
+  if (variant === 'text') {
+    return (
+      <div className={cn('flex flex-col items-end gap-1', className)}>
+        <button
+          type="button"
+          disabled={isSubmitting}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+          onClick={handleClick}
+          className="cursor-pointer rounded-md px-2 py-1 text-sm font-normal text-primary transition-colors hover:bg-primary/10 disabled:opacity-45"
+        >
+          {isFollowing ? (isHovering ? t('unfollow') : t('following')) : `+ ${t('follow')}`}
+        </button>
+        {error && <p className="text-xs text-red-500">{error}</p>}
+      </div>
+    )
+  }
+
   return (
-    <div className="flex flex-col items-end gap-1">
+    <div className={cn('flex flex-col items-end gap-1', className)}>
       <Button
         type="button"
         variant={isFollowing ? 'outline' : 'default'}
