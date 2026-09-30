@@ -37,7 +37,7 @@ export const ProfileCard = async ({
         )}
       </div>
       <CardContent className="relative -mt-8 flex flex-col items-start gap-1 text-left">
-        <div className="relative z-10 rounded-full border-2 border-primary bg-background p-0.5">
+        <div className="relative z-10 rounded-full  border-primary bg-background p-0.5">
           <UserAvatar name={name} avatarUrl={avatarUrl} size={64} />
         </div>
         <p className="font-heading mt-2 text-[21px] leading-snug font-semibold break-words">
