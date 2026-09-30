@@ -406,6 +406,8 @@
       "managePostsEmptyTitle": "Your Page has no posts in the last 90 days",
       "managePostsEmptySubtitle": "Pages that post twice a week see 5x faster growth",
       "startPost": "Start a post",
+      "recentPostsCount": "{count, plural, one {# post published} other {# posts published}} in the last 90 days",
+      "viewPosts": "View feed",
       "discussionsTitle": "Join the conversation",
       "discussionsDescription": "Build brand awareness and grow your community by engaging with recent discussions",
       "discussionsEmptyTitle": "Your feed is empty",

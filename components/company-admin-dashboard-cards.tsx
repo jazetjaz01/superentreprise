@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { CompanyPostComposer } from "@/components/company-post-composer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "@/i18n/navigation";
+import { createClient } from "@/lib/supabase/server";
 
 type CompanyAdminDashboardCardsProps = {
   adminUserId: string;
@@ -19,6 +20,16 @@ export const CompanyAdminDashboardCards = async ({
   companyLogoUrl,
 }: CompanyAdminDashboardCardsProps) => {
   const t = await getTranslations("Company.adminDashboard");
+  const supabase = await createClient();
+
+  const ninetyDaysAgo = new Date();
+  ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+  const { count: recentPostCount } = await supabase
+    .from("posts")
+    .select("*", { count: "exact", head: true })
+    .eq("company_id", companyId)
+    .gte("created_at", ninetyDaysAgo.toISOString());
+  const hasRecentPosts = (recentPostCount ?? 0) > 0;
 
   return (
     <div className="flex flex-col gap-4">
@@ -32,23 +43,48 @@ export const CompanyAdminDashboardCards = async ({
             </Link>
           </p>
 
-          <div className="mt-6 flex flex-col items-center text-center">
-            <div className="flex size-24 items-center justify-center rounded-full bg-secondary">
-              <Newspaper className="text-ink-500 size-9" strokeWidth={1.5} />
+          {hasRecentPosts ? (
+            <div className="mt-6 flex flex-col items-center text-center">
+              <div className="flex size-24 items-center justify-center rounded-full bg-secondary">
+                <Newspaper className="text-ink-500 size-9" strokeWidth={1.5} />
+              </div>
+              <p className="font-heading mt-4 text-lg font-semibold">
+                {t("recentPostsCount", { count: recentPostCount ?? 0 })}
+              </p>
+              <div className="mt-4 flex items-center gap-3">
+                <Link
+                  href="/"
+                  className="border-primary text-primary hover:bg-primary/10 flex items-center gap-1.5 rounded-full border px-5 py-2 text-sm font-semibold"
+                >
+                  {t("viewPosts")}
+                </Link>
+                <CompanyPostComposer
+                  adminUserId={adminUserId}
+                  companyId={companyId}
+                  companyName={companyName}
+                  companyLogoUrl={companyLogoUrl}
+                />
+              </div>
             </div>
-            <p className="font-heading mt-4 text-lg font-semibold">
-              {t("managePostsEmptyTitle")}
-            </p>
-            <p className="text-ink-600 mt-1 text-sm">{t("managePostsEmptySubtitle")}</p>
-            <div className="mt-4">
-              <CompanyPostComposer
-                adminUserId={adminUserId}
-                companyId={companyId}
-                companyName={companyName}
-                companyLogoUrl={companyLogoUrl}
-              />
+          ) : (
+            <div className="mt-6 flex flex-col items-center text-center">
+              <div className="flex size-24 items-center justify-center rounded-full bg-secondary">
+                <Newspaper className="text-ink-500 size-9" strokeWidth={1.5} />
+              </div>
+              <p className="font-heading mt-4 text-lg font-semibold">
+                {t("managePostsEmptyTitle")}
+              </p>
+              <p className="text-ink-600 mt-1 text-sm">{t("managePostsEmptySubtitle")}</p>
+              <div className="mt-4">
+                <CompanyPostComposer
+                  adminUserId={adminUserId}
+                  companyId={companyId}
+                  companyName={companyName}
+                  companyLogoUrl={companyLogoUrl}
+                />
+              </div>
             </div>
-          </div>
+          )}
         </CardContent>
       </Card>
 

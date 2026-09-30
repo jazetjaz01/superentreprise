@@ -406,6 +406,8 @@
       "managePostsEmptyTitle": "Votre page ne contient aucun post sur les 90 derniers jours",
       "managePostsEmptySubtitle": "Les pages qui publient 2 fois par semaine affichent une croissance 5 fois plus rapide",
       "startPost": "Commencer un post",
+      "recentPostsCount": "{count, plural, one {# post publié} other {# posts publiés}} sur les 90 derniers jours",
+      "viewPosts": "Voir le fil d'actualité",
       "discussionsTitle": "Participez à des discussions",
       "discussionsDescription": "Renforcez la notoriété de votre marque et développez votre communauté en réagissant à des discussions récentes",
       "discussionsEmptyTitle": "Votre fil d'actualité est vide",
