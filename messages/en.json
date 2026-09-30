@@ -419,6 +419,31 @@
       "admin": "You manage this page",
       "followCardTitle": "Follow"
     },
+    "edit": {
+      "trigger": "Edit page",
+      "title": "Edit company page",
+      "name": "Company name",
+      "tagline": "Tagline",
+      "industry": "Industry",
+      "companySize": "Company size",
+      "companySizePlaceholder": "e.g. 11-50 employees",
+      "website": "Website",
+      "about": "About",
+      "changeLogo": "Change logo",
+      "save": "Save",
+      "saving": "Saving...",
+      "fileType": "Unsupported format (JPEG, PNG, WebP or GIF).",
+      "fileTooLarge": "The image must not exceed 5 MB.",
+      "error": "Unable to save the page. Please try again."
+    },
+    "banner": {
+      "trigger": "Change banner",
+      "remove": "Remove banner",
+      "fileType": "Unsupported format (JPEG, PNG, WebP or GIF).",
+      "fileTooLarge": "The image must not exceed 5 MB.",
+      "error": "Unable to save the banner. Please try again.",
+      "removeError": "Unable to remove the banner. Please try again."
+    },
     "follow": {
       "follow": "Follow",
       "following": "Following",

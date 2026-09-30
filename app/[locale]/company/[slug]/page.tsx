@@ -2,8 +2,10 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 
+import { CompanyBanner } from "@/components/company-banner";
 import { CompanyFollowButton } from "@/components/company-follow-button";
 import { Card, CardContent } from "@/components/ui/card";
+import { EditCompanyDialog } from "@/components/edit-company-dialog";
 import { createClient } from "@/lib/supabase/server";
 
 type CompanyPageProps = {
@@ -62,13 +64,13 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
       <div className="mx-auto grid w-full max-w-(--breakpoint-xl) gap-4 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-8">
         <div className="min-w-0">
           <Card className="overflow-hidden pt-0">
-            <div className="relative h-37.5 w-full bg-secondary">
-              {company.banner_url && (
-                <Image src={company.banner_url} alt="" fill unoptimized className="object-cover" />
-              )}
-            </div>
+            <CompanyBanner
+              companyId={company.id}
+              bannerUrl={company.banner_url}
+              isAdmin={isAdmin}
+            />
             <CardContent className="relative p-[27.6px]">
-              <div className="-mt-15 flex items-end gap-3">
+              <div className="-mt-15 flex items-end justify-between gap-3">
                 <div className="rounded-full border border-primary bg-background p-1.5">
                   <div className="flex size-30 items-center justify-center overflow-hidden rounded-full bg-secondary">
                     {company.logo_url ? (
@@ -87,6 +89,18 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
                     )}
                   </div>
                 </div>
+                {isAdmin && (
+                  <EditCompanyDialog
+                    companyId={company.id}
+                    name={company.name}
+                    tagline={company.tagline}
+                    industry={company.industry}
+                    companySize={company.company_size}
+                    website={company.website}
+                    about={company.about}
+                    logoUrl={company.logo_url}
+                  />
+                )}
               </div>
 
               <h1 className="font-heading mt-3 text-[44px] leading-tight font-normal">

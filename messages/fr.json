@@ -419,6 +419,31 @@
       "admin": "Vous gérez cette page",
       "followCardTitle": "Abonnement"
     },
+    "edit": {
+      "trigger": "Modifier la page",
+      "title": "Modifier la page entreprise",
+      "name": "Nom de l'entreprise",
+      "tagline": "Slogan",
+      "industry": "Secteur d'activité",
+      "companySize": "Taille de l'entreprise",
+      "companySizePlaceholder": "ex. 11-50 employés",
+      "website": "Site web",
+      "about": "À propos",
+      "changeLogo": "Changer le logo",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "fileType": "Format non pris en charge (JPEG, PNG, WebP ou GIF).",
+      "fileTooLarge": "L'image ne doit pas dépasser 5 Mo.",
+      "error": "Impossible d'enregistrer la page. Veuillez réessayer."
+    },
+    "banner": {
+      "trigger": "Changer la bannière",
+      "remove": "Supprimer la bannière",
+      "fileType": "Format non pris en charge (JPEG, PNG, WebP ou GIF).",
+      "fileTooLarge": "L'image ne doit pas dépasser 5 Mo.",
+      "error": "Impossible d'enregistrer la bannière. Veuillez réessayer.",
+      "removeError": "Impossible de supprimer la bannière. Veuillez réessayer."
+    },
     "follow": {
       "follow": "Suivre",
       "following": "Abonné",
