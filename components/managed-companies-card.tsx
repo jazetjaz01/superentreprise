@@ -1,7 +1,9 @@
+import { Gem, Target } from "lucide-react";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { Link } from "@/i18n/navigation";
 
 export type ManagedCompany = { slug: string; name: string; logo_url: string | null };
@@ -47,6 +49,20 @@ export const ManagedCompaniesCard = async ({ companies }: ManagedCompaniesCardPr
               </span>
             </Link>
           ))}
+        </div>
+
+        <Separator className="my-3" />
+
+        <h3 className="text-ink-700 text-[13px]">{t("growTitle")}</h3>
+        <div className="mt-2 flex flex-col gap-2">
+          <Link href="#" className="flex items-center gap-2 text-[13px] font-semibold hover:underline">
+            <Gem className="text-primary size-4" strokeWidth={1.5} />
+            {t("premiumLink")}
+          </Link>
+          <Link href="#" className="flex items-center gap-2 text-[13px] font-semibold hover:underline">
+            <Target className="text-ink-600 size-4" strokeWidth={1.5} />
+            {t("adsLink")}
+          </Link>
         </div>
       </CardContent>
     </Card>

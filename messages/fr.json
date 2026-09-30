@@ -389,7 +389,10 @@
       "cta": "Créer une page entreprise"
     },
     "managedCard": {
-      "title": "Vos pages entreprise"
+      "title": "Vos pages entreprise",
+      "growTitle": "Développez votre entreprise plus rapidement",
+      "premiumLink": "Essayer la Page Premium",
+      "adsLink": "Vos publicités sur Superentreprise"
     },
     "create": {
       "pageTitle": "Créer une page entreprise",
