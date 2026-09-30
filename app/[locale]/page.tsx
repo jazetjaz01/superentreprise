@@ -69,7 +69,7 @@ export default async function Home() {
 
   return (
     <div className="mx-auto grid w-full max-w-(--breakpoint-xl) flex-1 content-start gap-6 px-4 py-6 sm:px-6 md:grid-cols-[240px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)_300px] lg:px-8 ">
-      <aside className="hidden md:flex md:flex-col md:gap-4">
+      <aside className="sticky top-20 hidden self-start md:flex md:flex-col md:gap-4">
         <ProfileCard
           name={name}
           avatarUrl={avatarUrl}
@@ -87,7 +87,7 @@ export default async function Home() {
         <PostComposer userId={claims.sub} name={name} avatarUrl={avatarUrl} />
         <PostFeed viewerName={name} viewerAvatarUrl={avatarUrl} />
       </main>
-      <aside className="hidden lg:flex lg:flex-col lg:gap-4">
+      <aside className="sticky top-20 hidden self-start lg:flex lg:flex-col lg:gap-4">
         <NewsSlot />
         <PremiumAdSlot name={name} avatarUrl={avatarUrl} />
         <AdSlot />

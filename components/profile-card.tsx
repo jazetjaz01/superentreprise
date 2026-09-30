@@ -31,12 +31,12 @@ export const ProfileCard = async ({
 
   return (
     <Card className="overflow-hidden pt-0">
-      <div className="relative h-13 border-b border-border bg-secondary">
+      <div className="relative h-20 border-b border-border bg-secondary">
         {bannerUrl && (
           <Image src={bannerUrl} alt="" fill unoptimized className="object-cover" />
         )}
       </div>
-      <CardContent className="relative -mt-8 flex flex-col items-start gap-1 text-left">
+      <CardContent className="relative -mt-8.5 flex flex-col items-start gap-1 text-left">
         <div className="relative z-10 rounded-full  border-primary bg-background p-0.5">
           <UserAvatar name={name} avatarUrl={avatarUrl} size={64} />
         </div>
