@@ -36,6 +36,7 @@ type EditCompanyDialogProps = {
   about: string | null
   logoUrl: string | null
   className?: string
+  trigger?: React.ReactNode
 }
 
 export const EditCompanyDialog = ({
@@ -48,6 +49,7 @@ export const EditCompanyDialog = ({
   about,
   logoUrl,
   className,
+  trigger,
 }: EditCompanyDialogProps) => {
   const t = useTranslations('Company.edit')
   const router = useRouter()
@@ -132,15 +134,21 @@ export const EditCompanyDialog = ({
 
   return (
     <>
-      <Button
-        variant="outline"
-        size="icon-sm"
-        className={className}
-        aria-label={t('trigger')}
-        onClick={() => setOpen(true)}
-      >
-        <Pencil className="size-3.5" />
-      </Button>
+      {trigger ? (
+        <button type="button" onClick={() => setOpen(true)} className="contents">
+          {trigger}
+        </button>
+      ) : (
+        <Button
+          variant="outline"
+          size="icon-sm"
+          className={className}
+          aria-label={t('trigger')}
+          onClick={() => setOpen(true)}
+        >
+          <Pencil className="size-3.5" />
+        </Button>
+      )}
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-md">

@@ -2,10 +2,10 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 
+import { CompanyAdminSidebar } from "@/components/company-admin-sidebar";
 import { CompanyBanner } from "@/components/company-banner";
 import { CompanyFollowButton } from "@/components/company-follow-button";
 import { Card, CardContent } from "@/components/ui/card";
-import { EditCompanyDialog } from "@/components/edit-company-dialog";
 import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
 
@@ -79,7 +79,30 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
         </div>
       )}
       <div className="w-full flex-1 bg-secondary">
-        <div className="mx-auto grid w-full max-w-(--breakpoint-xl) gap-4 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-8">
+        <div
+          className={`mx-auto grid w-full max-w-(--breakpoint-xl) gap-4 px-4 py-8 sm:px-6 lg:px-8 ${
+            isAdminView
+              ? "lg:grid-cols-[240px_minmax(0,1fr)_300px]"
+              : "lg:grid-cols-[minmax(0,1fr)_300px]"
+          }`}
+        >
+        {isAdminView && (
+          <aside className="hidden self-start lg:block">
+            <CompanyAdminSidebar
+              companyId={company.id}
+              slug={slug}
+              name={company.name}
+              tagline={company.tagline}
+              industry={company.industry}
+              companySize={company.company_size}
+              website={company.website}
+              about={company.about}
+              logoUrl={company.logo_url}
+              bannerUrl={company.banner_url}
+              followerCount={followerCount ?? 0}
+            />
+          </aside>
+        )}
         <div className="min-w-0">
           <Card className="overflow-hidden pt-0">
             <CompanyBanner
@@ -88,7 +111,7 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
               isAdmin={isAdminView}
             />
             <CardContent className="relative p-[27.6px]">
-              <div className="-mt-15 flex items-end justify-between gap-3">
+              <div className="-mt-15 flex items-end gap-3">
                 <div className="rounded-full border border-primary bg-background p-1.5">
                   <div className="flex size-30 items-center justify-center overflow-hidden rounded-full bg-secondary">
                     {company.logo_url ? (
@@ -107,18 +130,6 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
                     )}
                   </div>
                 </div>
-                {isAdminView && (
-                  <EditCompanyDialog
-                    companyId={company.id}
-                    name={company.name}
-                    tagline={company.tagline}
-                    industry={company.industry}
-                    companySize={company.company_size}
-                    website={company.website}
-                    about={company.about}
-                    logoUrl={company.logo_url}
-                  />
-                )}
               </div>
 
               <h1 className="font-heading mt-3 text-[44px] leading-tight font-normal">

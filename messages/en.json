@@ -383,6 +383,21 @@
     "hello": "Hello {email}"
   },
   "Company": {
+    "adminSidebar": {
+      "verificationPremium": "Verification with Premium",
+      "create": "Create",
+      "dashboard": "Dashboard",
+      "pagePosts": "Page posts",
+      "analytics": "Analytics",
+      "feed": "Feed",
+      "activity": "Activity",
+      "messaging": "Messaging",
+      "jobs": "Jobs",
+      "upgradePage": "Upgrade your Page",
+      "advertiseToday": "Advertise today",
+      "inviteToFollow": "Invite to follow",
+      "preferences": "Preferences"
+    },
     "createCard": {
       "title": "Company page",
       "description": "Create a page to showcase your company.",

@@ -383,6 +383,21 @@
     "hello": "Bonjour {email}"
   },
   "Company": {
+    "adminSidebar": {
+      "verificationPremium": "Vérification avec Premium",
+      "create": "Créer",
+      "dashboard": "Tableau de bord",
+      "pagePosts": "Posts de la page",
+      "analytics": "Statistiques",
+      "feed": "Fil d'actualité",
+      "activity": "Activité",
+      "messaging": "Messagerie",
+      "jobs": "Emplois",
+      "upgradePage": "Mettre à niveau votre page",
+      "advertiseToday": "Faire de la publicité aujourd'hui",
+      "inviteToFollow": "Inviter à suivre",
+      "preferences": "Préférences"
+    },
     "createCard": {
       "title": "Page entreprise",
       "description": "Créez une page pour présenter votre entreprise.",
