@@ -9,6 +9,7 @@ import { PostComposer } from "@/components/post-composer";
 import { PostFeed } from "@/components/post-feed";
 import { PremiumAdSlot } from "@/components/premium-ad-slot";
 import { ProfileCard } from "@/components/profile-card";
+import { QuickLinksCard } from "@/components/quick-links-card";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function Home() {
@@ -80,6 +81,7 @@ export default async function Home() {
           profileViewCount={profileViewCount ?? 0}
         />
         <ManagedCompaniesCard companies={managedCompanies} />
+        <QuickLinksCard />
       </aside>
       <main className="mx-auto flex w-full max-w-2xl flex-col gap-4">
         <PostComposer userId={claims.sub} name={name} avatarUrl={avatarUrl} />

@@ -426,5 +426,11 @@
       "error": "Une erreur est survenue. Veuillez réessayer.",
       "followersCount": "{count, plural, =0 {Aucun abonné} one {# abonné} other {# abonnés}}"
     }
+  },
+  "QuickLinksCard": {
+    "savedItems": "Éléments enregistrés",
+    "groups": "Groupes",
+    "newsletters": "Newsletters",
+    "events": "Événements"
   }
 }
