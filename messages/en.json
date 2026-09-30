@@ -417,7 +417,11 @@
       "websiteLabel": "Website",
       "about": "About",
       "admin": "You manage this page",
-      "followCardTitle": "Follow"
+      "followCardTitle": "Follow",
+      "viewingAsMember": "You're viewing this page as a member",
+      "viewingAsAdmin": "You're viewing this page as an admin",
+      "switchToAdmin": "View as admin",
+      "switchToMember": "View as member"
     },
     "edit": {
       "trigger": "Edit page",

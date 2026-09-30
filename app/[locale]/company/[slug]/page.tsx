@@ -6,14 +6,17 @@ import { CompanyBanner } from "@/components/company-banner";
 import { CompanyFollowButton } from "@/components/company-follow-button";
 import { Card, CardContent } from "@/components/ui/card";
 import { EditCompanyDialog } from "@/components/edit-company-dialog";
+import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
 
 type CompanyPageProps = {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ view?: string }>;
 };
 
-export default async function CompanyPage({ params }: CompanyPageProps) {
+export default async function CompanyPage({ params, searchParams }: CompanyPageProps) {
   const { slug } = await params;
+  const { view } = await searchParams;
   const t = await getTranslations("Company.page");
   const tFollow = await getTranslations("Company.follow");
   const supabase = await createClient();
@@ -57,17 +60,32 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
   ]);
 
   const isFollowing = !!followingRow?.data;
-  const isAdmin = !!adminRow?.data;
+  const isRealAdmin = !!adminRow?.data;
+  const isAdminView = isRealAdmin && view === "admin";
 
   return (
-    <div className="w-full flex-1 bg-secondary">
-      <div className="mx-auto grid w-full max-w-(--breakpoint-xl) gap-4 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-8">
+    <>
+      {isRealAdmin && (
+        <div className="bg-primary flex items-center justify-between gap-4 px-4 py-3 text-white sm:px-6 lg:px-8">
+          <p className="text-sm font-semibold">
+            {isAdminView ? t("viewingAsAdmin") : t("viewingAsMember")}
+          </p>
+          <Link
+            href={`/company/${slug}${isAdminView ? "" : "?view=admin"}`}
+            className="shrink-0 rounded-full border border-white px-4 py-1.5 text-sm font-semibold hover:bg-white/10"
+          >
+            {isAdminView ? t("switchToMember") : t("switchToAdmin")}
+          </Link>
+        </div>
+      )}
+      <div className="w-full flex-1 bg-secondary">
+        <div className="mx-auto grid w-full max-w-(--breakpoint-xl) gap-4 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-8">
         <div className="min-w-0">
           <Card className="overflow-hidden pt-0">
             <CompanyBanner
               companyId={company.id}
               bannerUrl={company.banner_url}
-              isAdmin={isAdmin}
+              isAdmin={isAdminView}
             />
             <CardContent className="relative p-[27.6px]">
               <div className="-mt-15 flex items-end justify-between gap-3">
@@ -89,7 +107,7 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
                     )}
                   </div>
                 </div>
-                {isAdmin && (
+                {isAdminView && (
                   <EditCompanyDialog
                     companyId={company.id}
                     name={company.name}
@@ -109,7 +127,7 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
               {company.tagline && (
                 <p className="mt-1 text-[15px] text-foreground">{company.tagline}</p>
               )}
-              {isAdmin && (
+              {isAdminView && (
                 <p className="text-ink-600 mt-1 text-sm">{t("admin")}</p>
               )}
 
@@ -166,7 +184,7 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
               <p className="text-ink-700 mt-2 text-sm">
                 {tFollow("followersCount", { count: followerCount ?? 0 })}
               </p>
-              {viewerId && !isAdmin && (
+              {viewerId && !isAdminView && (
                 <CompanyFollowButton
                   viewerId={viewerId}
                   companyId={company.id}
@@ -178,5 +196,6 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
         </div>
       </div>
     </div>
+    </>
   );
 }

@@ -417,7 +417,11 @@
       "websiteLabel": "Site web",
       "about": "À propos",
       "admin": "Vous gérez cette page",
-      "followCardTitle": "Abonnement"
+      "followCardTitle": "Abonnement",
+      "viewingAsMember": "Vous voyez cette page en tant que membre",
+      "viewingAsAdmin": "Vous voyez cette page en tant qu'administrateur",
+      "switchToAdmin": "Voir en tant qu'administrateur",
+      "switchToMember": "Voir en tant que membre"
     },
     "edit": {
       "trigger": "Modifier la page",
