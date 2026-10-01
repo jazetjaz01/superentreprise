@@ -171,23 +171,23 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="h-11 flex-1 rounded-md border border-border px-5 text-left font-normal text-foreground transition-colors hover:bg-foreground/[.07]"
+              className="h-11 flex-1 rounded-full border border-border px-5 text-left font-semibold text-foreground transition-colors hover:bg-foreground/[.07]"
             >
               {t("start")}
             </button>
           </div>
           <div className="flex justify-center gap-2">
             <Button variant="ghost" onClick={() => setOpen(true)}>
-              <ImageIcon />
-              <span className="font-semibold text-foreground">{t("photo")}</span>
+              <ImageIcon className="size-5" />
+              <span className="text-base font-semibold text-foreground">{t("photo")}</span>
             </Button>
             <Button variant="ghost" onClick={() => setOpen(true)}>
-              <VideoIcon className="text-blue-600" />
-              <span className="font-semibold text-foreground">{t("video")}</span>
+              <VideoIcon className="size-5 text-blue-600" />
+              <span className="text-base font-semibold text-foreground">{t("video")}</span>
             </Button>
             <Button variant="ghost" nativeButton={false} render={<Link href="/articles/write" />}>
-              <NewspaperIcon className="text-orange-500" />
-              <span className="font-semibold text-foreground">{t("writeArticle")}</span>
+              <NewspaperIcon className="size-5 text-orange-500" />
+              <span className="text-base font-semibold text-foreground">{t("writeArticle")}</span>
             </Button>
           </div>
         </CardContent>
