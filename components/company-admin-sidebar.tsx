@@ -58,12 +58,12 @@ export const CompanyAdminSidebar = async ({
   const tEdit = await getTranslations("Company.edit");
 
   const navItems = [
-    { label: t("dashboard"), icon: LayoutDashboard },
-    { label: t("pagePosts"), icon: Newspaper },
-    { label: t("analytics"), icon: BarChart2 },
-    { label: t("feed"), icon: Rss },
-    { label: t("activity"), icon: Activity },
-    { label: t("messaging"), icon: MessageSquare },
+    { label: t("dashboard"), icon: LayoutDashboard, href: `/company/${slug}?view=admin` },
+    { label: t("pagePosts"), icon: Newspaper, href: "#" },
+    { label: t("analytics"), icon: BarChart2, href: "#" },
+    { label: t("feed"), icon: Rss, href: "#" },
+    { label: t("activity"), icon: Activity, href: "#" },
+    { label: t("messaging"), icon: MessageSquare, href: "#" },
   ];
 
   const bottomItems = [
@@ -126,10 +126,10 @@ export const CompanyAdminSidebar = async ({
         <Separator className="my-3" />
 
         <nav className="flex w-full flex-col gap-1">
-          {navItems.map(({ label, icon: Icon }) => (
+          {navItems.map(({ label, icon: Icon, href }) => (
             <Link
               key={label}
-              href="#"
+              href={href}
               className="text-ink-700 hover:bg-foreground/[.07] flex items-center gap-3 rounded-md px-2 py-1.5 text-sm font-semibold"
             >
               <Icon className="size-4" strokeWidth={1.5} />
