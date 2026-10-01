@@ -350,7 +350,7 @@ export const ArticleForm = ({
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="rounded-full bg-primary px-6 text-primary-foreground hover:bg-primary/90"
+          className="rounded-full bg-primary px-6 text-white hover:bg-primary/90"
         >
           {isSubmitting ? t('publishing') : isEdit ? t('save') : t('publish')}
         </Button>
