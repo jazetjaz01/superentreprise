@@ -538,5 +538,27 @@
     "groups": "Groups",
     "newsletters": "Newsletters",
     "events": "Events"
+  },
+  "Messaging": {
+    "title": "Messaging",
+    "officialInboxTitle": "Official messages",
+    "personalTab": "My messages",
+    "officialTab": "Superentreprise",
+    "newMessage": "New message",
+    "newOfficialMessage": "New official message",
+    "searchPlaceholder": "Search for a person",
+    "noResults": "No results.",
+    "emptyConversations": "You don't have any conversations yet.",
+    "emptyOfficialConversations": "No official conversations yet.",
+    "emptyThread": "Select a conversation to view messages.",
+    "noMessages": "No messages yet.",
+    "officialSenderName": "Superentreprise",
+    "officialBadge": "Official",
+    "contentPlaceholder": "Write a message...",
+    "send": "Send",
+    "sending": "Sending...",
+    "error": "Unable to send the message. Please try again.",
+    "you": "You",
+    "anonymous": "User"
   }
 }

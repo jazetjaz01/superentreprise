@@ -538,5 +538,27 @@
     "groups": "Groupes",
     "newsletters": "Newsletters",
     "events": "Événements"
+  },
+  "Messaging": {
+    "title": "Messagerie",
+    "officialInboxTitle": "Messages officiels",
+    "personalTab": "Mes messages",
+    "officialTab": "Superentreprise",
+    "newMessage": "Nouveau message",
+    "newOfficialMessage": "Nouveau message officiel",
+    "searchPlaceholder": "Rechercher une personne",
+    "noResults": "Aucun résultat.",
+    "emptyConversations": "Vous n'avez aucune conversation pour le moment.",
+    "emptyOfficialConversations": "Aucune conversation officielle pour le moment.",
+    "emptyThread": "Sélectionnez une conversation pour afficher les messages.",
+    "noMessages": "Aucun message pour le moment.",
+    "officialSenderName": "Superentreprise",
+    "officialBadge": "Officiel",
+    "contentPlaceholder": "Écrivez un message...",
+    "send": "Envoyer",
+    "sending": "Envoi...",
+    "error": "Impossible d'envoyer le message. Veuillez réessayer.",
+    "you": "Vous",
+    "anonymous": "Utilisateur"
   }
 }
