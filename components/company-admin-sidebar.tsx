@@ -18,7 +18,6 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
 import { CompanyCreateMenu } from "@/components/company-create-menu";
-import { EditCompanyDialog } from "@/components/edit-company-dialog";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "@/i18n/navigation";
@@ -28,11 +27,6 @@ type CompanyAdminSidebarProps = {
   companyId: string;
   slug: string;
   name: string;
-  tagline: string | null;
-  industry: string | null;
-  companySize: string | null;
-  website: string | null;
-  about: string | null;
   logoUrl: string | null;
   bannerUrl: string | null;
   followerCount: number;
@@ -43,11 +37,6 @@ export const CompanyAdminSidebar = async ({
   companyId,
   slug,
   name,
-  tagline,
-  industry,
-  companySize,
-  website,
-  about,
   logoUrl,
   bannerUrl,
   followerCount,
@@ -64,6 +53,7 @@ export const CompanyAdminSidebar = async ({
     { label: t("feed"), icon: Rss, href: `/company/${slug}?view=admin&tab=feed` },
     { label: t("activity"), icon: Activity, href: "#" },
     { label: t("messaging"), icon: MessageSquare, href: "#" },
+    { label: tEdit("trigger"), icon: Pencil, href: `/company/${slug}?view=admin&tab=edit` },
   ];
 
   const bottomItems = [
@@ -136,23 +126,6 @@ export const CompanyAdminSidebar = async ({
               {label}
             </Link>
           ))}
-
-          <EditCompanyDialog
-            companyId={companyId}
-            name={name}
-            tagline={tagline}
-            industry={industry}
-            companySize={companySize}
-            website={website}
-            about={about}
-            logoUrl={logoUrl}
-            trigger={
-              <span className="border-primary text-primary bg-primary/10 flex items-center gap-3 rounded-md border-l-2 px-2 py-1.5 text-sm font-semibold">
-                <Pencil className="size-4" strokeWidth={1.5} />
-                {tEdit("trigger")}
-              </span>
-            }
-          />
         </nav>
 
         <Separator className="my-3" />

@@ -5,6 +5,7 @@ import { getTranslations } from "next-intl/server";
 import { CompanyAdminDashboardCards } from "@/components/company-admin-dashboard-cards";
 import { CompanyAdminSidebar } from "@/components/company-admin-sidebar";
 import { CompanyBanner } from "@/components/company-banner";
+import { CompanyEditTab } from "@/components/company-edit-tab";
 import { CompanyFeedTab } from "@/components/company-feed-tab";
 import { CompanyFollowButton } from "@/components/company-follow-button";
 import { CompanyStatsCards } from "@/components/company-stats-cards";
@@ -74,6 +75,7 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
   const isPostsTab = isAdminView && tab === "posts";
   const isStatsTab = isAdminView && tab === "stats";
   const isFeedTab = isAdminView && tab === "feed";
+  const isEditTab = isAdminView && tab === "edit";
   const viewerName = viewerProfile?.full_name ?? tProfile("anonymous");
   const viewerAvatarUrl = viewerProfile?.avatar_url ?? null;
 
@@ -112,11 +114,6 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
               companyId={company.id}
               slug={slug}
               name={company.name}
-              tagline={company.tagline}
-              industry={company.industry}
-              companySize={company.company_size}
-              website={company.website}
-              about={company.about}
               logoUrl={company.logo_url}
               bannerUrl={company.banner_url}
               followerCount={followerCount ?? 0}
@@ -225,7 +222,22 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
 
           {isAdminView && viewerId && isFeedTab && <CompanyFeedTab viewerId={viewerId} />}
 
-          {isAdminView && viewerId && !isPostsTab && !isStatsTab && !isFeedTab && (
+          {isAdminView && isEditTab && (
+            <CompanyEditTab
+              companySlug={slug}
+              companyId={company.id}
+              name={company.name}
+              tagline={company.tagline}
+              industry={company.industry}
+              companySize={company.company_size}
+              website={company.website}
+              about={company.about}
+              logoUrl={company.logo_url}
+              bannerUrl={company.banner_url}
+            />
+          )}
+
+          {isAdminView && viewerId && !isPostsTab && !isStatsTab && !isFeedTab && !isEditTab && (
             <CompanyAdminDashboardCards
               adminUserId={viewerId}
               companyId={company.id}
