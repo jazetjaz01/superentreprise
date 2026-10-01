@@ -9,6 +9,7 @@ import { createClient } from "@/lib/supabase/server";
 type CompanyAdminDashboardCardsProps = {
   adminUserId: string;
   companyId: string;
+  companySlug: string;
   companyName: string;
   companyLogoUrl: string | null;
 };
@@ -16,6 +17,7 @@ type CompanyAdminDashboardCardsProps = {
 export const CompanyAdminDashboardCards = async ({
   adminUserId,
   companyId,
+  companySlug,
   companyName,
   companyLogoUrl,
 }: CompanyAdminDashboardCardsProps) => {
@@ -53,7 +55,7 @@ export const CompanyAdminDashboardCards = async ({
               </p>
               <div className="mt-4 flex items-center gap-3">
                 <Link
-                  href="/"
+                  href={`/company/${companySlug}?view=admin&tab=posts`}
                   className="border-primary text-primary hover:bg-primary/10 flex items-center gap-1.5 rounded-full border px-5 py-2 text-sm font-semibold"
                 >
                   {t("viewPosts")}

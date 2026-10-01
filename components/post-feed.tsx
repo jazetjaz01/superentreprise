@@ -29,22 +29,27 @@ type FeedPost = {
 type PostFeedProps = {
   viewerName: string;
   viewerAvatarUrl: string | null;
+  companyId?: string;
 };
 
-export const PostFeed = async ({ viewerName, viewerAvatarUrl }: PostFeedProps) => {
+export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostFeedProps) => {
   const t = await getTranslations("Feed");
   const format = await getFormatter();
   const supabase = await createClient();
 
+  let postsQuery = supabase
+    .from("posts")
+    .select(
+      "id, author_id, company_id, content, image_path, video_path, created_at, profiles!posts_author_id_fkey(slug, full_name, avatar_url), companies(slug, name, logo_url)",
+    )
+    .order("created_at", { ascending: false })
+    .limit(20);
+  if (companyId) {
+    postsQuery = postsQuery.eq("company_id", companyId);
+  }
+
   const [{ data }, { data: claimsData }] = await Promise.all([
-    supabase
-      .from("posts")
-      .select(
-        "id, author_id, company_id, content, image_path, video_path, created_at, profiles!posts_author_id_fkey(slug, full_name, avatar_url), companies(slug, name, logo_url)",
-      )
-      .order("created_at", { ascending: false })
-      .limit(20)
-      .overrideTypes<FeedPost[], { merge: false }>(),
+    postsQuery.overrideTypes<FeedPost[], { merge: false }>(),
     supabase.auth.getClaims(),
   ]);
   const posts = data ?? [];

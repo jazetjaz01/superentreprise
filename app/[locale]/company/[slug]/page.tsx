@@ -7,18 +7,20 @@ import { CompanyAdminSidebar } from "@/components/company-admin-sidebar";
 import { CompanyBanner } from "@/components/company-banner";
 import { CompanyFollowButton } from "@/components/company-follow-button";
 import { Card, CardContent } from "@/components/ui/card";
+import { PostFeed } from "@/components/post-feed";
 import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
 
 type CompanyPageProps = {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ view?: string }>;
+  searchParams: Promise<{ view?: string; tab?: string }>;
 };
 
 export default async function CompanyPage({ params, searchParams }: CompanyPageProps) {
   const { slug } = await params;
-  const { view } = await searchParams;
+  const { view, tab } = await searchParams;
   const t = await getTranslations("Company.page");
+  const tProfile = await getTranslations("Profile");
   const tFollow = await getTranslations("Company.follow");
   const supabase = await createClient();
 
@@ -37,32 +39,39 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
 
   const viewerId = claimsData?.claims?.sub;
 
-  const [{ count: followerCount }, followingRow, adminRow] = await Promise.all([
-    supabase
-      .from("company_follows")
-      .select("*", { count: "exact", head: true })
-      .eq("company_id", company.id),
-    viewerId
-      ? supabase
-          .from("company_follows")
-          .select("follower_id")
-          .eq("follower_id", viewerId)
-          .eq("company_id", company.id)
-          .maybeSingle()
-      : Promise.resolve({ data: null }),
-    viewerId
-      ? supabase
-          .from("company_admins")
-          .select("admin_id")
-          .eq("admin_id", viewerId)
-          .eq("company_id", company.id)
-          .maybeSingle()
-      : Promise.resolve({ data: null }),
-  ]);
+  const [{ count: followerCount }, followingRow, adminRow, { data: viewerProfile }] =
+    await Promise.all([
+      supabase
+        .from("company_follows")
+        .select("*", { count: "exact", head: true })
+        .eq("company_id", company.id),
+      viewerId
+        ? supabase
+            .from("company_follows")
+            .select("follower_id")
+            .eq("follower_id", viewerId)
+            .eq("company_id", company.id)
+            .maybeSingle()
+        : Promise.resolve({ data: null }),
+      viewerId
+        ? supabase
+            .from("company_admins")
+            .select("admin_id")
+            .eq("admin_id", viewerId)
+            .eq("company_id", company.id)
+            .maybeSingle()
+        : Promise.resolve({ data: null }),
+      viewerId
+        ? supabase.from("profiles").select("full_name, avatar_url").eq("id", viewerId).maybeSingle()
+        : Promise.resolve({ data: null }),
+    ]);
 
   const isFollowing = !!followingRow?.data;
   const isRealAdmin = !!adminRow?.data;
   const isAdminView = isRealAdmin && view === "admin";
+  const isPostsTab = isAdminView && tab === "posts";
+  const viewerName = viewerProfile?.full_name ?? tProfile("anonymous");
+  const viewerAvatarUrl = viewerProfile?.avatar_url ?? null;
 
   return (
     <>
@@ -190,10 +199,22 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
             </>
           )}
 
-          {isAdminView && viewerId && (
+          {isAdminView && viewerId && isPostsTab && (
+            <div className="flex flex-col gap-4">
+              <h1 className="font-heading text-2xl font-semibold">{t("pagePostsTitle")}</h1>
+              <PostFeed
+                viewerName={viewerName}
+                viewerAvatarUrl={viewerAvatarUrl}
+                companyId={company.id}
+              />
+            </div>
+          )}
+
+          {isAdminView && viewerId && !isPostsTab && (
             <CompanyAdminDashboardCards
               adminUserId={viewerId}
               companyId={company.id}
+              companySlug={slug}
               companyName={company.name}
               companyLogoUrl={company.logo_url}
             />

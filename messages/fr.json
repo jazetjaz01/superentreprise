@@ -467,7 +467,8 @@
       "viewingAsMember": "Vous voyez cette page en tant que membre",
       "viewingAsAdmin": "Vous voyez cette page en tant qu'administrateur",
       "switchToAdmin": "Voir en tant qu'administrateur",
-      "switchToMember": "Voir en tant que membre"
+      "switchToMember": "Voir en tant que membre",
+      "pagePostsTitle": "Posts de la page"
     },
     "edit": {
       "trigger": "Modifier la page",
