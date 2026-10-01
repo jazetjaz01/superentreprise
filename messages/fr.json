@@ -480,6 +480,19 @@
       "new": "Nouveau",
       "indicatorsTitle": "Indicateurs"
     },
+    "discoverPages": {
+      "feedTitle": "Fil d'actualité",
+      "feedSubtitle": "Participez à des discussions pertinentes pour renforcer la notoriété de votre marque",
+      "emptyTitle": "Vous pouvez maintenant suivre d'autres pages",
+      "emptyDescription": "Suivre d'autres organisations et interagir avec d'autres pages dans votre secteur est un excellent moyen d'accroître la visibilité de votre page.",
+      "cta": "Trouver des pages à suivre",
+      "dialogTitle": "Trouver des pages à suivre",
+      "searchPlaceholder": "Ajouter des pages à suivre",
+      "followingTab": "Pages suivies ({count})",
+      "recommendedTab": "Recommandé",
+      "noResults": "Aucune page trouvée",
+      "noFollowedPages": "Vous ne suivez encore aucune page."
+    },
     "edit": {
       "trigger": "Modifier la page",
       "title": "Modifier la page entreprise",

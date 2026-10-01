@@ -14,6 +14,7 @@ type CompanyFollowButtonProps = {
   initialIsFollowing: boolean
   variant?: 'button' | 'text'
   className?: string
+  onFollowChange?: (isFollowing: boolean) => void
 }
 
 export const CompanyFollowButton = ({
@@ -22,6 +23,7 @@ export const CompanyFollowButton = ({
   initialIsFollowing,
   variant = 'button',
   className,
+  onFollowChange,
 }: CompanyFollowButtonProps) => {
   const t = useTranslations('Company.follow')
   const router = useRouter()
@@ -44,12 +46,14 @@ export const CompanyFollowButton = ({
           .eq('company_id', companyId)
         if (deleteError) throw deleteError
         setIsFollowing(false)
+        onFollowChange?.(false)
       } else {
         const { error: insertError } = await supabase
           .from('company_follows')
           .insert({ follower_id: viewerId, company_id: companyId })
         if (insertError && insertError.code !== '23505') throw insertError
         setIsFollowing(true)
+        onFollowChange?.(true)
       }
       router.refresh()
     } catch {

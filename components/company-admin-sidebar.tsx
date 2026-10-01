@@ -61,7 +61,7 @@ export const CompanyAdminSidebar = async ({
     { label: t("dashboard"), icon: LayoutDashboard, href: `/company/${slug}?view=admin` },
     { label: t("pagePosts"), icon: Newspaper, href: `/company/${slug}?view=admin&tab=posts` },
     { label: t("analytics"), icon: BarChart2, href: `/company/${slug}?view=admin&tab=stats` },
-    { label: t("feed"), icon: Rss, href: "#" },
+    { label: t("feed"), icon: Rss, href: `/company/${slug}?view=admin&tab=feed` },
     { label: t("activity"), icon: Activity, href: "#" },
     { label: t("messaging"), icon: MessageSquare, href: "#" },
   ];

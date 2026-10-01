@@ -480,6 +480,19 @@
       "new": "New",
       "indicatorsTitle": "Metrics"
     },
+    "discoverPages": {
+      "feedTitle": "Feed",
+      "feedSubtitle": "Join relevant discussions to build your brand's reputation",
+      "emptyTitle": "You can now follow other Pages",
+      "emptyDescription": "Following other organizations and engaging with other Pages in your industry is a great way to increase your Page's visibility.",
+      "cta": "Find pages to follow",
+      "dialogTitle": "Find pages to follow",
+      "searchPlaceholder": "Add pages to follow",
+      "followingTab": "Following ({count})",
+      "recommendedTab": "Recommended",
+      "noResults": "No pages found",
+      "noFollowedPages": "You don't follow any pages yet."
+    },
     "edit": {
       "trigger": "Edit page",
       "title": "Edit company page",

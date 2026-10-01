@@ -5,6 +5,7 @@ import { getTranslations } from "next-intl/server";
 import { CompanyAdminDashboardCards } from "@/components/company-admin-dashboard-cards";
 import { CompanyAdminSidebar } from "@/components/company-admin-sidebar";
 import { CompanyBanner } from "@/components/company-banner";
+import { CompanyFeedTab } from "@/components/company-feed-tab";
 import { CompanyFollowButton } from "@/components/company-follow-button";
 import { CompanyStatsCards } from "@/components/company-stats-cards";
 import { Card, CardContent } from "@/components/ui/card";
@@ -72,6 +73,7 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
   const isAdminView = isRealAdmin && view === "admin";
   const isPostsTab = isAdminView && tab === "posts";
   const isStatsTab = isAdminView && tab === "stats";
+  const isFeedTab = isAdminView && tab === "feed";
   const viewerName = viewerProfile?.full_name ?? tProfile("anonymous");
   const viewerAvatarUrl = viewerProfile?.avatar_url ?? null;
 
@@ -221,7 +223,9 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
             <CompanyStatsCards companyId={company.id} />
           )}
 
-          {isAdminView && viewerId && !isPostsTab && !isStatsTab && (
+          {isAdminView && viewerId && isFeedTab && <CompanyFeedTab viewerId={viewerId} />}
+
+          {isAdminView && viewerId && !isPostsTab && !isStatsTab && !isFeedTab && (
             <CompanyAdminDashboardCards
               adminUserId={viewerId}
               companyId={company.id}
