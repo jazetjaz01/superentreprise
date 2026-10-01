@@ -283,6 +283,7 @@
     "addVideo": "Ajouter une vidéo",
     "removeVideo": "Retirer la vidéo",
     "previewAlt": "Aperçu de l'image",
+    "disableComments": "Désactiver les commentaires sur ce post",
     "publish": "Publier",
     "publishing": "Publication...",
     "fileType": "Format non pris en charge (JPEG, PNG, WebP ou GIF).",

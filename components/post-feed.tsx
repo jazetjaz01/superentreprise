@@ -21,6 +21,7 @@ type FeedPost = {
   content: string | null;
   image_path: string | null;
   video_path: string | null;
+  comments_disabled: boolean;
   created_at: string;
   profiles: { slug: string; full_name: string | null; avatar_url: string | null } | null;
   companies: { slug: string; name: string; logo_url: string | null } | null;
@@ -40,7 +41,7 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
   let postsQuery = supabase
     .from("posts")
     .select(
-      "id, author_id, company_id, content, image_path, video_path, created_at, profiles!posts_author_id_fkey(slug, full_name, avatar_url), companies(slug, name, logo_url)",
+      "id, author_id, company_id, content, image_path, video_path, comments_disabled, created_at, profiles!posts_author_id_fkey(slug, full_name, avatar_url), companies(slug, name, logo_url)",
     )
     .order("created_at", { ascending: false })
     .limit(20);
@@ -251,12 +252,12 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
 
               {currentUserId && (
                 <>
-                  {(likes.count > 0 || comments.length > 0) && (
+                  {(likes.count > 0 || (!post.comments_disabled && comments.length > 0)) && (
                     <p className="text-ink-600 text-xs [font-variant-numeric:tabular-nums]">
                       {likes.count > 0 &&
                         t("likeCount", { count: likes.count })}
-                      {likes.count > 0 && comments.length > 0 && " · "}
-                      {comments.length > 0 &&
+                      {likes.count > 0 && !post.comments_disabled && comments.length > 0 && " · "}
+                      {!post.comments_disabled && comments.length > 0 &&
                         t("commentCount", { count: comments.length })}
                     </p>
                   )}
@@ -267,16 +268,18 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
                       viewerId={currentUserId}
                       initialIsLiked={likes.likedByViewer}
                     />
-                    <PostComments
-                      postId={post.id}
-                      postAuthorId={post.author_id ?? ""}
-                      viewerId={currentUserId}
-                      viewerName={viewerName}
-                      viewerAvatarUrl={viewerAvatarUrl}
-                      initialComments={comments}
-                      anonymousLabel={t("anonymous")}
-                      className="flex-1"
-                    />
+                    {!post.comments_disabled && (
+                      <PostComments
+                        postId={post.id}
+                        postAuthorId={post.author_id ?? ""}
+                        viewerId={currentUserId}
+                        viewerName={viewerName}
+                        viewerAvatarUrl={viewerAvatarUrl}
+                        initialComments={comments}
+                        anonymousLabel={t("anonymous")}
+                        className="flex-1"
+                      />
+                    )}
                   </div>
                 </>
               )}
