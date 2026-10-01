@@ -87,9 +87,10 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
               : "lg:grid-cols-[minmax(0,1fr)_300px]"
           }`}
         >
-        {isAdminView && (
+        {isAdminView && viewerId && (
           <aside className="hidden self-start lg:block">
             <CompanyAdminSidebar
+              adminUserId={viewerId}
               companyId={company.id}
               slug={slug}
               name={company.name}

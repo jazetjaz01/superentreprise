@@ -399,6 +399,21 @@
       "inviteToFollow": "Invite to follow",
       "preferences": "Preferences"
     },
+    "createMenu": {
+      "title": "Create",
+      "postTitle": "Create a post",
+      "postDescription": "Share content to engage with your followers",
+      "eventTitle": "Create an event",
+      "eventDescription": "Host an event to grow your Page's community",
+      "jobTitle": "Post a free job",
+      "jobDescription": "Reach more qualified candidates",
+      "servicesTitle": "Add services",
+      "servicesDescription": "List the services you offer",
+      "articleTitle": "Write an article",
+      "articleDescription": "Strengthen ties with your followers with long-form content",
+      "adTitle": "Create an ad",
+      "adDescription": "Generate leads, drive traffic to your website and boost brand awareness"
+    },
     "adminDashboard": {
       "managePostsTitle": "Manage recent posts",
       "managePostsDescription": "Manage your Page's content and amplify your reach with a boost.",

@@ -37,6 +37,9 @@ type CompanyPostComposerProps = {
   companyId: string;
   companyName: string;
   companyLogoUrl: string | null;
+  hideTrigger?: boolean;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 };
 
 export const CompanyPostComposer = ({
@@ -44,12 +47,17 @@ export const CompanyPostComposer = ({
   companyId,
   companyName,
   companyLogoUrl,
+  hideTrigger = false,
+  open: controlledOpen,
+  onOpenChange,
 }: CompanyPostComposerProps) => {
   const t = useTranslations("Composer");
   const router = useRouter();
   const fileInput = useRef<HTMLInputElement>(null);
   const videoInput = useRef<HTMLInputElement>(null);
-  const [open, setOpen] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(false);
+  const open = controlledOpen ?? internalOpen;
+  const setOpen = onOpenChange ?? setInternalOpen;
   const [content, setContent] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [fileKind, setFileKind] = useState<"image" | "video" | null>(null);
@@ -168,15 +176,17 @@ export const CompanyPostComposer = ({
 
   return (
     <>
-      <Button
-        type="button"
-        variant="outline"
-        className="rounded-full"
-        onClick={() => setOpen(true)}
-      >
-        <Plus className="size-4" strokeWidth={1.5} />
-        {t("startAsCompany")}
-      </Button>
+      {!hideTrigger && (
+        <Button
+          type="button"
+          variant="outline"
+          className="rounded-full"
+          onClick={() => setOpen(true)}
+        >
+          <Plus className="size-4" strokeWidth={1.5} />
+          {t("startAsCompany")}
+        </Button>
+      )}
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-xl">

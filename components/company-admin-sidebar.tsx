@@ -8,7 +8,6 @@ import {
   MessageSquare,
   Newspaper,
   Pencil,
-  Plus,
   Rss,
   Settings,
   Sparkles,
@@ -18,12 +17,14 @@ import {
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
+import { CompanyCreateMenu } from "@/components/company-create-menu";
 import { EditCompanyDialog } from "@/components/edit-company-dialog";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "@/i18n/navigation";
 
 type CompanyAdminSidebarProps = {
+  adminUserId: string;
   companyId: string;
   slug: string;
   name: string;
@@ -38,6 +39,7 @@ type CompanyAdminSidebarProps = {
 };
 
 export const CompanyAdminSidebar = async ({
+  adminUserId,
   companyId,
   slug,
   name,
@@ -107,13 +109,12 @@ export const CompanyAdminSidebar = async ({
           {tFollow("followersCount", { count: followerCount })}
         </p>
 
-        <Link
-          href="#"
-          className="border-primary text-primary hover:bg-primary/10 mt-3 flex w-full items-center justify-center gap-1.5 rounded-md border px-4 py-2 text-sm font-semibold"
-        >
-          <Plus className="size-4" strokeWidth={1.5} />
-          {t("create")}
-        </Link>
+        <CompanyCreateMenu
+          adminUserId={adminUserId}
+          companyId={companyId}
+          companyName={name}
+          companyLogoUrl={logoUrl}
+        />
         <Link
           href={`/company/${slug}`}
           className="border-border text-foreground hover:bg-foreground/[.07] mt-2 flex w-full items-center justify-center gap-1.5 rounded-md border px-4 py-2 text-sm font-semibold"

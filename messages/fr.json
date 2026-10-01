@@ -399,6 +399,21 @@
       "inviteToFollow": "Inviter à suivre",
       "preferences": "Préférences"
     },
+    "createMenu": {
+      "title": "Créer",
+      "postTitle": "Créer un post",
+      "postDescription": "Publiez du contenu pour interagir avec vos abonnés",
+      "eventTitle": "Créer un événement",
+      "eventDescription": "Organisez un événement pour développer la communauté de votre page",
+      "jobTitle": "Publier une offre d'emploi gratuite",
+      "jobDescription": "Touchez plus de candidats qualifiés",
+      "servicesTitle": "Ajouter des services",
+      "servicesDescription": "Indiquez les services que vous proposez",
+      "articleTitle": "Publier un article",
+      "articleDescription": "Renforcez le lien avec vos abonnés en publiant un contenu long",
+      "adTitle": "Créer une publicité",
+      "adDescription": "Générez des leads, augmentez le trafic sur votre site web et améliorez la notoriété de votre marque"
+    },
     "adminDashboard": {
       "managePostsTitle": "Gérer les posts récents",
       "managePostsDescription": "Gérez le contenu de votre page et amplifiez votre portée avec un boost.",
