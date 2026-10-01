@@ -172,7 +172,7 @@ export default async function MessagingPage({ searchParams }: MessagingPageProps
           <Link
             href="/messaging"
             className={`rounded-full px-4 py-1.5 text-sm font-semibold ${
-              !isOfficialView ? "bg-primary text-primary-foreground" : "border border-border text-foreground"
+              !isOfficialView ? "bg-primary text-white" : "border border-border text-foreground"
             }`}
           >
             {t("personalTab")}
@@ -180,7 +180,7 @@ export default async function MessagingPage({ searchParams }: MessagingPageProps
           <Link
             href="/messaging?admin=official"
             className={`rounded-full px-4 py-1.5 text-sm font-semibold ${
-              isOfficialView ? "bg-primary text-primary-foreground" : "border border-border text-foreground"
+              isOfficialView ? "bg-primary text-white" : "border border-border text-foreground"
             }`}
           >
             {t("officialTab")}

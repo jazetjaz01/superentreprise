@@ -69,14 +69,14 @@ export const MessageThread = async ({
               <div
                 className={`max-w-xs wrap-break-word rounded-2xl px-3.5 py-2 text-sm sm:max-w-sm ${
                   isOwnMessage
-                    ? "bg-primary text-primary-foreground"
+                    ? "bg-primary text-white"
                     : "bg-secondary text-foreground"
                 }`}
               >
                 {message.content}
                 <p
                   className={`mt-1 text-[10px] ${
-                    isOwnMessage ? "text-primary-foreground/70" : "text-muted-foreground"
+                    isOwnMessage ? "text-white/70" : "text-muted-foreground"
                   }`}
                 >
                   {format.dateTime(new Date(message.created_at), {
