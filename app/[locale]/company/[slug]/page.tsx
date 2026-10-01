@@ -76,6 +76,15 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
   const isStatsTab = isAdminView && tab === "stats";
   const isFeedTab = isAdminView && tab === "feed";
   const isEditTab = isAdminView && tab === "edit";
+  const activeTab = isPostsTab
+    ? "posts"
+    : isStatsTab
+      ? "stats"
+      : isFeedTab
+        ? "feed"
+        : isEditTab
+          ? "edit"
+          : "dashboard";
   const viewerName = viewerProfile?.full_name ?? tProfile("anonymous");
   const viewerAvatarUrl = viewerProfile?.avatar_url ?? null;
 
@@ -117,6 +126,7 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
               logoUrl={company.logo_url}
               bannerUrl={company.banner_url}
               followerCount={followerCount ?? 0}
+              activeTab={activeTab}
             />
           </aside>
         )}

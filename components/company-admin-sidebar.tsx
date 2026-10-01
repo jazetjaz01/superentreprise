@@ -30,6 +30,7 @@ type CompanyAdminSidebarProps = {
   logoUrl: string | null;
   bannerUrl: string | null;
   followerCount: number;
+  activeTab: string;
 };
 
 export const CompanyAdminSidebar = async ({
@@ -40,6 +41,7 @@ export const CompanyAdminSidebar = async ({
   logoUrl,
   bannerUrl,
   followerCount,
+  activeTab,
 }: CompanyAdminSidebarProps) => {
   const t = await getTranslations("Company.adminSidebar");
   const tPage = await getTranslations("Company.page");
@@ -47,13 +49,13 @@ export const CompanyAdminSidebar = async ({
   const tEdit = await getTranslations("Company.edit");
 
   const navItems = [
-    { label: t("dashboard"), icon: LayoutDashboard, href: `/company/${slug}?view=admin` },
-    { label: t("pagePosts"), icon: Newspaper, href: `/company/${slug}?view=admin&tab=posts` },
-    { label: t("analytics"), icon: BarChart2, href: `/company/${slug}?view=admin&tab=stats` },
-    { label: t("feed"), icon: Rss, href: `/company/${slug}?view=admin&tab=feed` },
-    { label: t("activity"), icon: Activity, href: "#" },
-    { label: t("messaging"), icon: MessageSquare, href: "#" },
-    { label: tEdit("trigger"), icon: Pencil, href: `/company/${slug}?view=admin&tab=edit` },
+    { key: "dashboard", label: t("dashboard"), icon: LayoutDashboard, href: `/company/${slug}?view=admin` },
+    { key: "posts", label: t("pagePosts"), icon: Newspaper, href: `/company/${slug}?view=admin&tab=posts` },
+    { key: "stats", label: t("analytics"), icon: BarChart2, href: `/company/${slug}?view=admin&tab=stats` },
+    { key: "feed", label: t("feed"), icon: Rss, href: `/company/${slug}?view=admin&tab=feed` },
+    { key: "activity", label: t("activity"), icon: Activity, href: "#" },
+    { key: "messaging", label: t("messaging"), icon: MessageSquare, href: "#" },
+    { key: "edit", label: tEdit("trigger"), icon: Pencil, href: `/company/${slug}?view=admin&tab=edit` },
   ];
 
   const bottomItems = [
@@ -116,11 +118,13 @@ export const CompanyAdminSidebar = async ({
         <Separator className="my-3" />
 
         <nav className="flex w-full flex-col gap-1">
-          {navItems.map(({ label, icon: Icon, href }) => (
+          {navItems.map(({ key, label, icon: Icon, href }) => (
             <Link
-              key={label}
+              key={key}
               href={href}
-              className="text-ink-700 hover:bg-foreground/[.07] flex items-center gap-3 rounded-md px-2 py-1.5 text-sm font-semibold"
+              className={`text-ink-700 hover:bg-foreground/[.07] flex items-center gap-3 rounded-md px-2 py-1.5 text-sm font-semibold ${
+                key === activeTab ? "bg-foreground/4" : ""
+              }`}
             >
               <Icon className="size-4" strokeWidth={1.5} />
               {label}
