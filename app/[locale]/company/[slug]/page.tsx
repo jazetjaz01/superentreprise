@@ -6,6 +6,7 @@ import { CompanyAdminDashboardCards } from "@/components/company-admin-dashboard
 import { CompanyAdminSidebar } from "@/components/company-admin-sidebar";
 import { CompanyBanner } from "@/components/company-banner";
 import { CompanyFollowButton } from "@/components/company-follow-button";
+import { CompanyStatsCards } from "@/components/company-stats-cards";
 import { Card, CardContent } from "@/components/ui/card";
 import { PostFeed } from "@/components/post-feed";
 import { Link } from "@/i18n/navigation";
@@ -70,8 +71,14 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
   const isRealAdmin = !!adminRow?.data;
   const isAdminView = isRealAdmin && view === "admin";
   const isPostsTab = isAdminView && tab === "posts";
+  const isStatsTab = isAdminView && tab === "stats";
   const viewerName = viewerProfile?.full_name ?? tProfile("anonymous");
   const viewerAvatarUrl = viewerProfile?.avatar_url ?? null;
+
+  if (viewerId && !isRealAdmin) {
+    // Unique constraint on (company_id, viewer_id, viewed_on) dedupes same-day views; ignore the conflict.
+    await supabase.from("company_views").insert({ company_id: company.id, viewer_id: viewerId });
+  }
 
   return (
     <>
@@ -210,7 +217,11 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
             </div>
           )}
 
-          {isAdminView && viewerId && !isPostsTab && (
+          {isAdminView && viewerId && isStatsTab && (
+            <CompanyStatsCards companyId={company.id} />
+          )}
+
+          {isAdminView && viewerId && !isPostsTab && !isStatsTab && (
             <CompanyAdminDashboardCards
               adminUserId={viewerId}
               companyId={company.id}

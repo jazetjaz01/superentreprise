@@ -470,6 +470,16 @@
       "switchToMember": "Voir en tant que membre",
       "pagePostsTitle": "Posts de la page"
     },
+    "stats": {
+      "essentialsTitle": "L'essentiel",
+      "dateRange": "Données du {start} au {end}",
+      "visits": "Visites",
+      "newFollowers": "Nouveaux abonnés",
+      "postsPublished": "Posts publiés",
+      "likes": "Mentions J'aime",
+      "new": "Nouveau",
+      "indicatorsTitle": "Indicateurs"
+    },
     "edit": {
       "trigger": "Modifier la page",
       "title": "Modifier la page entreprise",

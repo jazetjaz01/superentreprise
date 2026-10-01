@@ -470,6 +470,16 @@
       "switchToMember": "View as member",
       "pagePostsTitle": "Page posts"
     },
+    "stats": {
+      "essentialsTitle": "The essentials",
+      "dateRange": "Data from {start} to {end}",
+      "visits": "Visits",
+      "newFollowers": "New followers",
+      "postsPublished": "Posts published",
+      "likes": "Likes",
+      "new": "New",
+      "indicatorsTitle": "Metrics"
+    },
     "edit": {
       "trigger": "Edit page",
       "title": "Edit company page",
