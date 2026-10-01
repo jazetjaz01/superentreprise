@@ -62,6 +62,7 @@ export const CompanyPostComposer = ({
   const [file, setFile] = useState<File | null>(null);
   const [fileKind, setFileKind] = useState<"image" | "video" | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [commentsDisabled, setCommentsDisabled] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -79,6 +80,7 @@ export const CompanyPostComposer = ({
     setContent("");
     setFile(null);
     setFileKind(null);
+    setCommentsDisabled(false);
     setError(null);
   };
 
@@ -155,6 +157,7 @@ export const CompanyPostComposer = ({
         content: text || null,
         image_path: imagePath,
         video_path: videoPath,
+        comments_disabled: commentsDisabled,
       });
       if (insertError) throw insertError;
 
@@ -263,6 +266,16 @@ export const CompanyPostComposer = ({
                 </Button>
               </div>
             )}
+
+            <label className="flex items-center gap-2 text-sm text-foreground">
+              <input
+                type="checkbox"
+                checked={commentsDisabled}
+                onChange={(e) => setCommentsDisabled(e.target.checked)}
+                className="accent-primary size-4"
+              />
+              {t("disableComments")}
+            </label>
 
             {error && <p className="text-sm text-red-500">{error}</p>}
 
