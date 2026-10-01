@@ -275,8 +275,8 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
                   disabled={fileKind === "video"}
                   onClick={() => fileInput.current?.click()}
                 >
-                  <ImageIcon />
-                  {t("addPhoto")}
+                  <ImageIcon className="size-5" />
+                  <span className="text-base font-semibold text-foreground">{t("addPhoto")}</span>
                 </Button>
                 <input
                   ref={videoInput}
@@ -291,8 +291,8 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
                   disabled={fileKind === "image"}
                   onClick={() => videoInput.current?.click()}
                 >
-                  <VideoIcon />
-                  {t("addVideo")}
+                  <VideoIcon className="size-5 text-blue-600" />
+                  <span className="text-base font-semibold text-foreground">{t("addVideo")}</span>
                 </Button>
               </div>
               <Button
