@@ -179,15 +179,15 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
           <div className="flex justify-center gap-2">
             <Button variant="ghost" onClick={() => setOpen(true)}>
               <ImageIcon />
-              {t("photo")}
+              <span className="font-semibold text-foreground">{t("photo")}</span>
             </Button>
             <Button variant="ghost" onClick={() => setOpen(true)}>
-              <VideoIcon />
-              {t("video")}
+              <VideoIcon className="text-blue-600" />
+              <span className="font-semibold text-foreground">{t("video")}</span>
             </Button>
             <Button variant="ghost" nativeButton={false} render={<Link href="/articles/write" />}>
-              <NewspaperIcon />
-              {t("writeArticle")}
+              <NewspaperIcon className="text-orange-500" />
+              <span className="font-semibold text-foreground">{t("writeArticle")}</span>
             </Button>
           </div>
         </CardContent>
