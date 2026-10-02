@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Quicksand } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
@@ -8,13 +8,13 @@ import Navbar from "@/components/navbar";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
-const display = Outfit({
+const display = Quicksand({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
-const body = Outfit({
+const body = Quicksand({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
