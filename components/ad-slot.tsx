@@ -24,7 +24,7 @@ export const AdSlot = () => {
           <p className="mt-1 text-base text-foreground">{t("letsgoBody")}</p>
         </div>
       </a>
-      <p className="border-t border-border px-4 py-2 text-base text-muted-foreground">
+      <p className="border-t border-border px-4 py-2 text-base text-foreground">
         {t("sponsored")}
       </p>
     </div>

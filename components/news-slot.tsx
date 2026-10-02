@@ -29,9 +29,9 @@ export const NewsSlot = async () => {
     <div className="overflow-hidden rounded-md border border-border bg-card p-4">
       <div className="flex items-center justify-between">
         <h2 className="font-heading text-xl font-medium text-foreground">{t("title")}</h2>
-        <Info className="text-muted-foreground size-4" strokeWidth={1.5} />
+        <Info className="text-foreground size-4" strokeWidth={1.5} />
       </div>
-      <p className="mt-1 text-base text-muted-foreground">{t("subtitle")}</p>
+      <p className="mt-1 text-base text-foreground">{t("subtitle")}</p>
 
       <ul className="mt-3 flex flex-col gap-3">
         {articles.map((article) => (
@@ -40,7 +40,7 @@ export const NewsSlot = async () => {
               <p className="font-heading line-clamp-2 text-base font-medium text-foreground group-hover:underline">
                 {article.title}
               </p>
-              <p className="text-ink-600 mt-0.5 text-base">
+              <p className="text-foreground mt-0.5 text-base">
                 {format.relativeTime(new Date(article.created_at))}
               </p>
             </Link>
