@@ -17,6 +17,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { UserAvatar } from '@/components/user-avatar'
 import { useRouter } from '@/i18n/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { toTitleCase } from '@/lib/utils'
 
 const MAX_AVATAR_BYTES = 2 * 1024 * 1024
 const IMAGE_EXTENSIONS: Record<string, string> = {
@@ -110,7 +111,7 @@ export const EditProfileDialog = ({
       const { error: updateError } = await supabase
         .from('profiles')
         .update({
-          full_name: name.trim(),
+          full_name: toTitleCase(name.trim()),
           headline: headlineValue.trim() || null,
           about: aboutValue.trim() || null,
           city: cityValue.trim() || null,
