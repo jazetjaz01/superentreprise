@@ -57,7 +57,7 @@ export function OAuthButtons() {
         <LinkedInIcon className="size-6" />
         {t('linkedin')}
       </Button>
-      {error && <p className="text-center text-sm text-red-500">{error}</p>}
+      {error && <p className="text-center text-base text-red-500">{error}</p>}
     </div>
   )
 }

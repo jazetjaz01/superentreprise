@@ -132,11 +132,11 @@ export const FindCompaniesDialog = ({ viewerId, excludeCompanyIds }: FindCompani
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder={t("searchPlaceholder")}
-              className="placeholder:text-muted-foreground w-full bg-transparent text-sm outline-none"
+              className="placeholder:text-muted-foreground w-full bg-transparent text-base outline-none"
             />
           </label>
 
-          <div className="border-border flex gap-4 border-b text-sm font-semibold">
+          <div className="border-border flex gap-4 border-b text-base font-semibold">
             <button
               type="button"
               onClick={() => setTab("following")}
@@ -163,7 +163,7 @@ export const FindCompaniesDialog = ({ viewerId, excludeCompanyIds }: FindCompani
 
           <div className="flex max-h-96 flex-col gap-4 overflow-y-auto">
             {filteredList === undefined ? null : filteredList.length === 0 ? (
-              <p className="text-ink-600 py-6 text-center text-sm">
+              <p className="text-ink-600 py-6 text-center text-base">
                 {tab === "following" ? t("noFollowedPages") : t("noResults")}
               </p>
             ) : (
@@ -186,13 +186,13 @@ export const FindCompaniesDialog = ({ viewerId, excludeCompanyIds }: FindCompani
                     )}
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="wrap-break-word text-sm font-semibold">{company.name}</p>
+                    <p className="wrap-break-word text-base font-semibold">{company.name}</p>
                     {(company.tagline || company.industry) && (
-                      <p className="text-ink-600 truncate text-xs">
+                      <p className="text-ink-600 truncate text-base">
                         {company.tagline ?? company.industry}
                       </p>
                     )}
-                    <p className="text-ink-600 text-xs">
+                    <p className="text-ink-600 text-base">
                       {tFollow("followersCount", { count: company.followerCount })}
                     </p>
                   </div>

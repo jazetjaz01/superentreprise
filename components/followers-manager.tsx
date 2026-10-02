@@ -61,7 +61,7 @@ export const FollowersManager = ({ profileId, followers, anonymousLabel }: Follo
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="self-start text-left text-sm font-semibold text-foreground hover:underline"
+        className="self-start text-left text-base font-semibold text-foreground hover:underline"
       >
         {t('followersCount', { count: followers.length })}
       </button>
@@ -73,7 +73,7 @@ export const FollowersManager = ({ profileId, followers, anonymousLabel }: Follo
           </DialogHeader>
 
           {list.length === 0 ? (
-            <p className="text-sm text-muted-foreground">{t('noFollowers')}</p>
+            <p className="text-base text-muted-foreground">{t('noFollowers')}</p>
           ) : (
             <ul className="flex flex-col gap-3">
               {list.map((follower) => {
@@ -83,9 +83,9 @@ export const FollowersManager = ({ profileId, followers, anonymousLabel }: Follo
                     <Link href={`/profile/${follower.slug}`} className="flex flex-1 items-center gap-3 min-w-0">
                       <UserAvatar name={name} avatarUrl={follower.avatar_url} size={40} />
                       <div className="min-w-0">
-                        <p className="truncate text-sm font-semibold hover:underline">{name}</p>
+                        <p className="truncate text-base font-semibold hover:underline">{name}</p>
                         {follower.headline && (
-                          <p className="truncate text-xs text-muted-foreground">{follower.headline}</p>
+                          <p className="truncate text-base text-muted-foreground">{follower.headline}</p>
                         )}
                       </div>
                     </Link>
@@ -104,7 +104,7 @@ export const FollowersManager = ({ profileId, followers, anonymousLabel }: Follo
             </ul>
           )}
 
-          {error && <p className="text-sm text-red-500">{error}</p>}
+          {error && <p className="text-base text-red-500">{error}</p>}
         </DialogContent>
       </Dialog>
     </>

@@ -31,7 +31,7 @@ export const NewsSlot = async () => {
         <h2 className="font-heading text-xl font-semibold text-foreground">{t("title")}</h2>
         <Info className="text-muted-foreground size-4" strokeWidth={1.5} />
       </div>
-      <p className="mt-1 text-xs text-muted-foreground">{t("subtitle")}</p>
+      <p className="mt-1 text-base text-muted-foreground">{t("subtitle")}</p>
 
       <ul className="mt-3 flex flex-col gap-3">
         {articles.map((article) => (

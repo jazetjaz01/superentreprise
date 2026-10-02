@@ -165,10 +165,10 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 <p className="mt-1 text-[15px] text-foreground">{profile.headline}</p>
               )}
               {location && (
-                <p className="text-ink-600 mt-1 text-sm">{location}</p>
+                <p className="text-ink-600 mt-1 text-base">{location}</p>
               )}
 
-              <div className="mt-1 flex flex-col gap-1 text-sm">
+              <div className="mt-1 flex flex-col gap-1 text-base">
                 <p className="flex items-center gap-1">
                   <span className="text-primary font-semibold">{t("follow.followingLabel")}</span>
                   <span className="text-primary font-semibold">{followingCount ?? 0}</span>

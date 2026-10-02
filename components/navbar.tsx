@@ -36,7 +36,7 @@ const Navbar = async () => {
         <div className="flex min-w-0 items-center gap-6">
           <Logo />
 
-          <label className="hidden items-center gap-2 border-b border-border py-1 text-sm text-muted-foreground focus-within:border-ring md:flex">
+          <label className="hidden items-center gap-2 border-b border-border py-1 text-base text-muted-foreground focus-within:border-ring md:flex">
             <Search className="size-4 shrink-0" strokeWidth={1.5} />
             <input
               type="search"
@@ -61,7 +61,7 @@ const Navbar = async () => {
                   <span className="rounded-full border border-primary p-0.5">
                     <UserAvatar name={displayName} avatarUrl={avatarUrl} size={20} />
                   </span>
-                  <span className="hidden text-xs text-ink-800 md:inline">{t("me")}</span>
+                  <span className="hidden text-base text-ink-800 md:inline">{t("me")}</span>
                 </Link>
               ) : (
                 <UserAvatar name={displayName} avatarUrl={avatarUrl} />
@@ -72,7 +72,7 @@ const Navbar = async () => {
             <>
               <Link
                 href="/auth/login"
-                className="hidden text-sm font-normal hover:underline sm:inline"
+                className="hidden text-base font-normal hover:underline sm:inline"
               >
                 {t("signIn")}
               </Link>

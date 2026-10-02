@@ -44,7 +44,7 @@ export const MessageThread = async ({
           <ArrowLeft className="size-5" strokeWidth={1.5} />
         </Link>
         <UserAvatar name={headerName} avatarUrl={headerAvatarUrl} size={40} />
-        <p className="flex items-center gap-1 text-sm font-semibold text-foreground">
+        <p className="flex items-center gap-1 text-base font-semibold text-foreground">
           {headerName}
           {isOfficial && (
             <BadgeCheck className="size-3.5 shrink-0 text-primary" aria-label={t("officialBadge")} />
@@ -54,7 +54,7 @@ export const MessageThread = async ({
 
       <div className="flex flex-1 flex-col gap-2 overflow-y-auto p-4">
         {messages.length === 0 && (
-          <p className="py-8 text-center text-sm text-muted-foreground">{t("noMessages")}</p>
+          <p className="py-8 text-center text-base text-muted-foreground">{t("noMessages")}</p>
         )}
         {messages.map((message) => {
           const isOwnMessage = isOfficial
@@ -67,7 +67,7 @@ export const MessageThread = async ({
               className={`flex ${isOwnMessage ? "justify-end" : "justify-start"}`}
             >
               <div
-                className={`max-w-xs wrap-break-word rounded-2xl px-3.5 py-2 text-sm sm:max-w-sm ${
+                className={`max-w-xs wrap-break-word rounded-2xl px-3.5 py-2 text-base sm:max-w-sm ${
                   isOwnMessage
                     ? "bg-primary text-white"
                     : "bg-secondary text-foreground"

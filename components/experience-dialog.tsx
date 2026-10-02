@@ -171,7 +171,7 @@ export const ExperienceDialog = ({ profileId, experience }: ExperienceDialogProp
               </div>
             </div>
 
-            <label className="flex items-center gap-2 text-sm">
+            <label className="flex items-center gap-2 text-base">
               <input
                 type="checkbox"
                 checked={current}
@@ -194,7 +194,7 @@ export const ExperienceDialog = ({ profileId, experience }: ExperienceDialogProp
               />
             </div>
 
-            {error && <p className="text-sm text-red-500">{error}</p>}
+            {error && <p className="text-base text-red-500">{error}</p>}
 
             <div className="flex items-center justify-between gap-2">
               {isEdit ? (

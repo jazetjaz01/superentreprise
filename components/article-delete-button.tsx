@@ -51,7 +51,7 @@ export const ArticleDeleteButton = ({ articleId, coverImagePath }: ArticleDelete
       >
         <Trash2 className="size-4" />
       </Button>
-      {error && <p className="text-xs text-red-500">{error}</p>}
+      {error && <p className="text-base text-red-500">{error}</p>}
     </div>
   )
 }

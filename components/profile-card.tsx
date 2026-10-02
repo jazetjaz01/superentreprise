@@ -47,7 +47,7 @@ export const ProfileCard = async ({
           <p className="text-ink-800 text-[13px] break-words">{headline}</p>
         )}
         {location && (
-          <p className="text-ink-600 text-xs break-words">{location}</p>
+          <p className="text-ink-600 text-base break-words">{location}</p>
         )}
 
         {(followerCount !== undefined ||

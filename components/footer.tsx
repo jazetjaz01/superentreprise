@@ -47,7 +47,7 @@ const Footer = () => {
                 {links.map((link) => (
                   <li key={link}>
                     <Link
-                      className="text-ink-600 text-sm hover:text-primary hover:underline"
+                      className="text-ink-600 text-base hover:text-primary hover:underline"
                       href="#"
                     >
                       {t(`sections.${id}.links.${link}` as FooterKey)}
@@ -62,7 +62,7 @@ const Footer = () => {
         <div className="flex flex-col items-center justify-between gap-x-2 gap-y-4 px-4 py-8 sm:flex-row sm:px-6 lg:px-8">
           <Logo />
 
-          <span className="text-ink-600 text-sm">
+          <span className="text-ink-600 text-base">
             {t("copyright", { year: new Date().getFullYear() })}
           </span>
         </div>

@@ -29,7 +29,7 @@ export const ConversationList = async ({
   const t = await getTranslations("Messaging");
 
   if (conversations.length === 0) {
-    return <p className="px-4 py-8 text-center text-sm text-muted-foreground">{emptyLabel}</p>;
+    return <p className="px-4 py-8 text-center text-base text-muted-foreground">{emptyLabel}</p>;
   }
 
   return (
@@ -44,13 +44,13 @@ export const ConversationList = async ({
         >
           <UserAvatar name={conversation.displayName} avatarUrl={conversation.avatarUrl} size={44} />
           <div className="min-w-0 flex-1">
-            <p className="flex items-center gap-1 truncate text-sm font-semibold text-foreground">
+            <p className="flex items-center gap-1 truncate text-base font-semibold text-foreground">
               {conversation.displayName}
               {conversation.isOfficial && (
                 <BadgeCheck className="size-3.5 shrink-0 text-primary" aria-label={t("officialBadge")} />
               )}
             </p>
-            <p className="truncate text-xs text-muted-foreground">
+            <p className="truncate text-base text-muted-foreground">
               {conversation.lastMessage ?? t("noMessages")}
             </p>
           </div>

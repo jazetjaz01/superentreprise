@@ -35,13 +35,13 @@ export const EducationSection = async ({ profileId, isOwnProfile }: EducationSec
         </div>
 
         {items.length === 0 ? (
-          <p className="mt-3 text-sm text-foreground">{t('empty')}</p>
+          <p className="mt-3 text-base text-foreground">{t('empty')}</p>
         ) : (
           <ul className="mt-4 flex flex-col gap-5">
             {items.map((education) => (
               <li key={education.id} className="flex items-start justify-between gap-2">
                 <div className="flex items-start gap-4">
-                  <p className="text-ink-600 w-23 shrink-0 text-xs [font-variant-numeric:tabular-nums]">
+                  <p className="text-ink-600 w-23 shrink-0 text-base [font-variant-numeric:tabular-nums]">
                     {education.start_date ? formatMonth(education.start_date) : ''}
                     {education.start_date && education.end_date ? ' – ' : ''}
                     {education.end_date ? formatMonth(education.end_date) : ''}
@@ -49,10 +49,10 @@ export const EducationSection = async ({ profileId, isOwnProfile }: EducationSec
                   <div>
                     <p className="font-heading font-semibold">{education.school}</p>
                     {education.degree && (
-                      <p className="text-sm text-foreground">{education.degree}</p>
+                      <p className="text-base text-foreground">{education.degree}</p>
                     )}
                     {education.description && (
-                      <p className="mt-1 whitespace-pre-wrap text-sm text-foreground">
+                      <p className="mt-1 whitespace-pre-wrap text-base text-foreground">
                         {education.description}
                       </p>
                     )}

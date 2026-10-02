@@ -55,7 +55,7 @@ export const PostLikeButton = ({ postId, viewerId, initialIsLiked }: PostLikeBut
       disabled={isSubmitting}
       onClick={handleClick}
       className={cn(
-        'flex cursor-pointer items-center gap-1.5 rounded-md px-2 py-1.5 text-sm font-normal transition-colors hover:bg-primary/10 disabled:opacity-45',
+        'flex cursor-pointer items-center gap-1.5 rounded-md px-2 py-1.5 text-base font-normal transition-colors hover:bg-primary/10 disabled:opacity-45',
         isLiked ? 'text-primary' : 'text-ink-800',
       )}
     >

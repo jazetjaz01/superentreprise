@@ -12,13 +12,13 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ e
         <div className="flex flex-col gap-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-2xl">{t('title')}</CardTitle>
+              <CardTitle className="text-base">{t('title')}</CardTitle>
             </CardHeader>
             <CardContent>
               {params?.error ? (
-                <p className="text-sm text-foreground">{t('code', { error: params.error })}</p>
+                <p className="text-base text-foreground">{t('code', { error: params.error })}</p>
               ) : (
-                <p className="text-sm text-foreground">{t('unspecified')}</p>
+                <p className="text-base text-foreground">{t('unspecified')}</p>
               )}
             </CardContent>
           </Card>

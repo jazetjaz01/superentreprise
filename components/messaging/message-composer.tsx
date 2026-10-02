@@ -44,7 +44,7 @@ export const MessageComposer = ({ conversationId }: MessageComposerProps) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2 border-t border-border p-3">
-      {error && <p className="text-sm text-red-500">{error}</p>}
+      {error && <p className="text-base text-red-500">{error}</p>}
       <div className="flex items-end gap-2">
         <textarea
           value={content}
@@ -52,7 +52,7 @@ export const MessageComposer = ({ conversationId }: MessageComposerProps) => {
           placeholder={t("contentPlaceholder")}
           maxLength={3000}
           rows={1}
-          className="max-h-32 min-h-10 flex-1 resize-none rounded-md border border-border px-3 py-2 text-sm outline-none focus-visible:ring-1 focus-visible:ring-ring"
+          className="max-h-32 min-h-10 flex-1 resize-none rounded-md border border-border px-3 py-2 text-base outline-none focus-visible:ring-1 focus-visible:ring-ring"
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey) {
               e.preventDefault();

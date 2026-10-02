@@ -39,7 +39,7 @@ export const CompanyAdminDashboardCards = async ({
       <Card>
         <CardContent className="p-[27.6px]">
           <h2 className="font-heading text-2xl font-semibold">{t("managePostsTitle")}</h2>
-          <p className="text-ink-600 mt-1 text-sm">
+          <p className="text-ink-600 mt-1 text-base">
             {t("managePostsDescription")}{" "}
             <Link href="#" className="text-primary hover:underline">
               {t("learnMore")}
@@ -57,7 +57,7 @@ export const CompanyAdminDashboardCards = async ({
               <div className="mt-4 flex items-center gap-3">
                 <Link
                   href={`/company/${companySlug}?view=admin&tab=posts`}
-                  className="border-primary text-primary hover:bg-primary/10 flex items-center gap-1.5 rounded-full border px-5 py-2 text-sm font-semibold"
+                  className="border-primary text-primary hover:bg-primary/10 flex items-center gap-1.5 rounded-full border px-5 py-2 text-base font-semibold"
                 >
                   {t("viewPosts")}
                 </Link>
@@ -77,7 +77,7 @@ export const CompanyAdminDashboardCards = async ({
               <p className="font-heading mt-4 text-lg font-semibold">
                 {t("managePostsEmptyTitle")}
               </p>
-              <p className="text-ink-600 mt-1 text-sm">{t("managePostsEmptySubtitle")}</p>
+              <p className="text-ink-600 mt-1 text-base">{t("managePostsEmptySubtitle")}</p>
               <div className="mt-4">
                 <CompanyPostComposer
                   adminUserId={adminUserId}
@@ -94,7 +94,7 @@ export const CompanyAdminDashboardCards = async ({
       <Card>
         <CardContent className="p-[27.6px]">
           <h2 className="font-heading text-2xl font-semibold">{t("discussionsTitle")}</h2>
-          <p className="text-ink-600 mt-1 text-sm">{t("discussionsDescription")}</p>
+          <p className="text-ink-600 mt-1 text-base">{t("discussionsDescription")}</p>
 
           <div className="mt-6 flex flex-col items-center text-center">
             <div className="flex size-24 items-center justify-center rounded-full bg-secondary">
@@ -103,7 +103,7 @@ export const CompanyAdminDashboardCards = async ({
             <p className="font-heading mt-4 text-lg font-semibold">
               {t("discussionsEmptyTitle")}
             </p>
-            <p className="text-ink-600 mt-1 text-sm">{t("discussionsEmptySubtitle")}</p>
+            <p className="text-ink-600 mt-1 text-base">{t("discussionsEmptySubtitle")}</p>
             <div className="mt-4">
               <FindCompaniesDialog viewerId={adminUserId} excludeCompanyIds={[companyId]} />
             </div>

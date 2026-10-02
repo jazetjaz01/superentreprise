@@ -46,7 +46,7 @@ export function UpdatePasswordForm({ className, ...props }: React.ComponentProps
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">{t('updatePassword.title')}</CardTitle>
+          <CardTitle className="text-base">{t('updatePassword.title')}</CardTitle>
           <CardDescription>{t('updatePassword.description')}</CardDescription>
         </CardHeader>
         <CardContent>
@@ -63,7 +63,7 @@ export function UpdatePasswordForm({ className, ...props }: React.ComponentProps
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              {error && <p className="text-sm text-red-500">{error}</p>}
+              {error && <p className="text-base text-red-500">{error}</p>}
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? t('updatePassword.submitting') : t('updatePassword.submit')}
               </Button>

@@ -97,7 +97,7 @@ export const PostComments = ({
       <button
         type="button"
         onClick={() => setOpen((current) => !current)}
-        className="flex cursor-pointer items-center gap-1.5 rounded-md px-2 py-1.5 text-sm font-normal text-ink-800 transition-colors hover:bg-primary/10"
+        className="flex cursor-pointer items-center gap-1.5 rounded-md px-2 py-1.5 text-base font-normal text-ink-800 transition-colors hover:bg-primary/10"
       >
         <MessageCircle className="size-4" strokeWidth={1.5} />
         {t('comment')}
@@ -141,7 +141,7 @@ export const PostComments = ({
                       </button>
                     )}
                   </div>
-                  <p className="wrap-break-word text-sm whitespace-pre-wrap">
+                  <p className="wrap-break-word text-base whitespace-pre-wrap">
                     {comment.content}
                   </p>
                 </div>
@@ -160,7 +160,7 @@ export const PostComments = ({
                 rows={1}
                 className="min-h-9 resize-none py-2"
               />
-              {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
+              {error && <p className="mt-1 text-base text-red-500">{error}</p>}
               {value.trim() && (
                 <Button type="submit" size="sm" disabled={isSubmitting} className="mt-2">
                   {isSubmitting ? t('commentSending') : t('commentSend')}

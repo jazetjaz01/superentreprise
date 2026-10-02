@@ -236,7 +236,7 @@ export const EditProfileDialog = ({
               />
             </div>
 
-            {error && <p className="text-sm text-red-500">{error}</p>}
+            {error && <p className="text-base text-red-500">{error}</p>}
 
             <Button type="submit" disabled={isSubmitting}>
               {isSubmitting ? t('saving') : t('save')}

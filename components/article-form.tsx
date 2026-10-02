@@ -250,8 +250,8 @@ export const ArticleForm = ({
         <div className="flex items-center gap-2">
           <UserAvatar name={authorName} avatarUrl={authorAvatarUrl} size={40} />
           <div className="leading-tight">
-            <p className="text-sm font-semibold">{authorName}</p>
-            <p className="text-xs text-muted-foreground">{t('individualArticle')}</p>
+            <p className="text-base font-semibold">{authorName}</p>
+            <p className="text-base text-muted-foreground">{t('individualArticle')}</p>
           </div>
         </div>
 
@@ -263,7 +263,7 @@ export const ArticleForm = ({
               handleStyleChange(e.target.value)
               e.target.value = ''
             }}
-            className="rounded-md border px-2 py-1.5 text-sm text-foreground"
+            className="rounded-md border px-2 py-1.5 text-base text-foreground"
           >
             <option value="" disabled>
               {t('style')}
@@ -407,7 +407,7 @@ export const ArticleForm = ({
           required
           maxLength={200}
           placeholder={t('titlePlaceholder')}
-          className="mt-6 w-full border-0 text-4xl font-bold text-foreground outline-none placeholder:text-muted-foreground"
+          className="mt-6 w-full border-0 text-base font-bold text-foreground outline-none placeholder:text-muted-foreground"
         />
 
         <div className="mt-6">
@@ -415,14 +415,14 @@ export const ArticleForm = ({
         </div>
 
         <p
-          className={`mt-2 text-right text-xs ${
+          className={`mt-2 text-right text-base ${
             characterCount >= MAX_CONTENT_CHARACTERS ? 'text-red-500' : 'text-muted-foreground'
           }`}
         >
           {characterCount} / {MAX_CONTENT_CHARACTERS}
         </p>
 
-        {error && <p className="mt-4 text-sm text-red-500">{error}</p>}
+        {error && <p className="mt-4 text-base text-red-500">{error}</p>}
       </div>
     </form>
   )

@@ -20,7 +20,7 @@ export const QuickLinksCard = async () => {
         {links.map(({ key, label, icon: Icon }) => (
           <Link key={key} href="#" className="flex items-center gap-3 hover:underline">
             <Icon className="text-ink-700 size-4.5" strokeWidth={1.5} />
-            <span className="text-sm font-semibold text-foreground">{label}</span>
+            <span className="text-base font-semibold text-foreground">{label}</span>
           </Link>
         ))}
       </CardContent>

@@ -166,7 +166,7 @@ export const EducationDialog = ({ profileId, education }: EducationDialogProps) 
               />
             </div>
 
-            {error && <p className="text-sm text-red-500">{error}</p>}
+            {error && <p className="text-base text-red-500">{error}</p>}
 
             <div className="flex items-center justify-between gap-2">
               {isEdit ? (

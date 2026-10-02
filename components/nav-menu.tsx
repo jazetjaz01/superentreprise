@@ -42,7 +42,7 @@ export const NavMenu = ({ orientation = "horizontal", className }: NavMenuProps)
               "group flex text-ink-800 transition-colors hover:text-gold-700",
               isVertical
                 ? "flex-row items-center gap-3 rounded-md px-2 py-2 text-base"
-                : "relative flex-col items-center justify-center gap-1 px-3 text-xs",
+                : "relative flex-col items-center justify-center gap-1 px-3 text-base",
               isActive && !isVertical && "text-gold-700",
               isActive && isVertical && "bg-accent text-gold-700",
             )}

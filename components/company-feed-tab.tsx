@@ -24,7 +24,7 @@ export const CompanyFeedTab = async ({ viewerId }: CompanyFeedTabProps) => {
       <Card>
         <CardContent className="p-[27.6px]">
           <h2 className="font-heading text-2xl font-semibold">{t("feedTitle")}</h2>
-          <p className="text-ink-600 mt-1 text-sm">{t("feedSubtitle")}</p>
+          <p className="text-ink-600 mt-1 text-base">{t("feedSubtitle")}</p>
         </CardContent>
       </Card>
 
@@ -34,7 +34,7 @@ export const CompanyFeedTab = async ({ viewerId }: CompanyFeedTabProps) => {
             <Rss className="text-ink-500 size-9" strokeWidth={1.5} />
           </div>
           <p className="font-heading mt-4 text-lg font-semibold">{t("emptyTitle")}</p>
-          <p className="text-ink-600 mt-1 max-w-md text-sm">{t("emptyDescription")}</p>
+          <p className="text-ink-600 mt-1 max-w-md text-base">{t("emptyDescription")}</p>
           <div className="mt-4">
             <FindCompaniesDialog viewerId={viewerId} excludeCompanyIds={managedCompanyIds} />
           </div>

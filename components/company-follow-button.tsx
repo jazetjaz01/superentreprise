@@ -73,11 +73,11 @@ export const CompanyFollowButton = ({
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
           onClick={handleClick}
-          className="cursor-pointer rounded-md px-2 py-1 text-sm font-normal text-primary transition-colors hover:bg-primary/10 disabled:opacity-45"
+          className="cursor-pointer rounded-md px-2 py-1 text-base font-normal text-primary transition-colors hover:bg-primary/10 disabled:opacity-45"
         >
           {isFollowing ? (isHovering ? t('unfollow') : t('following')) : `+ ${t('follow')}`}
         </button>
-        {error && <p className="text-xs text-red-500">{error}</p>}
+        {error && <p className="text-base text-red-500">{error}</p>}
       </div>
     )
   }
@@ -94,7 +94,7 @@ export const CompanyFollowButton = ({
       >
         {isFollowing ? (isHovering ? t('unfollow') : t('following')) : t('follow')}
       </Button>
-      {error && <p className="text-xs text-red-500">{error}</p>}
+      {error && <p className="text-base text-red-500">{error}</p>}
     </div>
   )
 }

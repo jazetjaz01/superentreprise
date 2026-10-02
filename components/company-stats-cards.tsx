@@ -166,7 +166,7 @@ export const CompanyStatsCards = async ({ companyId }: CompanyStatsCardsProps) =
       <Card>
         <CardContent className="p-[27.6px]">
           <h2 className="font-heading text-2xl font-semibold">{t("essentialsTitle")}</h2>
-          <p className="text-ink-600 mt-1 text-sm">
+          <p className="text-ink-600 mt-1 text-base">
             {t("dateRange", {
               start: format.dateTime(rangeStart, { dateStyle: "short", timeZone: "UTC" }),
               end: format.dateTime(today, { dateStyle: "short", timeZone: "UTC" }),
@@ -179,11 +179,11 @@ export const CompanyStatsCards = async ({ companyId }: CompanyStatsCardsProps) =
               return (
                 <div key={metric.label}>
                   <p className="font-heading text-3xl font-semibold">{metric.value}</p>
-                  <p className="text-ink-600 text-sm">{metric.label}</p>
+                  <p className="text-ink-600 text-base">{metric.label}</p>
                   {delta !== null ? (
                     delta !== 0 && (
                       <p
-                        className={`mt-1 flex items-center gap-1 text-xs font-semibold ${
+                        className={`mt-1 flex items-center gap-1 text-base font-semibold ${
                           delta > 0 ? "text-primary" : "text-destructive"
                         }`}
                       >
@@ -196,7 +196,7 @@ export const CompanyStatsCards = async ({ companyId }: CompanyStatsCardsProps) =
                       </p>
                     )
                   ) : (
-                    <p className="text-primary mt-1 text-xs font-semibold">{metric.newLabel}</p>
+                    <p className="text-primary mt-1 text-base font-semibold">{metric.newLabel}</p>
                   )}
                 </div>
               );
@@ -208,7 +208,7 @@ export const CompanyStatsCards = async ({ companyId }: CompanyStatsCardsProps) =
       <Card>
         <CardContent className="p-[27.6px]">
           <h2 className="font-heading text-2xl font-semibold">{t("indicatorsTitle")}</h2>
-          <span className="bg-primary mt-3 inline-block rounded-full px-4 py-1.5 text-sm font-semibold text-white">
+          <span className="bg-primary mt-3 inline-block rounded-full px-4 py-1.5 text-base font-semibold text-white">
             {t("visits")}
           </span>
 

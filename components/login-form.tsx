@@ -92,7 +92,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
           {t('linkedin')}
         </Button>
 
-        <div className="my-7 flex w-full items-center justify-center gap-2 overflow-hidden text-xs text-foreground">
+        <div className="my-7 flex w-full items-center justify-center gap-2 overflow-hidden text-base text-foreground">
           <span className="h-px flex-1 bg-border" />
           {t('or')}
           <span className="h-px flex-1 bg-border" />
@@ -116,7 +116,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
                 <Label htmlFor="password">{t('password')}</Label>
                 <Link
                   href="/auth/forgot-password"
-                  className="text-primary ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                  className="text-primary ml-auto inline-block text-base underline-offset-4 hover:underline"
                 >
                   {t('login.forgotPassword')}
                 </Link>
@@ -129,14 +129,14 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            {error && <p className="text-sm text-red-500">{error}</p>}
+            {error && <p className="text-base text-red-500">{error}</p>}
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? t('login.submitting') : t('login.submit')}
             </Button>
           </div>
         </form>
 
-        <p className="mt-5 text-center text-sm">
+        <p className="mt-5 text-center text-base">
           {t('login.noAccount')}{' '}
           <Link href="/auth/sign-up" className="text-primary underline underline-offset-4">
             {t('login.signUpLink')}

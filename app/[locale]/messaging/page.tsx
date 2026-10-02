@@ -171,7 +171,7 @@ export default async function MessagingPage({ searchParams }: MessagingPageProps
         <div className="flex gap-2">
           <Link
             href="/messaging"
-            className={`rounded-full px-4 py-1.5 text-sm font-semibold ${
+            className={`rounded-full px-4 py-1.5 text-base font-semibold ${
               !isOfficialView ? "bg-primary text-white" : "border border-border text-foreground"
             }`}
           >
@@ -179,7 +179,7 @@ export default async function MessagingPage({ searchParams }: MessagingPageProps
           </Link>
           <Link
             href="/messaging?admin=official"
-            className={`rounded-full px-4 py-1.5 text-sm font-semibold ${
+            className={`rounded-full px-4 py-1.5 text-base font-semibold ${
               isOfficialView ? "bg-primary text-white" : "border border-border text-foreground"
             }`}
           >
@@ -210,7 +210,7 @@ export default async function MessagingPage({ searchParams }: MessagingPageProps
               backHref={baseHref}
             />
           ) : (
-            <p className="flex h-full items-center justify-center p-8 text-center text-sm text-muted-foreground">
+            <p className="flex h-full items-center justify-center p-8 text-center text-base text-muted-foreground">
               {t("emptyThread")}
             </p>
           )}

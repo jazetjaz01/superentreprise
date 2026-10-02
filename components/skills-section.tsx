@@ -71,7 +71,7 @@ export const SkillsSection = ({ profileId, isOwnProfile, skills }: SkillsSection
         <h2 className="font-heading text-2xl font-semibold">{t('sectionTitle')}</h2>
 
         {skills.length === 0 ? (
-          <p className="mt-3 text-sm text-foreground">{t('empty')}</p>
+          <p className="mt-3 text-base text-foreground">{t('empty')}</p>
         ) : (
           <ul className="mt-3 flex flex-wrap gap-2">
             {skills.map((skill) => (
@@ -107,7 +107,7 @@ export const SkillsSection = ({ profileId, isOwnProfile, skills }: SkillsSection
             </Button>
           </form>
         )}
-        {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
+        {error && <p className="mt-2 text-base text-red-500">{error}</p>}
       </CardContent>
     </Card>
   )

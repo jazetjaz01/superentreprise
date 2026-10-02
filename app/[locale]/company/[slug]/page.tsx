@@ -97,12 +97,12 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
     <>
       {isRealAdmin && (
         <div className="bg-primary flex items-center justify-between gap-4 px-4 py-3 text-white sm:px-6 lg:px-8">
-          <p className="text-sm font-semibold">
+          <p className="text-base font-semibold">
             {isAdminView ? t("viewingAsAdmin") : t("viewingAsMember")}
           </p>
           <Link
             href={`/company/${slug}${isAdminView ? "" : "?view=admin"}`}
-            className="shrink-0 rounded-full border border-white px-4 py-1.5 text-sm font-semibold hover:bg-white/10"
+            className="shrink-0 rounded-full border border-white px-4 py-1.5 text-base font-semibold hover:bg-white/10"
           >
             {isAdminView ? t("switchToMember") : t("switchToAdmin")}
           </Link>
@@ -168,12 +168,12 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
                     <p className="mt-1 text-[15px] text-foreground">{company.tagline}</p>
                   )}
 
-                  <p className="text-ink-700 mt-3 text-sm">
+                  <p className="text-ink-700 mt-3 text-base">
                     {tFollow("followersCount", { count: followerCount ?? 0 })}
                   </p>
 
                   {(company.industry || company.company_size || company.website) && (
-                    <div className="text-ink-600 mt-2 flex flex-col gap-1 text-sm">
+                    <div className="text-ink-600 mt-2 flex flex-col gap-1 text-base">
                       {company.industry && (
                         <p>
                           <span className="text-ink-800">{t("industryLabel")} : </span>
@@ -263,7 +263,7 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
             <Card>
               <CardContent>
                 <h2 className="font-heading text-lg font-semibold">{t("followCardTitle")}</h2>
-                <p className="text-ink-700 mt-2 text-sm">
+                <p className="text-ink-700 mt-2 text-base">
                   {tFollow("followersCount", { count: followerCount ?? 0 })}
                 </p>
                 {viewerId && (

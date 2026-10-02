@@ -268,7 +268,7 @@ export const CompanyForm = ({ userId }: CompanyFormProps) => {
                 </div>
               </div>
 
-              {error && <p className="mt-4 text-sm text-red-500">{error}</p>}
+              {error && <p className="mt-4 text-base text-red-500">{error}</p>}
 
               <Button type="submit" className="mt-6 w-full" disabled={isSubmitting || !name.trim()}>
                 {isSubmitting ? t('submitting') : t('submit')}

@@ -145,7 +145,7 @@ export const CompanyEditTab = ({
       <Card>
         <CardContent className="p-[27.6px]">
           <h1 className="font-heading text-2xl font-semibold">{t('title')}</h1>
-          <p className="text-ink-600 mt-1 text-sm">{t('subtitle')}</p>
+          <p className="text-ink-600 mt-1 text-base">{t('subtitle')}</p>
         </CardContent>
       </Card>
 
@@ -154,7 +154,7 @@ export const CompanyEditTab = ({
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div>
               <h2 className="font-heading text-xl font-semibold">{t('sectionTitle')}</h2>
-              <p className="text-ink-600 mt-1 text-xs">{t('requiredHint')}</p>
+              <p className="text-ink-600 mt-1 text-base">{t('requiredHint')}</p>
             </div>
 
             <div className="flex flex-wrap items-start gap-6">
@@ -252,7 +252,7 @@ export const CompanyEditTab = ({
                 value={nameValue}
                 onChange={(e) => setNameValue(e.target.value)}
               />
-              <p className="text-ink-600 text-right text-xs">{nameValue.length}/200</p>
+              <p className="text-ink-600 text-right text-base">{nameValue.length}/200</p>
             </div>
 
             <div className="grid gap-2">
@@ -264,7 +264,7 @@ export const CompanyEditTab = ({
                 value={taglineValue}
                 onChange={(e) => setTaglineValue(e.target.value)}
               />
-              <p className="text-ink-600 text-right text-xs">{taglineValue.length}/200</p>
+              <p className="text-ink-600 text-right text-base">{taglineValue.length}/200</p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -312,7 +312,7 @@ export const CompanyEditTab = ({
               />
             </div>
 
-            {error && <p className="text-sm text-red-500">{error}</p>}
+            {error && <p className="text-base text-red-500">{error}</p>}
 
             <div>
               <Button type="submit" disabled={isSubmitting}>

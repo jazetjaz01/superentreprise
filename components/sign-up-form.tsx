@@ -98,7 +98,7 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
           {t('linkedin')}
         </Button>
 
-        <div className="my-7 flex w-full items-center justify-center gap-2 overflow-hidden text-xs text-foreground">
+        <div className="my-7 flex w-full items-center justify-center gap-2 overflow-hidden text-base text-foreground">
           <span className="h-px flex-1 bg-border" />
           {t('or')}
           <span className="h-px flex-1 bg-border" />
@@ -141,14 +141,14 @@ export function SignUpForm({ className, ...props }: React.ComponentPropsWithoutR
                 onChange={(e) => setRepeatPassword(e.target.value)}
               />
             </div>
-            {error && <p className="text-sm text-red-500">{error}</p>}
+            {error && <p className="text-base text-red-500">{error}</p>}
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? t('signUp.submitting') : t('signUp.submit')}
             </Button>
           </div>
         </form>
 
-        <p className="mt-5 text-center text-sm">
+        <p className="mt-5 text-center text-base">
           {t('signUp.hasAccount')}{' '}
           <Link href="/auth/login" className="text-primary underline underline-offset-4">
             {t('signUp.signInLink')}

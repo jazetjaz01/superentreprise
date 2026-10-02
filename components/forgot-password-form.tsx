@@ -45,7 +45,7 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
           title={t('forgotPassword.successTitle')}
           description={t('forgotPassword.successDescription')}
         >
-          <p className="mt-6 text-center text-sm text-foreground">
+          <p className="mt-6 text-center text-base text-foreground">
             {t('forgotPassword.successBody')}
           </p>
         </AuthCard>
@@ -67,14 +67,14 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              {error && <p className="text-sm text-red-500">{error}</p>}
+              {error && <p className="text-base text-red-500">{error}</p>}
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? t('forgotPassword.submitting') : t('forgotPassword.submit')}
               </Button>
             </div>
           </form>
 
-          <p className="mt-5 text-center text-sm">
+          <p className="mt-5 text-center text-base">
             {t('forgotPassword.hasAccount')}{' '}
             <Link href="/auth/login" className="text-primary underline underline-offset-4">
               {t('forgotPassword.signInLink')}

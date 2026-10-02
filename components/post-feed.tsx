@@ -122,7 +122,7 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
 
   if (posts.length === 0) {
     return (
-      <p className="py-8 text-center text-sm text-foreground">
+      <p className="py-8 text-center text-base text-foreground">
         {t("empty")}
       </p>
     );
@@ -253,7 +253,7 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
               {currentUserId && (
                 <>
                   {(likes.count > 0 || (!post.comments_disabled && comments.length > 0)) && (
-                    <p className="text-ink-600 text-xs [font-variant-numeric:tabular-nums]">
+                    <p className="text-ink-600 text-base [font-variant-numeric:tabular-nums]">
                       {likes.count > 0 &&
                         t("likeCount", { count: likes.count })}
                       {likes.count > 0 && !post.comments_disabled && comments.length > 0 && " · "}

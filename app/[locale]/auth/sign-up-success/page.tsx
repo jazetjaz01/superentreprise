@@ -17,11 +17,11 @@ export default function Page() {
         <div className="flex flex-col gap-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-2xl">{t('title')}</CardTitle>
+              <CardTitle className="text-base">{t('title')}</CardTitle>
               <CardDescription>{t('description')}</CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-foreground">{t('body')}</p>
+              <p className="text-base text-foreground">{t('body')}</p>
             </CardContent>
           </Card>
         </div>

@@ -267,7 +267,7 @@ export const CompanyPostComposer = ({
               </div>
             )}
 
-            <label className="flex items-center gap-2 text-sm text-foreground">
+            <label className="flex items-center gap-2 text-base text-foreground">
               <input
                 type="checkbox"
                 checked={commentsDisabled}
@@ -277,7 +277,7 @@ export const CompanyPostComposer = ({
               {t("disableComments")}
             </label>
 
-            {error && <p className="text-sm text-red-500">{error}</p>}
+            {error && <p className="text-base text-red-500">{error}</p>}
 
             <div className="flex items-center justify-between">
               <div className="flex gap-1">

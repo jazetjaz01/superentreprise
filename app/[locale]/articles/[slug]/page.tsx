@@ -93,14 +93,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
         <CardContent className="px-4  pb-4 sm:px-12  sm:pb-12">
           <div className="bg-muted p-8 sm:p-12">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               {t("publishedTimeAgo", { time: format.relativeTime(new Date(article.created_at)) })}
             </p>
 
             {introText && <p className="mt-2 text-foreground">{introText}</p>}
 
             <div className="mt-6 flex items-center justify-between gap-2">
-              <h2 className="text-lg font-bold text-foreground">{t("articleContent")}</h2>
+              <h2 className="text-base font-bold text-foreground">{t("articleContent")}</h2>
               {isOwnArticle && (
                 <div className="flex shrink-0 items-center gap-1">
                   <Button
@@ -131,12 +131,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 {author?.slug ? (
                   <Link href={`/profile/${author.slug}`} className="flex items-center gap-3">
                     <UserAvatar name={authorName} avatarUrl={author.avatar_url} size={32} />
-                    <span className="text-sm font-semibold hover:underline">{authorName}</span>
+                    <span className="text-base font-semibold hover:underline">{authorName}</span>
                   </Link>
                 ) : (
                   <>
                     <UserAvatar name={authorName} avatarUrl={null} size={32} />
-                    <span className="text-sm font-semibold">{authorName}</span>
+                    <span className="text-base font-semibold">{authorName}</span>
                   </>
                 )}
                 <Info className="size-3.5 shrink-0 text-muted-foreground" />

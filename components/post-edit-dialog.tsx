@@ -78,7 +78,7 @@ export const PostEditDialog = ({ postId, content }: PostEditDialogProps) => {
               autoFocus
             />
 
-            {error && <p className="text-sm text-red-500">{error}</p>}
+            {error && <p className="text-base text-red-500">{error}</p>}
 
             <Button type="submit" disabled={isSubmitting} className="w-fit">
               {isSubmitting ? t('editSaving') : t('editSave')}

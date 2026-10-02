@@ -151,7 +151,7 @@ export const CompanyBanner = ({ companyId, bannerUrl, isAdmin }: CompanyBannerPr
       )}
 
       {error && (
-        <p className="absolute right-3 bottom-2 rounded bg-background/90 px-2 py-1 text-xs text-red-500">
+        <p className="absolute right-3 bottom-2 rounded bg-background/90 px-2 py-1 text-base text-red-500">
           {error}
         </p>
       )}

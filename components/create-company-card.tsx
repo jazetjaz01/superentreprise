@@ -11,7 +11,7 @@ export const CreateCompanyCard = async () => {
     <Card>
       <CardContent>
         <h2 className="font-heading text-lg font-semibold">{t("title")}</h2>
-        <p className="text-ink-600 mt-1 text-sm">{t("description")}</p>
+        <p className="text-ink-600 mt-1 text-base">{t("description")}</p>
         <Button
           nativeButton={false}
           render={<Link href="/company/new" />}

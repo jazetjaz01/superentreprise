@@ -55,7 +55,7 @@ export const PostDeleteButton = ({ postId, imagePath, videoPath }: PostDeleteBut
       >
         <Trash2 className="size-4" />
       </Button>
-      {error && <p className="text-xs text-red-500">{error}</p>}
+      {error && <p className="text-base text-red-500">{error}</p>}
     </div>
   )
 }
