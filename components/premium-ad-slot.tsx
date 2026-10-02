@@ -27,13 +27,13 @@ export const PremiumAdSlot = async ({ name, avatarUrl }: PremiumAdSlotProps) => 
 
       <div className="mt-4 flex items-center justify-center gap-3">
         <UserAvatar name={name} avatarUrl={avatarUrl} size={52} />
-        <span className="font-heading text-foreground flex items-center gap-1 text-lg font-medium">
+        <span className="font-heading text-foreground flex items-center gap-1 text-base font-medium">
           <Crown className="size-4" strokeWidth={1.5} />
           {t("premiumBadge")}
         </span>
       </div>
 
-      <p className="font-heading mt-4 text-center text-[19px] font-medium text-foreground">
+      <p className="font-heading mt-4 text-center text-base font-medium text-foreground">
         {t("question")}
       </p>
 

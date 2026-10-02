@@ -20,7 +20,7 @@ export const AdSlot = () => {
           className="h-auto w-full"
         />
         <div className="p-4">
-          <p className="font-heading font-medium">{t("letsgoTitle")}</p>
+          <p className="font-heading text-base font-medium">{t("letsgoTitle")}</p>
           <p className="mt-1 text-base text-foreground">{t("letsgoBody")}</p>
         </div>
       </a>
