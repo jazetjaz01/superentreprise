@@ -48,7 +48,7 @@ const Navbar = async () => {
 
         <div className="flex items-center gap-4">
           {/* Desktop Menu */}
-          <NavMenu className="hidden md:flex" />
+          {claims && <NavMenu className="hidden md:flex" />}
 
           <LanguageSwitcher />
           {claims ? (

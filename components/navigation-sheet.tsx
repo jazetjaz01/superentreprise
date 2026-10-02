@@ -28,7 +28,9 @@ export const NavigationSheet = ({ isAuthenticated }: NavigationSheetProps) => {
       <SheetTrigger render={<Button size="icon" variant="outline" />}><Menu /></SheetTrigger>
       <SheetContent className="flex flex-col px-6 py-3">
         <Logo />
-        <NavMenu className="mt-6 [&>div]:h-full" orientation="vertical" />
+        {isAuthenticated && (
+          <NavMenu className="mt-6 [&>div]:h-full" orientation="vertical" />
+        )}
 
         {!isAuthenticated && (
           <div className="mt-auto flex flex-col gap-2 pb-4">
