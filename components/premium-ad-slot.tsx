@@ -15,13 +15,13 @@ export const PremiumAdSlot = async ({ name, avatarUrl }: PremiumAdSlotProps) => 
   return (
     <div className="overflow-hidden rounded-md border border-border bg-card p-4">
       <div className="flex items-center justify-between">
-        <span className="text-primary text-[10px] font-normal tracking-wide uppercase">
+        <span className="text-primary text-base font-normal tracking-wide uppercase">
           {t("sponsored")}
         </span>
         <MoreHorizontal className="text-muted-foreground size-4" strokeWidth={1.5} />
       </div>
 
-      <p className="mt-2 text-[13px] text-foreground">
+      <p className="mt-2 text-base text-foreground">
         {t("headline", { name })}
       </p>
 

@@ -75,7 +75,7 @@ export const MessageThread = async ({
               >
                 {message.content}
                 <p
-                  className={`mt-1 text-[10px] ${
+                  className={`mt-1 text-base ${
                     isOwnMessage ? "text-white/70" : "text-muted-foreground"
                   }`}
                 >

@@ -40,7 +40,7 @@ export const NewsSlot = async () => {
               <p className="font-heading line-clamp-2 text-base font-semibold text-foreground group-hover:underline">
                 {article.title}
               </p>
-              <p className="text-ink-600 mt-0.5 text-[11px]">
+              <p className="text-ink-600 mt-0.5 text-base">
                 {format.relativeTime(new Date(article.created_at))}
               </p>
             </Link>

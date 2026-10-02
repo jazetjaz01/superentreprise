@@ -162,7 +162,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 )}
               </div>
               {profile.headline && (
-                <p className="mt-1 text-[15px] text-foreground">{profile.headline}</p>
+                <p className="mt-1 text-base text-foreground">{profile.headline}</p>
               )}
               {location && (
                 <p className="text-ink-600 mt-1 text-base">{location}</p>

@@ -170,7 +170,7 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
                       <p className="font-heading wrap-break-word text-lg font-semibold hover:underline">
                         {entityName}
                       </p>
-                      <p className="text-ink-600 text-[11px]">
+                      <p className="text-ink-600 text-base">
                         {format.dateTime(new Date(post.created_at), {
                           dateStyle: "medium",
                           timeStyle: "short",
@@ -185,7 +185,7 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
                       <p className="font-heading wrap-break-word text-lg font-semibold">
                         {entityName}
                       </p>
-                      <p className="text-ink-600 text-[11px]">
+                      <p className="text-ink-600 text-base">
                         {format.dateTime(new Date(post.created_at), {
                           dateStyle: "medium",
                           timeStyle: "short",

@@ -93,7 +93,7 @@ export const CompanyAdminSidebar = async ({
         <p className="font-heading mt-2 text-[21px] leading-snug font-semibold wrap-break-word">
           {name}
         </p>
-        <Link href="#" className="flex items-center gap-1.5 text-[13px] text-primary hover:underline">
+        <Link href="#" className="flex items-center gap-1.5 text-base text-primary hover:underline">
           <Gem className="size-3.5" strokeWidth={1.5} />
           {t("verificationPremium")}
         </Link>

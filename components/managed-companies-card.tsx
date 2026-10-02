@@ -44,7 +44,7 @@ export const ManagedCompaniesCard = async ({ companies }: ManagedCompaniesCardPr
                   </span>
                 )}
               </span>
-              <span className="wrap-break-word text-[13px] font-semibold text-foreground">
+              <span className="wrap-break-word text-base font-semibold text-foreground">
                 {company.name}
               </span>
             </Link>
@@ -53,13 +53,13 @@ export const ManagedCompaniesCard = async ({ companies }: ManagedCompaniesCardPr
 
         <Separator className="my-3" />
 
-        <h3 className="text-ink-700 text-[13px]">{t("growTitle")}</h3>
+        <h3 className="text-ink-700 text-base">{t("growTitle")}</h3>
         <div className="mt-2 flex flex-col gap-2">
-          <Link href="#" className="flex items-center gap-2 text-[13px] font-semibold hover:underline">
+          <Link href="#" className="flex items-center gap-2 text-base font-semibold hover:underline">
             <Gem className="text-primary size-4" strokeWidth={1.5} />
             {t("premiumLink")}
           </Link>
-          <Link href="#" className="flex items-center gap-2 text-[13px] font-semibold hover:underline">
+          <Link href="#" className="flex items-center gap-2 text-base font-semibold hover:underline">
             <Target className="text-ink-600 size-4" strokeWidth={1.5} />
             {t("adsLink")}
           </Link>

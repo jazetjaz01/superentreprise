@@ -165,7 +165,7 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
                     {company.name}
                   </h1>
                   {company.tagline && (
-                    <p className="mt-1 text-[15px] text-foreground">{company.tagline}</p>
+                    <p className="mt-1 text-base text-foreground">{company.tagline}</p>
                   )}
 
                   <p className="text-ink-700 mt-3 text-base">

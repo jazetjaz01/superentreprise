@@ -44,7 +44,7 @@ export const ProfileCard = async ({
           {name}
         </p>
         {headline && (
-          <p className="text-ink-800 text-[13px] break-words">{headline}</p>
+          <p className="text-ink-800 text-base break-words">{headline}</p>
         )}
         {location && (
           <p className="text-ink-600 text-base break-words">{location}</p>
@@ -55,7 +55,7 @@ export const ProfileCard = async ({
           profileViewCount !== undefined) && (
           <>
             <Separator className="my-2" />
-            <div className="flex w-full flex-col gap-1 text-[13px]">
+            <div className="flex w-full flex-col gap-1 text-base">
               {followerCount !== undefined && (
                 <p className="text-ink-700 flex w-full items-center justify-between font-semibold">
                   <span>{t("followersLabel")}</span>

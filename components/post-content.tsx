@@ -19,7 +19,7 @@ export const PostContent = ({ content }: PostContentProps) => {
 
   return (
     <p
-      className="wrap-break-word text-[15px] leading-[1.6] font-normal whitespace-pre-wrap"
+      className="wrap-break-word text-base leading-[1.6] font-normal whitespace-pre-wrap"
       style={{ textAlign: 'justify', hyphens: 'auto' }}
     >
       {expanded || !isTruncatable ? content : `${truncated}… `}
