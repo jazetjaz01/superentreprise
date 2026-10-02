@@ -128,7 +128,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 )}
               </div>
               <div className="mt-3 flex items-start justify-between gap-4">
-                <h1 className="font-heading text-[26px] leading-tight font-semibold">{name}</h1>
+                <h1 className="font-heading text-[26px] leading-tight font-medium">{name}</h1>
                 {managedCompanies.length > 0 && (
                   <div className="flex flex-col items-end gap-2 pt-2">
                     {managedCompanies.map((company) => (
@@ -137,7 +137,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                         href={`/company/${company.slug}`}
                         className="flex items-center gap-2 hover:underline"
                       >
-                        <span className="font-heading text-sm font-semibold text-foreground">
+                        <span className="font-heading text-sm font-medium text-foreground">
                           {company.name}
                         </span>
                         <span className="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-secondary">
@@ -170,8 +170,8 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
               <div className="mt-1 flex flex-col gap-1 text-base">
                 <p className="flex items-center gap-1">
-                  <span className="text-primary font-semibold">{t("follow.followingLabel")}</span>
-                  <span className="text-primary font-semibold">{followingCount ?? 0}</span>
+                  <span className="text-primary font-medium">{t("follow.followingLabel")}</span>
+                  <span className="text-primary font-medium">{followingCount ?? 0}</span>
                 </p>
               </div>
             </CardContent>
@@ -180,7 +180,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           {profile.about && (
             <Card className="mt-4">
               <CardContent className="p-[27.6px]">
-                <h2 className="font-heading text-2xl font-semibold">{t("about")}</h2>
+                <h2 className="font-heading text-2xl font-medium">{t("about")}</h2>
                 <p className="mt-2 whitespace-pre-wrap text-foreground">
                   {profile.about}
                 </p>

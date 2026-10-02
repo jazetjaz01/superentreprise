@@ -30,7 +30,7 @@ export const ExperienceSection = async ({ profileId, isOwnProfile }: ExperienceS
     <Card className="mt-4">
       <CardContent className="p-[27.6px]">
         <div className="flex items-center justify-between">
-          <h2 className="font-heading text-2xl font-semibold">{t('sectionTitle')}</h2>
+          <h2 className="font-heading text-2xl font-medium">{t('sectionTitle')}</h2>
           {isOwnProfile && <ExperienceDialog profileId={profileId} />}
         </div>
 
@@ -46,7 +46,7 @@ export const ExperienceSection = async ({ profileId, isOwnProfile }: ExperienceS
                     {experience.end_date ? formatMonth(experience.end_date) : t('present')}
                   </p>
                   <div>
-                    <p className="font-heading font-semibold">{experience.title}</p>
+                    <p className="font-heading font-medium">{experience.title}</p>
                     <p className="text-base text-foreground">
                       {experience.company}
                       {experience.location ? ` · ${experience.location}` : ''}

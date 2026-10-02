@@ -161,7 +161,7 @@ export default async function MessagingPage({ searchParams }: MessagingPageProps
   return (
     <div className="mx-auto flex w-full max-w-(--breakpoint-xl) flex-1 flex-col gap-4 px-4 py-6 sm:px-6 lg:px-8">
       <div className="flex items-center justify-between">
-        <h1 className="font-heading text-2xl font-semibold">
+        <h1 className="font-heading text-2xl font-medium">
           {isOfficialView ? t("officialInboxTitle") : t("title")}
         </h1>
         <NewConversationDialog mode={isOfficialView ? "official" : "personal"} selfProfileId={viewerId} />
@@ -171,7 +171,7 @@ export default async function MessagingPage({ searchParams }: MessagingPageProps
         <div className="flex gap-2">
           <Link
             href="/messaging"
-            className={`rounded-full px-4 py-1.5 text-base font-semibold ${
+            className={`rounded-full px-4 py-1.5 text-base font-medium ${
               !isOfficialView ? "bg-primary text-white" : "border border-border text-foreground"
             }`}
           >
@@ -179,7 +179,7 @@ export default async function MessagingPage({ searchParams }: MessagingPageProps
           </Link>
           <Link
             href="/messaging?admin=official"
-            className={`rounded-full px-4 py-1.5 text-base font-semibold ${
+            className={`rounded-full px-4 py-1.5 text-base font-medium ${
               isOfficialView ? "bg-primary text-white" : "border border-border text-foreground"
             }`}
           >

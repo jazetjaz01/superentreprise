@@ -144,7 +144,7 @@ export const CompanyEditTab = ({
     <div className="flex flex-col gap-4">
       <Card>
         <CardContent className="p-[27.6px]">
-          <h1 className="font-heading text-2xl font-semibold">{t('title')}</h1>
+          <h1 className="font-heading text-2xl font-medium">{t('title')}</h1>
           <p className="text-ink-600 mt-1 text-base">{t('subtitle')}</p>
         </CardContent>
       </Card>
@@ -153,7 +153,7 @@ export const CompanyEditTab = ({
         <CardContent className="p-[27.6px]">
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div>
-              <h2 className="font-heading text-xl font-semibold">{t('sectionTitle')}</h2>
+              <h2 className="font-heading text-xl font-medium">{t('sectionTitle')}</h2>
               <p className="text-ink-600 mt-1 text-base">{t('requiredHint')}</p>
             </div>
 

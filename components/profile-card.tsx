@@ -40,7 +40,7 @@ export const ProfileCard = async ({
         <div className="relative z-10 rounded-full  border-primary bg-background p-0.5">
           <UserAvatar name={name} avatarUrl={avatarUrl} size={64} />
         </div>
-        <p className="font-heading mt-2 text-[21px] leading-snug font-semibold break-words">
+        <p className="font-heading mt-2 text-[21px] leading-snug font-medium break-words">
           {name}
         </p>
         {headline && (
@@ -57,19 +57,19 @@ export const ProfileCard = async ({
             <Separator className="my-2" />
             <div className="flex w-full flex-col gap-1 text-base">
               {followerCount !== undefined && (
-                <p className="text-ink-700 flex w-full items-center justify-between font-semibold">
+                <p className="text-ink-700 flex w-full items-center justify-between font-medium">
                   <span>{t("followersLabel")}</span>
                   <span className="text-primary">{followerCount}</span>
                 </p>
               )}
               {followingCount !== undefined && (
-                <p className="text-ink-700 flex w-full items-center justify-between font-semibold">
+                <p className="text-ink-700 flex w-full items-center justify-between font-medium">
                   <span>{t("followingLabel")}</span>
                   <span className="text-primary">{followingCount}</span>
                 </p>
               )}
               {profileViewCount !== undefined && (
-                <p className="text-ink-700 flex w-full items-center justify-between font-semibold">
+                <p className="text-ink-700 flex w-full items-center justify-between font-medium">
                   <span>{tViews("label")}</span>
                   <span className="text-primary">{profileViewCount}</span>
                 </p>

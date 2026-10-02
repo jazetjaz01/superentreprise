@@ -19,7 +19,7 @@ export const PostContent = ({ content }: PostContentProps) => {
 
   return (
     <p
-      className="wrap-break-word text-base leading-[1.6] font-normal whitespace-pre-wrap"
+      className="wrap-break-word text-base leading-[1.6] font-medium whitespace-pre-wrap"
       style={{ textAlign: 'justify', hyphens: 'auto' }}
     >
       {expanded || !isTruncatable ? content : `${truncated}… `}
@@ -27,7 +27,7 @@ export const PostContent = ({ content }: PostContentProps) => {
         <button
           type="button"
           onClick={() => setExpanded(true)}
-          className="font-semibold text-muted-foreground hover:underline"
+          className="font-medium text-muted-foreground hover:underline"
         >
           {t('seeMore')}
         </button>

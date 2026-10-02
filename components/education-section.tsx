@@ -30,7 +30,7 @@ export const EducationSection = async ({ profileId, isOwnProfile }: EducationSec
     <Card className="mt-4">
       <CardContent className="p-[27.6px]">
         <div className="flex items-center justify-between">
-          <h2 className="font-heading text-2xl font-semibold">{t('sectionTitle')}</h2>
+          <h2 className="font-heading text-2xl font-medium">{t('sectionTitle')}</h2>
           {isOwnProfile && <EducationDialog profileId={profileId} />}
         </div>
 
@@ -47,7 +47,7 @@ export const EducationSection = async ({ profileId, isOwnProfile }: EducationSec
                     {education.end_date ? formatMonth(education.end_date) : ''}
                   </p>
                   <div>
-                    <p className="font-heading font-semibold">{education.school}</p>
+                    <p className="font-heading font-medium">{education.school}</p>
                     {education.degree && (
                       <p className="text-base text-foreground">{education.degree}</p>
                     )}

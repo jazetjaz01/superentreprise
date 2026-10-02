@@ -33,7 +33,7 @@ export const ProfileUrlCard = ({ path }: ProfileUrlCardProps) => {
   return (
     <Card>
       <CardContent>
-        <h2 className="font-semibold">{t('title')}</h2>
+        <h2 className="font-medium">{t('title')}</h2>
         <p className="mt-2 truncate text-base text-foreground">{url}</p>
         <Button
           type="button"

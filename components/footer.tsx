@@ -40,7 +40,7 @@ const Footer = () => {
         <div className="grid grid-cols-2 gap-x-8 gap-y-10 px-4 py-12 sm:grid-cols-3 sm:px-6 md:grid-cols-4 lg:grid-cols-5 lg:px-8 xl:grid-cols-6">
           {footerSections.map(({ id, links }) => (
             <div key={id}>
-              <h6 className="font-heading text-base font-semibold">
+              <h6 className="font-heading text-base font-medium">
                 {t(`sections.${id}.title` as FooterKey)}
               </h6>
               <ul className="mt-6 space-y-4">

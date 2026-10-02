@@ -18,7 +18,7 @@ export function AuthCard({ title, description, className, children }: AuthCardPr
     >
       <div className="flex flex-col items-center">
         <Logo />
-        <h1 className="font-heading mt-4 text-2xl font-semibold">{title}</h1>
+        <h1 className="font-heading mt-4 text-2xl font-medium">{title}</h1>
         {description && (
           <p className="mt-1 text-center text-base text-foreground">
             {description}

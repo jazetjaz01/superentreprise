@@ -97,12 +97,12 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
     <>
       {isRealAdmin && (
         <div className="bg-primary flex items-center justify-between gap-4 px-4 py-3 text-white sm:px-6 lg:px-8">
-          <p className="text-base font-semibold">
+          <p className="text-base font-medium">
             {isAdminView ? t("viewingAsAdmin") : t("viewingAsMember")}
           </p>
           <Link
             href={`/company/${slug}${isAdminView ? "" : "?view=admin"}`}
-            className="shrink-0 rounded-full border border-white px-4 py-1.5 text-base font-semibold hover:bg-white/10"
+            className="shrink-0 rounded-full border border-white px-4 py-1.5 text-base font-medium hover:bg-white/10"
           >
             {isAdminView ? t("switchToMember") : t("switchToAdmin")}
           </Link>
@@ -161,7 +161,7 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
                     </div>
                   </div>
 
-                  <h1 className="font-heading mt-3 text-[26px] leading-tight font-semibold">
+                  <h1 className="font-heading mt-3 text-[26px] leading-tight font-medium">
                     {company.name}
                   </h1>
                   {company.tagline && (
@@ -207,7 +207,7 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
               {company.about && (
                 <Card className="mt-4">
                   <CardContent className="p-[27.6px]">
-                    <h2 className="font-heading text-2xl font-semibold">{t("about")}</h2>
+                    <h2 className="font-heading text-2xl font-medium">{t("about")}</h2>
                     <p className="mt-2 whitespace-pre-wrap text-foreground">{company.about}</p>
                   </CardContent>
                 </Card>
@@ -217,7 +217,7 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
 
           {isAdminView && viewerId && isPostsTab && (
             <div className="flex flex-col gap-4">
-              <h1 className="font-heading text-2xl font-semibold">{t("pagePostsTitle")}</h1>
+              <h1 className="font-heading text-2xl font-medium">{t("pagePostsTitle")}</h1>
               <PostFeed
                 viewerName={viewerName}
                 viewerAvatarUrl={viewerAvatarUrl}
@@ -262,7 +262,7 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
           <div className="flex flex-col gap-4">
             <Card>
               <CardContent>
-                <h2 className="font-heading text-lg font-semibold">{t("followCardTitle")}</h2>
+                <h2 className="font-heading text-lg font-medium">{t("followCardTitle")}</h2>
                 <p className="text-ink-700 mt-2 text-base">
                   {tFollow("followersCount", { count: followerCount ?? 0 })}
                 </p>

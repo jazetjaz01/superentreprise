@@ -136,7 +136,7 @@ export const FindCompaniesDialog = ({ viewerId, excludeCompanyIds }: FindCompani
             />
           </label>
 
-          <div className="border-border flex gap-4 border-b text-base font-semibold">
+          <div className="border-border flex gap-4 border-b text-base font-medium">
             <button
               type="button"
               onClick={() => setTab("following")}
@@ -186,7 +186,7 @@ export const FindCompaniesDialog = ({ viewerId, excludeCompanyIds }: FindCompani
                     )}
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="wrap-break-word text-base font-semibold">{company.name}</p>
+                    <p className="wrap-break-word text-base font-medium">{company.name}</p>
                     {(company.tagline || company.industry) && (
                       <p className="text-ink-600 truncate text-base">
                         {company.tagline ?? company.industry}

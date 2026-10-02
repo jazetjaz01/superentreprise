@@ -174,7 +174,7 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="h-11 flex-1 rounded-full border border-border px-5 text-left font-semibold text-foreground transition-colors hover:bg-foreground/[.07]"
+              className="h-11 flex-1 rounded-full border border-border px-5 text-left font-medium text-foreground transition-colors hover:bg-foreground/[.07]"
             >
               {t("start")}
             </button>
@@ -182,15 +182,15 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
           <div className="flex justify-center gap-2">
             <Button variant="ghost" onClick={() => setOpen(true)}>
               <ImageIcon className="size-5" />
-              <span className="text-base font-semibold text-foreground">{t("photo")}</span>
+              <span className="text-base font-medium text-foreground">{t("photo")}</span>
             </Button>
             <Button variant="ghost" onClick={() => setOpen(true)}>
               <VideoIcon className="size-5 text-blue-600" />
-              <span className="text-base font-semibold text-foreground">{t("video")}</span>
+              <span className="text-base font-medium text-foreground">{t("video")}</span>
             </Button>
             <Button variant="ghost" nativeButton={false} render={<Link href="/articles/write" />}>
               <NewspaperIcon className="size-5 text-orange-500" />
-              <span className="text-base font-semibold text-foreground">{t("writeArticle")}</span>
+              <span className="text-base font-medium text-foreground">{t("writeArticle")}</span>
             </Button>
           </div>
         </CardContent>
@@ -205,7 +205,7 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
               <UserAvatar name={name} avatarUrl={avatarUrl} size={48} />
-              <span className="font-semibold">{name}</span>
+              <span className="font-medium">{name}</span>
             </div>
 
             <Textarea
@@ -289,7 +289,7 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
                   onClick={() => fileInput.current?.click()}
                 >
                   <ImageIcon className="size-5" />
-                  <span className="text-base font-semibold text-foreground">{t("addPhoto")}</span>
+                  <span className="text-base font-medium text-foreground">{t("addPhoto")}</span>
                 </Button>
                 <input
                   ref={videoInput}
@@ -305,7 +305,7 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
                   onClick={() => videoInput.current?.click()}
                 >
                   <VideoIcon className="size-5 text-blue-600" />
-                  <span className="text-base font-semibold text-foreground">{t("addVideo")}</span>
+                  <span className="text-base font-medium text-foreground">{t("addVideo")}</span>
                 </Button>
               </div>
               <Button

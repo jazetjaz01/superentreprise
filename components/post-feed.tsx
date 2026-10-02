@@ -167,7 +167,7 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
                   <Link href={entityHref} className="flex min-w-0 items-center gap-3">
                     <UserAvatar name={entityName} avatarUrl={entityAvatarUrl} size={44} />
                     <div className="min-w-0">
-                      <p className="font-heading wrap-break-word text-lg font-semibold hover:underline">
+                      <p className="font-heading wrap-break-word text-lg font-medium hover:underline">
                         {entityName}
                       </p>
                       <p className="text-ink-600 text-base">
@@ -182,7 +182,7 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
                   <>
                     <UserAvatar name={entityName} avatarUrl={entityAvatarUrl} size={44} />
                     <div className="min-w-0">
-                      <p className="font-heading wrap-break-word text-lg font-semibold">
+                      <p className="font-heading wrap-break-word text-lg font-medium">
                         {entityName}
                       </p>
                       <p className="text-ink-600 text-base">

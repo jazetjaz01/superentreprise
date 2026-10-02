@@ -90,7 +90,7 @@ export const CompanyAdminSidebar = async ({
             </span>
           )}
         </div>
-        <p className="font-heading mt-2 text-[21px] leading-snug font-semibold wrap-break-word">
+        <p className="font-heading mt-2 text-[21px] leading-snug font-medium wrap-break-word">
           {name}
         </p>
         <Link href="#" className="flex items-center gap-1.5 text-base text-primary hover:underline">
@@ -109,7 +109,7 @@ export const CompanyAdminSidebar = async ({
         />
         <Link
           href={`/company/${slug}`}
-          className="border-border text-foreground hover:bg-foreground/[.07] mt-2 flex w-full items-center justify-center gap-1.5 rounded-md border px-4 py-2 text-base font-semibold"
+          className="border-border text-foreground hover:bg-foreground/[.07] mt-2 flex w-full items-center justify-center gap-1.5 rounded-md border px-4 py-2 text-base font-medium"
         >
           <Eye className="size-4" strokeWidth={1.5} />
           {tPage("switchToMember")}
@@ -122,7 +122,7 @@ export const CompanyAdminSidebar = async ({
             <Link
               key={key}
               href={href}
-              className={`text-ink-700 hover:bg-foreground/[.07] flex items-center gap-3 rounded-md px-2 py-1.5 text-base font-semibold ${
+              className={`text-ink-700 hover:bg-foreground/[.07] flex items-center gap-3 rounded-md px-2 py-1.5 text-base font-medium ${
                 key === activeTab ? "bg-foreground/4" : ""
               }`}
             >
@@ -139,7 +139,7 @@ export const CompanyAdminSidebar = async ({
             <Link
               key={label}
               href="#"
-              className="text-ink-700 hover:bg-foreground/[.07] flex items-center gap-3 rounded-md px-2 py-1.5 text-base font-semibold"
+              className="text-ink-700 hover:bg-foreground/[.07] flex items-center gap-3 rounded-md px-2 py-1.5 text-base font-medium"
             >
               <Icon className="size-4" strokeWidth={1.5} />
               {label}

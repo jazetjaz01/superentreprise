@@ -53,7 +53,7 @@ export const CompanyCreateMenu = ({
       <Button
         type="button"
         variant="outline"
-        className="border-primary text-primary hover:bg-primary/10 mt-3 flex w-full items-center justify-center gap-1.5 rounded-md border px-4 py-2 text-base font-semibold"
+        className="border-primary text-primary hover:bg-primary/10 mt-3 flex w-full items-center justify-center gap-1.5 rounded-md border px-4 py-2 text-base font-medium"
         onClick={() => setMenuOpen(true)}
       >
         <Plus className="size-4" strokeWidth={1.5} />
@@ -77,7 +77,7 @@ export const CompanyCreateMenu = ({
             >
               <SquarePen className="text-foreground mt-0.5 size-5 shrink-0" strokeWidth={1.5} />
               <span>
-                <span className="block text-base font-semibold">{t("postTitle")}</span>
+                <span className="block text-base font-medium">{t("postTitle")}</span>
                 <span className="text-ink-600 block text-base">{t("postDescription")}</span>
               </span>
             </button>
@@ -90,7 +90,7 @@ export const CompanyCreateMenu = ({
               >
                 <Icon className="text-foreground mt-0.5 size-5 shrink-0" strokeWidth={1.5} />
                 <span>
-                  <span className="block text-base font-semibold">{title}</span>
+                  <span className="block text-base font-medium">{title}</span>
                   <span className="text-ink-600 block text-base">{description}</span>
                 </span>
               </Link>

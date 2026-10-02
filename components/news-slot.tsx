@@ -28,7 +28,7 @@ export const NewsSlot = async () => {
   return (
     <div className="overflow-hidden rounded-md border border-border bg-card p-4">
       <div className="flex items-center justify-between">
-        <h2 className="font-heading text-xl font-semibold text-foreground">{t("title")}</h2>
+        <h2 className="font-heading text-xl font-medium text-foreground">{t("title")}</h2>
         <Info className="text-muted-foreground size-4" strokeWidth={1.5} />
       </div>
       <p className="mt-1 text-base text-muted-foreground">{t("subtitle")}</p>
@@ -37,7 +37,7 @@ export const NewsSlot = async () => {
         {articles.map((article) => (
           <li key={article.slug}>
             <Link href={`/articles/${article.slug}`} className="block group">
-              <p className="font-heading line-clamp-2 text-base font-semibold text-foreground group-hover:underline">
+              <p className="font-heading line-clamp-2 text-base font-medium text-foreground group-hover:underline">
                 {article.title}
               </p>
               <p className="text-ink-600 mt-0.5 text-base">

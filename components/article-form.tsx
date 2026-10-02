@@ -250,7 +250,7 @@ export const ArticleForm = ({
         <div className="flex items-center gap-2">
           <UserAvatar name={authorName} avatarUrl={authorAvatarUrl} size={40} />
           <div className="leading-tight">
-            <p className="text-base font-semibold">{authorName}</p>
+            <p className="text-base font-medium">{authorName}</p>
             <p className="text-base text-muted-foreground">{t('individualArticle')}</p>
           </div>
         </div>
@@ -407,7 +407,7 @@ export const ArticleForm = ({
           required
           maxLength={200}
           placeholder={t('titlePlaceholder')}
-          className="mt-6 w-full border-0 text-base font-bold text-foreground outline-none placeholder:text-muted-foreground"
+          className="mt-6 w-full border-0 text-base font-medium text-foreground outline-none placeholder:text-muted-foreground"
         />
 
         <div className="mt-6">

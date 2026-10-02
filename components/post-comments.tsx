@@ -97,7 +97,7 @@ export const PostComments = ({
       <button
         type="button"
         onClick={() => setOpen((current) => !current)}
-        className="flex cursor-pointer items-center gap-1.5 rounded-md px-2 py-1.5 text-base font-normal text-ink-800 transition-colors hover:bg-primary/10"
+        className="flex cursor-pointer items-center gap-1.5 rounded-md px-2 py-1.5 text-base font-medium text-ink-800 transition-colors hover:bg-primary/10"
       >
         <MessageCircle className="size-4" strokeWidth={1.5} />
         {t('comment')}
@@ -123,12 +123,12 @@ export const PostComments = ({
                     {comment.profiles?.slug ? (
                       <Link
                         href={`/profile/${comment.profiles.slug}`}
-                        className="font-heading text-sm font-semibold hover:underline"
+                        className="font-heading text-sm font-medium hover:underline"
                       >
                         {name}
                       </Link>
                     ) : (
-                      <span className="font-heading text-sm font-semibold">{name}</span>
+                      <span className="font-heading text-sm font-medium">{name}</span>
                     )}
                     {canDelete && (
                       <button

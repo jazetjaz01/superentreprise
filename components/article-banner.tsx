@@ -22,12 +22,12 @@ export const ArticleBanner = async () => {
           <span className="flex size-8 items-center justify-center rounded-full bg-primary">
             <Image src="/logose.svg" alt="" width={18} height={18} className="invert" />
           </span>
-          <span className="text-base font-bold text-foreground">{t("banner.label")}</span>
-          <span className="rounded-md bg-amber-400 px-2 py-0.5 text-base font-bold text-black capitalize">
+          <span className="text-base font-medium text-foreground">{t("banner.label")}</span>
+          <span className="rounded-md bg-amber-400 px-2 py-0.5 text-base font-medium text-black capitalize">
             {monthYear}
           </span>
         </div>
-        <p className="font-heading text-xl font-semibold text-foreground sm:text-2xl">
+        <p className="font-heading text-xl font-medium text-foreground sm:text-2xl">
           {t("banner.title")}
         </p>
       </div>

@@ -44,7 +44,7 @@ export const ConversationList = async ({
         >
           <UserAvatar name={conversation.displayName} avatarUrl={conversation.avatarUrl} size={44} />
           <div className="min-w-0 flex-1">
-            <p className="flex items-center gap-1 truncate text-base font-semibold text-foreground">
+            <p className="flex items-center gap-1 truncate text-base font-medium text-foreground">
               {conversation.displayName}
               {conversation.isOfficial && (
                 <BadgeCheck className="size-3.5 shrink-0 text-primary" aria-label={t("officialBadge")} />

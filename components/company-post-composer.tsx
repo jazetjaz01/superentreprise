@@ -215,7 +215,7 @@ export const CompanyPostComposer = ({
                   </span>
                 )}
               </span>
-              <span className="font-semibold">{companyName}</span>
+              <span className="font-medium">{companyName}</span>
             </div>
 
             <Textarea

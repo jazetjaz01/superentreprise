@@ -68,7 +68,7 @@ export const SkillsSection = ({ profileId, isOwnProfile, skills }: SkillsSection
   return (
     <Card className="mt-4">
       <CardContent className="p-[27.6px]">
-        <h2 className="font-heading text-2xl font-semibold">{t('sectionTitle')}</h2>
+        <h2 className="font-heading text-2xl font-medium">{t('sectionTitle')}</h2>
 
         {skills.length === 0 ? (
           <p className="mt-3 text-base text-foreground">{t('empty')}</p>

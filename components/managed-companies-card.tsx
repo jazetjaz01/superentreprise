@@ -20,7 +20,7 @@ export const ManagedCompaniesCard = async ({ companies }: ManagedCompaniesCardPr
   return (
     <Card>
       <CardContent>
-        <h2 className="font-heading text-lg font-semibold">{t("title")}</h2>
+        <h2 className="font-heading text-lg font-medium">{t("title")}</h2>
         <div className="mt-3 flex flex-col gap-3">
           {companies.map((company) => (
             <Link
@@ -44,7 +44,7 @@ export const ManagedCompaniesCard = async ({ companies }: ManagedCompaniesCardPr
                   </span>
                 )}
               </span>
-              <span className="wrap-break-word text-base font-semibold text-foreground">
+              <span className="wrap-break-word text-base font-medium text-foreground">
                 {company.name}
               </span>
             </Link>
@@ -55,11 +55,11 @@ export const ManagedCompaniesCard = async ({ companies }: ManagedCompaniesCardPr
 
         <h3 className="text-ink-700 text-base">{t("growTitle")}</h3>
         <div className="mt-2 flex flex-col gap-2">
-          <Link href="#" className="flex items-center gap-2 text-base font-semibold hover:underline">
+          <Link href="#" className="flex items-center gap-2 text-base font-medium hover:underline">
             <Gem className="text-primary size-4" strokeWidth={1.5} />
             {t("premiumLink")}
           </Link>
-          <Link href="#" className="flex items-center gap-2 text-base font-semibold hover:underline">
+          <Link href="#" className="flex items-center gap-2 text-base font-medium hover:underline">
             <Target className="text-ink-600 size-4" strokeWidth={1.5} />
             {t("adsLink")}
           </Link>

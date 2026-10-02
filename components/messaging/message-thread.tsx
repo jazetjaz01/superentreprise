@@ -44,7 +44,7 @@ export const MessageThread = async ({
           <ArrowLeft className="size-5" strokeWidth={1.5} />
         </Link>
         <UserAvatar name={headerName} avatarUrl={headerAvatarUrl} size={40} />
-        <p className="flex items-center gap-1 text-base font-semibold text-foreground">
+        <p className="flex items-center gap-1 text-base font-medium text-foreground">
           {headerName}
           {isOfficial && (
             <BadgeCheck className="size-3.5 shrink-0 text-primary" aria-label={t("officialBadge")} />

@@ -109,7 +109,7 @@ export const NewConversationDialog = ({ mode, selfProfileId }: NewConversationDi
                   className="hover:bg-foreground/[.07] flex items-center gap-3 rounded-md px-2 py-2 text-left disabled:opacity-50"
                 >
                   <UserAvatar name={profile.full_name ?? t("anonymous")} avatarUrl={profile.avatar_url} size={36} />
-                  <span className="text-base font-semibold text-foreground">
+                  <span className="text-base font-medium text-foreground">
                     {profile.full_name ?? t("anonymous")}
                   </span>
                 </button>

@@ -72,7 +72,7 @@ const Navbar = async () => {
             <>
               <Link
                 href="/auth/login"
-                className="hidden text-base font-normal hover:underline sm:inline"
+                className="hidden text-base font-medium hover:underline sm:inline"
               >
                 {t("signIn")}
               </Link>

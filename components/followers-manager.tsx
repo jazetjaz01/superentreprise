@@ -61,7 +61,7 @@ export const FollowersManager = ({ profileId, followers, anonymousLabel }: Follo
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="self-start text-left text-base font-semibold text-foreground hover:underline"
+        className="self-start text-left text-base font-medium text-foreground hover:underline"
       >
         {t('followersCount', { count: followers.length })}
       </button>
@@ -83,7 +83,7 @@ export const FollowersManager = ({ profileId, followers, anonymousLabel }: Follo
                     <Link href={`/profile/${follower.slug}`} className="flex flex-1 items-center gap-3 min-w-0">
                       <UserAvatar name={name} avatarUrl={follower.avatar_url} size={40} />
                       <div className="min-w-0">
-                        <p className="truncate text-base font-semibold hover:underline">{name}</p>
+                        <p className="truncate text-base font-medium hover:underline">{name}</p>
                         {follower.headline && (
                           <p className="truncate text-base text-muted-foreground">{follower.headline}</p>
                         )}
