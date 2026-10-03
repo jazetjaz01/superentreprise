@@ -30,6 +30,7 @@ type CompanyAdminSidebarProps = {
   logoUrl: string | null;
   bannerUrl: string | null;
   followerCount: number;
+  viewCount: number;
   activeTab: string;
 };
 
@@ -41,6 +42,7 @@ export const CompanyAdminSidebar = async ({
   logoUrl,
   bannerUrl,
   followerCount,
+  viewCount,
   activeTab,
 }: CompanyAdminSidebarProps) => {
   const t = await getTranslations("Company.adminSidebar");
@@ -53,7 +55,13 @@ export const CompanyAdminSidebar = async ({
     { key: "posts", label: t("pagePosts"), icon: Newspaper, href: `/company/${slug}?view=admin&tab=posts` },
     { key: "stats", label: t("analytics"), icon: BarChart2, href: `/company/${slug}?view=admin&tab=stats` },
     { key: "feed", label: t("feed"), icon: Rss, href: `/company/${slug}?view=admin&tab=feed` },
-    { key: "activity", label: t("activity"), icon: Activity, href: "#" },
+    {
+      key: "activity",
+      label: t("activity"),
+      icon: Activity,
+      href: `/company/${slug}?view=admin&tab=stats`,
+      meta: t("activityViews", { count: viewCount }),
+    },
     { key: "messaging", label: t("messaging"), icon: MessageSquare, href: "#" },
     { key: "edit", label: tEdit("trigger"), icon: Pencil, href: `/company/${slug}?view=admin&tab=edit` },
   ];
@@ -118,7 +126,7 @@ export const CompanyAdminSidebar = async ({
         <Separator className="my-3" />
 
         <nav className="flex w-full flex-col gap-1">
-          {navItems.map(({ key, label, icon: Icon, href }) => (
+          {navItems.map(({ key, label, icon: Icon, href, meta }) => (
             <Link
               key={key}
               href={href}
@@ -128,6 +136,7 @@ export const CompanyAdminSidebar = async ({
             >
               <Icon className="size-4" strokeWidth={1.5} />
               {label}
+              {meta && <span className="text-ink-600 ml-auto text-base font-normal">{meta}</span>}
             </Link>
           ))}
         </nav>

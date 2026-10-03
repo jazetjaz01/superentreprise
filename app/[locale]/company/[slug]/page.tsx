@@ -42,7 +42,7 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
 
   const viewerId = claimsData?.claims?.sub;
 
-  const [{ count: followerCount }, followingRow, adminRow, { data: viewerProfile }] =
+  const [{ count: followerCount }, followingRow, adminRow, { data: viewerProfile }, { count: viewCount }] =
     await Promise.all([
       supabase
         .from("company_follows")
@@ -67,6 +67,10 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
       viewerId
         ? supabase.from("profiles").select("full_name, avatar_url").eq("id", viewerId).maybeSingle()
         : Promise.resolve({ data: null }),
+      supabase
+        .from("company_views")
+        .select("*", { count: "exact", head: true })
+        .eq("company_id", company.id),
     ]);
 
   const isFollowing = !!followingRow?.data;
@@ -126,6 +130,7 @@ export default async function CompanyPage({ params, searchParams }: CompanyPageP
               logoUrl={company.logo_url}
               bannerUrl={company.banner_url}
               followerCount={followerCount ?? 0}
+              viewCount={viewCount ?? 0}
               activeTab={activeTab}
             />
           </aside>
