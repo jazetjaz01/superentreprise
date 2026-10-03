@@ -178,6 +178,7 @@
   },
   "ProfilePage": {
     "about": "À propos",
+    "careerProBadge": "Abonné Career Pro",
     "edit": {
       "trigger": "Modifier le profil",
       "title": "Modifier le profil",
