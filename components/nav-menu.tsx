@@ -49,7 +49,6 @@ export const NavMenu = ({ orientation = "horizontal", className }: NavMenuProps)
           >
             <Icon
               strokeWidth={1.5}
-              fill="currentColor"
               className={cn(isVertical ? "size-5" : "size-5")}
             />
             <span>{label}</span>
