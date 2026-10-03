@@ -63,12 +63,15 @@ export async function proxy(request: NextRequest) {
 
   const sessionResponse = await updateSession(request)
 
-  // Unauthenticated redirect, or one of the locale-less auth route handlers.
+  // Unauthenticated redirect, or one of the locale-less route handlers
+  // (auth callbacks, API routes) that must never go through the i18n
+  // rewrite/redirect logic.
   const { pathname } = request.nextUrl
   const isRedirect = sessionResponse.status >= 300 && sessionResponse.status < 400
   const isAuthRouteHandler =
     pathname.startsWith('/auth/confirm') || pathname.startsWith('/auth/oauth')
-  if (isRedirect || isAuthRouteHandler) {
+  const isApiRoute = pathname.startsWith('/api/')
+  if (isRedirect || isAuthRouteHandler || isApiRoute) {
     return sessionResponse
   }
 

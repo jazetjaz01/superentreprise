@@ -50,7 +50,10 @@ export async function updateSession(request: NextRequest) {
     !pathname.startsWith('/auth') &&
     // the OAuth consent route sends unauthenticated visitors to the login page
     // itself, so that it can preserve the authorization in the `next` parameter
-    pathname !== '/oauth/consent'
+    pathname !== '/oauth/consent' &&
+    // API routes (e.g. the Stripe webhook) have no browser session and must
+    // handle authorization themselves instead of being redirected to login.
+    !request.nextUrl.pathname.startsWith('/api/')
   ) {
     // no user, potentially respond by redirecting the user to the login page
     const url = request.nextUrl.clone()
