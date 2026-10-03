@@ -54,14 +54,21 @@ export default async function Home() {
       .eq("profile_id", claims.sub),
     supabase
       .from("company_admins")
-      .select("companies(slug, name, logo_url)")
+      .select("companies(slug, name, logo_url, company_follows(count))")
       .eq("admin_id", claims.sub)
-      .overrideTypes<{ companies: ManagedCompany | null }[], { merge: false }>(),
+      .overrideTypes<
+        { companies: (Omit<ManagedCompany, "followerCount"> & { company_follows: { count: number }[] }) | null }[],
+        { merge: false }
+      >(),
   ]);
 
   const managedCompanies: ManagedCompany[] = (managedCompaniesRows ?? [])
     .map((row) => row.companies)
-    .filter((company): company is ManagedCompany => !!company);
+    .filter((company): company is NonNullable<typeof company> => !!company)
+    .map(({ company_follows, ...company }) => ({
+      ...company,
+      followerCount: company_follows?.[0]?.count ?? 0,
+    }));
 
   const name = profile?.full_name ?? claims.email ?? tProfile("anonymous");
   const avatarUrl: string | null =
