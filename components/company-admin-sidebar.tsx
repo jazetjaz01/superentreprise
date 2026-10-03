@@ -82,7 +82,7 @@ export const CompanyAdminSidebar = async ({
         )}
       </div>
       <CardContent className="relative -mt-8 flex flex-col items-start gap-1 text-left">
-        <div className="relative z-10 flex size-16 items-center justify-center overflow-hidden rounded-full border-2 border-primary bg-background p-0.5">
+        <div className="relative z-10 flex size-16 items-center justify-center overflow-hidden rounded-full bg-background">
           {logoUrl ? (
             <Image
               src={logoUrl}
