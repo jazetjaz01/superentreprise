@@ -540,6 +540,33 @@
     "newsletters": "Newsletters",
     "events": "Événements"
   },
+  "Pricing": {
+    "title": "Passez à la vitesse supérieure",
+    "subtitle": "Choisissez l'abonnement adapté à vos objectifs.",
+    "checkoutSuccess": "Votre abonnement a bien été activé !",
+    "checkoutCancelled": "Le paiement a été annulé.",
+    "subscribe": "S'abonner",
+    "manageSubscription": "Gérer mon abonnement",
+    "pagePagerequiresCompany": "Accédez à cette offre depuis la page d'une entreprise que vous administrez.",
+    "plans": {
+      "career_pro": {
+        "name": "Career Pro",
+        "description": "Boostez votre recherche d'emploi : découvrez qui a consulté votre profil et contactez des recruteurs hors réseau."
+      },
+      "business_pro": {
+        "name": "Business Pro",
+        "description": "Développez votre réseau commercial avec des recherches avancées et des listes de prospects."
+      },
+      "recruiter_pro": {
+        "name": "Recruiter Pro",
+        "description": "Trouvez les bons candidats grâce à la recherche avancée et au contact illimité."
+      },
+      "entreprise_pro": {
+        "name": "Entreprise Pro",
+        "description": "Statistiques avancées, badge vérifié et publication programmée pour votre page entreprise."
+      }
+    }
+  },
   "Messaging": {
     "title": "Messagerie",
     "officialInboxTitle": "Messages officiels",

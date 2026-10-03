@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 
 import { Button } from "@/components/ui/button";
 import { UserAvatar } from "@/components/user-avatar";
+import { Link } from "@/i18n/navigation";
 
 type PremiumAdSlotProps = {
   name: string;
@@ -38,7 +39,7 @@ export const PremiumAdSlot = async ({ name, avatarUrl }: PremiumAdSlotProps) => 
       </p>
 
       <div className="mt-4 flex justify-center">
-        <Button type="button" variant="default">
+        <Button variant="default" nativeButton={false} render={<Link href="/pricing" />}>
           {t("cta")}
         </Button>
       </div>

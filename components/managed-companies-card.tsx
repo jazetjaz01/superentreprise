@@ -74,7 +74,7 @@ export const ManagedCompaniesCard = async ({ companies }: ManagedCompaniesCardPr
 
         <h3 className="text-foreground text-base">{t("growTitle")}</h3>
         <div className="mt-2 flex flex-col gap-2">
-          <Link href="#" className="flex items-center gap-2 text-base font-medium hover:underline">
+          <Link href="/pricing" className="flex items-center gap-2 text-base font-medium hover:underline">
             <Gem className="text-foreground size-4" strokeWidth={1.5} />
             {t("premiumLink")}
           </Link>

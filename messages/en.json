@@ -540,6 +540,33 @@
     "newsletters": "Newsletters",
     "events": "Events"
   },
+  "Pricing": {
+    "title": "Take it to the next level",
+    "subtitle": "Choose the subscription that fits your goals.",
+    "checkoutSuccess": "Your subscription is now active!",
+    "checkoutCancelled": "The payment was cancelled.",
+    "subscribe": "Subscribe",
+    "manageSubscription": "Manage subscription",
+    "pagePagerequiresCompany": "Access this plan from a company page you administer.",
+    "plans": {
+      "career_pro": {
+        "name": "Career Pro",
+        "description": "Boost your job search: see who viewed your profile and reach recruiters outside your network."
+      },
+      "business_pro": {
+        "name": "Business Pro",
+        "description": "Grow your sales network with advanced search and saved prospect lists."
+      },
+      "recruiter_pro": {
+        "name": "Recruiter Pro",
+        "description": "Find the right candidates with advanced search and unlimited outreach."
+      },
+      "entreprise_pro": {
+        "name": "Entreprise Pro",
+        "description": "Advanced analytics, a verified badge and scheduled posting for your company page."
+      }
+    }
+  },
   "Messaging": {
     "title": "Messaging",
     "officialInboxTitle": "Official messages",
