@@ -21,8 +21,9 @@ export default async function Home() {
   if (!claims) {
     return (
       <div className="flex flex-1 flex-col bg-white">
-        <ImageCarouselSection />
         <Hero />
+        <ImageCarouselSection />
+        
       </div>
     );
   }
