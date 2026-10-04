@@ -113,7 +113,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             <CardContent className="relative">
               <div className="-mt-20 flex items-end justify-between gap-3">
                 <div
-                  className={`rounded-full p-1.5 ${hasActiveSubscription ? "bg-green-800" : "bg-background"}`}
+                  className={`rounded-full ${hasActiveSubscription ? "ring-4 ring-green-800" : ""}`}
                 >
                   <UserAvatar name={name} avatarUrl={profile.avatar_url} size={120} />
                 </div>
