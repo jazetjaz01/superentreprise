@@ -179,6 +179,8 @@
   "ProfilePage": {
     "about": "À propos",
     "careerProBadge": "Abonné Career Pro",
+    "message": "Message",
+    "visitWebsite": "Accéder à mon site web",
     "contactInfo": {
       "trigger": "Coordonnées",
       "title": "Coordonnées",

@@ -179,6 +179,8 @@
   "ProfilePage": {
     "about": "About",
     "careerProBadge": "Career Pro subscriber",
+    "message": "Message",
+    "visitWebsite": "Visit my website",
     "contactInfo": {
       "trigger": "Contact info",
       "title": "Contact info",

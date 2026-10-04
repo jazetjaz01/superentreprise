@@ -9,9 +9,11 @@ import { EditProfileDialog } from "@/components/edit-profile-dialog";
 import { EducationSection } from "@/components/education-section";
 import { ExperienceSection } from "@/components/experience-section";
 import { FollowButton } from "@/components/follow-button";
+import { MessageProfileButton } from "@/components/message-profile-button";
 import { ProfileBanner } from "@/components/profile-banner";
 import { ProfileUrlCard } from "@/components/profile-url-card";
 import { SkillsSection } from "@/components/skills-section";
+import { Button } from "@/components/ui/button";
 import { UserAvatar } from "@/components/user-avatar";
 import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
@@ -138,16 +140,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                     region={profile.region}
                     country={profile.country}
                   />
-                ) : (
-                  viewerId && (
-                    <FollowButton
-                      viewerId={viewerId}
-                      profileId={profile.id}
-                      initialIsFollowing={isFollowing}
-                      variant="text"
-                    />
-                  )
-                )}
+                ) : null}
               </div>
               <div className="mt-3 flex items-start justify-between gap-4">
                 <h1 className="font-heading flex items-center gap-2 text-[26px] leading-tight font-medium">
@@ -221,6 +214,27 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                   <span className="text-primary font-medium">{t("follow.followingLabel")}</span>
                 </p>
               </div>
+
+              {!isOwnProfile && viewerId && (
+                <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <MessageProfileButton profileId={profile.id} />
+                  <FollowButton
+                    viewerId={viewerId}
+                    profileId={profile.id}
+                    initialIsFollowing={isFollowing}
+                    variant="button"
+                  />
+                  {profile.website && (
+                    <Button
+                      variant="outline"
+                      nativeButton={false}
+                      render={<a href={profile.website} target="_blank" rel="noopener noreferrer" />}
+                    >
+                      {t("visitWebsite")}
+                    </Button>
+                  )}
+                </div>
+              )}
             </CardContent>
           </Card>
 
