@@ -1,6 +1,6 @@
 "use client";
 
-import { Briefcase, HandHeart, Lock, Store, UserSearch } from "lucide-react";
+import { Briefcase, EyeOff, HandHeart, Store, UserSearch } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
@@ -61,7 +61,7 @@ export const ProfileGoalsCard = ({ profileId, jobPreferences }: ProfileGoalsCard
         <CardContent className="p-[27.6px]">
           <h2 className="font-heading flex items-center gap-2 text-2xl font-medium">
             {t("trigger")}
-            <Lock
+            <EyeOff
               className="text-ink-600 size-4 shrink-0"
               strokeWidth={1.5}
               aria-label={t("privateHint")}
