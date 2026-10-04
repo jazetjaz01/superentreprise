@@ -11,7 +11,7 @@ import { ExperienceSection } from "@/components/experience-section";
 import { FollowButton } from "@/components/follow-button";
 import { MessageProfileButton } from "@/components/message-profile-button";
 import { ProfileBanner } from "@/components/profile-banner";
-import { ProfileGoalsMenu } from "@/components/profile-goals-menu";
+import { ProfileGoalsCard } from "@/components/profile-goals-card";
 import { ProfileUrlCard } from "@/components/profile-url-card";
 import { SkillsSection } from "@/components/skills-section";
 import { Button } from "@/components/ui/button";
@@ -239,10 +239,6 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
               {isOwnProfile && (
                 <div className="mt-3 flex flex-wrap items-center gap-2">
-                  <ProfileGoalsMenu
-                    profileId={profile.id}
-                    jobPreferences={profile.job_search_preferences}
-                  />
                   <Button
                     type="button"
                     variant="outline"
@@ -265,6 +261,10 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               )}
             </CardContent>
           </Card>
+
+          {isOwnProfile && (
+            <ProfileGoalsCard profileId={profile.id} jobPreferences={profile.job_search_preferences} />
+          )}
 
           {profile.about && (
             <Card className="mt-4">
