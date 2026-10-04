@@ -21,7 +21,12 @@ export const ProfileGoalsMenu = () => {
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger
-        render={<Button type="button" className="rounded-full bg-green-700 text-white hover:bg-green-800" />}
+        render={
+          <Button
+            type="button"
+            className="rounded-full border-green-700 bg-green-700 text-white hover:bg-green-800"
+          />
+        }
       >
         {t("trigger")}
       </Popover.Trigger>
