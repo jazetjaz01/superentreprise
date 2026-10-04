@@ -240,10 +240,22 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               {isOwnProfile && (
                 <div className="mt-3 flex flex-wrap items-center gap-2">
                   <ProfileGoalsMenu />
-                  <Button type="button" variant="outline" nativeButton={false} render={<Link href="#" />}>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    nativeButton={false}
+                    className="rounded-full border-green-700 text-green-700 hover:bg-green-700/10"
+                    render={<Link href="#" />}
+                  >
                     {t("addSection")}
                   </Button>
-                  <Button type="button" variant="outline" nativeButton={false} render={<Link href="#" />}>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    nativeButton={false}
+                    className="rounded-full border-green-700 text-green-700 hover:bg-green-700/10"
+                    render={<Link href="#" />}
+                  >
                     {t("improveProfile")}
                   </Button>
                 </div>
