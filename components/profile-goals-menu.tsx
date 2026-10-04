@@ -20,7 +20,11 @@ export const ProfileGoalsMenu = () => {
 
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
-      <Popover.Trigger render={<Button type="button" />}>{t("trigger")}</Popover.Trigger>
+      <Popover.Trigger
+        render={<Button type="button" className="rounded-full bg-green-700 text-white hover:bg-green-800" />}
+      >
+        {t("trigger")}
+      </Popover.Trigger>
       <Popover.Portal>
         <Popover.Positioner sideOffset={8} align="start">
           <Popover.Popup className="w-80 rounded-[7px] border border-border bg-popover p-2 text-foreground shadow-(--shadow-lg) outline-none data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95">
