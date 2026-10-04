@@ -55,7 +55,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     { count: followingCount },
     followingRow,
     { data: managedCompaniesRows },
-    { data: careerProSubscription },
+    { data: activeSubscriptions },
   ] = await Promise.all([
     supabase
       .from("skills")
@@ -81,14 +81,14 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
       .overrideTypes<{ companies: ManagedCompany | null }[], { merge: false }>(),
     supabase
       .from("subscriptions")
-      .select("status")
+      .select("plan")
       .eq("profile_id", profile.id)
-      .eq("plan", "career_pro")
-      .in("status", ["active", "trialing"])
-      .maybeSingle(),
+      .in("status", ["active", "trialing"]),
   ]);
 
-  const isCareerPro = !!careerProSubscription;
+  const activeProfilePlans = new Set((activeSubscriptions ?? []).map((row) => row.plan));
+  const isCareerPro = activeProfilePlans.has("career_pro");
+  const hasActiveSubscription = activeProfilePlans.size > 0;
 
   if (viewerId && !isOwnProfile) {
     // Unique constraint on (profile_id, viewer_id, viewed_on) dedupes same-day views; ignore the conflict.
@@ -112,7 +112,9 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             />
             <CardContent className="relative">
               <div className="-mt-20 flex items-end justify-between gap-3">
-                <div className="rounded-full bg-background p-1.5">
+                <div
+                  className={`rounded-full p-1.5 ${hasActiveSubscription ? "bg-primary" : "bg-background"}`}
+                >
                   <UserAvatar name={name} avatarUrl={profile.avatar_url} size={120} />
                 </div>
                 {isOwnProfile ? (
