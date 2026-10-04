@@ -212,6 +212,7 @@
     },
     "goals": {
       "trigger": "Mes objectifs",
+      "privateHint": "Visible par vous uniquement",
       "jobSearchTitle": "Recherche d'un nouvel emploi",
       "jobSearchDescription": "Indiquez aux recruteurs et à tout le monde que vous êtes à l'écoute de nouvelles opportunités",
       "recruitingTitle": "Recrutement",

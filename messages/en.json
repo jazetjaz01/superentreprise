@@ -212,6 +212,7 @@
     },
     "goals": {
       "trigger": "My goals",
+      "privateHint": "Only visible to you",
       "jobSearchTitle": "Looking for a new job",
       "jobSearchDescription": "Let recruiters and everyone know you're open to new opportunities",
       "recruitingTitle": "Hiring",
