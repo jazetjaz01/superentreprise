@@ -54,6 +54,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const [
     { data: skills },
     { count: followingCount },
+    { count: followerCount },
     followingRow,
     { data: managedCompaniesRows },
     { data: activeSubscriptions },
@@ -68,6 +69,10 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
       .from("follows")
       .select("*", { count: "exact", head: true })
       .eq("follower_id", profile.id),
+    supabase
+      .from("follows")
+      .select("*", { count: "exact", head: true })
+      .eq("followee_id", profile.id),
     !isOwnProfile && viewerId
       ? supabase
           .from("follows")
@@ -209,8 +214,11 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
               <div className="mt-1 flex flex-col gap-1 text-base">
                 <p className="flex items-center gap-1">
-                  <span className="text-primary font-medium">{t("follow.followingLabel")}</span>
+                  <span className="text-primary font-medium">{followerCount ?? 0}</span>
+                  <span className="text-primary font-medium">{t("follow.followersLabel")}</span>
+                  <span className="text-ink-600">·</span>
                   <span className="text-primary font-medium">{followingCount ?? 0}</span>
+                  <span className="text-primary font-medium">{t("follow.followingLabel")}</span>
                 </p>
               </div>
             </CardContent>
