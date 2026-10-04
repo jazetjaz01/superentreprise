@@ -230,7 +230,7 @@
       "followersCount": "{count, plural, =0 {Aucun abonné} one {# abonné} other {# abonnés}}",
       "followingCount": "{count, plural, =0 {Aucun abonnement} one {# abonnement} other {# abonnements}}",
       "followersLabel": "Abonnés",
-      "followingLabel": "Abonnements",
+      "followingLabel": "Relations",
       "followersDialogTitle": "Abonnés",
       "noFollowers": "Vous n'avez pas encore d'abonnés.",
       "removeFollower": "Retirer"
