@@ -213,6 +213,9 @@
     "goals": {
       "trigger": "My goals",
       "privateHint": "Only visible to you",
+      "upsellTitle": "Career Pro feature",
+      "upsellDescription": "Subscribe to Career Pro to customize your job search preferences.",
+      "upsellCta": "Discover Career Pro",
       "jobSearchTitle": "Looking for a new job",
       "jobSearchDescription": "Let recruiters and everyone know you're open to new opportunities",
       "recruitingTitle": "Hiring",

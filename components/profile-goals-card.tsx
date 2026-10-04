@@ -5,7 +5,15 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { JobPreferencesDialog, type JobPreferences } from "@/components/job-preferences-dialog";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Link } from "@/i18n/navigation";
 
 const hasAnyPreference = (preferences: JobPreferences | null) =>
   !!preferences &&
@@ -17,11 +25,13 @@ const hasAnyPreference = (preferences: JobPreferences | null) =>
 type ProfileGoalsCardProps = {
   profileId: string;
   jobPreferences: JobPreferences | null;
+  isCareerPro: boolean;
 };
 
-export const ProfileGoalsCard = ({ profileId, jobPreferences }: ProfileGoalsCardProps) => {
+export const ProfileGoalsCard = ({ profileId, jobPreferences, isCareerPro }: ProfileGoalsCardProps) => {
   const t = useTranslations("ProfilePage.goals");
   const [jobPreferencesOpen, setJobPreferencesOpen] = useState(false);
+  const [upsellOpen, setUpsellOpen] = useState(false);
   const isJobSearchActive = hasAnyPreference(jobPreferences);
 
   const items = [
@@ -30,7 +40,7 @@ export const ProfileGoalsCard = ({ profileId, jobPreferences }: ProfileGoalsCard
       icon: UserSearch,
       title: t("jobSearchTitle"),
       isActive: isJobSearchActive,
-      onSelect: () => setJobPreferencesOpen(true),
+      onSelect: () => (isCareerPro ? setJobPreferencesOpen(true) : setUpsellOpen(true)),
     },
     {
       key: "recruiting",
@@ -92,6 +102,23 @@ export const ProfileGoalsCard = ({ profileId, jobPreferences }: ProfileGoalsCard
         open={jobPreferencesOpen}
         onOpenChange={setJobPreferencesOpen}
       />
+
+      <Dialog open={upsellOpen} onOpenChange={setUpsellOpen}>
+        <DialogContent className="sm:max-w-sm">
+          <DialogHeader>
+            <DialogTitle>{t("upsellTitle")}</DialogTitle>
+          </DialogHeader>
+          <p className="text-base text-foreground">{t("upsellDescription")}</p>
+          <Button
+            type="button"
+            nativeButton={false}
+            className="bg-primary text-white"
+            render={<Link href="/pricing" />}
+          >
+            {t("upsellCta")}
+          </Button>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };

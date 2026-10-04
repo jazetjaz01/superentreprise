@@ -263,7 +263,11 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           </Card>
 
           {isOwnProfile && (
-            <ProfileGoalsCard profileId={profile.id} jobPreferences={profile.job_search_preferences} />
+            <ProfileGoalsCard
+              profileId={profile.id}
+              jobPreferences={profile.job_search_preferences}
+              isCareerPro={isCareerPro}
+            />
           )}
 
           {profile.about && (

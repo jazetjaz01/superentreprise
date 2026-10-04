@@ -213,6 +213,9 @@
     "goals": {
       "trigger": "Mes objectifs",
       "privateHint": "Visible par vous uniquement",
+      "upsellTitle": "Fonctionnalité réservée à Career Pro",
+      "upsellDescription": "Abonnez-vous à Career Pro pour personnaliser vos préférences de recherche d'emploi.",
+      "upsellCta": "Découvrir Career Pro",
       "jobSearchTitle": "Recherche d'un nouvel emploi",
       "jobSearchDescription": "Indiquez aux recruteurs et à tout le monde que vous êtes à l'écoute de nouvelles opportunités",
       "recruitingTitle": "Recrutement",
