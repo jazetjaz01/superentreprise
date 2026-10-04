@@ -2,7 +2,7 @@
 
 import { Check, Plus, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -43,11 +43,25 @@ type TagListProps = {
 const TagList = ({ values, onChange, addLabel, placeholder }: TagListProps) => {
   const [isAdding, setIsAdding] = useState(false);
   const [draft, setDraft] = useState("");
+  // Mirrors `draft` so a blur fired during the Escape-triggered unmount (which
+  // can still run with a stale `commit` closure from the previous render)
+  // reliably sees that the draft was cleared instead of re-adding it.
+  const draftRef = useRef("");
+
+  const setDraftValue = (value: string) => {
+    draftRef.current = value;
+    setDraft(value);
+  };
 
   const commit = () => {
-    const trimmed = draft.trim();
+    const trimmed = draftRef.current.trim();
     if (trimmed) onChange([...values, trimmed]);
-    setDraft("");
+    setDraftValue("");
+    setIsAdding(false);
+  };
+
+  const cancel = () => {
+    setDraftValue("");
     setIsAdding(false);
   };
 
@@ -74,16 +88,16 @@ const TagList = ({ values, onChange, addLabel, placeholder }: TagListProps) => {
           <Input
             autoFocus
             value={draft}
-            onChange={(e) => setDraft(e.target.value)}
+            onChange={(e) => setDraftValue(e.target.value)}
             placeholder={placeholder}
+            onBlur={commit}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 e.preventDefault();
                 commit();
               }
               if (e.key === "Escape") {
-                setDraft("");
-                setIsAdding(false);
+                cancel();
               }
             }}
             className="h-9 w-48"
