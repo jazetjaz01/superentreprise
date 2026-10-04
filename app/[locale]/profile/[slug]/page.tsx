@@ -38,7 +38,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     supabase
       .from("profiles")
       .select(
-        "id, full_name, avatar_url, banner_url, headline, about, city, region, country, website, phone, show_email",
+        "id, full_name, avatar_url, banner_url, headline, about, city, region, country, website, phone, show_email, job_search_preferences",
       )
       .eq("slug", slug)
       .maybeSingle(),
@@ -239,7 +239,10 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
               {isOwnProfile && (
                 <div className="mt-3 flex flex-wrap items-center gap-2">
-                  <ProfileGoalsMenu />
+                  <ProfileGoalsMenu
+                    profileId={profile.id}
+                    jobPreferences={profile.job_search_preferences}
+                  />
                   <Button
                     type="button"
                     variant="outline"

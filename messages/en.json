@@ -183,6 +183,33 @@
     "visitWebsite": "Visit my website",
     "addSection": "Add section",
     "improveProfile": "Improve profile",
+    "jobPreferences": {
+      "title": "Select your job preferences",
+      "subtitle": "We use these to personalize the job recommendations shown at the top of your Jobs tab.",
+      "requiredHint": "* Indicates a required field",
+      "jobTitlesLabel": "Job titles*",
+      "addJobTitle": "Add a job title",
+      "jobTitlePlaceholder": "e.g. Project Manager",
+      "locationTypesLabel": "Location types*",
+      "locationsLabel": "Locations*",
+      "addLocation": "Add a location",
+      "locationPlaceholder": "e.g. Paris, France",
+      "jobTypesLabel": "Job types",
+      "locationTypes": {
+        "onSite": "On-site",
+        "hybrid": "Hybrid",
+        "remote": "Remote"
+      },
+      "jobTypes": {
+        "fullTime": "Full-time",
+        "partTime": "Part-time",
+        "contract": "Contract",
+        "internship": "Internship"
+      },
+      "save": "Save and continue",
+      "saving": "Saving...",
+      "error": "Unable to save your preferences. Please try again."
+    },
     "goals": {
       "trigger": "My goals",
       "jobSearchTitle": "Looking for a new job",

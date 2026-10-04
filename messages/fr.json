@@ -183,6 +183,33 @@
     "visitWebsite": "Accéder à mon site web",
     "addSection": "Ajouter une section",
     "improveProfile": "Améliorer le profil",
+    "jobPreferences": {
+      "title": "Sélectionnez vos préférences d'emploi",
+      "subtitle": "Nous les utilisons pour personnaliser vos recommandations d'offres d'emploi qui apparaissent en haut de votre onglet Emplois.",
+      "requiredHint": "* Indique un champ obligatoire",
+      "jobTitlesLabel": "Intitulés de poste*",
+      "addJobTitle": "Ajouter un poste",
+      "jobTitlePlaceholder": "Ex. Chef de projet",
+      "locationTypesLabel": "Types de lieux*",
+      "locationsLabel": "Lieux*",
+      "addLocation": "Ajouter un lieu",
+      "locationPlaceholder": "Ex. Paris, France",
+      "jobTypesLabel": "Types d'emploi",
+      "locationTypes": {
+        "onSite": "Sur site",
+        "hybrid": "Hybride",
+        "remote": "À distance"
+      },
+      "jobTypes": {
+        "fullTime": "Temps plein",
+        "partTime": "Temps partiel",
+        "contract": "CDD",
+        "internship": "Stage / Alternance"
+      },
+      "save": "Enregistrer et continuer",
+      "saving": "Enregistrement...",
+      "error": "Impossible d'enregistrer vos préférences. Veuillez réessayer."
+    },
     "goals": {
       "trigger": "Mes objectifs",
       "jobSearchTitle": "Recherche d'un nouvel emploi",
