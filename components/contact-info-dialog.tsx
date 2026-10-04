@@ -90,7 +90,7 @@ export const ContactInfoDialog = ({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="text-foreground text-base hover:underline"
+        className="text-green-700 text-base hover:underline"
       >
         {t("trigger")}
       </button>
