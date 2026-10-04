@@ -181,6 +181,19 @@
     "careerProBadge": "Career Pro subscriber",
     "message": "Message",
     "visitWebsite": "Visit my website",
+    "addSection": "Add section",
+    "improveProfile": "Improve profile",
+    "goals": {
+      "trigger": "My goals",
+      "jobSearchTitle": "Looking for a new job",
+      "jobSearchDescription": "Let recruiters and everyone know you're open to new opportunities",
+      "recruitingTitle": "Hiring",
+      "recruitingDescription": "Let people know you're hiring and attract qualified candidates",
+      "servicesTitle": "Offering services",
+      "servicesDescription": "Showcase the services you offer so new clients can discover you",
+      "volunteeringTitle": "Looking for volunteer opportunities",
+      "volunteeringDescription": "Show you're open to volunteer opportunities based on your skills"
+    },
     "contactInfo": {
       "trigger": "Contact info",
       "title": "Contact info",

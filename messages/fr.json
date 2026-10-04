@@ -181,6 +181,19 @@
     "careerProBadge": "Abonné Career Pro",
     "message": "Message",
     "visitWebsite": "Accéder à mon site web",
+    "addSection": "Ajouter une section",
+    "improveProfile": "Améliorer le profil",
+    "goals": {
+      "trigger": "Mes objectifs",
+      "jobSearchTitle": "Recherche d'un nouvel emploi",
+      "jobSearchDescription": "Indiquez aux recruteurs et à tout le monde que vous êtes à l'écoute de nouvelles opportunités",
+      "recruitingTitle": "Recrutement",
+      "recruitingDescription": "Indiquez que vous recrutez et attirez des candidats qualifiés",
+      "servicesTitle": "Offre de services",
+      "servicesDescription": "Présentez les services que vous offrez pour que de nouveaux clients vous découvrent",
+      "volunteeringTitle": "Recherche d'opportunités de bénévolat",
+      "volunteeringDescription": "Montrez que vous êtes à l'écoute d'opportunités de bénévolat en fonction de vos compétences"
+    },
     "contactInfo": {
       "trigger": "Coordonnées",
       "title": "Coordonnées",
