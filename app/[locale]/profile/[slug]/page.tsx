@@ -115,7 +115,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 <div
                   className={`rounded-full ${hasActiveSubscription ? "ring-4 ring-green-800" : ""}`}
                 >
-                  <UserAvatar name={name} avatarUrl={profile.avatar_url} size={120} />
+                  <UserAvatar name={name} avatarUrl={profile.avatar_url} size={140} />
                 </div>
                 {isOwnProfile ? (
                   <EditProfileDialog
