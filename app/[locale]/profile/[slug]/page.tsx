@@ -160,9 +160,6 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                         href={`/company/${company.slug}`}
                         className="flex items-center gap-2 hover:underline"
                       >
-                        <span className="font-heading text-sm font-medium text-foreground">
-                          {company.name}
-                        </span>
                         <span className="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-secondary">
                           {company.logo_url ? (
                             <Image
@@ -178,6 +175,9 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                               {company.name.charAt(0).toUpperCase()}
                             </span>
                           )}
+                        </span>
+                        <span className="font-heading text-sm font-medium text-foreground">
+                          {company.name}
                         </span>
                       </Link>
                     ))}
