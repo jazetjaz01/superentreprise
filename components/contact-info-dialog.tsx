@@ -23,6 +23,7 @@ type ContactInfoDialogProps = {
   website: string | null;
   phone: string | null;
   email: string | null;
+  showEmail: boolean;
   isOwnProfile: boolean;
 };
 
@@ -32,6 +33,7 @@ export const ContactInfoDialog = ({
   website,
   phone,
   email,
+  showEmail,
   isOwnProfile,
 }: ContactInfoDialogProps) => {
   const t = useTranslations("ProfilePage.contactInfo");
@@ -40,6 +42,7 @@ export const ContactInfoDialog = ({
   const [isEditing, setIsEditing] = useState(false);
   const [websiteValue, setWebsiteValue] = useState(website ?? "");
   const [phoneValue, setPhoneValue] = useState(phone ?? "");
+  const [showEmailValue, setShowEmailValue] = useState(showEmail);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -52,6 +55,7 @@ export const ContactInfoDialog = ({
       setIsEditing(false);
       setWebsiteValue(website ?? "");
       setPhoneValue(phone ?? "");
+      setShowEmailValue(showEmail);
       setError(null);
     }
   };
@@ -67,6 +71,7 @@ export const ContactInfoDialog = ({
       .update({
         website: websiteValue.trim() || null,
         phone: phoneValue.trim() || null,
+        show_email: showEmailValue,
       })
       .eq("id", profileId);
 
@@ -115,6 +120,15 @@ export const ContactInfoDialog = ({
                   onChange={(e) => setPhoneValue(e.target.value)}
                 />
               </div>
+              <label className="flex items-center gap-2 text-base text-foreground">
+                <input
+                  type="checkbox"
+                  checked={showEmailValue}
+                  onChange={(e) => setShowEmailValue(e.target.checked)}
+                  className="accent-primary size-4"
+                />
+                {t("showEmail")}
+              </label>
               {error && <p className="text-base text-red-500">{error}</p>}
               <div className="flex justify-end gap-2">
                 <Button type="button" variant="outline" onClick={() => setIsEditing(false)}>
@@ -162,7 +176,7 @@ export const ContactInfoDialog = ({
                 </div>
               )}
 
-              {isOwnProfile && email && (
+              {email && (
                 <div className="flex items-start gap-3">
                   <Mail className="text-foreground mt-0.5 size-5 shrink-0" strokeWidth={1.5} />
                   <div className="min-w-0">

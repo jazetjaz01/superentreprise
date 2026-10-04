@@ -186,6 +186,7 @@
       "website": "Site web",
       "phone": "Téléphone",
       "email": "E-mail",
+      "showEmail": "Afficher mon e-mail sur mon profil public",
       "edit": "Modifier les coordonnées",
       "cancel": "Annuler",
       "save": "Enregistrer",

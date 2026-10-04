@@ -186,6 +186,7 @@
       "website": "Website",
       "phone": "Phone",
       "email": "Email",
+      "showEmail": "Show my email on my public profile",
       "edit": "Edit contact info",
       "cancel": "Cancel",
       "save": "Save",

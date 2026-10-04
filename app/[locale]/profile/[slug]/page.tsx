@@ -35,7 +35,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     supabase
       .from("profiles")
       .select(
-        "id, full_name, avatar_url, banner_url, headline, about, city, region, country, website, phone",
+        "id, full_name, avatar_url, banner_url, headline, about, city, region, country, website, phone, show_email",
       )
       .eq("slug", slug)
       .maybeSingle(),
@@ -57,6 +57,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     followingRow,
     { data: managedCompaniesRows },
     { data: activeSubscriptions },
+    { data: visibleEmail },
   ] = await Promise.all([
     supabase
       .from("skills")
@@ -85,6 +86,9 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
       .select("plan")
       .eq("profile_id", profile.id)
       .in("status", ["active", "trialing"]),
+    isOwnProfile
+      ? Promise.resolve({ data: null })
+      : supabase.rpc("get_visible_email", { p_profile_id: profile.id }),
   ]);
 
   const activeProfilePlans = new Set((activeSubscriptions ?? []).map((row) => row.plan));
@@ -197,7 +201,8 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                   profilePath={`/profile/${slug}`}
                   website={profile.website}
                   phone={profile.phone}
-                  email={isOwnProfile ? (claimsData?.claims?.email ?? null) : null}
+                  email={isOwnProfile ? (claimsData?.claims?.email ?? null) : (visibleEmail ?? null)}
+                  showEmail={profile.show_email}
                   isOwnProfile={isOwnProfile}
                 />
               </div>
