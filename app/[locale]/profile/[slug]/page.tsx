@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { ContactInfoDialog } from "@/components/contact-info-dialog";
 import { CreateCompanyCard } from "@/components/create-company-card";
 import { EditProfileDialog } from "@/components/edit-profile-dialog";
 import { EducationSection } from "@/components/education-section";
@@ -34,7 +35,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     supabase
       .from("profiles")
       .select(
-        "id, full_name, avatar_url, banner_url, headline, about, city, region, country",
+        "id, full_name, avatar_url, banner_url, headline, about, city, region, country, website, phone",
       )
       .eq("slug", slug)
       .maybeSingle(),
@@ -190,6 +191,16 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               {location && (
                 <p className="text-ink-600 mt-1 text-base">{location}</p>
               )}
+              <div className="mt-1">
+                <ContactInfoDialog
+                  profileId={profile.id}
+                  profilePath={`/profile/${slug}`}
+                  website={profile.website}
+                  phone={profile.phone}
+                  email={isOwnProfile ? (claimsData?.claims?.email ?? null) : null}
+                  isOwnProfile={isOwnProfile}
+                />
+              </div>
 
               <div className="mt-1 flex flex-col gap-1 text-base">
                 <p className="flex items-center gap-1">

@@ -179,6 +179,19 @@
   "ProfilePage": {
     "about": "À propos",
     "careerProBadge": "Abonné Career Pro",
+    "contactInfo": {
+      "trigger": "Coordonnées",
+      "title": "Coordonnées",
+      "profileLink": "Votre profil",
+      "website": "Site web",
+      "phone": "Téléphone",
+      "email": "E-mail",
+      "edit": "Modifier les coordonnées",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "error": "Impossible d'enregistrer les coordonnées. Veuillez réessayer."
+    },
     "edit": {
       "trigger": "Modifier le profil",
       "title": "Modifier le profil",

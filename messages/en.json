@@ -179,6 +179,19 @@
   "ProfilePage": {
     "about": "About",
     "careerProBadge": "Career Pro subscriber",
+    "contactInfo": {
+      "trigger": "Contact info",
+      "title": "Contact info",
+      "profileLink": "Your profile",
+      "website": "Website",
+      "phone": "Phone",
+      "email": "Email",
+      "edit": "Edit contact info",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "error": "Unable to save contact info. Please try again."
+    },
     "edit": {
       "trigger": "Edit profile",
       "title": "Edit profile",
