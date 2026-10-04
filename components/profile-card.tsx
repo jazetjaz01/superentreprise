@@ -16,6 +16,12 @@ type ProfileCardProps = {
   profileViewCount?: number;
 };
 
+const truncateWords = (value: string, maxWords: number) => {
+  const words = value.trim().split(/\s+/);
+  if (words.length <= maxWords) return value;
+  return `${words.slice(0, maxWords).join(" ")}...`;
+};
+
 export const ProfileCard = async ({
   name,
   avatarUrl,
@@ -44,7 +50,7 @@ export const ProfileCard = async ({
           {name}
         </p>
         {headline && (
-          <p className="text-foreground text-base break-words">{headline}</p>
+          <p className="text-foreground text-base break-words">{truncateWords(headline, 8)}</p>
         )}
         {location && (
           <p className="text-foreground text-base break-words">{location}</p>
