@@ -60,16 +60,14 @@ export const ProfileGoalsCard = ({ profileId, jobPreferences }: ProfileGoalsCard
       <Card className="mt-4">
         <CardContent className="p-[27.6px]">
           <h2 className="font-heading text-2xl font-medium">{t("trigger")}</h2>
-          <div className="mt-3 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-4">
             {items.map(({ key, icon: Icon, title, isActive, onSelect }) => (
               <button
                 key={key}
                 type="button"
                 onClick={onSelect}
-                className={`flex items-center gap-2 rounded-full px-4 py-2 text-base font-medium ${
-                  isActive
-                    ? "bg-green-700 text-white"
-                    : "border border-green-700 text-green-700 hover:bg-green-700/10"
+                className={`flex items-center gap-2 text-base font-medium hover:underline ${
+                  isActive ? "text-green-700" : "text-foreground"
                 }`}
               >
                 <Icon className="size-4 shrink-0" strokeWidth={1.5} />
