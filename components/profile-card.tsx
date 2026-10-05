@@ -4,8 +4,10 @@ import { getTranslations } from "next-intl/server";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { UserAvatar } from "@/components/user-avatar";
+import { Link } from "@/i18n/navigation";
 
 type ProfileCardProps = {
+  slug: string | null;
   name: string;
   avatarUrl: string | null;
   headline: string | null;
@@ -24,6 +26,7 @@ const truncateWords = (value: string, maxWords: number) => {
 };
 
 export const ProfileCard = async ({
+  slug,
   name,
   avatarUrl,
   headline,
@@ -46,11 +49,23 @@ export const ProfileCard = async ({
         )}
       </div>
       <CardContent className="relative -mt-11 flex flex-col items-start gap-1 text-left">
-        <div className="relative z-10 rounded-full  border-primary bg-background p-0.5">
-          <UserAvatar name={name} avatarUrl={avatarUrl} size={64} />
-        </div>
+        {slug ? (
+          <Link href={`/profile/${slug}`} className="relative z-10 rounded-full border-primary bg-background p-0.5">
+            <UserAvatar name={name} avatarUrl={avatarUrl} size={64} />
+          </Link>
+        ) : (
+          <div className="relative z-10 rounded-full  border-primary bg-background p-0.5">
+            <UserAvatar name={name} avatarUrl={avatarUrl} size={64} />
+          </div>
+        )}
         <p className="font-heading mt-2 flex items-center gap-1.5 text-[21px] leading-snug font-medium break-words">
-          {name}
+          {slug ? (
+            <Link href={`/profile/${slug}`} className="hover:underline">
+              {name}
+            </Link>
+          ) : (
+            name
+          )}
           {isCareerPro && (
             <Image
               src="/abonnement/carreerprobadge.svg"

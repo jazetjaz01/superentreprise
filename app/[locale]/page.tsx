@@ -39,7 +39,7 @@ export default async function Home() {
   ] = await Promise.all([
     supabase
       .from("profiles")
-      .select("full_name, avatar_url, banner_url, headline, city, region")
+      .select("slug, full_name, avatar_url, banner_url, headline, city, region")
       .eq("id", claims.sub)
       .maybeSingle(),
     supabase
@@ -88,6 +88,7 @@ export default async function Home() {
     <div className="mx-auto grid w-full max-w-(--breakpoint-xl) flex-1 content-start gap-6 px-4 py-6 sm:px-6 md:grid-cols-[240px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)_300px] lg:px-8 ">
       <aside className="sticky top-20 hidden self-start md:flex md:flex-col md:gap-4">
         <ProfileCard
+          slug={profile?.slug ?? null}
           name={name}
           avatarUrl={avatarUrl}
           headline={profile?.headline ?? null}
