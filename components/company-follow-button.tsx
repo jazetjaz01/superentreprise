@@ -1,5 +1,6 @@
 'use client'
 
+import { Plus } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
@@ -73,9 +74,16 @@ export const CompanyFollowButton = ({
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
           onClick={handleClick}
-          className="cursor-pointer rounded-md px-2 py-1 text-base font-medium text-green-800 transition-colors hover:bg-green-700/10 disabled:opacity-45"
+          className="flex cursor-pointer items-center gap-1 rounded-md px-2 py-1 text-base font-medium text-green-800 transition-colors hover:bg-green-700/10 disabled:opacity-45"
         >
-          {isFollowing ? (isHovering ? t('unfollow') : t('following')) : `+ ${t('follow')}`}
+          {isFollowing ? (
+            isHovering ? t('unfollow') : t('following')
+          ) : (
+            <>
+              <Plus className="size-5" strokeWidth={2} />
+              {t('follow')}
+            </>
+          )}
         </button>
         {error && <p className="text-base text-red-500">{error}</p>}
       </div>
