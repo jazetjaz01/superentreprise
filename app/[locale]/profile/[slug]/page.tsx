@@ -32,6 +32,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const { slug } = await params;
   const t = await getTranslations("ProfilePage");
   const tProfile = await getTranslations("Profile");
+  const tPricing = await getTranslations("Pricing");
   const supabase = await createClient();
 
   const [{ data: profile }, { data: claimsData }] = await Promise.all([
@@ -147,13 +148,18 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                 <h1 className="font-heading flex items-center gap-2 text-[26px] leading-tight font-medium">
                   {name}
                   {isCareerPro && (
-                    <Image
-                      src="/abonnement/carreerprobadge.svg"
-                      alt={t("careerProBadge")}
-                      title={t("careerProBadge")}
-                      width={22}
-                      height={22}
-                    />
+                    <>
+                      <Image
+                        src="/abonnement/carreerprobadge.svg"
+                        alt={t("careerProBadge")}
+                        title={t("careerProBadge")}
+                        width={22}
+                        height={22}
+                      />
+                      <span className="text-green-700 text-base font-medium">
+                        {tPricing("plans.career_pro.name")}
+                      </span>
+                    </>
                   )}
                 </h1>
                 {managedCompanies.length > 0 && (
