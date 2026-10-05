@@ -54,14 +54,10 @@ const Navbar = async () => {
           {claims ? (
             <>
               {profile?.slug ? (
-                <Link
-                  href={`/profile/${profile.slug}`}
-                  className="flex flex-col items-center gap-1"
-                >
+                <Link href={`/profile/${profile.slug}`} className="flex items-center">
                   <span className="rounded-full border border-primary p-0.5">
                     <UserAvatar name={displayName} avatarUrl={avatarUrl} size={20} />
                   </span>
-                  <span className="hidden text-base text-ink-800 md:inline">{t("me")}</span>
                 </Link>
               ) : (
                 <UserAvatar name={displayName} avatarUrl={avatarUrl} />
