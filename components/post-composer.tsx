@@ -185,7 +185,7 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
               <span className="text-base font-medium text-foreground">{t("photo")}</span>
             </Button>
             <Button variant="ghost" onClick={() => setOpen(true)}>
-              <VideoIcon className="size-5 text-blue-600" />
+              <VideoIcon className="size-5 text-green-600" />
               <span className="text-base font-medium text-foreground">{t("video")}</span>
             </Button>
             <Button variant="ghost" nativeButton={false} render={<Link href="/articles/write" />}>
@@ -304,7 +304,7 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
                   disabled={fileKind === "image"}
                   onClick={() => videoInput.current?.click()}
                 >
-                  <VideoIcon className="size-5 text-blue-600" />
+                  <VideoIcon className="size-5 text-green-600" />
                   <span className="text-base font-medium text-foreground">{t("addVideo")}</span>
                 </Button>
               </div>
