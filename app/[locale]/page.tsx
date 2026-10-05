@@ -35,6 +35,7 @@ export default async function Home() {
     { count: followingCount },
     { count: profileViewCount },
     { data: managedCompaniesRows },
+    { data: activeSubscriptions },
   ] = await Promise.all([
     supabase
       .from("profiles")
@@ -61,7 +62,14 @@ export default async function Home() {
         { companies: (Omit<ManagedCompany, "followerCount"> & { company_follows: { count: number }[] }) | null }[],
         { merge: false }
       >(),
+    supabase
+      .from("subscriptions")
+      .select("plan")
+      .eq("profile_id", claims.sub)
+      .in("status", ["active", "trialing"]),
   ]);
+
+  const isCareerPro = (activeSubscriptions ?? []).some((row) => row.plan === "career_pro");
 
   const managedCompanies: ManagedCompany[] = (managedCompaniesRows ?? [])
     .map((row) => row.companies)
@@ -88,6 +96,7 @@ export default async function Home() {
           followerCount={followerCount ?? 0}
           followingCount={followingCount ?? 0}
           profileViewCount={profileViewCount ?? 0}
+          isCareerPro={isCareerPro}
         />
         <ManagedCompaniesCard companies={managedCompanies} />
         <QuickLinksCard />

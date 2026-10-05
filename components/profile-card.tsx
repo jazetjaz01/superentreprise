@@ -14,6 +14,7 @@ type ProfileCardProps = {
   followerCount?: number;
   followingCount?: number;
   profileViewCount?: number;
+  isCareerPro?: boolean;
 };
 
 const truncateWords = (value: string, maxWords: number) => {
@@ -31,9 +32,11 @@ export const ProfileCard = async ({
   followerCount,
   followingCount,
   profileViewCount,
+  isCareerPro = false,
 }: ProfileCardProps) => {
   const t = await getTranslations("ProfilePage.follow");
   const tViews = await getTranslations("ProfilePage.views");
+  const tProfile = await getTranslations("ProfilePage");
 
   return (
     <Card className="overflow-hidden pt-0">
@@ -46,8 +49,17 @@ export const ProfileCard = async ({
         <div className="relative z-10 rounded-full  border-primary bg-background p-0.5">
           <UserAvatar name={name} avatarUrl={avatarUrl} size={64} />
         </div>
-        <p className="font-heading mt-2 text-[21px] leading-snug font-medium break-words">
+        <p className="font-heading mt-2 flex items-center gap-1.5 text-[21px] leading-snug font-medium break-words">
           {name}
+          {isCareerPro && (
+            <Image
+              src="/abonnement/carreerprobadge.svg"
+              alt={tProfile("careerProBadge")}
+              title={tProfile("careerProBadge")}
+              width={18}
+              height={18}
+            />
+          )}
         </p>
         {headline && (
           <p className="text-foreground text-base break-words">{truncateWords(headline, 8)}</p>
