@@ -75,7 +75,7 @@ export const FollowButton = ({
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
           onClick={handleClick}
-          className="flex cursor-pointer items-center gap-1 rounded-md px-2 py-1 text-base font-medium text-green-800 transition-colors hover:bg-green-700/10 disabled:opacity-45"
+          className="flex cursor-pointer items-center gap-1 rounded-md px-2 py-1 text-base font-semibold text-green-800 transition-colors hover:bg-green-700/10 disabled:opacity-45"
         >
           {isFollowing ? (
             isHovering ? t('unfollow') : t('following')
