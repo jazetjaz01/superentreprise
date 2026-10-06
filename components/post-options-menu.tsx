@@ -63,7 +63,7 @@ export const PostOptionsMenu = ({ entityName }: PostOptionsMenuProps) => {
             </DialogHeader>
           </VisuallyHidden>
 
-          <div className="flex flex-col divide-y divide-border">
+          <div className="flex flex-col">
             {items.map(({ key, icon: Icon, label }) => (
               <button
                 key={key}
