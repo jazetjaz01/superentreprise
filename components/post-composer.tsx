@@ -181,7 +181,7 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
           </div>
           <div className="flex justify-center gap-2">
             <Button variant="ghost" onClick={() => setOpen(true)}>
-              <ImageIcon className="size-5" />
+              <ImageIcon className="size-5 text-blue-800" />
               <span className="text-base font-medium text-foreground">{t("photo")}</span>
             </Button>
             <Button variant="ghost" onClick={() => setOpen(true)}>
@@ -288,7 +288,7 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
                   disabled={fileKind === "video"}
                   onClick={() => fileInput.current?.click()}
                 >
-                  <ImageIcon className="size-5" />
+                  <ImageIcon className="size-5 text-blue-800" />
                   <span className="text-base font-medium text-foreground">{t("addPhoto")}</span>
                 </Button>
                 <input
