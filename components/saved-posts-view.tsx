@@ -4,7 +4,6 @@ import { Bookmark } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
-import { AdSlot } from "@/components/ad-slot";
 import { SavedPostCard, type SavedPostSummary } from "@/components/saved-post-card";
 import { Card } from "@/components/ui/card";
 
@@ -22,7 +21,7 @@ export const SavedPostsView = ({ initialPosts, viewerId }: SavedPostsViewProps) 
   };
 
   return (
-    <div className="mx-auto grid w-full max-w-(--breakpoint-xl) flex-1 content-start gap-4 px-4 py-6 sm:px-6 md:grid-cols-[240px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)_300px] lg:px-8">
+    <>
       <aside className="self-start">
         <Card className="overflow-hidden py-0">
           <div className="border-b border-border px-4 py-3">
@@ -66,10 +65,6 @@ export const SavedPostsView = ({ initialPosts, viewerId }: SavedPostsViewProps) 
           )}
         </Card>
       </main>
-
-      <aside className="hidden self-start lg:block">
-        <AdSlot />
-      </aside>
-    </div>
+    </>
   );
 };

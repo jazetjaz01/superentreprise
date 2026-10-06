@@ -1,5 +1,8 @@
 import { getFormatter, getLocale, getTranslations } from "next-intl/server";
 
+import { AdSlot } from "@/components/ad-slot";
+import { NewsSlot } from "@/components/news-slot";
+import { PremiumAdSlot } from "@/components/premium-ad-slot";
 import { type SavedPostSummary } from "@/components/saved-post-card";
 import { SavedPostsView } from "@/components/saved-posts-view";
 import { redirect } from "@/i18n/navigation";
@@ -21,6 +24,7 @@ type SavedPostRow = {
 
 export default async function SavedPage() {
   const tFeed = await getTranslations("Feed");
+  const tProfile = await getTranslations("Profile");
   const locale = await getLocale();
   const format = await getFormatter();
   const supabase = await createClient();
@@ -30,6 +34,14 @@ export default async function SavedPage() {
   if (!claims) {
     return redirect({ href: "/auth/login", locale });
   }
+
+  const { data: viewerProfile } = await supabase
+    .from("profiles")
+    .select("full_name, avatar_url")
+    .eq("id", claims.sub)
+    .maybeSingle();
+  const viewerName = viewerProfile?.full_name ?? claims.email ?? tProfile("anonymous");
+  const viewerAvatarUrl: string | null = viewerProfile?.avatar_url ?? null;
 
   const { data: savedRows } = await supabase
     .from("saved_posts")
@@ -76,5 +88,14 @@ export default async function SavedPage() {
       };
     });
 
-  return <SavedPostsView initialPosts={summaries} viewerId={claims.sub} />;
+  return (
+    <div className="mx-auto grid w-full max-w-(--breakpoint-xl) flex-1 content-start gap-4 px-4 py-6 sm:px-6 md:grid-cols-[240px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)_300px] lg:px-8">
+      <SavedPostsView initialPosts={summaries} viewerId={claims.sub} />
+      <aside className="sticky top-20 hidden self-start lg:flex lg:flex-col lg:gap-4">
+        <NewsSlot />
+        <PremiumAdSlot name={viewerName} avatarUrl={viewerAvatarUrl} />
+        <AdSlot />
+      </aside>
+    </div>
+  );
 }
