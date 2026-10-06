@@ -181,15 +181,15 @@ export const PostComposer = ({ userId, name, avatarUrl }: PostComposerProps) => 
           </div>
           <div className="flex justify-center gap-2">
             <Button variant="ghost" onClick={() => setOpen(true)}>
-              <ImageIcon className="size-5 text-blue-800" />
+              <ImageIcon className="size-8 text-blue-800" />
               <span className="text-base font-medium text-foreground">{t("photo")}</span>
             </Button>
             <Button variant="ghost" onClick={() => setOpen(true)}>
-              <VideoIcon className="size-5 text-green-800" />
+              <VideoIcon className="size-8 text-green-800" />
               <span className="text-base font-medium text-foreground">{t("video")}</span>
             </Button>
             <Button variant="ghost" nativeButton={false} render={<Link href="/articles/write" />}>
-              <NewspaperIcon className="size-5 text-orange-500" />
+              <NewspaperIcon className="size-8 text-orange-500" />
               <span className="text-base font-medium text-foreground">{t("writeArticle")}</span>
             </Button>
           </div>
