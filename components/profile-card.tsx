@@ -80,7 +80,7 @@ export const ProfileCard = async ({
           <p className="text-foreground text-base break-words">{truncateWords(headline, 8)}</p>
         )}
         {location && (
-          <p className="text-foreground text-base break-words">{location}</p>
+          <p className="text-ink-600 text-base break-words">{location}</p>
         )}
 
         {(followerCount !== undefined ||
