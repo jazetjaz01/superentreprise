@@ -23,7 +23,12 @@ type FeedPost = {
   video_path: string | null;
   comments_disabled: boolean;
   created_at: string;
-  profiles: { slug: string; full_name: string | null; avatar_url: string | null } | null;
+  profiles: {
+    slug: string;
+    full_name: string | null;
+    avatar_url: string | null;
+    headline: string | null;
+  } | null;
   companies: { slug: string; name: string; logo_url: string | null } | null;
 };
 
@@ -41,7 +46,7 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
   let postsQuery = supabase
     .from("posts")
     .select(
-      "id, author_id, company_id, content, image_path, video_path, comments_disabled, created_at, profiles!posts_author_id_fkey(slug, full_name, avatar_url), companies(slug, name, logo_url)",
+      "id, author_id, company_id, content, image_path, video_path, comments_disabled, created_at, profiles!posts_author_id_fkey(slug, full_name, avatar_url, headline), companies(slug, name, logo_url)",
     )
     .order("created_at", { ascending: false })
     .limit(20);
@@ -138,6 +143,7 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
         const entityAvatarUrl = isCompanyPost
           ? (post.companies?.logo_url ?? null)
           : (post.profiles?.avatar_url ?? null);
+        const entityHeadline = isCompanyPost ? null : post.profiles?.headline;
         const entityHref = isCompanyPost
           ? post.companies?.slug
             ? `/company/${post.companies.slug}`
@@ -170,6 +176,9 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
                       <p className="font-heading wrap-break-word text-lg font-medium hover:underline">
                         {entityName}
                       </p>
+                      {entityHeadline && (
+                        <p className="text-ink-600 truncate text-base">{entityHeadline}</p>
+                      )}
                       <p className="text-foreground text-base">
                         {format.dateTime(new Date(post.created_at), {
                           dateStyle: "medium",
@@ -185,6 +194,9 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
                       <p className="font-heading wrap-break-word text-lg font-medium">
                         {entityName}
                       </p>
+                      {entityHeadline && (
+                        <p className="text-ink-600 truncate text-base">{entityHeadline}</p>
+                      )}
                       <p className="text-foreground text-base">
                         {format.dateTime(new Date(post.created_at), {
                           dateStyle: "medium",
