@@ -23,11 +23,11 @@ export type SavedPostSummary = {
 type SavedPostCardProps = {
   post: SavedPostSummary;
   viewerId: string;
+  onRemoved: () => void;
 };
 
-export const SavedPostCard = ({ post, viewerId }: SavedPostCardProps) => {
+export const SavedPostCard = ({ post, viewerId, onRemoved }: SavedPostCardProps) => {
   const t = useTranslations("Saved");
-  const [isRemoved, setIsRemoved] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleUnsave = async () => {
@@ -39,10 +39,8 @@ export const SavedPostCard = ({ post, viewerId }: SavedPostCardProps) => {
       .eq("profile_id", viewerId)
       .eq("post_id", post.postId);
     setIsSubmitting(false);
-    if (!error) setIsRemoved(true);
+    if (!error) onRemoved();
   };
-
-  if (isRemoved) return null;
 
   return (
     <div className="border-b border-border p-4 last:border-b-0">
