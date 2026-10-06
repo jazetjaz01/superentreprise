@@ -208,7 +208,13 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
                 )}
                 {canManage ? (
                   <div className="ml-auto flex items-center">
-                    <PostEditDialog postId={post.id} content={post.content} />
+                    <PostEditDialog
+                      postId={post.id}
+                      content={post.content}
+                      imagePath={post.image_path}
+                      imageUrl={imageUrl}
+                      uploaderId={currentUserId ?? ""}
+                    />
                     <PostDeleteButton
                       postId={post.id}
                       imagePath={post.image_path}
