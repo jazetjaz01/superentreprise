@@ -8,17 +8,17 @@ export const QuickLinksCard = async () => {
   const t = await getTranslations("QuickLinksCard");
 
   const links = [
-    { key: "savedItems", label: t("savedItems"), icon: Bookmark },
-    { key: "groups", label: t("groups"), icon: Users },
-    { key: "newsletters", label: t("newsletters"), icon: Newspaper },
-    { key: "events", label: t("events"), icon: CalendarDays },
+    { key: "savedItems", label: t("savedItems"), icon: Bookmark, href: "/saved" },
+    { key: "groups", label: t("groups"), icon: Users, href: "#" },
+    { key: "newsletters", label: t("newsletters"), icon: Newspaper, href: "#" },
+    { key: "events", label: t("events"), icon: CalendarDays, href: "#" },
   ];
 
   return (
     <Card>
       <CardContent className="flex flex-col gap-3">
-        {links.map(({ key, label, icon: Icon }) => (
-          <Link key={key} href="#" className="flex items-center gap-3 hover:underline">
+        {links.map(({ key, label, icon: Icon, href }) => (
+          <Link key={key} href={href} className="flex items-center gap-3 hover:underline">
             <Icon className="text-foreground size-4.5" strokeWidth={1.5} />
             <span className="text-base font-medium text-foreground">{label}</span>
           </Link>

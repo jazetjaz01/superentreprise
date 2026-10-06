@@ -437,6 +437,7 @@
     "options": {
       "trigger": "Plus d'options",
       "save": "Enregistrer",
+      "unsave": "Retirer des éléments enregistrés",
       "copyLink": "Copier le lien vers le post",
       "embed": "Intégrer ce post",
       "unfollow": "Ne plus suivre {name}",
@@ -616,6 +617,14 @@
       "error": "Une erreur est survenue. Veuillez réessayer.",
       "followersCount": "{count, plural, =0 {Aucun abonné} one {# abonné} other {# abonnés}}"
     }
+  },
+  "Saved": {
+    "myItems": "Mes éléments",
+    "savedPostsLabel": "Posts et articles enregistrés",
+    "title": "Posts enregistrés",
+    "allFilter": "Tous",
+    "empty": "Vous n'avez enregistré aucun post pour le moment.",
+    "remove": "Retirer des éléments enregistrés"
   },
   "QuickLinksCard": {
     "savedItems": "Éléments enregistrés",

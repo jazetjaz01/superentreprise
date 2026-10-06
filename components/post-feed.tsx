@@ -98,7 +98,7 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
   const followedCompanyIds = new Set((followedCompanyRows ?? []).map((row) => row.company_id));
 
   const postIds = posts.map((post) => post.id);
-  const [{ data: likeRows }, { data: commentRows }] =
+  const [{ data: likeRows }, { data: commentRows }, { data: savedRows }] =
     postIds.length > 0
       ? await Promise.all([
           supabase.from("post_likes").select("post_id, user_id").in("post_id", postIds),
@@ -108,8 +108,16 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
             .in("post_id", postIds)
             .order("created_at", { ascending: true })
             .overrideTypes<(PostComment & { post_id: string })[], { merge: false }>(),
+          currentUserId
+            ? supabase
+                .from("saved_posts")
+                .select("post_id")
+                .eq("profile_id", currentUserId)
+                .in("post_id", postIds)
+            : Promise.resolve({ data: null }),
         ])
-      : [{ data: null }, { data: null }];
+      : [{ data: null }, { data: null }, { data: null }];
+  const savedPostIds = new Set((savedRows ?? []).map((row) => row.post_id));
 
   const likesByPost = new Map<string, { count: number; likedByViewer: boolean }>();
   for (const row of likeRows ?? []) {
@@ -246,7 +254,12 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
                               variant="text"
                             />
                           )}
-                      <PostOptionsMenu entityName={entityName} />
+                      <PostOptionsMenu
+                        entityName={entityName}
+                        postId={post.id}
+                        viewerId={currentUserId}
+                        initialIsSaved={savedPostIds.has(post.id)}
+                      />
                     </div>
                   )
                 )}
