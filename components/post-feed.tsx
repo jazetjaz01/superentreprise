@@ -213,6 +213,8 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
                       content={post.content}
                       imagePath={post.image_path}
                       imageUrl={imageUrl}
+                      videoPath={post.video_path}
+                      videoUrl={videoUrl}
                       uploaderId={currentUserId ?? ""}
                     />
                     <PostDeleteButton
