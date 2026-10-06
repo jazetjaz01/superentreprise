@@ -433,7 +433,18 @@
     "commentError": "Unable to post the comment. Please try again.",
     "deleteComment": "Delete comment",
     "likeCount": "{count, plural, one {# like} other {# likes}}",
-    "commentCount": "{count, plural, one {# comment} other {# comments}}"
+    "commentCount": "{count, plural, one {# comment} other {# comments}}",
+    "options": {
+      "trigger": "More options",
+      "save": "Save",
+      "copyLink": "Copy link to post",
+      "embed": "Embed this post",
+      "unfollow": "Unfollow {name}",
+      "hide": "Hide posts from {name}",
+      "notInterested": "Not interested",
+      "aiSlop": "This looks like AI slop",
+      "report": "Report this post"
+    }
   },
   "Ads": {
     "placeholder": "Ad space",

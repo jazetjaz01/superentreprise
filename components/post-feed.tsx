@@ -8,6 +8,7 @@ import { PostContent } from "@/components/post-content";
 import { PostDeleteButton } from "@/components/post-delete-button";
 import { PostEditDialog } from "@/components/post-edit-dialog";
 import { PostLikeButton } from "@/components/post-like-button";
+import { PostOptionsMenu } from "@/components/post-options-menu";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { UserAvatar } from "@/components/user-avatar";
@@ -224,28 +225,30 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
                     />
                   </div>
                 ) : (
-                  currentUserId &&
-                  (isCompanyPost
-                    ? post.company_id && (
-                        <CompanyFollowButton
-                          key={`${post.company_id}-${followedCompanyIds.has(post.company_id)}`}
-                          viewerId={currentUserId}
-                          companyId={post.company_id}
-                          initialIsFollowing={followedCompanyIds.has(post.company_id)}
-                          variant="text"
-                          className="ml-auto"
-                        />
-                      )
-                    : post.author_id && (
-                        <FollowButton
-                          key={`${post.author_id}-${followedAuthorIds.has(post.author_id)}`}
-                          viewerId={currentUserId}
-                          profileId={post.author_id}
-                          initialIsFollowing={followedAuthorIds.has(post.author_id)}
-                          variant="text"
-                          className="ml-auto"
-                        />
-                      ))
+                  currentUserId && (
+                    <div className="ml-auto flex items-center gap-1">
+                      {isCompanyPost
+                        ? post.company_id && (
+                            <CompanyFollowButton
+                              key={`${post.company_id}-${followedCompanyIds.has(post.company_id)}`}
+                              viewerId={currentUserId}
+                              companyId={post.company_id}
+                              initialIsFollowing={followedCompanyIds.has(post.company_id)}
+                              variant="text"
+                            />
+                          )
+                        : post.author_id && (
+                            <FollowButton
+                              key={`${post.author_id}-${followedAuthorIds.has(post.author_id)}`}
+                              viewerId={currentUserId}
+                              profileId={post.author_id}
+                              initialIsFollowing={followedAuthorIds.has(post.author_id)}
+                              variant="text"
+                            />
+                          )}
+                      <PostOptionsMenu entityName={entityName} />
+                    </div>
+                  )
                 )}
               </div>
               {post.content && <PostContent content={post.content} />}

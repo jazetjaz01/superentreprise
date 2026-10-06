@@ -433,7 +433,18 @@
     "commentError": "Impossible de publier le commentaire. Veuillez réessayer.",
     "deleteComment": "Supprimer le commentaire",
     "likeCount": "{count, plural, one {# j'aime} other {# j'aime}}",
-    "commentCount": "{count, plural, one {# commentaire} other {# commentaires}}"
+    "commentCount": "{count, plural, one {# commentaire} other {# commentaires}}",
+    "options": {
+      "trigger": "Plus d'options",
+      "save": "Enregistrer",
+      "copyLink": "Copier le lien vers le post",
+      "embed": "Intégrer ce post",
+      "unfollow": "Ne plus suivre {name}",
+      "hide": "Masquer les posts de {name}",
+      "notInterested": "Pas intéressé(e)",
+      "aiSlop": "On dirait de l'IA slop",
+      "report": "Signaler le post"
+    }
   },
   "Ads": {
     "placeholder": "Emplacement publicitaire",
