@@ -125,7 +125,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               isOwnProfile={isOwnProfile}
             />
             <CardContent className="relative">
-              <div className="-mt-20 flex items-end justify-between gap-3">
+              <div className="-mt-28 flex items-end justify-between gap-3">
                 <div
                   className={`rounded-full overflow-hidden [&>img]:rounded-none [&>span]:rounded-none ${hasActiveSubscription ? "border-4 border-slate-100" : ""}`}
                 >
