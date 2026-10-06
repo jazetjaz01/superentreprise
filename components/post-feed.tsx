@@ -29,7 +29,7 @@ type FeedPost = {
     avatar_url: string | null;
     headline: string | null;
   } | null;
-  companies: { slug: string; name: string; logo_url: string | null } | null;
+  companies: { slug: string; name: string; logo_url: string | null; tagline: string | null } | null;
 };
 
 type PostFeedProps = {
@@ -46,7 +46,7 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
   let postsQuery = supabase
     .from("posts")
     .select(
-      "id, author_id, company_id, content, image_path, video_path, comments_disabled, created_at, profiles!posts_author_id_fkey(slug, full_name, avatar_url, headline), companies(slug, name, logo_url)",
+      "id, author_id, company_id, content, image_path, video_path, comments_disabled, created_at, profiles!posts_author_id_fkey(slug, full_name, avatar_url, headline), companies(slug, name, logo_url, tagline)",
     )
     .order("created_at", { ascending: false })
     .limit(20);
@@ -143,7 +143,7 @@ export const PostFeed = async ({ viewerName, viewerAvatarUrl, companyId }: PostF
         const entityAvatarUrl = isCompanyPost
           ? (post.companies?.logo_url ?? null)
           : (post.profiles?.avatar_url ?? null);
-        const entityHeadline = isCompanyPost ? null : post.profiles?.headline;
+        const entityHeadline = isCompanyPost ? post.companies?.tagline : post.profiles?.headline;
         const entityHref = isCompanyPost
           ? post.companies?.slug
             ? `/company/${post.companies.slug}`
