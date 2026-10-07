@@ -79,12 +79,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     },
     allowedSchemes: ["http", "https"],
   });
-  const plainText = sanitizeHtml(article.content, { allowedTags: [], allowedAttributes: {} })
-    .replace(/\s+/g, " ")
-    .trim();
-  const introText =
-    plainText.length > 220 ? `${plainText.slice(0, 220).trimEnd()}…` : plainText;
-
   return (
     <div className="mx-auto grid w-full max-w-(--breakpoint-xl) gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-8">
       <Card className="gap-0 overflow-hidden pt-0">
@@ -95,8 +89,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <p className="text-base text-muted-foreground">
               {t("publishedTimeAgo", { time: format.relativeTime(new Date(article.created_at)) })}
             </p>
-
-            {introText && <p className="mt-2 text-foreground">{introText}</p>}
 
             <div className="mt-6 flex items-center justify-between gap-2">
               <h2 className="text-base font-medium text-foreground">{t("articleContent")}</h2>
