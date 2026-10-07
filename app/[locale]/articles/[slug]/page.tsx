@@ -1,5 +1,4 @@
 import { Info } from "lucide-react";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getFormatter, getTranslations } from "next-intl/server";
 import sanitizeHtml from "sanitize-html";
@@ -89,7 +88,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   return (
     <div className="mx-auto grid w-full max-w-(--breakpoint-xl) gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-8">
       <Card className="gap-0 overflow-hidden pt-0">
-        <ArticleBanner />
+        <ArticleBanner coverUrl={coverUrl} />
 
         <CardContent className="px-4  pb-4 sm:px-12  sm:pb-12">
           <div className="bg-muted p-8 sm:p-12">
@@ -147,12 +146,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 // eslint-disable-next-line react/no-danger -- sanitized above with DOMPurify's allowlist
                 dangerouslySetInnerHTML={{ __html: contentHtml }}
               />
-
-              {coverUrl && (
-                <div className="relative -mx-6 -mb-6 mt-6 h-56 overflow-hidden rounded-b-xl sm:h-72">
-                  <Image src={coverUrl} alt="" fill unoptimized className="object-cover" />
-                </div>
-              )}
             </div>
           </div>
         </CardContent>

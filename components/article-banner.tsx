@@ -1,7 +1,11 @@
 import Image from "next/image";
 import { getFormatter, getTranslations } from "next-intl/server";
 
-export const ArticleBanner = async () => {
+type ArticleBannerProps = {
+  coverUrl?: string | null;
+};
+
+export const ArticleBanner = async ({ coverUrl }: ArticleBannerProps) => {
   const t = await getTranslations("Articles");
   const format = await getFormatter();
   const monthYear = format.dateTime(new Date(), { month: "long", year: "numeric" });
@@ -9,10 +13,11 @@ export const ArticleBanner = async () => {
   return (
     <div className="relative isolate h-40 w-full overflow-hidden sm:h-72">
       <Image
-        src="/actualite/carte-monde.jpg"
+        src={coverUrl ?? "/actualite/carte-monde.jpg"}
         alt=""
         fill
         priority
+        unoptimized={!!coverUrl}
         className="object-cover"
       />
       <div className="absolute inset-0 bg-white/55" />
