@@ -85,7 +85,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <ArticleBanner coverUrl={coverUrl} />
 
         <CardContent className="px-4  pb-4 sm:px-12  sm:pb-12">
-          <div className="bg-muted p-8 sm:p-12">
+          <div className="p-8 sm:p-12">
             <p className="text-base text-muted-foreground">
               {t("publishedTimeAgo", { time: format.relativeTime(new Date(article.created_at)) })}
             </p>
