@@ -24,7 +24,12 @@ type ArticleRow = {
   content: string;
   cover_image_path: string | null;
   created_at: string;
-  profiles: { slug: string; full_name: string | null; avatar_url: string | null } | null;
+  profiles: {
+    slug: string;
+    full_name: string | null;
+    avatar_url: string | null;
+    headline: string | null;
+  } | null;
 };
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
@@ -37,7 +42,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     supabase
       .from("articles")
       .select(
-        "id, author_id, title, content, cover_image_path, created_at, profiles(slug, full_name, avatar_url)",
+        "id, author_id, title, content, cover_image_path, created_at, profiles(slug, full_name, avatar_url, headline)",
       )
       .eq("slug", slug)
       .maybeSingle()
@@ -121,17 +126,33 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 <ArticleShareButton path={`/articles/${slug}`} />
               </div>
 
-              <div className="mt-3 flex items-center gap-2">
+              <div className="mt-3 flex items-start gap-2">
                 {author?.slug ? (
-                  <Link href={`/profile/${author.slug}`} className="flex items-center gap-3">
+                  <Link href={`/profile/${author.slug}`} className="flex min-w-0 items-center gap-3">
                     <UserAvatar name={authorName} avatarUrl={author.avatar_url} size={32} />
-                    <span className="text-base font-medium hover:underline">{authorName}</span>
+                    <div className="min-w-0">
+                      <span className="block text-base font-medium hover:underline">
+                        {authorName}
+                      </span>
+                      {author.headline && (
+                        <span className="text-ink-600 block truncate text-base">
+                          {author.headline}
+                        </span>
+                      )}
+                    </div>
                   </Link>
                 ) : (
-                  <>
+                  <div className="flex min-w-0 items-center gap-3">
                     <UserAvatar name={authorName} avatarUrl={null} size={32} />
-                    <span className="text-base font-medium">{authorName}</span>
-                  </>
+                    <div className="min-w-0">
+                      <span className="block text-base font-medium">{authorName}</span>
+                      {author?.headline && (
+                        <span className="text-ink-600 block truncate text-base">
+                          {author.headline}
+                        </span>
+                      )}
+                    </div>
+                  </div>
                 )}
                 <Info className="size-3.5 shrink-0 text-muted-foreground" />
               </div>

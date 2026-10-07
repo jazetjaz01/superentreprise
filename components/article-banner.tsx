@@ -9,7 +9,7 @@ type ArticleBannerProps = {
 
 export const ArticleBanner = ({ coverUrl, children }: ArticleBannerProps) => {
   return (
-    <div className="relative isolate h-40 w-full overflow-hidden sm:h-72">
+    <div className="relative isolate h-64 w-full overflow-hidden sm:h-96">
       <Image
         src={coverUrl ?? "/actualite/carte-monde.jpg"}
         alt=""
