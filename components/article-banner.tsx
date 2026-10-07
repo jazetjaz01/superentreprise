@@ -1,15 +1,10 @@
 import Image from "next/image";
-import { getFormatter, getTranslations } from "next-intl/server";
 
 type ArticleBannerProps = {
   coverUrl?: string | null;
 };
 
-export const ArticleBanner = async ({ coverUrl }: ArticleBannerProps) => {
-  const t = await getTranslations("Articles");
-  const format = await getFormatter();
-  const monthYear = format.dateTime(new Date(), { month: "long", year: "numeric" });
-
+export const ArticleBanner = ({ coverUrl }: ArticleBannerProps) => {
   return (
     <div className="relative isolate h-40 w-full overflow-hidden sm:h-72">
       <Image
@@ -20,22 +15,6 @@ export const ArticleBanner = async ({ coverUrl }: ArticleBannerProps) => {
         unoptimized={!!coverUrl}
         className="object-cover"
       />
-      <div className="absolute inset-0 bg-white/55" />
-
-      <div className="relative flex h-full flex-col items-center justify-center gap-4 px-4 text-center">
-        <div className="flex items-center gap-2 rounded-full bg-white py-1.5 pr-4 pl-1.5 shadow-md">
-          <span className="flex size-8 items-center justify-center rounded-full bg-primary">
-            <Image src="/logose.svg" alt="" width={18} height={18} className="invert" />
-          </span>
-          <span className="text-base font-medium text-foreground">{t("banner.label")}</span>
-          <span className="rounded-md bg-amber-400 px-2 py-0.5 text-base font-medium text-black capitalize">
-            {monthYear}
-          </span>
-        </div>
-        <p className="font-heading text-xl font-medium text-foreground sm:text-2xl">
-          {t("banner.title")}
-        </p>
-      </div>
     </div>
   );
 };
