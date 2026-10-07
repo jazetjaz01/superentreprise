@@ -82,35 +82,38 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   return (
     <div className="mx-auto grid w-full max-w-(--breakpoint-xl) gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px] lg:px-8">
       <Card className="gap-0 overflow-hidden pt-0">
-        <ArticleBanner coverUrl={coverUrl} />
-
-        <CardContent className="px-4  pb-4 sm:px-12  sm:pb-12">
-          <div className="p-8 sm:p-12">
-            <p className="text-base text-muted-foreground">
-              {t("publishedTimeAgo", { time: format.relativeTime(new Date(article.created_at)) })}
-            </p>
-
-            <div className="mt-6 flex items-center justify-between gap-2">
-              <h2 className="text-base font-medium text-foreground">{t("articleContent")}</h2>
-              {isOwnArticle && (
-                <div className="flex shrink-0 items-center gap-1">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    nativeButton={false}
-                    render={<Link href={`/articles/${slug}/edit`} />}
-                  >
-                    {t("edit")}
-                  </Button>
-                  <ArticleDeleteButton
-                    articleId={article.id}
-                    coverImagePath={article.cover_image_path}
-                  />
-                </div>
-              )}
+        <ArticleBanner coverUrl={coverUrl}>
+          <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-2 p-4 sm:p-6">
+            <div className="text-white drop-shadow-sm [text-shadow:0_1px_3px_rgb(0_0_0/0.5)]">
+              <p className="text-base">
+                {t("publishedTimeAgo", {
+                  time: format.relativeTime(new Date(article.created_at)),
+                })}
+              </p>
+              <p className="mt-1 text-base font-medium">{t("articleContent")}</p>
             </div>
+            {isOwnArticle && (
+              <div className="flex shrink-0 items-center gap-1 rounded-md bg-white/90 p-1">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  nativeButton={false}
+                  render={<Link href={`/articles/${slug}/edit`} />}
+                >
+                  {t("edit")}
+                </Button>
+                <ArticleDeleteButton
+                  articleId={article.id}
+                  coverImagePath={article.cover_image_path}
+                />
+              </div>
+            )}
+          </div>
+        </ArticleBanner>
 
-            <div className="mt-4 rounded-xl border bg-white p-6">
+        <CardContent className="relative -mt-10 px-4 pb-4 sm:-mt-16 sm:px-12 sm:pb-12">
+          <div className="p-8 sm:p-12">
+            <div className="rounded-xl border bg-white p-6">
               <div className="flex items-start justify-between gap-3">
                 <h1 className="font-heading text-3xl font-medium text-foreground">
                   {article.title}
