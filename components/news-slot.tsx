@@ -1,4 +1,3 @@
-import { Info } from "lucide-react";
 import { getFormatter, getTranslations } from "next-intl/server";
 
 import { Link } from "@/i18n/navigation";
@@ -27,10 +26,7 @@ export const NewsSlot = async () => {
 
   return (
     <div className="overflow-hidden rounded-md border border-border bg-card p-4">
-      <div className="flex items-center justify-between">
-        <h2 className="font-heading text-xl font-medium text-foreground">{t("title")}</h2>
-        <Info className="text-foreground size-4" strokeWidth={1.5} />
-      </div>
+      <h2 className="font-heading text-xl font-medium text-foreground">{t("title")}</h2>
       <p className="text-ink-600 mt-1 text-base">{t("subtitle")}</p>
 
       <ul className="mt-3 flex flex-col gap-3">
