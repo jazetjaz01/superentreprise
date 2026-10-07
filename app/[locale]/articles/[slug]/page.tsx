@@ -116,7 +116,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </div>
         </ArticleBanner>
 
-        <CardContent className="relative -mt-10 px-4 pb-4 sm:-mt-16 sm:px-12 sm:pb-12">
+        <CardContent className="relative -mt-24 px-4 pb-4 sm:-mt-40 sm:px-12 sm:pb-12">
           <div className="p-8 sm:p-12">
             <div className="rounded-xl border bg-background p-6">
               <div className="flex items-start justify-between gap-3">
