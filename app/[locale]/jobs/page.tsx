@@ -1,8 +1,9 @@
 import { getFormatter, getTranslations } from "next-intl/server";
 
+import { ManagedCompaniesCard, type ManagedCompany } from "@/components/managed-companies-card";
+import { ProfileCard } from "@/components/profile-card";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ProfileCard } from "@/components/profile-card";
 import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
 
@@ -25,7 +26,7 @@ export default async function JobsPage() {
   const { data: claimsData } = await supabase.auth.getClaims();
   const claims = claimsData?.claims;
 
-  const [{ data: jobs }, viewerData] = await Promise.all([
+  const [{ data: jobs }, viewerData, managedCompaniesData] = await Promise.all([
     supabase
       .from("jobs")
       .select(
@@ -41,6 +42,22 @@ export default async function JobsPage() {
           .eq("id", claims.sub)
           .maybeSingle()
       : Promise.resolve({ data: null }),
+    claims
+      ? supabase
+          .from("company_admins")
+          .select("companies(slug, name, logo_url, company_follows(count))")
+          .eq("admin_id", claims.sub)
+          .overrideTypes<
+            {
+              companies:
+                | (Omit<ManagedCompany, "followerCount"> & {
+                    company_follows: { count: number }[];
+                  })
+                | null;
+            }[],
+            { merge: false }
+          >()
+      : Promise.resolve({ data: null }),
   ]);
 
   const jobRows = jobs ?? [];
@@ -48,6 +65,13 @@ export default async function JobsPage() {
   const viewerName = profile?.full_name ?? claims?.email ?? tProfile("anonymous");
   const viewerAvatarUrl: string | null = profile?.avatar_url ?? null;
   const viewerLocation = [profile?.city, profile?.region].filter(Boolean).join(", ");
+  const managedCompanies: ManagedCompany[] = (managedCompaniesData.data ?? [])
+    .map((row) => row.companies)
+    .filter((company): company is NonNullable<typeof company> => !!company)
+    .map(({ company_follows, ...company }) => ({
+      ...company,
+      followerCount: company_follows?.[0]?.count ?? 0,
+    }));
 
   return (
     <div className="mx-auto grid w-full max-w-(--breakpoint-xl) flex-1 content-start gap-4 px-4 py-6 sm:px-6 md:grid-cols-[240px_minmax(0,1fr)] md:px-8">
@@ -61,6 +85,7 @@ export default async function JobsPage() {
             location={viewerLocation || null}
             bannerUrl={profile?.banner_url ?? null}
           />
+          <ManagedCompaniesCard companies={managedCompanies} />
         </aside>
       )}
 
