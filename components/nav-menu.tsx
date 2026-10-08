@@ -18,7 +18,7 @@ export const NavMenu = ({ orientation = "horizontal", className }: NavMenuProps)
   const items = [
     { href: "/", icon: House, label: t("home") },
     { href: "/network", icon: Users, label: t("network") },
-    { href: "#", icon: BriefcaseBusiness, label: t("jobs") },
+    { href: "/jobs", icon: BriefcaseBusiness, label: t("jobs") },
     { href: "/messaging", icon: MessageSquare, label: t("messaging") },
     { href: "#", icon: Bell, label: t("notifications") },
   ] as const;

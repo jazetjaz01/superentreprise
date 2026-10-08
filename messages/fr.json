@@ -642,6 +642,46 @@
     "newsletters": "Newsletters",
     "events": "Événements"
   },
+  "Jobs": {
+    "title": "Offres d'emploi",
+    "publishCta": "Publier une offre d'emploi",
+    "empty": "Aucune offre d'emploi pour le moment.",
+    "postedOn": "Publié {time}",
+    "apply": "Postuler",
+    "applyEmailSubject": "Candidature : {title}",
+    "backToList": "Retour aux offres",
+    "workplaceType": {
+      "onsite": "Sur site",
+      "hybrid": "Hybride",
+      "remote": "À distance"
+    },
+    "employmentType": {
+      "full_time": "Temps plein",
+      "part_time": "Temps partiel",
+      "contract": "CDD",
+      "internship": "Stage / Alternance"
+    },
+    "create": {
+      "pageTitle": "Publier une offre d'emploi",
+      "requiredHint": "* Indique un champ obligatoire",
+      "jobTitleLabel": "Intitulé de poste*",
+      "companyLabel": "Entreprise*",
+      "workplaceTypeLabel": "Type de lieu de travail*",
+      "locationLabel": "Lieu de l'employé",
+      "employmentTypeLabel": "Type d'emploi*",
+      "descriptionLabel": "Description*",
+      "contactEmailLabel": "Adresse e-mail de contact*",
+      "submit": "Publier l'offre",
+      "submitting": "Publication...",
+      "error": "Impossible de publier l'offre. Veuillez réessayer.",
+      "needRecruiterProTitle": "Passez à Recruiter Pro",
+      "needRecruiterProDescription": "Un abonnement Recruiter Pro est nécessaire pour publier une offre d'emploi.",
+      "needRecruiterProCta": "Voir les abonnements",
+      "needCompanyTitle": "Créez une page entreprise",
+      "needCompanyDescription": "Vous devez gérer au moins une entreprise pour publier une offre en son nom.",
+      "needCompanyCta": "Créer une entreprise"
+    }
+  },
   "Pricing": {
     "title": "Passez à la vitesse supérieure",
     "subtitle": "Choisissez l'abonnement adapté à vos objectifs.",

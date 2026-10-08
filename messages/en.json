@@ -642,6 +642,46 @@
     "newsletters": "Newsletters",
     "events": "Events"
   },
+  "Jobs": {
+    "title": "Job postings",
+    "publishCta": "Post a job",
+    "empty": "No job postings yet.",
+    "postedOn": "Posted {time}",
+    "apply": "Apply",
+    "applyEmailSubject": "Application: {title}",
+    "backToList": "Back to job postings",
+    "workplaceType": {
+      "onsite": "On-site",
+      "hybrid": "Hybrid",
+      "remote": "Remote"
+    },
+    "employmentType": {
+      "full_time": "Full-time",
+      "part_time": "Part-time",
+      "contract": "Contract",
+      "internship": "Internship"
+    },
+    "create": {
+      "pageTitle": "Post a job",
+      "requiredHint": "* Indicates a required field",
+      "jobTitleLabel": "Job title*",
+      "companyLabel": "Company*",
+      "workplaceTypeLabel": "Workplace type*",
+      "locationLabel": "Employee location",
+      "employmentTypeLabel": "Employment type*",
+      "descriptionLabel": "Description*",
+      "contactEmailLabel": "Contact email address*",
+      "submit": "Post job",
+      "submitting": "Posting...",
+      "error": "Couldn't post the job. Please try again.",
+      "needRecruiterProTitle": "Upgrade to Recruiter Pro",
+      "needRecruiterProDescription": "A Recruiter Pro subscription is required to post a job.",
+      "needRecruiterProCta": "See subscriptions",
+      "needCompanyTitle": "Create a company page",
+      "needCompanyDescription": "You need to manage at least one company to post a job on its behalf.",
+      "needCompanyCta": "Create a company"
+    }
+  },
   "Pricing": {
     "title": "Take it to the next level",
     "subtitle": "Choose the subscription that fits your goals.",
