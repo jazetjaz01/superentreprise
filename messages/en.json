@@ -626,6 +626,14 @@
     "empty": "You haven't saved any posts yet.",
     "remove": "Remove from saved items"
   },
+  "Network": {
+    "title": "Connections",
+    "count": "{count, plural, =0 {No connections} one {# connection} other {# connections}}",
+    "empty": "You don't have any connections yet.",
+    "connectedSince": "Connected on {date}",
+    "optionsTrigger": "Options",
+    "removeRelation": "Remove connection"
+  },
   "QuickLinksCard": {
     "savedItems": "Saved items",
     "groups": "Groups",

@@ -626,6 +626,14 @@
     "empty": "Vous n'avez enregistré aucun post pour le moment.",
     "remove": "Retirer des éléments enregistrés"
   },
+  "Network": {
+    "title": "Relations",
+    "count": "{count, plural, =0 {Aucune relation} one {# relation} other {# relations}}",
+    "empty": "Vous n'avez pas encore de relations.",
+    "connectedSince": "Connexion le {date}",
+    "optionsTrigger": "Options",
+    "removeRelation": "Supprimer la relation"
+  },
   "QuickLinksCard": {
     "savedItems": "Éléments enregistrés",
     "groups": "Groupes",
