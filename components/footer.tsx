@@ -48,7 +48,7 @@ const Footer = () => {
                   <li key={link}>
                     <Link
                       className="text-foreground text-base hover:text-primary hover:underline"
-                      href="#"
+                      href={link === "pricing" ? "/pricing" : "#"}
                     >
                       {t(`sections.${id}.links.${link}` as FooterKey)}
                     </Link>
