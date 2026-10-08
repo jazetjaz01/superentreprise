@@ -632,7 +632,9 @@
     "empty": "You don't have any connections yet.",
     "connectedSince": "Connected on {date}",
     "optionsTrigger": "Options",
-    "removeRelation": "Remove connection"
+    "removeRelation": "Remove connection",
+    "searchPlaceholder": "Search by name",
+    "noResults": "No results for \"{query}\"."
   },
   "QuickLinksCard": {
     "savedItems": "Saved items",

@@ -632,7 +632,9 @@
     "empty": "Vous n'avez pas encore de relations.",
     "connectedSince": "Connexion le {date}",
     "optionsTrigger": "Options",
-    "removeRelation": "Supprimer la relation"
+    "removeRelation": "Supprimer la relation",
+    "searchPlaceholder": "Rechercher par nom",
+    "noResults": "Aucun résultat pour « {query} »."
   },
   "QuickLinksCard": {
     "savedItems": "Éléments enregistrés",
