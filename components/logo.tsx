@@ -9,7 +9,7 @@ const abeezee = ABeeZee({
 export const Logo = () => (
   <span className="flex items-center gap-2">
     <Image src="/logo.svg" alt="" width={24} height={24} priority />
-    <span className={`${abeezee.className} text-2xl text-foreground`}>
+    <span className={`${abeezee.className} text-2xl text-brand`}>
       superentreprise
     </span>
   </span>
