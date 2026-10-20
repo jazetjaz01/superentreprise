@@ -1,5 +1,12 @@
-import Image from "next/image";
+import { ABeeZee } from "next/font/google";
+
+const abeezee = ABeeZee({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export const Logo = () => (
-  <Image src="/logo.svg" alt="Logo" width={174} height={32} priority />
+  <span className={`${abeezee.className} text-2xl text-foreground`}>
+    superentreprise
+  </span>
 );
