@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Pacifico } from "next/font/google";
 
 const pacifico = Pacifico({
@@ -7,7 +8,7 @@ const pacifico = Pacifico({
 });
 
 export const Logo = () => (
-  <span className="flex items-center gap-2">
+  <Link href="/" className="flex items-center gap-2">
     <Image
       src="/logo.svg"
       alt=""
@@ -19,5 +20,5 @@ export const Logo = () => (
     <span className={`${pacifico.className} text-2xl text-brand over-video:text-white`}>
       superentreprise
     </span>
-  </span>
+  </Link>
 );
