@@ -16,7 +16,7 @@ export const Logo = () => (
       priority
       className="over-video:brightness-0 over-video:invert"
     />
-    <span className={`${pacifico.className} text-xl text-brand over-video:text-white`}>
+    <span className={`${pacifico.className} text-2xl text-brand over-video:text-white`}>
       superentreprise
     </span>
   </span>
