@@ -14,6 +14,11 @@ export default function Home() {
         >
           Votre navigateur ne supporte pas la lecture de vidéos.
         </video>
+        <div className="relative flex h-full items-center justify-center px-4">
+          <h1 className="text-center text-4xl font-semibold tracking-tight text-white text-shadow-lg sm:text-5xl lg:text-6xl">
+            La transmission de votre entreprise
+          </h1>
+        </div>
       </section>
 
       <section className="mx-auto max-w-(--breakpoint-xl) px-4 py-20 sm:px-6 lg:px-8">
