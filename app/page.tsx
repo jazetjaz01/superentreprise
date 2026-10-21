@@ -26,7 +26,7 @@ export default function Home() {
             className="size-20 brightness-0 invert drop-shadow-lg sm:size-24"
           />
           <h1 className="text-center text-4xl font-semibold tracking-tight text-white text-shadow-lg sm:text-5xl lg:text-6xl">
-            Confiez votre succession d’entreprise
+            Confiez la transmission de votre entreprise
             <br />à des experts de confiance
           </h1>
         </div>
