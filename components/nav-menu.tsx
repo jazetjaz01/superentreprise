@@ -10,23 +10,24 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-const linkClassName = `${navigationMenuTriggerStyle()} over-video:hover:bg-white/15 over-video:focus:bg-white/15`;
+const linkClassName = `${navigationMenuTriggerStyle()} uppercase tracking-wide over-video:hover:bg-white/15 over-video:focus:bg-white/15`;
+
+const links = [
+  { href: "/", label: "Accueil" },
+  { href: "#", label: "Nous connaître" },
+  { href: "#", label: "Carrières" },
+  { href: "#", label: "Actualité" },
+  { href: "/contact", label: "Contact" },
+];
 
 export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => (
   <NavigationMenu {...props}>
     <NavigationMenuList className="data-[orientation=vertical]:-ms-2 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-start">
-      <NavigationMenuItem>
-        <NavigationMenuLink className={linkClassName} render={<Link href="/" />}>Home</NavigationMenuLink>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuLink className={linkClassName} render={<Link href="#" />}>Blog</NavigationMenuLink>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuLink className={linkClassName} render={<Link href="#" />}>About</NavigationMenuLink>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuLink className={linkClassName} render={<Link href="/contact" />}>Contact Us</NavigationMenuLink>
-      </NavigationMenuItem>
+      {links.map(({ href, label }) => (
+        <NavigationMenuItem key={label}>
+          <NavigationMenuLink className={linkClassName} render={<Link href={href} />}>{label}</NavigationMenuLink>
+        </NavigationMenuItem>
+      ))}
     </NavigationMenuList>
   </NavigationMenu>
 );

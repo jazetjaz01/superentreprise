@@ -45,7 +45,7 @@ const Navbar = () => {
   return (
     <nav
       data-over-video={overVideo || undefined}
-      className={`h-16 border-b bg-background text-brand over-video:border-transparent over-video:bg-black/10 over-video:text-white over-video:backdrop-blur-sm ${position}`}
+      className={`h-16 border-b bg-background text-brand over-video:border-transparent over-video:bg-stone-500/5 over-video:text-white over-video:backdrop-blur-sm ${position}`}
     >
       <div className="mx-auto flex h-full max-w-(--breakpoint-xl) items-center justify-between px-4 sm:px-6 lg:px-8">
         <Logo />
