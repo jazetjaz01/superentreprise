@@ -9,27 +9,43 @@ import { NavigationSheet } from "@/components/navigation-sheet";
 
 // Pages dont le contenu commence par une vidéo plein écran
 const VIDEO_ROUTES = ["/"];
-// Défilement (en px) au-delà duquel la navbar repasse sur fond blanc
-const SCROLL_THRESHOLD = 64;
 
 const Navbar = () => {
   const isVideoRoute = VIDEO_ROUTES.includes(usePathname());
-  const [scrolled, setScrolled] = useState(false);
+  const [pastVideo, setPastVideo] = useState(false);
 
   useEffect(() => {
     if (!isVideoRoute) return;
-    const onScroll = () => setScrolled(window.scrollY > SCROLL_THRESHOLD);
+    const onScroll = () => {
+      // Les pages quittées restent masquées dans le DOM (<Activity>) :
+      // on ne garde que la section vidéo réellement visible.
+      const hero = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-hero]")
+      ).find((el) => el.checkVisibility());
+      setPastVideo(!!hero && hero.getBoundingClientRect().bottom <= 0);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, [isVideoRoute]);
 
-  const overVideo = isVideoRoute && !scrolled;
+  const overVideo = isVideoRoute && !pastVideo;
+  // Sombre : posée sur la vidéo et défile avec elle.
+  // Blanche : fixée en haut une fois la vidéo passée.
+  const position = !isVideoRoute
+    ? ""
+    : pastVideo
+      ? "fixed inset-x-0 top-0 z-50 animate-in slide-in-from-top duration-300"
+      : "absolute inset-x-0 top-0 z-50";
 
   return (
     <nav
       data-over-video={overVideo || undefined}
-      className={`h-16 border-b bg-background text-brand transition-colors duration-300 over-video:border-white/20 over-video:bg-black/10 over-video:text-white over-video:backdrop-blur-sm ${isVideoRoute ? "fixed inset-x-0 top-0 z-50" : ""}`}
+      className={`h-16 border-b bg-background text-brand over-video:border-white/20 over-video:bg-black/10 over-video:text-white over-video:backdrop-blur-sm ${position}`}
     >
       <div className="mx-auto flex h-full max-w-(--breakpoint-xl) items-center justify-between px-4 sm:px-6 lg:px-8">
         <Logo />

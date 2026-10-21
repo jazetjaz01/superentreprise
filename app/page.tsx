@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <main>
-      <section className="relative h-[70svh] w-full overflow-hidden">
+      <section data-hero className="relative h-[70svh] w-full overflow-hidden">
         <video
           className="absolute inset-0 h-full w-full object-cover"
           src="/video/city.mp4"
