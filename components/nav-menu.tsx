@@ -10,7 +10,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-const linkClassName = `${navigationMenuTriggerStyle()} uppercase tracking-wide over-video:hover:bg-white/15 over-video:focus:bg-white/15`;
+const linkClassName = `${navigationMenuTriggerStyle()} text-xs uppercase tracking-wide over-video:hover:bg-white/15 over-video:focus:bg-white/15`;
 
 const links = [
   { href: "/", label: "Accueil" },
