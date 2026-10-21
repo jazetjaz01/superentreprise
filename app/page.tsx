@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className="relative h-[calc(100svh-4rem)] w-full overflow-hidden">
+    <main className="relative h-svh w-full overflow-hidden">
       <video
         className="absolute inset-0 h-full w-full object-cover"
         src="/video/city.mp4"

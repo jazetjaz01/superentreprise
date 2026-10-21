@@ -8,8 +8,15 @@ const poppins = Poppins({
 
 export const Logo = () => (
   <span className="flex items-center gap-2">
-    <Image src="/logo.svg" alt="" width={24} height={24} priority />
-    <span className={`${poppins.className} text-2xl text-brand`}>
+    <Image
+      src="/logo.svg"
+      alt=""
+      width={24}
+      height={24}
+      priority
+      className="over-video:brightness-0 over-video:invert"
+    />
+    <span className={`${poppins.className} text-2xl text-brand over-video:text-white`}>
       superentreprise
     </span>
   </span>

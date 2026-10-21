@@ -3,6 +3,8 @@
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
+/* Navbar superposée à une vidéo plein écran (voir components/navbar.tsx) */
+@custom-variant over-video (&:where([data-over-video], [data-over-video] *));
 
 @theme inline {
   --color-background: var(--background);
