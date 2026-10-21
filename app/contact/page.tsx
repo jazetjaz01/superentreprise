@@ -5,8 +5,9 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 export const metadata: Metadata = {
-  title: "Contact | superentreprise",
-  description: "Contactez l'équipe superentreprise.",
+  title: "Contact",
+  description:
+    "Contactez l’équipe superentreprise pour échanger sur la transmission ou la succession de votre entreprise.",
 };
 
 export default function ContactPage() {
