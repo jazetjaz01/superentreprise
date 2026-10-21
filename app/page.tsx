@@ -1,7 +1,9 @@
+import Image from "next/image";
+
 export default function Home() {
   return (
     <main>
-      <section data-hero className="relative h-[70svh] w-full overflow-hidden">
+      <section data-hero className="relative h-[80svh] w-full overflow-hidden">
         <video
           className="absolute inset-0 h-full w-full object-cover"
           src="/video/city.mp4"
@@ -14,7 +16,15 @@ export default function Home() {
         >
           Votre navigateur ne supporte pas la lecture de vidéos.
         </video>
-        <div className="relative flex h-full items-center justify-center px-4">
+        <div className="relative flex h-full flex-col items-center justify-center gap-6 px-4">
+          <Image
+            src="/logo.svg"
+            alt=""
+            width={96}
+            height={96}
+            priority
+            className="size-20 brightness-0 invert drop-shadow-lg sm:size-24"
+          />
           <h1 className="text-center text-4xl font-semibold tracking-tight text-white text-shadow-lg sm:text-5xl lg:text-6xl">
             La transmission de votre entreprise
           </h1>
