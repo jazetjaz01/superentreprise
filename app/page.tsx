@@ -4,7 +4,7 @@ export default function Home() {
       <section data-hero className="relative h-[70svh] w-full overflow-hidden">
         <video
           className="absolute inset-0 h-full w-full object-cover"
-          src="/video/city.mp4"
+          src="/video/city2.mp4"
           autoPlay
           muted
           loop
