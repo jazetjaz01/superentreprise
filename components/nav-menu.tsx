@@ -10,7 +10,13 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-const linkClassName = `${navigationMenuTriggerStyle()} text-xs uppercase tracking-wide over-video:hover:bg-white/15 over-video:focus:bg-white/15`;
+// Pas de fond au survol : un trait se déploie de gauche à droite sous le texte
+const linkClassName = [
+  navigationMenuTriggerStyle(),
+  "relative text-xs uppercase tracking-wide hover:bg-transparent focus:bg-transparent",
+  "after:absolute after:inset-x-2.5 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300",
+  "hover:after:scale-x-100 focus-visible:after:scale-x-100",
+].join(" ");
 
 const links = [
   { href: "/", label: "Accueil" },
