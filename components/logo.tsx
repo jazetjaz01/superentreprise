@@ -14,9 +14,9 @@ export const Logo = () => (
       width={24}
       height={24}
       priority
-      className="over-video:brightness-0 over-video:invert"
+      className="transition-[filter] duration-300 over-video:brightness-0 over-video:invert"
     />
-    <span className={`${poppins.className} text-2xl text-brand over-video:text-white`}>
+    <span className={`${poppins.className} text-2xl text-brand transition-colors duration-300 over-video:text-white`}>
       superentreprise
     </span>
   </span>
