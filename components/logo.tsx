@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { Poppins } from "next/font/google";
+import { Pacifico } from "next/font/google";
 
-const poppins = Poppins({
-  weight: "600",
+const pacifico = Pacifico({
+  weight: "400",
   subsets: ["latin"],
 });
 
@@ -16,7 +16,7 @@ export const Logo = () => (
       priority
       className="over-video:brightness-0 over-video:invert"
     />
-    <span className={`${poppins.className} text-xl text-brand over-video:text-white`}>
+    <span className={`${pacifico.className} text-xl text-brand over-video:text-white`}>
       superentreprise
     </span>
   </span>
