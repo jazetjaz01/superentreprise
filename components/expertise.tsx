@@ -26,11 +26,11 @@ const steps: Step[] = [
 ];
 
 export const Expertise = () => (
-  <section className="mx-auto max-w-(--breakpoint-xl) px-4 py-20 sm:px-6 lg:px-8">
+  <section className="mx-auto max-w-(--breakpoint-xl)  px-4  sm:px-6 lg:px-8">
     <div className="text-center text-brand">
       <span className="mx-auto block h-px w-10 bg-brand" />
       <p className="mt-6 text-sm tracking-wide">Notre expertise</p>
-      <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">
+      <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
         Un accompagnement en trois étapes
       </h2>
     </div>
