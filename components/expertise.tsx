@@ -24,6 +24,7 @@ const steps: Step[] = [
     title: "Exécution et Closing",
     description:
       "Nous identifions et approchons les repreneurs, menons les négociations et vous accompagnons jusqu’à la signature, en toute confidentialité.",
+    image: "/home/process3.jpg",
   },
 ];
 
