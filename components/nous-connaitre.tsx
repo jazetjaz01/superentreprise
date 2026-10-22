@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
-// Image à déposer dans public/ (format 5:4 conseillé, ex. 1500 × 1200 px)
-const image: string | undefined = undefined; // ex. "/home/nous-connaitre.jpg"
+// Image au format 4:3 (ex. 1600 × 1200 px)
+const image: string | undefined = "/home/nousconnaitre.jpg";
 
 export const NousConnaitre = () => (
   <section className="mx-auto max-w-page px-4 py-20 sm:px-6 lg:px-8">
     <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-      <div className="relative aspect-[5/4] overflow-hidden bg-brand/5">
+      <div className="relative aspect-[4/3] overflow-hidden bg-brand/5">
         {image ? (
           <Image
             src={image}
