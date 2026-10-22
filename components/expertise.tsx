@@ -12,6 +12,7 @@ const steps: Step[] = [
     title: "Diagnostic & Stratégie",
     description:
       "Nous analysons votre entreprise, sa valeur et vos objectifs personnels afin de définir la stratégie de transmission ou de cession la plus adaptée.",
+    image: "/home/process1.jpg",
   },
   {
     title: "Préparation et Optimisation",
@@ -26,7 +27,7 @@ const steps: Step[] = [
 ];
 
 export const Expertise = () => (
-  <section className="mx-auto max-w-(--breakpoint-xl)  px-4  sm:px-6 lg:px-8">
+  <section className="mx-auto max-w-page  px-4  sm:px-6 lg:px-8">
     <div className="text-center text-brand">
       <span className="mx-auto block h-px w-10 bg-brand" />
       <p className="mt-6 text-sm tracking-wide">Notre expertise</p>

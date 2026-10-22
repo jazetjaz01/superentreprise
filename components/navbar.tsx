@@ -47,7 +47,7 @@ const Navbar = () => {
       data-over-video={overVideo || undefined}
       className={`h-16 border-b bg-background text-brand over-video:border-transparent over-video:bg-black/30 over-video:text-white over-video:backdrop-blur-sm ${position}`}
     >
-      <div className="mx-auto flex h-full max-w-(--breakpoint-xl) items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-full max-w-page items-center justify-between px-4 sm:px-6 lg:px-8">
         <Logo />
 
         {/* Desktop Menu */}

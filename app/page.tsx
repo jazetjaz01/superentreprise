@@ -34,7 +34,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-(--breakpoint-xl) px-4 py-20 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-page px-4 py-20 sm:px-6 lg:px-8">
         <h2 className="text-center text-3xl font-semibold tracking-tight text-brand sm:text-4xl">
           La transmission en toute confiance
         </h2>

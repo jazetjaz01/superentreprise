@@ -10,6 +10,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-brand: #143156;
+  /* Largeur maximale du contenu (navbar et pages) : classe max-w-page */
+  --container-page: 96rem;
   --font-sans: var(--font-outfit);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
