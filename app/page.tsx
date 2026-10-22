@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Expertise } from "@/components/expertise";
 import { LogoDivider } from "@/components/logo-divider";
 
 export default function Home() {
@@ -43,6 +44,8 @@ export default function Home() {
         </p>
         <LogoDivider className="mt-16" />
       </section>
+
+      <Expertise />
     </main>
   );
 }
