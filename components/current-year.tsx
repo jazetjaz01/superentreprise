@@ -1,4 +1,8 @@
-"use client";
+import { cacheLife } from "next/cache";
 
-// new Date() est interdit dans le rendu serveur prérendu (cacheComponents)
-export const CurrentYear = () => <>{new Date().getFullYear()}</>;
+// Avec cacheComponents, new Date() n'est autorisé que dans un composant mis en cache
+export async function CurrentYear() {
+  "use cache";
+  cacheLife("days");
+  return <>{new Date().getFullYear()}</>;
+}
