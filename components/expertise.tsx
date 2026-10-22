@@ -18,6 +18,7 @@ const steps: Step[] = [
     title: "Préparation et Optimisation",
     description:
       "Nous préparons l’entreprise à la transmission : valorisation, structuration juridique et fiscale, documentation et mise en avant de ses atouts auprès des repreneurs.",
+    image: "/home/process2.jpg",
   },
   {
     title: "Exécution et Closing",
