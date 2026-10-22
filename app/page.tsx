@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { LogoDivider } from "@/components/logo-divider";
 
 export default function Home() {
   return (
@@ -40,6 +41,7 @@ export default function Home() {
           Superentreprise accompagne les chefs d’entreprise dans leur projet de
           transmission ou de cession.
         </p>
+        <LogoDivider className="mt-16" />
       </section>
     </main>
   );
