@@ -32,7 +32,7 @@ const slides: Slide[] = [
     title: "Étudiants et jeunes diplômés",
     description:
       "Stages et alternances : apprenez aux côtés d’experts de la transmission et participez concrètement à des opérations dès vos premiers jours.",
-    image: "/home/process3.jpg",
+    image: "/home/carriere3.jpg",
     cta: { href: "#", label: "Stages et alternances" },
   },
   {
