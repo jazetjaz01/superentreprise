@@ -18,7 +18,7 @@ const slides: Slide[] = [
     title: "Rejoignez des entrepreneurs au service des entrepreneurs",
     description:
       "Chez superentreprise, chaque collaborateur accompagne des dirigeants dans l’un des moments les plus importants de leur vie professionnelle. Une mission exigeante, humaine et porteuse de sens.",
-    image: "/home/process1.jpg",
+    image: "/home/carriere1.jpg",
     cta: { href: "#", label: "Carrières" },
   },
   {
