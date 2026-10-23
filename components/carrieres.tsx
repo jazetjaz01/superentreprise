@@ -8,7 +8,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 type Slide = {
   title: string;
   description: string;
-  // Images provisoires : à remplacer par des photos dédiées (portrait 3:4, ex. 1200 × 1600 px)
+  // Image portrait 3:4 dans public/ (ex. 1200 × 1600 px)
   image: string;
   cta: { href: string; label: string };
 };
@@ -39,7 +39,7 @@ const slides: Slide[] = [
     title: "Candidature spontanée",
     description:
       "Vous ne trouvez pas l’offre qui vous correspond ? Envoyez-nous votre candidature, nous serons ravis d’échanger avec vous.",
-    image: "/home/nousconnaitre.jpg",
+    image: "/home/carriere4.jpg",
     cta: { href: "/contact", label: "Nous écrire" },
   },
 ];
