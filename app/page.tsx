@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Carrieres } from "@/components/carrieres";
 import { Expertise } from "@/components/expertise";
 import { Implantation } from "@/components/implantation";
 import { KeyFigures } from "@/components/key-figures";
@@ -52,6 +53,7 @@ export default function Home() {
       <KeyFigures />
       <NousConnaitre />
       <Implantation />
+      <Carrieres />
     </main>
   );
 }
