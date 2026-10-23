@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Expertise } from "@/components/expertise";
+import { Implantation } from "@/components/implantation";
 import { KeyFigures } from "@/components/key-figures";
 import { LogoDivider } from "@/components/logo-divider";
 import { NousConnaitre } from "@/components/nous-connaitre";
@@ -50,6 +51,7 @@ export default function Home() {
       <Expertise />
       <KeyFigures />
       <NousConnaitre />
+      <Implantation />
     </main>
   );
 }
