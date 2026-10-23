@@ -52,8 +52,9 @@ export default function Home() {
       <Expertise />
       <KeyFigures />
       <NousConnaitre />
+       <Carrieres />
       <Implantation />
-      <Carrieres />
+     
     </main>
   );
 }
