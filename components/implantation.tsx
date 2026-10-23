@@ -5,6 +5,7 @@ export const Implantation = () => (
   <ImageTextSection
     eyebrow="Notre implantation"
     title="Au plus près des dirigeants, partout en France"
+    image="/home/ladefense.jpg"
     cta={{ href: "/contact", label: "Rencontrons-nous" }}
   >
     <p>
