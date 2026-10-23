@@ -25,7 +25,7 @@ const slides: Slide[] = [
     title: "Des profils expérimentés",
     description:
       "Vous avez une expérience en fusions-acquisitions, en finance d’entreprise, en droit ou en conseil ? Mettez votre expertise au service des cédants et des repreneurs.",
-    image: "/home/process2.jpg",
+    image: "/home/carriere2.jpg",
     cta: { href: "#", label: "Voir les offres" },
   },
   {
