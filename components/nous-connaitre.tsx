@@ -4,7 +4,7 @@ export const NousConnaitre = () => (
   <ImageTextSection
     eyebrow="Nous connaître"
     title="Des entrepreneurs qui comprennent les entrepreneurs"
-    image="/home/nousconnaitre.jpg"
+    image="/home/ladefense.jpg"
     cta={{ href: "#", label: "En savoir plus" }}
   >
     <p>
