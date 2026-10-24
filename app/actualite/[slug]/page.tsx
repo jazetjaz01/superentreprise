@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { getPublishedArticle, getPublishedArticles } from "@/lib/articles";
 import { formatDate } from "@/lib/format";
-import { AuthorBadge } from "@/components/actualite/author-badge";
+import { ArticleAuthorAside } from "@/components/actualite/article-author-aside";
 import { EditArticleLink } from "@/components/actualite/edit-article-link";
 import { LatestArticles } from "@/components/actualite/latest-articles";
 
@@ -45,8 +45,10 @@ async function ArticleContent(props: PageProps<"/actualite/[slug]">) {
   const paragraphs = article.content.split(/\n\s*\n/).filter((p) => p.trim());
 
   return (
-    <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-12">
-      <article>
+    // ≥ 1280 px : auteur | article | derniers articles
+    // 1024–1280 px : article (auteur dessous) | derniers articles ; mobile : empilé
+    <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[minmax(0,1fr)_18rem] xl:grid-cols-[13rem_minmax(0,1fr)_17rem] xl:gap-10">
+      <article className="lg:col-start-1 lg:row-start-1 xl:col-start-2">
         <Link
           href="/actualite"
           className="inline-flex items-center gap-2 text-sm text-brand hover:underline hover:underline-offset-4"
@@ -70,11 +72,9 @@ async function ArticleContent(props: PageProps<"/actualite/[slug]">) {
           <p className="mt-6 text-xl text-brand/80">{article.excerpt}</p>
         )}
         <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
-          <AuthorBadge
-            author={article.author}
-            date={formatDate(article.published_at)}
-            size={44}
-          />
+          <p className="text-sm text-muted-foreground">
+            Publié le {formatDate(article.published_at)}
+          </p>
           <Suspense fallback={null}>
             <EditArticleLink
               articleId={article.id}
@@ -90,7 +90,7 @@ async function ArticleContent(props: PageProps<"/actualite/[slug]">) {
               alt=""
               fill
               priority
-              sizes="(min-width: 1024px) 816px, 100vw"
+              sizes="(min-width: 1024px) 680px, 100vw"
               className="object-cover"
             />
           </div>
@@ -104,7 +104,12 @@ async function ArticleContent(props: PageProps<"/actualite/[slug]">) {
           ))}
         </div>
       </article>
-      <LatestArticles excludeSlug={article.slug} />
+      <div className="lg:col-start-1 lg:row-start-2 xl:row-start-1">
+        <ArticleAuthorAside author={article.author} title={article.title} />
+      </div>
+      <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1 xl:col-start-3 xl:row-span-1">
+        <LatestArticles excludeSlug={article.slug} />
+      </div>
     </div>
   );
 }

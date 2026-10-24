@@ -10,6 +10,7 @@ import { saveAuthor } from "./actions";
 
 type AuthorValues = {
   display_name: string;
+  job_title: string | null;
   bio: string | null;
   avatar_url: string | null;
 };
@@ -46,6 +47,16 @@ export const AuthorForm = ({
           minLength={2}
           maxLength={100}
           required
+        />
+      </div>
+      <div className="grid gap-2">
+        <Label htmlFor="job_title">Fonction (facultatif)</Label>
+        <Input
+          id="job_title"
+          name="job_title"
+          defaultValue={author?.job_title ?? ""}
+          maxLength={120}
+          placeholder="Ex. Associé, Conseil en cession d’entreprise"
         />
       </div>
       <div className="grid gap-2">

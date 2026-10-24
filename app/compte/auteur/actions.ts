@@ -14,11 +14,15 @@ export async function saveAuthor(_state: FormState, formData: FormData): Promise
   const user = await requireWriter();
 
   const displayName = String(formData.get("display_name") ?? "").trim();
+  const jobTitle = String(formData.get("job_title") ?? "").trim();
   const bio = String(formData.get("bio") ?? "").trim();
   const avatarUrl = String(formData.get("avatar_url") ?? "");
 
   if (displayName.length < 2 || displayName.length > 100) {
     return { error: "Le nom affiché doit contenir entre 2 et 100 caractères." };
+  }
+  if (jobTitle.length > 120) {
+    return { error: "La fonction ne doit pas dépasser 120 caractères." };
   }
   if (avatarUrl && !isOwnStorageUrl(avatarUrl, "avatars", user.id)) {
     return { error: "Image invalide." };
@@ -27,6 +31,7 @@ export async function saveAuthor(_state: FormState, formData: FormData): Promise
   const supabase = await createClient();
   const values = {
     display_name: displayName,
+    job_title: jobTitle || null,
     bio: bio || null,
     avatar_url: avatarUrl || null,
   };

@@ -12,7 +12,7 @@ async function AuthorEditor() {
   const supabase = await createClient();
   const { data: author } = await supabase
     .from("authors")
-    .select("display_name, bio, avatar_url")
+    .select("display_name, job_title, bio, avatar_url")
     .eq("id", user.id)
     .maybeSingle();
 

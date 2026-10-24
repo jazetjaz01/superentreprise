@@ -7,11 +7,16 @@ export const ARTICLES_TAG = "articles";
 const ARTICLE_FIELDS = `
   id, slug, title, excerpt, content, cover_image_url, published_at,
   category:categories (id, slug, name),
-  author:authors (id, display_name, avatar_url)
+  author:authors (id, display_name, job_title, avatar_url)
 `;
 
 export type Category = { id: number; slug: string; name: string };
-export type Author = { id: string; display_name: string; avatar_url: string | null };
+export type Author = {
+  id: string;
+  display_name: string;
+  job_title: string | null;
+  avatar_url: string | null;
+};
 export type Article = {
   id: string;
   slug: string;
