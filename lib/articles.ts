@@ -95,6 +95,30 @@ export async function getArticlesPage(
   return { articles: data, totalPages: Math.ceil((count ?? 0) / ARTICLES_PER_PAGE) };
 }
 
+export type ArticleSummary = Pick<
+  Article,
+  "id" | "slug" | "title" | "cover_image_url" | "published_at"
+>;
+
+// Les derniers articles publiés, hors article en cours (colonne latérale)
+export async function getLatestArticles(
+  excludeSlug: string,
+  limit = 3
+): Promise<ArticleSummary[]> {
+  "use cache";
+  cacheTag(ARTICLES_TAG);
+  cacheLife("hours");
+
+  const { data, error } = await createPublicClient()
+    .from("articles")
+    .select("id, slug, title, cover_image_url, published_at")
+    .neq("slug", excludeSlug)
+    .order("published_at", { ascending: false })
+    .limit(limit);
+  if (error) throw error;
+  return data;
+}
+
 export async function getPublishedArticle(slug: string): Promise<Article | null> {
   "use cache";
   cacheTag(ARTICLES_TAG);
