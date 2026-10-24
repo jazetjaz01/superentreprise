@@ -45,8 +45,8 @@ async function ArticleContent(props: PageProps<"/actualite/[slug]">) {
   const paragraphs = article.content.split(/\n\s*\n/).filter((p) => p.trim());
 
   return (
-    <div className="grid gap-16 lg:grid-cols-[minmax(0,1fr)_18rem] xl:gap-24">
-      <article className="max-w-3xl">
+    <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-12">
+      <article>
         <Link
           href="/actualite"
           className="inline-flex items-center gap-2 text-sm text-brand hover:underline hover:underline-offset-4"
@@ -90,7 +90,7 @@ async function ArticleContent(props: PageProps<"/actualite/[slug]">) {
               alt=""
               fill
               priority
-              sizes="(min-width: 1024px) 768px, 100vw"
+              sizes="(min-width: 1024px) 816px, 100vw"
               className="object-cover"
             />
           </div>
