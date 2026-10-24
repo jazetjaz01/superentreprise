@@ -11,7 +11,7 @@ const columns = [
   ],
   [
     { href: "#", label: "Nous connaître" },
-    { href: "#", label: "Actualité" },
+    { href: "/actualite", label: "Actualité" },
   ],
   [{ href: "#", label: "Carrières" }],
   [{ href: "/contact", label: "Contactez-nous" }],

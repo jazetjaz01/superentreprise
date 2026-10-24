@@ -14,7 +14,7 @@ const links = [
   { href: "/", label: "Accueil" },
   { href: "#", label: "Nous connaître" },
   { href: "#", label: "Carrières" },
-  { href: "#", label: "Actualité" },
+  { href: "/actualite", label: "Actualité" },
   { href: "/contact", label: "Contact" },
 ];
 

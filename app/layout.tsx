@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Outfit, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
@@ -30,7 +31,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${outfit.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar />
+        {/* usePathname suspend sur les routes dont le paramètre est inconnu au build */}
+        <Suspense fallback={<div className="h-16 border-b" />}>
+          <Navbar />
+        </Suspense>
         {children}
         <Footer />
       </body>

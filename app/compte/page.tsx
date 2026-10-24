@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { createClient } from "@/lib/supabase/server";
+import { getCurrentUser } from "@/lib/auth";
 
 export const metadata: Metadata = { title: "Mon compte" };
 
@@ -21,10 +22,9 @@ export default function ComptePage() {
 }
 
 async function AccountDetails() {
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getClaims();
+  const user = await getCurrentUser();
 
-  if (!data?.claims) {
+  if (!user) {
     redirect("/connexion");
   }
 
@@ -32,8 +32,19 @@ async function AccountDetails() {
     <div className="mt-6">
       <p className="text-muted-foreground">
         Vous êtes connecté avec{" "}
-        <span className="font-medium text-brand">{data.claims.email}</span>.
+        <span className="font-medium text-brand">{user.email}</span>.
       </p>
+      {user.role === "writer" && (
+        <nav className="mt-8 grid gap-3 border-y py-6">
+          <p className="text-xs font-medium uppercase tracking-wide text-brand/60">Espace auteur</p>
+          <Link href="/compte/articles" className="text-brand underline underline-offset-4">
+            Mes articles
+          </Link>
+          <Link href="/compte/auteur" className="text-brand underline underline-offset-4">
+            Ma fiche auteur
+          </Link>
+        </nav>
+      )}
       <form action="/auth/signout" method="post" className="mt-8">
         <Button type="submit" variant="outline" className="h-10">
           Se déconnecter
