@@ -1,14 +1,26 @@
 import Link from "next/link";
-import { getCategories, getPublishedArticles } from "@/lib/articles";
+import { notFound } from "next/navigation";
+import { getArticlesPage, getCategories } from "@/lib/articles";
 import { ArticleCard } from "@/components/actualite/article-card";
+import { Pagination } from "@/components/actualite/pagination";
 
-// En-tête, filtre par catégorie et grille d'articles (page générale ou catégorie)
-export async function ArticleList({ categorySlug }: { categorySlug?: string }) {
-  const [categories, articles] = await Promise.all([
+// En-tête, filtre par catégorie, grille d'articles et pagination
+export async function ArticleList({
+  categorySlug,
+  page = 1,
+}: {
+  categorySlug?: string;
+  page?: number;
+}) {
+  const [categories, { articles, totalPages }] = await Promise.all([
     getCategories(),
-    getPublishedArticles(categorySlug),
+    getArticlesPage(categorySlug, page),
   ]);
+  // Page au-delà de la dernière
+  if (page > 1 && articles.length === 0) notFound();
+
   const current = categories.find((c) => c.slug === categorySlug);
+  const basePath = categorySlug ? `/actualite/categorie/${categorySlug}` : "/actualite";
 
   const filters = [{ href: "/actualite", label: "Tous", active: !categorySlug }].concat(
     categories.map((c) => ({
@@ -54,6 +66,8 @@ export async function ArticleList({ categorySlug }: { categorySlug?: string }) {
           Aucun article publié pour le moment.
         </p>
       )}
+
+      <Pagination current={page} total={totalPages} basePath={basePath} />
     </main>
   );
 }

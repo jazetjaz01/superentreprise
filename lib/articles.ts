@@ -59,6 +59,42 @@ export async function getPublishedArticles(categorySlug?: string): Promise<Artic
   return data;
 }
 
+// Nombre d'articles par page de la liste Actualité
+export const ARTICLES_PER_PAGE = 3;
+
+export type ArticlesPage = { articles: Article[]; totalPages: number };
+
+// Une page d'articles publiés (page 1 = la plus récente), éventuellement filtrée
+export async function getArticlesPage(
+  categorySlug: string | undefined,
+  page: number
+): Promise<ArticlesPage> {
+  "use cache";
+  cacheTag(ARTICLES_TAG);
+  cacheLife("hours");
+
+  const from = (page - 1) * ARTICLES_PER_PAGE;
+  let query = createPublicClient()
+    .from("articles")
+    .select(ARTICLE_FIELDS, { count: "exact" })
+    .order("published_at", { ascending: false })
+    .range(from, from + ARTICLES_PER_PAGE - 1);
+
+  if (categorySlug) {
+    const category = (await getCategories()).find((c) => c.slug === categorySlug);
+    if (!category) return { articles: [], totalPages: 0 };
+    query = query.eq("category_id", category.id);
+  }
+
+  const { data, error, count } = await query.returns<Article[]>();
+  // Page au-delà de la dernière : PostgREST renvoie une erreur 416
+  if (error) {
+    if (error.code === "PGRST103") return { articles: [], totalPages: 0 };
+    throw error;
+  }
+  return { articles: data, totalPages: Math.ceil((count ?? 0) / ARTICLES_PER_PAGE) };
+}
+
 export async function getPublishedArticle(slug: string): Promise<Article | null> {
   "use cache";
   cacheTag(ARTICLES_TAG);
