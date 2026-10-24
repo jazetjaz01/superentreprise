@@ -4,7 +4,14 @@ import { LinkedInIcon, XIcon } from "@/components/brand-icons";
 import type { Author } from "@/lib/articles";
 import { ShareButtons } from "@/components/actualite/share-buttons";
 
-const headingClassName = "text-sm font-bold uppercase tracking-widest text-brand";
+// Même style que la colonne « Derniers articles » : petit trait + titre,
+// contenu encadré de traits fins
+const SectionTitle = ({ children }: { children: React.ReactNode }) => (
+  <h2 className="flex items-center gap-4 text-sm font-medium uppercase tracking-wide text-brand">
+    <span className="h-px w-8 bg-brand" />
+    {children}
+  </h2>
+);
 
 // Colonne gauche de l'article : « Rédigé par » et « Partager l'article »
 export const ArticleAuthorAside = ({
@@ -16,9 +23,9 @@ export const ArticleAuthorAside = ({
 }) => (
   <aside className="space-y-12 lg:sticky lg:top-8">
     {author && (
-      <section className="border-t border-brand pt-8">
-        <h2 className={headingClassName}>Rédigé par</h2>
-        <div className="mt-5 flex items-start gap-4">
+      <section>
+        <SectionTitle>Rédigé par</SectionTitle>
+        <div className="mt-6 flex items-start gap-4 border-y py-5">
           {author.avatar_url ? (
             <Image
               src={author.avatar_url}
@@ -86,9 +93,9 @@ export const ArticleAuthorAside = ({
       </section>
     )}
 
-    <section className="border-t-2 border-brand pt-8">
-      <h2 className={headingClassName}>Partager l’article</h2>
-      <div className="mt-5">
+    <section>
+      <SectionTitle>Partager l’article</SectionTitle>
+      <div className="mt-6 border-y py-4">
         <ShareButtons title={title} />
       </div>
     </section>
