@@ -22,7 +22,7 @@ export const NavigationSheet = () => {
       <SheetContent className="px-6 py-3 text-brand">
         <Logo />
         <NavMenu className="mt-6 [&>div]:h-full" orientation="vertical" />
-        <AuthLinks className="mt-8 flex-col items-stretch" linkClassName="h-10" />
+        <AuthLinks className="-ms-2 mt-4 flex-col items-start" />
       </SheetContent>
     </Sheet>
   );
