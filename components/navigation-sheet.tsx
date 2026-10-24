@@ -7,6 +7,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { AuthLinks } from "@/components/auth-links";
 import { Logo } from "@/components/logo";
 import { NavMenu } from "@/components/nav-menu";
 
@@ -21,6 +22,7 @@ export const NavigationSheet = () => {
       <SheetContent className="px-6 py-3 text-brand">
         <Logo />
         <NavMenu className="mt-6 [&>div]:h-full" orientation="vertical" />
+        <AuthLinks className="mt-8 flex-col items-stretch" linkClassName="h-10" />
       </SheetContent>
     </Sheet>
   );

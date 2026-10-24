@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
+import { AuthLinks } from "@/components/auth-links";
 import { Logo } from "@/components/logo";
 import { NavMenu } from "@/components/nav-menu";
 import { NavigationSheet } from "@/components/navigation-sheet";
@@ -54,10 +54,7 @@ const Navbar = () => {
         <NavMenu className="hidden md:block" />
 
         <div className="flex items-center gap-3">
-          <Button className="hidden sm:inline-flex" variant="outline">
-            Sign In
-          </Button>
-          <Button>Get Started</Button>
+          <AuthLinks className="hidden sm:flex" />
 
           {/* Mobile Menu */}
           <div className="md:hidden">
