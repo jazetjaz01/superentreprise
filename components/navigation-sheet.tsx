@@ -1,6 +1,4 @@
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -18,7 +16,15 @@ export const NavigationSheet = () => {
         <SheetTitle>Navigation Menu</SheetTitle>
       </VisuallyHidden>
 
-      <SheetTrigger render={<Button size="icon" variant="outline" />}><Menu /></SheetTrigger>
+      {/* Trois traits horizontaux, couleur héritée de la navbar (blanc sur la vidéo) */}
+      <SheetTrigger
+        aria-label="Ouvrir le menu"
+        className="flex size-10 flex-col items-center justify-center gap-1.5"
+      >
+        <span className="h-0.5 w-6 bg-current" />
+        <span className="h-0.5 w-6 bg-current" />
+        <span className="h-0.5 w-6 bg-current" />
+      </SheetTrigger>
       <SheetContent className="px-6 py-3 text-brand">
         <Logo />
         <NavMenu className="mt-6 [&>div]:h-full" orientation="vertical" />
