@@ -3,15 +3,9 @@ import { Mail } from "lucide-react";
 import { LinkedInIcon, XIcon } from "@/components/brand-icons";
 import type { Author } from "@/lib/articles";
 import { ShareButtons } from "@/components/actualite/share-buttons";
+import { SectionTitle } from "@/components/section-title";
 
-// Même style que la colonne « Derniers articles » : petit trait + titre,
-// contenu encadré de traits fins
-const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <h2 className="flex items-center gap-4 text-sm font-medium uppercase tracking-wide text-brand">
-    <span className="h-px w-8 bg-brand" />
-    {children}
-  </h2>
-);
+
 
 // Colonne gauche de l'article : « Rédigé par » et « Partager l'article »
 export const ArticleAuthorAside = ({

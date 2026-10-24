@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getLatestArticles } from "@/lib/articles";
 import { formatDate } from "@/lib/format";
+import { SectionTitle } from "@/components/section-title";
 
 // Colonne latérale : les 3 derniers articles (miniature, titre, date)
 export async function LatestArticles({ excludeSlug }: { excludeSlug: string }) {
@@ -10,13 +11,9 @@ export async function LatestArticles({ excludeSlug }: { excludeSlug: string }) {
 
   return (
     <aside aria-labelledby="latest-articles-title" className="lg:sticky lg:top-8">
-      <h2
-        id="latest-articles-title"
-        className="flex items-center gap-4 text-sm font-medium uppercase tracking-wide text-brand"
-      >
-        <span className="h-px w-8 bg-brand" />
-        Derniers articles
-      </h2>
+      <SectionTitle>
+        <span id="latest-articles-title">Derniers articles</span>
+      </SectionTitle>
       <ul className="mt-6 divide-y border-y">
         {articles.map((article) => (
           <li key={article.id}>
