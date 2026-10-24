@@ -7,6 +7,7 @@ import { ArrowLeft } from "lucide-react";
 import { getPublishedArticle, getPublishedArticles } from "@/lib/articles";
 import { formatDate } from "@/lib/format";
 import { AuthorBadge } from "@/components/actualite/author-badge";
+import { EditArticleLink } from "@/components/actualite/edit-article-link";
 
 // Avec cacheComponents, au moins un paramètre est requis au build :
 // tant qu'aucun article n'est publié, on prérend une page factice (404).
@@ -64,8 +65,11 @@ async function ArticleContent(props: PageProps<"/actualite/[slug]">) {
       {article.excerpt && (
         <p className="mt-6 text-xl text-brand/80">{article.excerpt}</p>
       )}
-      <div className="mt-8">
+      <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
         <AuthorBadge author={article.author} date={formatDate(article.published_at)} size={44} />
+        <Suspense fallback={null}>
+          <EditArticleLink articleId={article.id} authorId={article.author?.id} />
+        </Suspense>
       </div>
 
       {article.cover_image_url && (

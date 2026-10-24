@@ -30,11 +30,22 @@ export const ImageUpload = ({
   aspect?: string;
 }) => {
   const [url, setUrl] = useState(defaultValue ?? "");
+  // Image envoyée mais pas encore enregistrée avec le formulaire
+  const [pendingPath, setPendingPath] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Supprime l'image intermédiaire (remplacée ou retirée avant enregistrement).
+  // L'image déjà enregistrée est supprimée côté serveur après la sauvegarde.
+  const discardPending = async () => {
+    if (!pendingPath) return;
+    await createClient().storage.from(bucket).remove([pendingPath]);
+    setPendingPath(null);
+  };
+
   const onChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
+    event.target.value = ""; // permet de resélectionner le même fichier
     if (!file) return;
     setError(null);
 
@@ -60,6 +71,8 @@ export const ImageUpload = ({
       setError("L’envoi de l’image a échoué. Réessayez.");
       return;
     }
+    await discardPending();
+    setPendingPath(path);
     setUrl(supabase.storage.from(bucket).getPublicUrl(path).data.publicUrl);
   };
 
@@ -90,7 +103,10 @@ export const ImageUpload = ({
         {url && !uploading && (
           <button
             type="button"
-            onClick={() => setUrl("")}
+            onClick={async () => {
+              await discardPending();
+              setUrl("");
+            }}
             className="text-sm text-muted-foreground underline underline-offset-4"
           >
             Retirer

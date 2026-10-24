@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { requireWriter } from "@/lib/auth";
 import { ARTICLES_TAG } from "@/lib/articles";
 import { slugify } from "@/lib/format";
-import { isOwnStorageUrl } from "@/lib/storage";
+import { isOwnStorageUrl, removeOwnImage } from "@/lib/storage";
 import { createClient } from "@/lib/supabase/server";
 
 export type ArticleFormState = { error?: string } | undefined;
@@ -59,6 +59,18 @@ export async function saveArticle(
     status,
   } as const;
 
+  // Image actuelle, pour la supprimer du bucket si elle est remplacée ou retirée
+  const previousCover = id
+    ? (
+        await supabase
+          .from("articles")
+          .select("cover_image_url")
+          .eq("id", id)
+          .eq("author_id", user.id)
+          .maybeSingle()
+      ).data?.cover_image_url
+    : null;
+
   // La RLS limite l'écriture aux articles de l'auteur connecté
   const { error } = id
     ? await supabase.from("articles").update(values).eq("id", id).eq("author_id", user.id)
@@ -73,6 +85,10 @@ export async function saveArticle(
     };
   }
 
+  if (previousCover && previousCover !== values.cover_image_url) {
+    await removeOwnImage(supabase, previousCover, "article-covers", user.id);
+  }
+
   updateTag(ARTICLES_TAG);
   redirect("/compte/articles");
 }
@@ -80,7 +96,17 @@ export async function saveArticle(
 export async function deleteArticle(id: string) {
   const user = await requireWriter();
   const supabase = await createClient();
-  await supabase.from("articles").delete().eq("id", id).eq("author_id", user.id);
+
+  const { data: deleted } = await supabase
+    .from("articles")
+    .delete()
+    .eq("id", id)
+    .eq("author_id", user.id)
+    .select("cover_image_url")
+    .maybeSingle();
+  // L'image n'est supprimée du bucket que si l'article l'a bien été
+  await removeOwnImage(supabase, deleted?.cover_image_url, "article-covers", user.id);
+
   updateTag(ARTICLES_TAG);
   redirect("/compte/articles");
 }

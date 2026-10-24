@@ -3,10 +3,12 @@
 import { updateTag } from "next/cache";
 import { requireWriter } from "@/lib/auth";
 import { ARTICLES_TAG } from "@/lib/articles";
-import { isOwnStorageUrl } from "@/lib/storage";
+import { isOwnStorageUrl, removeOwnImage } from "@/lib/storage";
 import { createClient } from "@/lib/supabase/server";
 
-export type FormState = { error?: string; message?: string } | undefined;
+export type FormState =
+  | { error?: string; message?: string; avatarUrl?: string | null; savedAt?: number }
+  | undefined;
 
 export async function saveAuthor(_state: FormState, formData: FormData): Promise<FormState> {
   const user = await requireWriter();
@@ -32,7 +34,7 @@ export async function saveAuthor(_state: FormState, formData: FormData): Promise
   // Pas d'upsert : la colonne id n'est pas modifiable (droits de la table)
   const { data: existing } = await supabase
     .from("authors")
-    .select("id")
+    .select("id, avatar_url")
     .eq("id", user.id)
     .maybeSingle();
   const { error } = existing
@@ -41,7 +43,16 @@ export async function saveAuthor(_state: FormState, formData: FormData): Promise
 
   if (error) return { error: "L’enregistrement a échoué. Réessayez." };
 
+  // Ancienne photo remplacée ou retirée : on la supprime du bucket
+  if (existing?.avatar_url && existing.avatar_url !== values.avatar_url) {
+    await removeOwnImage(supabase, existing.avatar_url, "avatars", user.id);
+  }
+
   // Le nom et l'avatar apparaissent sur les articles publiés
   updateTag(ARTICLES_TAG);
-  return { message: "Votre fiche auteur est enregistrée." };
+  return {
+    message: "Votre fiche auteur est enregistrée.",
+    avatarUrl: values.avatar_url,
+    savedAt: Date.now(),
+  };
 }

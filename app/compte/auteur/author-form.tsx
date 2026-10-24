@@ -26,11 +26,13 @@ export const AuthorForm = ({
   return (
     <form action={action} className="mt-10 grid gap-6">
       <div className="max-w-40">
+        {/* Remonté après chaque sauvegarde : la photo enregistrée devient la référence */}
         <ImageUpload
+          key={state?.savedAt}
           bucket="avatars"
           userId={userId}
           name="avatar_url"
-          defaultValue={author?.avatar_url}
+          defaultValue={state?.savedAt ? state.avatarUrl : author?.avatar_url}
           label="Photo"
           aspect="aspect-square"
         />
