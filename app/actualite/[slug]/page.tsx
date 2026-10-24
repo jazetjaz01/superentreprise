@@ -96,7 +96,8 @@ async function ArticleContent(props: PageProps<"/actualite/[slug]">) {
           </div>
         )}
 
-        <div className="mt-10 space-y-6 text-lg leading-relaxed text-foreground/90">
+        {/* Justifié + césure (lang="fr") pour éviter les grands espaces entre les mots */}
+        <div className="mt-10 space-y-6 text-justify text-lg leading-relaxed text-foreground/90 hyphens-auto">
           {paragraphs.map((paragraph, i) => (
             <p key={i} className="whitespace-pre-line">
               {paragraph}
