@@ -60,7 +60,7 @@ export async function getPublishedArticles(categorySlug?: string): Promise<Artic
 }
 
 // Nombre d'articles par page de la liste Actualité
-export const ARTICLES_PER_PAGE = 3;
+export const ARTICLES_PER_PAGE = 9;
 
 export type ArticlesPage = { articles: Article[]; totalPages: number };
 
