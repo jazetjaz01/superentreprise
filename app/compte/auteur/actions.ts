@@ -3,6 +3,7 @@
 import { updateTag } from "next/cache";
 import { requireWriter } from "@/lib/auth";
 import { ARTICLES_TAG } from "@/lib/articles";
+import { normalizeEmail, normalizeLinkedIn, normalizeX } from "@/lib/author-links";
 import { isOwnStorageUrl, removeOwnImage } from "@/lib/storage";
 import { createClient } from "@/lib/supabase/server";
 
@@ -16,6 +17,9 @@ export async function saveAuthor(_state: FormState, formData: FormData): Promise
   const displayName = String(formData.get("display_name") ?? "").trim();
   const jobTitle = String(formData.get("job_title") ?? "").trim();
   const bio = String(formData.get("bio") ?? "").trim();
+  const linkedinUrl = normalizeLinkedIn(String(formData.get("linkedin_url") ?? ""));
+  const xUrl = normalizeX(String(formData.get("x_url") ?? ""));
+  const contactEmail = normalizeEmail(String(formData.get("contact_email") ?? ""));
   const avatarUrl = String(formData.get("avatar_url") ?? "");
 
   if (displayName.length < 2 || displayName.length > 100) {
@@ -23,6 +27,15 @@ export async function saveAuthor(_state: FormState, formData: FormData): Promise
   }
   if (jobTitle.length > 120) {
     return { error: "La fonction ne doit pas dépasser 120 caractères." };
+  }
+  if (linkedinUrl === undefined) {
+    return { error: "Lien LinkedIn invalide (ex. https://www.linkedin.com/in/votre-profil)." };
+  }
+  if (xUrl === undefined) {
+    return { error: "Compte X invalide (ex. @votrecompte ou https://x.com/votrecompte)." };
+  }
+  if (contactEmail === undefined) {
+    return { error: "Adresse email de contact invalide." };
   }
   if (avatarUrl && !isOwnStorageUrl(avatarUrl, "avatars", user.id)) {
     return { error: "Image invalide." };
@@ -33,6 +46,9 @@ export async function saveAuthor(_state: FormState, formData: FormData): Promise
     display_name: displayName,
     job_title: jobTitle || null,
     bio: bio || null,
+    linkedin_url: linkedinUrl,
+    x_url: xUrl,
+    contact_email: contactEmail,
     avatar_url: avatarUrl || null,
   };
 

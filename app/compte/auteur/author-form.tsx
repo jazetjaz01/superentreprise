@@ -11,6 +11,9 @@ import { saveAuthor } from "./actions";
 type AuthorValues = {
   display_name: string;
   job_title: string | null;
+  linkedin_url: string | null;
+  x_url: string | null;
+  contact_email: string | null;
   bio: string | null;
   avatar_url: string | null;
 };
@@ -63,6 +66,45 @@ export const AuthorForm = ({
         <Label htmlFor="bio">Courte présentation (facultatif)</Label>
         <Textarea id="bio" name="bio" rows={4} defaultValue={author?.bio ?? ""} />
       </div>
+
+      <fieldset className="grid gap-6 border-t pt-6">
+        <legend className="-mt-3 bg-background pe-3 text-sm font-medium">
+          Coordonnées publiques (facultatif)
+        </legend>
+        <p className="-mt-2 text-xs text-muted-foreground">
+          Affichées sous votre nom sur vos articles. L’email de contact est
+          public et peut être différent de celui de votre compte.
+        </p>
+        <div className="grid gap-2">
+          <Label htmlFor="linkedin_url">LinkedIn</Label>
+          <Input
+            id="linkedin_url"
+            name="linkedin_url"
+            defaultValue={author?.linkedin_url ?? ""}
+            placeholder="https://www.linkedin.com/in/votre-profil"
+            inputMode="url"
+          />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="x_url">X (Twitter)</Label>
+          <Input
+            id="x_url"
+            name="x_url"
+            defaultValue={author?.x_url ?? ""}
+            placeholder="@votrecompte ou https://x.com/votrecompte"
+          />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="contact_email">Email de contact</Label>
+          <Input
+            id="contact_email"
+            name="contact_email"
+            type="email"
+            defaultValue={author?.contact_email ?? ""}
+            placeholder="prenom.nom@superentreprise.com"
+          />
+        </div>
+      </fieldset>
 
       {state?.error && (
         <p role="alert" className="text-sm text-destructive">{state.error}</p>
