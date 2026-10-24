@@ -12,10 +12,10 @@ export const Logo = () => (
     <Image
       src="/logo.svg"
       alt=""
-      width={24}
-      height={24}
+      width={28}
+      height={28}
       priority
-      className="over-video:brightness-0 over-video:invert"
+      className="translate-y-0.5 over-video:brightness-0 over-video:invert"
     />
     <span className={`${pacifico.className} text-2xl text-brand over-video:text-white`}>
       superentreprise
