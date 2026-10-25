@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CareersCulture } from "@/components/careers-culture";
 import { CareersHero } from "@/components/careers-hero";
+import { CareersJobSearch } from "@/components/careers-job-search";
 import { CareersQuote } from "@/components/careers-quote";
 
 export const metadata: Metadata = {
@@ -15,6 +16,7 @@ export default function CarrieresPage() {
       <CareersHero />
       <CareersCulture />
       <CareersQuote />
+      <CareersJobSearch />
     </main>
   );
 }
