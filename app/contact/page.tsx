@@ -34,20 +34,6 @@ export default function ContactPage() {
         {/* Colonne droite : informations */}
         <aside className="space-y-12 lg:sticky lg:top-8 lg:self-start lg:pt-40">
           <section>
-            <SectionTitle>Votre demande</SectionTitle>
-            <p className="mt-6 border-y py-5 text-muted-foreground">
-              Un membre de notre équipe prend connaissance de votre message et
-              revient vers vous pour convenir d’un premier échange.
-            </p>
-          </section>
-          <section>
-            <SectionTitle>Confidentialité</SectionTitle>
-            <p className="mt-6 border-y py-5 text-muted-foreground">
-              Les informations transmises sont traitées en toute confidentialité
-              et utilisées uniquement pour répondre à votre demande.
-            </p>
-          </section>
-          <section>
             <SectionTitle>Par téléphone</SectionTitle>
             <p className="mt-6 border-y py-5">
               <a
