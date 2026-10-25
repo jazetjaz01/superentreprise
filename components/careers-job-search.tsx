@@ -14,7 +14,7 @@ export const CareersJobSearch = () => (
         className="object-cover"
       />
 
-      <div className="relative grid gap-10 bg-black/25 p-8 text-white backdrop-blur-xl sm:p-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-16 lg:p-14">
+      <div className="relative grid gap-10 bg-black/15 p-8 text-white backdrop-blur-xl sm:p-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-16 lg:p-14">
         <div>
           <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
             Rechercher un emploi
@@ -28,7 +28,7 @@ export const CareersJobSearch = () => (
 
         <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
           <Link
-            href="#etudiants"
+            href="/carrieres/etudiants"
             className="flex min-h-14 items-center border border-white bg-white px-8 py-3 text-sm font-medium uppercase tracking-wide text-brand transition-colors hover:bg-white/90 lg:w-72"
           >
             Étudiants et jeunes diplômés

@@ -28,7 +28,7 @@ export const CareersHero = () => (
       </h1>
       <div className="mt-12 flex flex-col gap-4 sm:flex-row">
         <Link
-          href="#etudiants"
+          href="/carrieres/etudiants"
           className="flex h-12 items-center justify-center border border-white bg-white px-8 text-sm font-medium uppercase tracking-wide text-brand transition-colors hover:bg-white/90"
         >
           Étudiants et jeunes diplômés

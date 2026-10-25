@@ -33,7 +33,7 @@ const slides: Slide[] = [
     description:
       "Stages et alternances : apprenez aux côtés d’experts de la transmission et participez concrètement à des opérations dès vos premiers jours.",
     image: "/home/carriere3.jpg",
-    cta: { href: "#", label: "Stages et alternances" },
+    cta: { href: "/carrieres/etudiants", label: "Stages et alternances" },
   },
   {
     title: "Candidature spontanée",
