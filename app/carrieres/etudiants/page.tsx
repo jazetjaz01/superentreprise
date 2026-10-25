@@ -10,8 +10,7 @@ export const metadata: Metadata = {
     "Stage, alternance ou premier emploi : rejoignez superentreprise et découvrez le conseil en transmission et cession d’entreprise.",
 };
 
-// Image provisoire (portrait recadré) : idéalement une photo paysage dédiée
-const INTRO_IMAGE = "/home/carriere3.jpg";
+const INTRO_IMAGE = "/carriere/students/students1.jpg";
 
 // Types de postes proposés (à remplacer plus tard par de vraies offres)
 const opportunities = [
@@ -59,7 +58,7 @@ export default function EtudiantsPage() {
             fill
             priority
             sizes="(min-width: 1024px) 60vw, 100vw"
-            className="object-cover object-[50%_30%]"
+            className="object-cover"
           />
         </div>
         <div className="max-w-md">
