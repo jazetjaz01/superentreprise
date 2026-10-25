@@ -13,7 +13,7 @@ const columns = [
     { href: "#", label: "Nous connaître" },
     { href: "/actualite", label: "Actualité" },
   ],
-  [{ href: "#", label: "Carrières" }],
+  [{ href: "/carrieres", label: "Carrières" }],
   [{ href: "/contact", label: "Contactez-nous" }],
 ];
 

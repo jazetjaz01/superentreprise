@@ -7,11 +7,12 @@ import { Logo } from "@/components/logo";
 import { NavMenu } from "@/components/nav-menu";
 import { NavigationSheet } from "@/components/navigation-sheet";
 
-// Pages dont le contenu commence par une vidéo plein écran
-const VIDEO_ROUTES = ["/"];
+// Pages qui commencent par un en-tête plein écran (vidéo ou image, [data-hero]) :
+// navbar sombre posée dessus, puis blanche une fois l'en-tête passé
+const HERO_ROUTES = ["/", "/carrieres"];
 
 const Navbar = () => {
-  const isVideoRoute = VIDEO_ROUTES.includes(usePathname());
+  const isVideoRoute = HERO_ROUTES.includes(usePathname());
   const [pastVideo, setPastVideo] = useState(false);
 
   useEffect(() => {

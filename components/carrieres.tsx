@@ -19,7 +19,7 @@ const slides: Slide[] = [
     description:
       "Chez superentreprise, chaque collaborateur accompagne des dirigeants dans l’un des moments les plus importants de leur vie professionnelle. Une mission exigeante, humaine et porteuse de sens.",
     image: "/home/carriere1.jpg",
-    cta: { href: "#", label: "Carrières" },
+    cta: { href: "/carrieres", label: "Carrières" },
   },
   {
     title: "Des profils expérimentés",
