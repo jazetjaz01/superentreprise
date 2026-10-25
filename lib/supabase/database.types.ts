@@ -181,6 +181,54 @@ export type Database = {
         }
         Relationships: []
       }
+      offices: {
+        Row: {
+          address_line: string
+          city: string
+          created_at: string
+          email: string | null
+          id: number
+          is_published: boolean
+          latitude: number
+          longitude: number
+          name: string
+          phone: string | null
+          postal_code: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          address_line: string
+          city: string
+          created_at?: string
+          email?: string | null
+          id?: never
+          is_published?: boolean
+          latitude: number
+          longitude: number
+          name?: string
+          phone?: string | null
+          postal_code: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          address_line?: string
+          city?: string
+          created_at?: string
+          email?: string | null
+          id?: never
+          is_published?: boolean
+          latitude?: number
+          longitude?: number
+          name?: string
+          phone?: string | null
+          postal_code?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           company_name: string | null

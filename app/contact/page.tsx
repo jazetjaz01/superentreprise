@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { SectionTitle } from "@/components/section-title";
+import { OfficesSection } from "@/components/contact/offices-section";
 import { ContactForm } from "./contact-form";
 
 export const metadata: Metadata = {
@@ -75,6 +77,11 @@ export default function ContactPage() {
           </section>
         </aside>
       </div>
+
+      {/* Suspense : la liste des agences peut avoir un cache court (table absente, mise à jour) */}
+      <Suspense fallback={null}>
+        <OfficesSection />
+      </Suspense>
     </main>
   );
 }
