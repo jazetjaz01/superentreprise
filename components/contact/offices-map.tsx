@@ -47,6 +47,9 @@ export const OfficesMap = ({ offices }: { offices: Office[] }) => {
     import("maplibre-gl").then((maplibregl) => {
       if (cancelled || !containerRef.current) return;
 
+      // Worker servi depuis public/ (Turbopack ne le publie pas à côté du bundle)
+      maplibregl.setWorkerUrl(`/maplibre/maplibre-gl-worker.mjs?v=${maplibregl.getVersion()}`);
+
       const bounds = new maplibregl.LngLatBounds();
       offices.forEach((o) => bounds.extend([o.longitude, o.latitude]));
 
