@@ -34,6 +34,24 @@ export default function ContactPage() {
         {/* Colonne droite : informations */}
         <aside className="space-y-12 lg:sticky lg:top-8 lg:self-start lg:pt-40">
           <section>
+            <SectionTitle>Adresse</SectionTitle>
+            <div className="mt-6 border-y py-5">
+              <address className="not-italic leading-relaxed text-brand">
+                Superentreprise
+                <br />7 avenue de Banyuls-sur-Mer
+                <br />66100 Perpignan
+              </address>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=7+avenue+de+Banyuls-sur-Mer+66100+Perpignan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-block text-sm text-brand underline underline-offset-4"
+              >
+                Voir sur la carte
+              </a>
+            </div>
+          </section>
+          <section>
             <SectionTitle>Par téléphone</SectionTitle>
             <p className="mt-6 border-y py-5">
               <a
