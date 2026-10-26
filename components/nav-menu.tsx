@@ -23,7 +23,7 @@ const links: NavEntry[] = [
     // Pages dédiées à venir : section « Notre expertise » de l'accueil en attendant
     children: [
       { href: "/cession/valoriser", label: "Valoriser" },
-      { href: "/#expertise", label: "Préparer" },
+      { href: "/cession/preparer", label: "Préparer" },
       { href: "/#expertise", label: "Transmettre" },
     ],
   },
