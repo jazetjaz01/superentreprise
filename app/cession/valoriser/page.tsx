@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { FeatureGrid } from "@/components/feature-grid";
+import { HighlightPanel } from "@/components/highlight-panel";
 import { PageBanner } from "@/components/page-banner";
 
 export const metadata: Metadata = {
@@ -55,6 +56,27 @@ export default function ValoriserPage() {
           },
         ]}
       />
+
+      <HighlightPanel title="Les pièges d’une estimation sans accompagnement">
+        <p>
+          Beaucoup de dirigeants s’appuient sur une règle entendue dans leur
+          secteur, comme « une entreprise se vend un an de chiffre d’affaires »,
+          ou sur un montant avancé rapidement par leur entourage.
+        </p>
+        <p>
+          Ces raccourcis ignorent pourtant ce qui fait la singularité de votre
+          entreprise. Avec un prix trop élevé, les échanges avec les repreneurs
+          s’arrêtent vite ; avec un prix trop bas, c’est une partie de la valeur
+          de votre travail qui disparaît.
+        </p>
+        <p>
+          Une évaluation sérieuse prend en compte l’ensemble de votre activité :
+          vos actifs corporels et immatériels, votre position sur le marché et
+          vos perspectives de développement. Vous obtenez une fourchette de prix
+          réaliste, que vous pouvez justifier face à n’importe quel
+          interlocuteur.
+        </p>
+      </HighlightPanel>
     </main>
   );
 }
