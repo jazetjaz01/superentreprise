@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { FeatureGrid } from "@/components/feature-grid";
 import { ImageTextSection } from "@/components/image-text-section";
+import { MethodTimeline } from "@/components/method-timeline";
 import { PageBanner } from "@/components/page-banner";
 
 export const metadata: Metadata = {
@@ -53,6 +54,35 @@ export default function ValoriserPage() {
             title: "Des leviers d’amélioration",
             description:
               "L’évaluation révèle ce qui soutient la valeur de votre entreprise et ce qui la pénalise. Vous savez où agir avant la cession : organisation, structure juridique, actifs immatériels…",
+          },
+        ]}
+      />
+
+      <MethodTimeline
+        eyebrow="Notre méthode"
+        title="Trois phases pour mener votre cession à bien"
+        subtitle="Durée indicative : 12 à 24 mois pour une cession complète"
+        phases={[
+          {
+            title: "Diagnostic & Stratégie",
+            duration: "2 à 3 semaines",
+            lead: "Comprendre votre entreprise et vos objectifs.",
+            description:
+              "Nous étudions vos comptes, votre marché et les atouts qui font la valeur de votre société. Nous échangeons aussi sur vos attentes personnelles et votre calendrier, afin de construire avec vous une stratégie de cession sur mesure.",
+          },
+          {
+            title: "Préparation & Optimisation",
+            duration: "6 à 12 mois",
+            lead: "Renforcer la valeur avant la mise en vente.",
+            description:
+              "Nous repérons et corrigeons les points faibles : structure juridique, dépendance au dirigeant, documentation. Nous mettons en avant vos actifs immatériels (savoir-faire, portefeuille clients, notoriété) et constituons un dossier de présentation convaincant.",
+          },
+          {
+            title: "Exécution & Closing",
+            duration: "6 à 12 mois",
+            lead: "Conduire la transaction jusqu’à la signature.",
+            description:
+              "Nous sollicitons des repreneurs qualifiés, organisons les rencontres, menons les négociations et coordonnons avocats, experts-comptables et banques. Vous restez concentré sur votre entreprise pendant que nous pilotons la cession.",
           },
         ]}
       />
