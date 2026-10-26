@@ -13,7 +13,7 @@ import { navLinkClassName } from "@/components/nav-link-style";
 
 const links = [
   { href: "/", label: "Accueil" },
-  { href: "#", label: "Nous connaître" },
+  { href: "/#nous-connaitre", label: "Nous connaître" },
   { href: "/carrieres", label: "Carrières" },
   { href: "/actualite", label: "Actualité" },
   { href: "/contact", label: "Contact" },

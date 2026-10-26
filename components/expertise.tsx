@@ -29,7 +29,7 @@ const steps: Step[] = [
 ];
 
 export const Expertise = () => (
-  <section className="mx-auto max-w-page  px-4  sm:px-6 lg:px-8">
+  <section id="expertise" className="mx-auto max-w-page scroll-mt-20 px-4 sm:px-6 lg:px-8">
     <div className="text-center text-brand">
       <span className="mx-auto block h-px w-10 bg-brand" />
       <p className="mt-6 text-sm tracking-wide">Notre expertise</p>

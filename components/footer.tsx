@@ -5,16 +5,22 @@ import { CurrentYear } from "@/components/current-year";
 
 const columns = [
   [
-    { href: "#", label: "Diagnostic & Stratégie" },
-    { href: "#", label: "Préparation et Optimisation" },
-    { href: "#", label: "Exécution et Closing" },
+    { href: "/#expertise", label: "Diagnostic & Stratégie" },
+    { href: "/#expertise", label: "Préparation et Optimisation" },
+    { href: "/#expertise", label: "Exécution et Closing" },
   ],
   [
-    { href: "#", label: "Nous connaître" },
+    { href: "/#nous-connaitre", label: "Nous connaître" },
     { href: "/actualite", label: "Actualité" },
   ],
-  [{ href: "/carrieres", label: "Carrières" }],
-  [{ href: "/contact", label: "Contactez-nous" }],
+  [
+    { href: "/carrieres", label: "Carrières" },
+    { href: "/carrieres/etudiants", label: "Étudiants et jeunes diplômés" },
+  ],
+  [
+    { href: "/contact", label: "Contactez-nous" },
+    { href: "/mentions-legales", label: "Mentions légales" },
+  ],
 ];
 
 const legalLinks = [

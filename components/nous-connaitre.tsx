@@ -2,6 +2,7 @@ import { ImageTextSection } from "@/components/image-text-section";
 
 export const NousConnaitre = () => (
   <ImageTextSection
+    id="nous-connaitre"
     eyebrow="Nous connaître"
     title="Des entrepreneurs qui comprennent les entrepreneurs"
     image="/home/nousconnaitre.jpg"

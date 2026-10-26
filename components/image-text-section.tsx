@@ -3,6 +3,8 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 type ImageTextSectionProps = {
+  // Ancre de la section (ex. « nous-connaitre » → /#nous-connaitre)
+  id?: string;
   eyebrow: string;
   title: string;
   children: ReactNode;
@@ -13,13 +15,14 @@ type ImageTextSectionProps = {
 
 // Bloc image à gauche + texte à droite (Nous connaître, Notre implantation…)
 export const ImageTextSection = ({
+  id,
   eyebrow,
   title,
   children,
   image,
   cta,
 }: ImageTextSectionProps) => (
-  <section className="mx-auto max-w-page px-4 py-20 sm:px-6 lg:px-8">
+  <section id={id} className="mx-auto max-w-page scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
     <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
       <div className="relative aspect-[4/3] overflow-hidden bg-brand/5">
         {image ? (
