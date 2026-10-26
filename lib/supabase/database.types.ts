@@ -181,6 +181,51 @@ export type Database = {
         }
         Relationships: []
       }
+      job_applications: {
+        Row: {
+          consent_at: string
+          cover_letter_path: string | null
+          created_at: string
+          cv_path: string
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          message: string | null
+          opportunity_type: string
+          phone: string | null
+          school: string | null
+        }
+        Insert: {
+          consent_at?: string
+          cover_letter_path?: string | null
+          created_at?: string
+          cv_path: string
+          email: string
+          first_name: string
+          id?: string
+          last_name: string
+          message?: string | null
+          opportunity_type: string
+          phone?: string | null
+          school?: string | null
+        }
+        Update: {
+          consent_at?: string
+          cover_letter_path?: string | null
+          created_at?: string
+          cv_path?: string
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          message?: string | null
+          opportunity_type?: string
+          phone?: string | null
+          school?: string | null
+        }
+        Relationships: []
+      }
       offices: {
         Row: {
           address_line: string

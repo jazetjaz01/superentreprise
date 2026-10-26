@@ -4,6 +4,11 @@ const nextConfig: NextConfig = {
   /* config options here */
   experimental: {
     agentFeedback: true,
+    serverActions: {
+      // Candidatures : CV + lettre (2 Mo chacun) + champs du formulaire.
+      // Rester sous la limite de 4,5 Mo des requêtes sur Vercel.
+      bodySizeLimit: "5mb",
+    },
   },
   cacheComponents: true,
   images: {

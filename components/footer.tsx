@@ -78,7 +78,7 @@ export const Footer = () => (
           <Link
             key={label}
             href={href}
-            className="underline underline-offset-4 hover:no-underline"
+            className="underline-offset-4 hover:underline"
           >
             {label}
           </Link>

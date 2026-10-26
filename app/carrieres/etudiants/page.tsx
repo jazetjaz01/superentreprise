@@ -16,18 +16,21 @@ const INTRO_IMAGE = "/carriere/students/students1.jpg";
 const opportunities = [
   {
     type: "Stage",
+    applyType: "Stage",
     title: "Stages",
     description:
       "Participez à des missions de cession et de reprise aux côtés de nos consultants : analyse financière, valorisation, préparation des dossiers.",
   },
   {
     type: "Alternance",
+    applyType: "Alternance",
     title: "Alternance",
     description:
       "Conciliez vos études et une première expérience concrète du conseil aux dirigeants, tout au long de votre formation.",
   },
   {
     type: "CDI",
+    applyType: "Premier emploi",
     title: "Premier emploi",
     description:
       "Rejoignez l’équipe en tant que chargé(e) d’affaires junior et accompagnez des chefs d’entreprise dans leurs projets de transmission.",
@@ -91,7 +94,7 @@ export default function EtudiantsPage() {
         </h2>
 
         <ul className="mt-12 grid gap-6 md:grid-cols-3">
-          {opportunities.map(({ type, title, description }) => (
+          {opportunities.map(({ type, applyType, title, description }) => (
             <li
               key={type}
               className="flex flex-col border-l border-brand bg-stone-100 px-8 py-10 text-brand"
@@ -102,7 +105,7 @@ export default function EtudiantsPage() {
               <h3 className="mt-3 text-2xl font-semibold tracking-tight">{title}</h3>
               <p className="mt-4 flex-1 text-muted-foreground">{description}</p>
               <Link
-                href="/contact"
+                href={`/carrieres/etudiants/candidature?type=${encodeURIComponent(applyType)}`}
                 className="mt-8 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wide hover:underline hover:underline-offset-4"
               >
                 Postuler
@@ -114,7 +117,10 @@ export default function EtudiantsPage() {
 
         <p className="mt-10 text-muted-foreground">
           Aucune opportunité ne correspond à votre profil ?{" "}
-          <Link href="/contact" className="text-brand underline underline-offset-4">
+          <Link
+            href={`/carrieres/etudiants/candidature?type=${encodeURIComponent("Candidature spontanée")}`}
+            className="text-brand underline underline-offset-4"
+          >
             Envoyez-nous une candidature spontanée
           </Link>
           .
