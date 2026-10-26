@@ -3,25 +3,40 @@ import Link from "next/link";
 import { ArrowUp } from "lucide-react";
 import { CurrentYear } from "@/components/current-year";
 
+// Colonnes du footer (mêmes rubriques que la navbar)
 const columns = [
-  [
-    { href: "/#expertise", label: "Diagnostic & Stratégie" },
-    { href: "/#expertise", label: "Préparation et Optimisation" },
-    { href: "/#expertise", label: "Exécution et Closing" },
-  ],
-  [
-    { href: "/#nous-connaitre", label: "Nous connaître" },
-    { href: "/actualite", label: "Actualité" },
-  ],
-  [
-    { href: "/carrieres", label: "Carrières" },
-    { href: "/carrieres/etudiants", label: "Étudiants et jeunes diplômés" },
-    { href: "/carrieres/experimentes", label: "Profils expérimentés" },
-  ],
-  [
-    { href: "/contact", label: "Contactez-nous" },
-    { href: "/mentions-legales", label: "Mentions légales" },
-  ],
+  {
+    title: "Cession",
+    links: [
+      { href: "/cession/valoriser", label: "Valoriser" },
+      { href: "/cession/preparer", label: "Préparer" },
+      { href: "/cession/transmettre", label: "Transmettre" },
+    ],
+  },
+  {
+    title: "Acquisition",
+    links: [
+      { href: "/acquisition/reprendre", label: "Reprendre" },
+      { href: "/acquisition/securiser", label: "Sécuriser" },
+      { href: "/acquisition/accompagner", label: "Accompagner" },
+    ],
+  },
+  {
+    title: "Superentreprise",
+    links: [
+      { href: "/#nous-connaitre", label: "Nous connaître" },
+      { href: "/actualite", label: "Actualité" },
+      { href: "/contact", label: "Contactez-nous" },
+    ],
+  },
+  {
+    title: "Carrières",
+    links: [
+      { href: "/carrieres", label: "Nous rejoindre" },
+      { href: "/carrieres/etudiants", label: "Étudiants et jeunes diplômés" },
+      { href: "/carrieres/experimentes", label: "Profils expérimentés" },
+    ],
+  },
 ];
 
 const legalLinks = [
@@ -46,16 +61,21 @@ export const Footer = () => (
           </Link>
 
           <nav className="grid grid-cols-2 gap-x-12 gap-y-8 md:grid-cols-4">
-            {columns.map((links, index) => (
-              <ul key={index} className="space-y-5">
-                {links.map(({ href, label }) => (
-                  <li key={label}>
-                    <Link href={href} className="hover:underline">
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            {columns.map(({ title, links }) => (
+              <div key={title}>
+                <p className="text-xs font-medium uppercase tracking-widest text-white/60">
+                  {title}
+                </p>
+                <ul className="mt-5 space-y-4">
+                  {links.map(({ href, label }) => (
+                    <li key={label}>
+                      <Link href={href} className="hover:underline">
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </nav>
         </div>
