@@ -148,7 +148,7 @@ export const ContactForm = () => {
         </label>
         <p className="text-muted-foreground">
           J’accepte les{" "}
-          <Link href="#" className="text-brand underline underline-offset-4">
+          <Link href="/mentions-legales#conditions" className="text-brand underline underline-offset-4">
             conditions générales
           </Link>{" "}
           et les{" "}

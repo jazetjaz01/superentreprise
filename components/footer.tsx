@@ -18,7 +18,7 @@ const columns = [
 ];
 
 const legalLinks = [
-  { href: "#", label: "Mentions légales" },
+  { href: "/mentions-legales", label: "Mentions légales" },
   { href: "#", label: "Cookies" },
   { href: "#", label: "Confidentialité des données" },
 ];
