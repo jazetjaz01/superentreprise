@@ -24,7 +24,7 @@ const links: NavEntry[] = [
     children: [
       { href: "/cession/valoriser", label: "Valoriser" },
       { href: "/cession/preparer", label: "Préparer" },
-      { href: "/#expertise", label: "Transmettre" },
+      { href: "/cession/transmettre", label: "Transmettre" },
     ],
   },
   {
