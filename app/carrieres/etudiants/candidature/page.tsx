@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Breadcrumb } from "@/components/breadcrumb";
-import { ApplicationForm, ApplicationFormWithType } from "./application-form";
+import { ApplicationForm, ApplicationFormWithType } from "@/components/careers/application-form";
 
 export const metadata: Metadata = {
   title: "Candidater · Étudiants et jeunes diplômés",
@@ -31,8 +31,8 @@ export default function CandidaturePage() {
       </p>
 
       {/* Formulaire prérendu sans présélection, puis type lu dans l'URL (useSearchParams) */}
-      <Suspense fallback={<ApplicationForm />}>
-        <ApplicationFormWithType />
+      <Suspense fallback={<ApplicationForm profile="etudiant" />}>
+        <ApplicationFormWithType profile="etudiant" />
       </Suspense>
     </main>
   );

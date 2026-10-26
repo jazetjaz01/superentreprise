@@ -60,6 +60,7 @@ export async function submitApplication(
   const email = read(formData, "email").toLowerCase();
   const phone = read(formData, "phone") || null;
   const school = read(formData, "school") || null;
+  const currentPosition = read(formData, "current_position") || null;
   const message = read(formData, "message") || null;
 
   if (!OPPORTUNITY_TYPES.includes(opportunityType as OpportunityType)) {
@@ -71,8 +72,12 @@ export async function submitApplication(
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || email.length > 254) {
     return { error: "Adresse e-mail invalide." };
   }
-  if ((phone && phone.length > 30) || (school && school.length > 200)) {
-    return { error: "Téléphone ou formation trop long." };
+  if (
+    (phone && phone.length > 30) ||
+    (school && school.length > 200) ||
+    (currentPosition && currentPosition.length > 200)
+  ) {
+    return { error: "Téléphone, formation ou poste actuel trop long." };
   }
   if (message && message.length > 3000) {
     return { error: "Votre message ne doit pas dépasser 3 000 caractères." };
@@ -114,6 +119,7 @@ export async function submitApplication(
     email,
     phone,
     school,
+    current_position: currentPosition,
     message,
     cv_path: cvPath,
     cover_letter_path: letterPath,

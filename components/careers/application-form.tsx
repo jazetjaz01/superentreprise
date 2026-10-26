@@ -6,11 +6,35 @@ import { useSearchParams } from "next/navigation";
 import { Check, ChevronDown, FileText } from "lucide-react";
 import {
   ACCEPT_ATTRIBUTE,
+  EXPERIENCED_TYPES,
   MAX_FILE_SIZE,
-  OPPORTUNITY_TYPES,
-  type OpportunityType,
+  STUDENT_TYPES,
 } from "@/lib/job-applications";
-import { submitApplication } from "./actions";
+import { submitApplication } from "@/app/carrieres/actions";
+
+// Variantes du formulaire selon la page (étudiants / profils expérimentés)
+const PROFILES = {
+  etudiant: {
+    types: STUDENT_TYPES as readonly string[],
+    extraField: {
+      name: "school",
+      label: "École / formation",
+      placeholder: "Ex. Master Finance, IAE de Perpignan",
+    },
+    messagePlaceholder: "Quelques mots sur votre projet, vos disponibilités…",
+  },
+  experimente: {
+    types: EXPERIENCED_TYPES as readonly string[],
+    extraField: {
+      name: "current_position",
+      label: "Poste actuel / entreprise",
+      placeholder: "Ex. Chargé d’affaires, cabinet de conseil",
+    },
+    messagePlaceholder: "Votre parcours, vos motivations, vos disponibilités…",
+  },
+} as const;
+
+export type ApplicationProfile = keyof typeof PROFILES;
 
 const labelClassName = "text-sm font-medium uppercase tracking-wide text-brand";
 const fieldClassName =
@@ -89,16 +113,21 @@ const FileField = ({
 };
 
 // Type présélectionné depuis le bouton « Postuler » (?type=Stage…)
-export const ApplicationFormWithType = () => {
-  const typeParam = useSearchParams().get("type");
-  const defaultType = OPPORTUNITY_TYPES.includes(typeParam as OpportunityType)
-    ? (typeParam as string)
-    : "";
-  return <ApplicationForm defaultType={defaultType} />;
+export const ApplicationFormWithType = ({ profile }: { profile: ApplicationProfile }) => {
+  const typeParam = useSearchParams().get("type") ?? "";
+  const defaultType = PROFILES[profile].types.includes(typeParam) ? typeParam : "";
+  return <ApplicationForm profile={profile} defaultType={defaultType} />;
 };
 
-export const ApplicationForm = ({ defaultType = "" }: { defaultType?: string }) => {
+export const ApplicationForm = ({
+  profile,
+  defaultType = "",
+}: {
+  profile: ApplicationProfile;
+  defaultType?: string;
+}) => {
   const [state, action, pending] = useActionState(submitApplication, undefined);
+  const { types, extraField, messagePlaceholder } = PROFILES[profile];
 
   if (state?.success) {
     return (
@@ -128,7 +157,7 @@ export const ApplicationForm = ({ defaultType = "" }: { defaultType?: string }) 
             <option value="" disabled>
               Sélectionnez votre option
             </option>
-            {OPPORTUNITY_TYPES.map((type) => (
+            {types.map((type) => (
               <option key={type} value={type}>
                 {type}
               </option>
@@ -159,8 +188,8 @@ export const ApplicationForm = ({ defaultType = "" }: { defaultType?: string }) 
         </Field>
       </div>
 
-      <Field id="school" label="École / formation">
-        <input id="school" name="school" placeholder="Ex. Master Finance, IAE de Perpignan" maxLength={200} className={`${fieldClassName} h-14`} />
+      <Field id={extraField.name} label={extraField.label}>
+        <input id={extraField.name} name={extraField.name} placeholder={extraField.placeholder} maxLength={200} className={`${fieldClassName} h-14`} />
       </Field>
 
       <div className="grid gap-8 sm:grid-cols-2">
@@ -169,7 +198,7 @@ export const ApplicationForm = ({ defaultType = "" }: { defaultType?: string }) 
       </div>
 
       <Field id="message" label="Message (facultatif)">
-        <textarea id="message" name="message" rows={5} placeholder="Quelques mots sur votre projet, vos disponibilités…" maxLength={3000} className={`${fieldClassName} resize-y py-4`} />
+        <textarea id="message" name="message" rows={5} placeholder={messagePlaceholder} maxLength={3000} className={`${fieldClassName} resize-y py-4`} />
       </Field>
 
       <label className="flex cursor-pointer items-start gap-3 text-muted-foreground">

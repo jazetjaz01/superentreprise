@@ -1,13 +1,11 @@
-// Règles des candidatures, partagées par le formulaire et la Server Action
+// Règles des candidatures, partagées par les formulaires et la Server Action
 // (mêmes valeurs que les contraintes de la table et du bucket job-applications)
 
-export const OPPORTUNITY_TYPES = [
-  "Stage",
-  "Alternance",
-  "Premier emploi",
-  "Candidature spontanée",
-] as const;
-export type OpportunityType = (typeof OPPORTUNITY_TYPES)[number];
+export const STUDENT_TYPES = ["Stage", "Alternance", "Premier emploi", "Candidature spontanée"] as const;
+export const EXPERIENCED_TYPES = ["Poste expérimenté", "Candidature spontanée"] as const;
+
+export const OPPORTUNITY_TYPES = [...new Set([...STUDENT_TYPES, ...EXPERIENCED_TYPES])];
+export type OpportunityType = (typeof STUDENT_TYPES)[number] | (typeof EXPERIENCED_TYPES)[number];
 
 export const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2 Mo (limite du bucket)
 

@@ -186,6 +186,7 @@ export type Database = {
           consent_at: string
           cover_letter_path: string | null
           created_at: string
+          current_position: string | null
           cv_path: string
           email: string
           first_name: string
@@ -200,6 +201,7 @@ export type Database = {
           consent_at?: string
           cover_letter_path?: string | null
           created_at?: string
+          current_position?: string | null
           cv_path: string
           email: string
           first_name: string
@@ -214,6 +216,7 @@ export type Database = {
           consent_at?: string
           cover_letter_path?: string | null
           created_at?: string
+          current_position?: string | null
           cv_path?: string
           email?: string
           first_name?: string

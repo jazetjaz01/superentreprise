@@ -34,7 +34,7 @@ export const CareersJobSearch = () => (
             Étudiants et jeunes diplômés
           </Link>
           <Link
-            href="#experimentes"
+            href="/carrieres/experimentes"
             className="flex min-h-14 items-center border border-white px-8 py-3 text-sm font-medium uppercase tracking-wide text-white transition-colors hover:bg-white hover:text-brand lg:w-72"
           >
             Profils expérimentés

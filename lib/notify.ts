@@ -90,6 +90,7 @@ type JobApplication = {
   email: string;
   phone: string | null;
   school: string | null;
+  current_position: string | null;
   message: string | null;
   cv_path: string;
   cover_letter_path: string | null;
@@ -105,13 +106,14 @@ export async function notifyNewJobApplication(
     subject: `[Candidature] ${application.opportunity_type} — ${application.first_name} ${application.last_name}`,
     attachments,
     text: [
-      `Nouvelle candidature reçue depuis la page Étudiants et jeunes diplômés.`,
+      `Nouvelle candidature reçue depuis le site.`,
       ``,
       `Type : ${application.opportunity_type}`,
       `Nom : ${application.first_name} ${application.last_name}`,
       `Email : ${application.email}`,
       `Téléphone : ${application.phone ?? "—"}`,
-      `École / formation : ${application.school ?? "—"}`,
+      ...(application.school ? [`École / formation : ${application.school}`] : []),
+      ...(application.current_position ? [`Poste actuel / entreprise : ${application.current_position}`] : []),
       ``,
       `Message :`,
       application.message ?? "—",

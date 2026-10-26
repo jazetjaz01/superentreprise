@@ -16,6 +16,7 @@ const columns = [
   [
     { href: "/carrieres", label: "Carrières" },
     { href: "/carrieres/etudiants", label: "Étudiants et jeunes diplômés" },
+    { href: "/carrieres/experimentes", label: "Profils expérimentés" },
   ],
   [
     { href: "/contact", label: "Contactez-nous" },

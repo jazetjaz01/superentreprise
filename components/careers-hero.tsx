@@ -34,7 +34,7 @@ export const CareersHero = () => (
           Étudiants et jeunes diplômés
         </Link>
         <Link
-          href="#experimentes"
+          href="/carrieres/experimentes"
           className="flex h-12 items-center justify-center border border-white px-8 text-sm font-medium uppercase tracking-wide text-white transition-colors hover:bg-white hover:text-brand"
         >
           Profils expérimentés
