@@ -5,7 +5,7 @@ import { Breadcrumb } from "@/components/breadcrumb";
 
 // Bandeau d'en-tête des pages d'accompagnement (Valoriser, Préparer…) :
 // photo sous un voile bleu marine, fil d'Ariane, titre, accroche, texte et bouton.
-// data-hero : la navbar reste sombre et transparente au-dessus (voir HERO_ROUTES).
+// Affiché sous la navbar (fond blanc), pas en superposition.
 export const PageBanner = ({
   breadcrumb,
   title,
@@ -21,12 +21,12 @@ export const PageBanner = ({
   cta?: { href: string; label: string };
   image: string;
 }) => (
-  <section data-hero className="relative overflow-hidden">
+  <section className="relative overflow-hidden">
     <Image src={image} alt="" fill priority sizes="100vw" className="object-cover" />
     <div aria-hidden="true" className="absolute inset-0 bg-brand/80 mix-blend-multiply" />
     <div aria-hidden="true" className="absolute inset-0 bg-brand/40" />
 
-    <div className="relative mx-auto max-w-page px-4 pt-32 pb-20 text-white sm:px-6 lg:px-8 lg:pt-40 lg:pb-24">
+    <div className="relative mx-auto max-w-page px-4 py-16 text-white sm:px-6 lg:px-8 lg:py-20">
       <Breadcrumb items={breadcrumb} tone="light" />
       <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
         {title}

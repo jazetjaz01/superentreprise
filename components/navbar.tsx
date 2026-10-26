@@ -9,7 +9,7 @@ import { NavigationSheet } from "@/components/navigation-sheet";
 
 // Pages qui commencent par un en-tête plein écran (vidéo ou image, [data-hero]) :
 // navbar sombre posée dessus, puis blanche une fois l'en-tête passé
-const HERO_ROUTES = ["/", "/carrieres", "/cession/valoriser"];
+const HERO_ROUTES = ["/", "/carrieres"];
 
 const Navbar = () => {
   const isVideoRoute = HERO_ROUTES.includes(usePathname());
