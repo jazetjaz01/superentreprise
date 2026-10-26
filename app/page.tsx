@@ -40,7 +40,7 @@ export default function Home() {
 
       <section className="mx-auto max-w-page px-4 py-20 sm:px-6 lg:px-8">
         <h2 className="text-center text-3xl font-semibold tracking-tight text-brand sm:text-4xl">
-          La transmission en toute confiance
+          Les experts de la transmission d’entreprise
         </h2>
         <p className="mx-auto mt-4 max-w-3xl text-center text-xl text-brand sm:text-2xl">
           Superentreprise accompagne les chefs d’entreprise dans leur projet de
