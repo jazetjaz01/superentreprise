@@ -33,7 +33,7 @@ const links: NavEntry[] = [
     children: [
       { href: "/acquisition/reprendre", label: "Reprendre" },
       { href: "/acquisition/securiser", label: "Sécuriser" },
-      { href: "/#expertise", label: "Accompagner" },
+      { href: "/acquisition/accompagner", label: "Accompagner" },
     ],
   },
   { href: "/#nous-connaitre", label: "Nous connaître" },
