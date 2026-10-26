@@ -60,7 +60,7 @@ export default function ValoriserPage() {
       <ImageTextSection
         eyebrow="Les pièges à éviter"
         title="Une estimation sans accompagnement coûte cher"
-        image="/home/nousconnaitre.jpg"
+        image="/carriere/carriere3.jpg"
         cta={{ href: "/contact", label: "Demander une évaluation" }}
       >
         <p>
