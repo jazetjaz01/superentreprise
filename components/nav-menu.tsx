@@ -19,12 +19,21 @@ type NavEntry = NavLink | { label: string; children: NavLink[] };
 const links: NavEntry[] = [
   { href: "/", label: "Accueil" },
   {
-    label: "Expertise",
+    label: "Cession",
     // Pages dédiées à venir : section « Notre expertise » de l'accueil en attendant
     children: [
       { href: "/#expertise", label: "Valoriser" },
       { href: "/#expertise", label: "Préparer" },
       { href: "/#expertise", label: "Transmettre" },
+    ],
+  },
+  {
+    label: "Acquisition",
+    // Pages dédiées à venir : section « Notre expertise » de l'accueil en attendant
+    children: [
+      { href: "/#expertise", label: "Reprendre" },
+      { href: "/#expertise", label: "Sécuriser" },
+      { href: "/#expertise", label: "Accompagner" },
     ],
   },
   { href: "/#nous-connaitre", label: "Nous connaître" },
