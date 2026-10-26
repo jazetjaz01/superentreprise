@@ -75,10 +75,10 @@ export default function EtudiantsPage() {
             cession d’entreprise aux côtés de nos experts.
           </p>
           <Link
-            href="#opportunites"
+            href="/carrieres/etudiants/candidature"
             className="mt-8 inline-flex h-12 items-center bg-brand px-8 text-sm font-medium uppercase tracking-wide text-white transition-colors hover:bg-brand/90"
           >
-            Voir nos opportunités
+            Postuler
           </Link>
         </div>
       </section>
