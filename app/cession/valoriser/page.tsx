@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { FeatureGrid } from "@/components/feature-grid";
-import { HighlightPanel } from "@/components/highlight-panel";
+import { ImageTextSection } from "@/components/image-text-section";
 import { PageBanner } from "@/components/page-banner";
 
 export const metadata: Metadata = {
@@ -57,26 +57,24 @@ export default function ValoriserPage() {
         ]}
       />
 
-      <HighlightPanel title="Les pièges d’une estimation sans accompagnement">
+      <ImageTextSection
+        eyebrow="Les pièges à éviter"
+        title="Une estimation sans accompagnement coûte cher"
+        image="/home/nousconnaitre.jpg"
+        cta={{ href: "/contact", label: "Demander une évaluation" }}
+      >
         <p>
-          Beaucoup de dirigeants s’appuient sur une règle entendue dans leur
-          secteur, comme « une entreprise se vend un an de chiffre d’affaires »,
-          ou sur un montant avancé rapidement par leur entourage.
+          Règle de secteur, chiffre avancé par l’entourage : ces raccourcis
+          ignorent ce qui fait la singularité de votre entreprise. Trop élevé, le
+          prix fait fuir les repreneurs ; trop bas, il vous fait perdre de la
+          valeur.
         </p>
         <p>
-          Ces raccourcis ignorent pourtant ce qui fait la singularité de votre
-          entreprise. Avec un prix trop élevé, les échanges avec les repreneurs
-          s’arrêtent vite ; avec un prix trop bas, c’est une partie de la valeur
-          de votre travail qui disparaît.
+          Une évaluation complète tient compte de vos actifs, de votre marché et
+          de vos perspectives, pour une fourchette de prix réaliste et
+          défendable.
         </p>
-        <p>
-          Une évaluation sérieuse prend en compte l’ensemble de votre activité :
-          vos actifs corporels et immatériels, votre position sur le marché et
-          vos perspectives de développement. Vous obtenez une fourchette de prix
-          réaliste, que vous pouvez justifier face à n’importe quel
-          interlocuteur.
-        </p>
-      </HighlightPanel>
+      </ImageTextSection>
     </main>
   );
 }
