@@ -11,8 +11,7 @@ export default function ValoriserPage() {
   return (
     <main>
       <PageBanner
-        // Image provisoire : à remplacer par une photo dédiée (paysage, ≥ 2000 px de large)
-        image="/home/nousconnaitre.jpg"
+        image="/carriere/carriere3.jpg"
         breadcrumb={[
           { label: "Accueil", href: "/" },
           { label: "Cession" },
