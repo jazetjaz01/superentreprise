@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUp } from "lucide-react";
+import { AuthLinks } from "@/components/auth-links";
 import { CurrentYear } from "@/components/current-year";
 
 // Colonnes du footer (mêmes rubriques que la navbar)
@@ -60,7 +62,7 @@ export const Footer = () => (
             />
           </Link>
 
-          <nav className="grid grid-cols-2 gap-x-12 gap-y-8 md:grid-cols-4">
+          <nav className="grid grid-cols-2 gap-x-12 gap-y-8 md:grid-cols-3 lg:grid-cols-5">
             {columns.map(({ title, links }) => (
               <div key={title}>
                 <p className="text-xs font-medium uppercase tracking-widest text-white/60">
@@ -77,6 +79,17 @@ export const Footer = () => (
                 </ul>
               </div>
             ))}
+
+            {/* Connexion / inscription, ou nom + déconnexion si connecté */}
+            <div>
+              <p className="text-xs font-medium uppercase tracking-widest text-white/60">
+                Mon espace
+              </p>
+              {/* usePathname (via AuthLinks) : Suspense requis par cacheComponents */}
+              <Suspense fallback={<div className="mt-5 h-16" />}>
+                <AuthLinks variant="footer" className="mt-5 flex-col items-start gap-4" />
+              </Suspense>
+            </div>
           </nav>
         </div>
 
