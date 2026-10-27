@@ -41,8 +41,8 @@ const columns = [
 
 const legalLinks = [
   { href: "/mentions-legales", label: "Mentions légales" },
-  { href: "#", label: "Cookies" },
-  { href: "#", label: "Confidentialité des données" },
+  { href: "/confidentialite#cookies", label: "Cookies" },
+  { href: "/confidentialite", label: "Confidentialité des données" },
 ];
 
 export const Footer = () => (

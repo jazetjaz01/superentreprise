@@ -210,9 +210,9 @@ export const ApplicationForm = ({
         />
         <span>
           J’accepte que mes données et documents soient utilisés par
-          Superentreprise pour étudier ma candidature (voir les{" "}
-          <Link href="/mentions-legales" className="text-brand underline underline-offset-4">
-            mentions légales
+          Superentreprise pour étudier ma candidature (voir notre{" "}
+          <Link href="/confidentialite" className="text-brand underline underline-offset-4">
+            politique de confidentialité
           </Link>
           ).
         </span>

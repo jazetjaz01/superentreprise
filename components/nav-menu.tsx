@@ -17,7 +17,6 @@ type NavLink = { href: string; label: string };
 type NavEntry = NavLink | { label: string; children: NavLink[] };
 
 const links: NavEntry[] = [
-  { href: "/", label: "Accueil" },
   {
     label: "Cession",
     // Pages dédiées à venir : section « Notre expertise » de l'accueil en attendant

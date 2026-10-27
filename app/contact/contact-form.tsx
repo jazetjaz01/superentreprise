@@ -152,11 +152,11 @@ export const ContactForm = () => {
             conditions générales
           </Link>{" "}
           et les{" "}
-          <Link href="#" className="text-brand underline underline-offset-4">
+          <Link href="/confidentialite" className="text-brand underline underline-offset-4">
             politiques de confidentialité
           </Link>{" "}
           et de{" "}
-          <Link href="#" className="text-brand underline underline-offset-4">
+          <Link href="/confidentialite#cookies" className="text-brand underline underline-offset-4">
             cookies
           </Link>
           .

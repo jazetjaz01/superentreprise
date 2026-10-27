@@ -1,33 +1,11 @@
 import type { Metadata } from "next";
 import { Breadcrumb } from "@/components/breadcrumb";
+import { LegalSection as Section, LegalSubTitle as SubTitle } from "@/components/legal-section";
 
 export const metadata: Metadata = {
   title: "Mentions légales",
   description: "Mentions légales et conditions d’utilisation du site superentreprise.com.",
 };
-
-const Section = ({
-  id,
-  number,
-  title,
-  children,
-}: {
-  id: string;
-  number: number;
-  title: string;
-  children: React.ReactNode;
-}) => (
-  <section id={id} className="scroll-mt-24 border-t pt-10">
-    <h2 className="text-2xl font-semibold tracking-tight text-brand">
-      {number} – {title}
-    </h2>
-    <div className="mt-6 space-y-6 leading-relaxed text-foreground/90">{children}</div>
-  </section>
-);
-
-const SubTitle = ({ children }: { children: React.ReactNode }) => (
-  <h3 className="text-sm font-medium uppercase tracking-wide text-brand">{children}</h3>
-);
 
 export default function MentionsLegalesPage() {
   return (
