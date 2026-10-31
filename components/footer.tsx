@@ -26,7 +26,7 @@ const columns = [
   {
     title: "Superentreprise",
     links: [
-      { href: "/#nous-connaitre", label: "Nous connaître" },
+      { href: "/nous-connaitre", label: "Nous connaître" },
       { href: "/actualite", label: "Actualité" },
       { href: "/contact", label: "Contactez-nous" },
     ],

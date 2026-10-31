@@ -35,7 +35,7 @@ const links: NavEntry[] = [
       { href: "/acquisition/accompagner", label: "Accompagner" },
     ],
   },
-  { href: "/#nous-connaitre", label: "Nous connaître" },
+  { href: "/nous-connaitre", label: "Nous connaître" },
   { href: "/carrieres", label: "Carrières" },
   { href: "/actualite", label: "Actualité" },
   { href: "/contact", label: "Contact" },

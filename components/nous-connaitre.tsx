@@ -6,7 +6,7 @@ export const NousConnaitre = () => (
     eyebrow="Nous connaître"
     title="Des entrepreneurs qui comprennent les entrepreneurs"
     image="/home/nousconnaitre.jpg"
-    cta={{ href: "#", label: "En savoir plus" }}
+    cta={{ href: "/nous-connaitre", label: "En savoir plus" }}
   >
     <p>
       superentreprise accompagne les chefs d’entreprise à chaque étape de leur
