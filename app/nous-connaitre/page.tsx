@@ -104,6 +104,27 @@ export default function NousConnaitrePage() {
         </p>
       </FounderProfile>
 
+      <FounderProfile
+        name="Martin Aurelien"
+        image="/team/martin-aurelien.png"
+        role="Responsable Rhône-Alpes"
+        className="pt-0!"
+      >
+        <p>
+          Martin Aurelien représente superentreprise en Rhône-Alpes, depuis
+          notre implantation lyonnaise.
+        </p>
+        <p>
+          Au plus près du tissu économique régional, il accompagne les
+          dirigeants qui préparent la cession de leur entreprise comme les
+          repreneurs à la recherche d’une opportunité.
+        </p>
+        <p>
+          De la première rencontre jusqu’à la signature, il reste leur
+          interlocuteur de proximité à chaque étape du projet.
+        </p>
+      </FounderProfile>
+
       <ApproachCarousel
         title="Notre approche"
         lead={
