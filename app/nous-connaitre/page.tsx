@@ -59,8 +59,11 @@ export default function NousConnaitrePage() {
         </div>
       </section>
 
-      {/* Photo à ajouter : image="/nous-connaitre/alami-erhaidi.jpg" (format carré) */}
-      <FounderProfile name="Alami Er’haidi" role="Fondateur de superentreprise · Agent immobilier">
+      <FounderProfile
+        name="Alami Er’haidi"
+        image="/team/alami.jpg"
+        role="Fondateur de superentreprise · Agent immobilier"
+      >
         <p>
           Alami Er’haidi a fondé superentreprise avec une conviction : la
           transmission d’une entreprise mérite un accompagnement aussi

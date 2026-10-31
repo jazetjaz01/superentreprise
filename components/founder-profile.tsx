@@ -27,7 +27,8 @@ export const FounderProfile = ({
             alt={name}
             fill
             sizes="(min-width: 1024px) 352px, (min-width: 768px) 288px, 100vw"
-            className="object-cover"
+            // Portraits souvent en 3:4 : recadrage par le haut pour garder le visage
+            className="object-cover object-top"
           />
         ) : (
           <Image
