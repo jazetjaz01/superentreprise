@@ -82,6 +82,28 @@ export default function NousConnaitrePage() {
         </p>
       </FounderProfile>
 
+      {/* Profils successifs : pas de double espacement entre les deux */}
+      <FounderProfile
+        name="Ludovic Barbry"
+        image="/team/ludovic-barbry.png"
+        role="Responsable Île-de-France · Agent commercial en immobilier"
+        className="pt-0!"
+      >
+        <p>
+          Ludovic Barbry représente superentreprise en Île-de-France, depuis
+          notre bureau de Boulogne-Billancourt.
+        </p>
+        <p>
+          Agent commercial en immobilier, il connaît de près le marché des
+          locaux et des murs professionnels franciliens, un atout précieux pour
+          évaluer une entreprise et sécuriser sa transmission.
+        </p>
+        <p>
+          Il accompagne les dirigeants et les repreneurs de la région à chaque
+          étape de leur projet, de la première rencontre jusqu’à la signature.
+        </p>
+      </FounderProfile>
+
       <ApproachCarousel
         title="Notre approche"
         lead={

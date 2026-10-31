@@ -6,14 +6,16 @@ export const FounderProfile = ({
   name,
   role,
   image,
+  className = "",
   children,
 }: {
   name: string;
   role: string;
   image?: string;
+  className?: string;
   children: React.ReactNode;
 }) => (
-  <section className="mx-auto max-w-page px-4 py-24 sm:px-6 lg:px-8">
+  <section className={`mx-auto max-w-page px-4 py-24 sm:px-6 lg:px-8 ${className}`}>
     <h2 className="text-4xl font-normal tracking-tight text-brand sm:text-5xl lg:text-6xl">
       {name}
     </h2>
