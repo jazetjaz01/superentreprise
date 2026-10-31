@@ -4,6 +4,7 @@ import { Outfit, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -15,13 +16,23 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const DESCRIPTION =
+  "Cabinet de conseil en cession, acquisition et transmission d’entreprise. superentreprise accompagne dirigeants et repreneurs de PME, de l’évaluation à la signature, à Perpignan, en Île-de-France et à Lyon.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "superentreprise | Transmission et succession d’entreprise",
+    default: "Cession et transmission d’entreprise | superentreprise",
     template: "%s | superentreprise",
   },
-  description:
-    "superentreprise accompagne les dirigeants dans la transmission et la succession de leur entreprise. Des entrepreneurs qui comprennent les entrepreneurs, à vos côtés à chaque étape.",
+  description: DESCRIPTION,
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    // Sans titre ni description ici : chaque page garde les siens
+    siteName: SITE_NAME,
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
