@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-// Présentation d'un dirigeant : nom en grand, fonction, puis portrait carré
+// Présentation d'un dirigeant : nom en grand, fonction, puis portrait 3:4
 // à gauche et biographie à droite. Sans photo : logo sur fond clair.
 export const FounderProfile = ({
   name,
@@ -20,15 +20,14 @@ export const FounderProfile = ({
     <p className="mt-6 text-lg text-brand">{role}</p>
 
     <div className="mt-12 grid items-start gap-10 md:grid-cols-[18rem_minmax(0,1fr)] lg:mt-16 lg:grid-cols-[22rem_minmax(0,1fr)] lg:gap-12">
-      <div className="relative aspect-square w-full max-w-88 overflow-hidden bg-brand/5">
+      <div className="relative aspect-[3/4] w-full max-w-88 overflow-hidden bg-brand/5">
         {image ? (
           <Image
             src={image}
             alt={name}
             fill
             sizes="(min-width: 1024px) 352px, (min-width: 768px) 288px, 100vw"
-            // Portraits souvent en 3:4 : recadrage par le haut pour garder le visage
-            className="object-cover object-top"
+            className="object-cover"
           />
         ) : (
           <Image
