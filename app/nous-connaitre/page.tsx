@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Breadcrumb } from "@/components/breadcrumb";
-import { FeatureGrid } from "@/components/feature-grid";
+import { ApproachCarousel } from "@/components/approach-carousel";
 
 export const metadata: Metadata = {
   title: "Nous connaître",
@@ -58,29 +58,59 @@ export default function NousConnaitrePage() {
         </div>
       </section>
 
-      <FeatureGrid
-        eyebrow="Nos engagements"
-        title="Ce qui guide notre accompagnement"
-        features={[
+      <ApproachCarousel
+        title="Notre approche"
+        lead={
+          <>
+            <p>
+              superentreprise réunit des spécialistes de l’évaluation, de la
+              négociation et du droit des affaires autour d’une même mission :
+              réussir la transmission des entreprises qui nous sont confiées.
+            </p>
+            <p>
+              Cédants comme repreneurs bénéficient de la même méthode, fondée
+              sur l’écoute, la rigueur et la confidentialité.
+            </p>
+          </>
+        }
+        aside={
+          <p>
+            Cette approche guide chacune de nos missions, de la première
+            rencontre jusqu’à la signature. Elle nous permet de bâtir des
+            relations de confiance durables avec les dirigeants, leurs équipes
+            et leurs partenaires.
+          </p>
+        }
+        items={[
+          {
+            title: "Le client avant tout",
+            description:
+              "Comprendre votre histoire, vos priorités et vos contraintes pour construire une solution qui vous ressemble.",
+            image: "/home/process1.jpg",
+          },
           {
             title: "Indépendance",
             description:
-              "Nous ne dépendons d’aucun réseau bancaire ni d’aucun groupe. Nos recommandations ont un seul objectif : servir les intérêts de nos clients.",
+              "Aucun lien avec un réseau bancaire ou un groupe : nos recommandations servent uniquement vos intérêts.",
+            image: "/home/process2.jpg",
           },
           {
             title: "Confidentialité",
             description:
-              "Une transmission se prépare dans la discrétion. Chaque information est partagée au bon moment, avec les bons interlocuteurs, pour protéger vos équipes et vos clients.",
+              "Chaque information est partagée au bon moment, avec les bons interlocuteurs, pour protéger vos équipes et vos clients.",
+            image: "/home/process3.jpg",
           },
           {
             title: "Proximité",
             description:
-              "Implantés à Perpignan, en région parisienne et à Lyon, nous connaissons le tissu économique local et restons joignables à chaque étape de votre projet.",
+              "Implantés à Perpignan, en région parisienne et à Lyon, nous restons joignables à chaque étape de votre projet.",
+            image: "/home/ladefense.jpg",
           },
           {
             title: "Exigence",
             description:
-              "Évaluation, recherche de contreparties, négociation, closing : chaque étape est menée avec méthode et rigueur, jusqu’à la réussite de l’opération.",
+              "Évaluation, recherche de contreparties, négociation, closing : chaque étape est menée avec méthode, jusqu’à la réussite de l’opération.",
+            image: "/home/carriere2.jpg",
           },
         ]}
       />
