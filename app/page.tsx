@@ -15,10 +15,7 @@ export const metadata: Metadata = {
 
 // Données structurées : décrit le cabinet et ses implantations à Google
 async function OrganizationJsonLd() {
-  // Les adresses provisoires (Lyon) ne sont pas transmises à Google
-  const offices = (await getOffices()).filter(
-    (office) => !office.address_line.includes("provisoire")
-  );
+  const offices = await getOffices();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
